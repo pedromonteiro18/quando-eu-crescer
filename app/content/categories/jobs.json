@@ -1,0 +1,92 @@
+{
+  "id": "jobs",
+  "title": "Jobs",
+  "icon": "🚒",
+  "bands": ["4-6", "7-10"],
+  "cefr": "A1",
+  "goal": "Name jobs and the things people use to do them, and follow a simple instruction at work.",
+  "grammar": [
+    { "point": "Imperatives for instructions", "example": "Get the bandage." },
+    { "point": "a / an before a job", "example": "She is a vet. He is an artist." },
+    { "point": "Present continuous for now", "example": "The dog is sleeping." }
+  ],
+
+  "vocabulary": [
+    { "word": "vet", "icon": "🩺", "example": "The vet helps sick animals." },
+    { "word": "dog", "icon": "🐕", "example": "A dog came in. He is hurt." },
+    { "word": "cat", "icon": "🐈", "example": "Bring the cat inside." },
+    { "word": "sick", "icon": "🤒", "example": "The dog is sick today." },
+    { "word": "bandage", "icon": "🩹", "example": "Here is the bandage. Thank you!" },
+    { "word": "medicine", "icon": "💊", "example": "Give the medicine to the dog." },
+    { "word": "firefighter", "icon": "🚒", "example": "The firefighter is very brave." },
+    { "word": "fire", "icon": "🔥", "example": "Put water on the fire." },
+    { "word": "water", "icon": "💧", "example": "The water puts the fire out." },
+    { "word": "ladder", "icon": "🪜", "example": "Climb the ladder to the window." },
+    { "word": "helmet", "icon": "⛑️", "example": "Put on the helmet first." },
+    { "word": "truck", "icon": "🚛", "example": "The truck is red and very loud." },
+    { "word": "chef", "icon": "👩‍🍳", "example": "The chef makes a birthday cake." },
+    { "word": "egg", "icon": "🥚", "example": "Crack the egg into the bowl." },
+    { "word": "milk", "icon": "🥛", "example": "Add the milk and mix it." },
+    { "word": "pan", "icon": "🍳", "example": "Put it in the pan." },
+    { "word": "cake", "icon": "🎂", "example": "Serve the cake, please." },
+    { "word": "hot", "icon": "🥵", "example": "Careful, the pan is hot!" },
+    { "word": "help", "icon": "🆘", "example": "Can you help me, please?" },
+    { "word": "work", "icon": "💼", "example": "My mother goes to work at eight." }
+  ],
+
+  "phrases": [
+    { "text": "What do you want to be?", "use": "Asking about a future job." },
+    { "text": "I want to be a vet.", "use": "Answering. Say a vet, not just vet." },
+    { "text": "Put on the helmet.", "use": "An instruction at work. No please needed in an emergency." },
+    { "text": "Can you help me, please?", "use": "Asking for help from anyone." },
+    { "text": "Careful, it is hot!", "use": "A warning. Say it fast and loud." },
+    { "text": "Good job!", "use": "Praising someone who did the work well." }
+  ],
+
+  "dialogue": {
+    "title": "A day at the vet's",
+    "lines": [
+      { "who": "A", "text": "Good morning! A dog came in. He is hurt." },
+      { "who": "B", "text": "Poor dog. Get the bandage, please." },
+      { "who": "A", "text": "Here is the bandage." },
+      { "who": "B", "text": "Thank you. Now give the medicine." },
+      { "who": "A", "text": "He drank it all!" },
+      { "who": "B", "text": "Good job. A cat is waiting at the door. Bring the cat inside." },
+      { "who": "A", "text": "The cat is safe. You are a great vet!" }
+    ],
+    "questions": [
+      { "q": "What does the dog need first?", "options": ["A bandage", "Medicine", "Water"], "answer": 0 },
+      { "q": "Who is waiting at the door?", "options": ["A cat", "A dog", "A firefighter"], "answer": 0 }
+    ]
+  },
+
+  "speaking": [
+    { "text": "I want to be a vet.", "tip": "Want to often sounds like wanna in fast speech." },
+    { "text": "Put on the helmet.", "tip": "Put on links into one word: pu-ton." },
+    { "text": "Climb the ladder.", "tip": "The b in climb is silent. Say clime." },
+    { "text": "Careful, it is hot!", "tip": "Careful has two beats: CARE-ful." },
+    { "text": "Can you help me, please?", "tip": "Help me is one push of air. Don't stop between them." }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "vet" },
+    { "type": "spell", "answer": "fire" },
+    { "type": "spell", "answer": "cake" },
+    { "type": "spell", "answer": "helmet" },
+    { "type": "cloze", "sentence": "Put ___ the helmet.", "answer": "on" },
+    { "type": "cloze", "sentence": "Put water on the ___.", "answer": "fire" },
+    { "type": "cloze", "sentence": "She is ___ vet.", "answer": "a" },
+    { "type": "answer", "question": "What do you want to be?", "accept": ["I want to be", "a vet", "a chef", "a firefighter", "a teacher", "a doctor"] }
+  ],
+
+  "quiz": [
+    { "q": "Who helps sick animals?", "options": ["a vet", "a chef", "a firefighter"], "answer": 0 },
+    { "q": "A firefighter puts ___ on the fire.", "options": ["water", "milk", "medicine"], "answer": 0 },
+    { "q": "What do you put on your head before a fire?", "options": ["a helmet", "a bandage", "a pan"], "answer": 0 },
+    { "q": "Who makes the cake?", "options": ["the chef", "the vet", "the firefighter"], "answer": 0 },
+    { "q": "The pan is ___. Be careful!", "options": ["hot", "sick", "safe"], "answer": 0 },
+    { "q": "Choose the correct sentence.", "options": ["I want to be a vet.", "I want to be vet.", "I want be a vet."], "answer": 0 }
+  ],
+
+  "reviewed": true
+}

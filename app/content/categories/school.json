@@ -1,0 +1,106 @@
+{
+  "id": "school",
+  "title": "School",
+  "icon": "🏫",
+  "bands": ["7-10", "11-14"],
+  "cefr": "A2",
+  "goal": "Talk about your school day, your subjects, and ask for help in class.",
+  "grammar": [
+    { "point": "Present simple with frequency", "example": "I always do my homework." },
+    { "point": "can / can't for ability and permission", "example": "Can I go to the library?" },
+    { "point": "Prepositions of place", "example": "The book is on the desk." }
+  ],
+
+  "vocabulary": [
+    { "word": "school", "icon": "🏫", "example": "My school starts at eight." },
+    { "word": "student", "icon": "🧑‍🎓", "example": "There are thirty students in my class." },
+    { "word": "book", "icon": "📕", "example": "Open your book, please." },
+    { "word": "pencil", "icon": "✏️", "example": "Can I borrow a pencil?" },
+    { "word": "pen", "icon": "🖊️", "example": "Write your name with a pen." },
+    { "word": "notebook", "icon": "📓", "example": "My notebook is full." },
+    { "word": "ruler", "icon": "📏", "example": "Use a ruler to draw the line." },
+    { "word": "bag", "icon": "🎒", "example": "My bag is very heavy today." },
+    { "word": "desk", "icon": "🪑", "example": "The book is on the desk." },
+    { "word": "board", "icon": "📋", "example": "Look at the board, please." },
+    { "word": "lesson", "icon": "📚", "example": "The English lesson is after lunch." },
+    { "word": "homework", "icon": "📝", "example": "I always do my homework." },
+    { "word": "test", "icon": "🧾", "example": "We have a test on Friday." },
+    { "word": "question", "icon": "❓", "example": "I have a question." },
+    { "word": "answer", "icon": "✅", "example": "Do you know the answer?" },
+    { "word": "break", "icon": "⏰", "example": "We play football at break." },
+    { "word": "playground", "icon": "⚽", "example": "The playground is behind the school." },
+    { "word": "library", "icon": "🏛️", "example": "You must be quiet in the library." },
+    { "word": "math", "icon": "➗", "example": "Math is my favorite subject." },
+    { "word": "science", "icon": "🔬", "example": "In science we did an experiment." }
+  ],
+
+  "phrases": [
+    { "text": "Can you repeat that, please?", "use": "When you did not hear or understand." },
+    { "text": "How do you spell that?", "use": "Asking for the letters of a word." },
+    { "text": "I don't understand.", "use": "Honest and useful. Say it early, not late." },
+    { "text": "May I go out, please?", "use": "Asking permission from a teacher." },
+    { "text": "I have a question.", "use": "Before you ask, so the teacher listens." },
+    { "text": "What does that mean?", "use": "Asking about a word you do not know." },
+    { "text": "I forgot my homework.", "use": "Telling the truth about homework." }
+  ],
+
+  "dialogue": {
+    "title": "Before the lesson",
+    "lines": [
+      { "who": "A", "text": "Good morning. Take out your notebooks, please." },
+      { "who": "B", "text": "Excuse me, I have a question." },
+      { "who": "A", "text": "Yes, of course." },
+      { "who": "B", "text": "I forgot my homework at home. I'm sorry." },
+      { "who": "A", "text": "Thank you for telling me. Bring it tomorrow." },
+      { "who": "B", "text": "I will. Can I borrow a pencil, too?" },
+      { "who": "A", "text": "Here you are. Now, open your books at page ten." }
+    ],
+    "questions": [
+      { "q": "What did B forget?", "options": ["The homework", "The notebook", "The pencil"], "answer": 0 },
+      { "q": "What does the teacher tell B to do?", "options": ["Bring it tomorrow", "Do it again", "Go home"], "answer": 0 },
+      { "q": "What else does B ask for?", "options": ["A pencil", "A ruler", "A book"], "answer": 0 }
+    ]
+  },
+
+  "reading": {
+    "title": "A day at Ana's school",
+    "text": "Ana's school day starts at seven thirty, because it is very hot in the afternoon. Her first lesson is math, which she likes, and then science, which she loves. At nine thirty there is a twenty minute break. Ana usually eats a banana and plays football in the playground with her friends. After the break there are two more lessons, and school finishes at midday. In the afternoon Ana does her homework, and then she is free. On Friday there is no homework, and that is her favorite day of the week.",
+    "questions": [
+      { "q": "Why does the school day start early?", "options": ["It is very hot in the afternoon", "The teachers arrive early", "The bus comes at seven"], "answer": 0 },
+      { "q": "Which subject does Ana love?", "options": ["Science", "Math", "English"], "answer": 0 },
+      { "q": "How long is the break?", "options": ["Twenty minutes", "Half an hour", "Ten minutes"], "answer": 0 },
+      { "q": "Why is Friday her favorite day?", "options": ["There is no homework", "There is no math", "School finishes early"], "answer": 0 }
+    ]
+  },
+
+  "speaking": [
+    { "text": "Can you repeat that, please?", "tip": "Repeat has the strong beat on PEAT." },
+    { "text": "I don't understand.", "tip": "Don't is one sound. The t almost disappears." },
+    { "text": "How do you spell that?", "tip": "Do you often joins into d'you." },
+    { "text": "I have a question.", "tip": "Question sounds like QUES-chun." },
+    { "text": "My favorite subject is science.", "tip": "Science has two beats: SCI-ence." }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "school" },
+    { "type": "spell", "answer": "pencil" },
+    { "type": "spell", "answer": "library" },
+    { "type": "cloze", "sentence": "I always do my ___ after school.", "answer": "homework" },
+    { "type": "cloze", "sentence": "The book is ___ the desk.", "answer": "on" },
+    { "type": "cloze", "sentence": "___ you repeat that, please?", "answer": "Can" },
+    { "type": "cloze", "sentence": "We have a ___ on Friday, so I must study.", "answer": "test" },
+    { "type": "answer", "question": "What is your favorite subject, and why?", "accept": ["my favorite subject is", "I like", "I love", "because"] },
+    { "type": "answer", "question": "You did not hear the teacher. What do you say?", "accept": ["can you repeat", "could you repeat", "sorry", "pardon", "say that again"] }
+  ],
+
+  "quiz": [
+    { "q": "You did not understand a word. What do you say?", "options": ["What does that mean?", "I forgot my homework.", "May I go out?"], "answer": 0 },
+    { "q": "Choose the correct sentence.", "options": ["I always do my homework.", "I do always my homework.", "Always I do my homework."], "answer": 0 },
+    { "q": "Where do you go to read quietly?", "options": ["the library", "the playground", "the board"], "answer": 0 },
+    { "q": "Which one do you use to draw a straight line?", "options": ["a ruler", "an eraser", "a notebook"], "answer": 0 },
+    { "q": "\"How do you spell that?\" is asking for ___.", "options": ["the letters", "the meaning", "the answer"], "answer": 0 },
+    { "q": "Complete: \"May I ___ out, please?\"", "options": ["go", "to go", "going"], "answer": 0 }
+  ],
+
+  "reviewed": true
+}

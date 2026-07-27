@@ -1,0 +1,105 @@
+{
+  "id": "food",
+  "title": "Food & Drinks",
+  "icon": "🍎",
+  "bands": ["7-10", "11-14"],
+  "cefr": "A1-A2",
+  "goal": "Say what you like, order a meal, and ask for what you want politely.",
+  "grammar": [
+    { "point": "I'd like + noun", "example": "I'd like a juice, please." },
+    { "point": "some / any", "example": "Is there any bread? There is some rice." },
+    { "point": "like + -ing", "example": "I like cooking." }
+  ],
+
+  "vocabulary": [
+    { "word": "bread", "icon": "🍞", "example": "I eat bread for breakfast." },
+    { "word": "rice", "icon": "🍚", "example": "There is rice on the table." },
+    { "word": "apple", "icon": "🍎", "example": "An apple a day is good for you." },
+    { "word": "banana", "icon": "🍌", "example": "Bananas are yellow." },
+    { "word": "chicken", "icon": "🍗", "example": "We are having chicken tonight." },
+    { "word": "cheese", "icon": "🧀", "example": "I love cheese on my bread." },
+    { "word": "juice", "icon": "🧃", "example": "One orange juice, please." },
+    { "word": "coffee", "icon": "☕", "example": "My father drinks coffee in the morning." },
+    { "word": "tea", "icon": "🍵", "example": "Would you like a cup of tea?" },
+    { "word": "soup", "icon": "🍲", "example": "The soup is very hot." },
+    { "word": "salad", "icon": "🥗", "example": "I'd like a green salad." },
+    { "word": "fish", "icon": "🐟", "example": "We eat fish on Fridays." },
+    { "word": "sugar", "icon": "🍬", "example": "No sugar in my coffee, thanks." },
+    { "word": "salt", "icon": "🧂", "example": "Pass the salt, please." },
+    { "word": "breakfast", "icon": "🥣", "example": "Breakfast is at seven." },
+    { "word": "lunch", "icon": "🍱", "example": "I have lunch at school." },
+    { "word": "dinner", "icon": "🍽️", "example": "Dinner is ready!" },
+    { "word": "hungry", "icon": "🤤", "example": "I'm hungry. Can we eat?" },
+    { "word": "thirsty", "icon": "🥤", "example": "I'm thirsty. I need water." },
+    { "word": "delicious", "icon": "😋", "example": "This cake is delicious!" }
+  ],
+
+  "phrases": [
+    { "text": "I'd like a juice, please.", "use": "Ordering. Politer than I want." },
+    { "text": "Can I have the menu?", "use": "Asking for something in a restaurant." },
+    { "text": "I'm hungry.", "use": "Say I'm hungry, never I have hunger." },
+    { "text": "What would you like?", "use": "A waiter asking for your order." },
+    { "text": "It's delicious.", "use": "Praising the food you are eating." },
+    { "text": "No, thank you. I'm full.", "use": "Refusing more food politely." },
+    { "text": "The bill, please.", "use": "Asking to pay at the end." }
+  ],
+
+  "dialogue": {
+    "title": "Ordering lunch",
+    "lines": [
+      { "who": "A", "text": "Good afternoon. What would you like?" },
+      { "who": "B", "text": "I'd like the chicken with rice, please." },
+      { "who": "A", "text": "Of course. And to drink?" },
+      { "who": "B", "text": "An orange juice, please. I'm very thirsty." },
+      { "who": "A", "text": "Would you like a salad with that?" },
+      { "who": "B", "text": "No, thank you. Just the chicken." },
+      { "who": "A", "text": "Perfect. It will be ten minutes." }
+    ],
+    "questions": [
+      { "q": "What does B order to eat?", "options": ["Chicken with rice", "Soup and bread", "A green salad"], "answer": 0 },
+      { "q": "Why does B want a drink?", "options": ["B is thirsty", "B is tired", "The food is hot"], "answer": 0 },
+      { "q": "Does B want a salad?", "options": ["No", "Yes", "Only a small one"], "answer": 0 }
+    ]
+  },
+
+  "reading": {
+    "title": "Breakfast around the world",
+    "text": "In Brazil, many people have bread and coffee for breakfast. In Japan, breakfast can be rice, fish and soup. In England, some people eat eggs and bread in the morning, but on a normal work day they only have tea and something small. Breakfast is different in every country, but there is one thing everybody agrees on: you should not go to school or work hungry.",
+    "questions": [
+      { "q": "What is a common Brazilian breakfast in the text?", "options": ["Bread and coffee", "Rice and fish", "Eggs and salad"], "answer": 0 },
+      { "q": "What do many people in England have on a normal work day?", "options": ["Tea and something small", "A big plate of eggs", "Soup"], "answer": 0 },
+      { "q": "What does everybody agree on?", "options": ["You should not be hungry at school or work", "Breakfast should be big", "Coffee is the best drink"], "answer": 0 }
+    ]
+  },
+
+  "speaking": [
+    { "text": "I'd like a juice, please.", "tip": "I'd is one short sound: I would squeezed together." },
+    { "text": "I'm hungry.", "tip": "The h is breathed out. Don't drop it." },
+    { "text": "This soup is delicious.", "tip": "The strong beat is de-LI-cious." },
+    { "text": "Can I have the bill, please?", "tip": "Your voice rises on please to sound polite." },
+    { "text": "No, thank you. I'm full.", "tip": "Full has a short oo sound, like book." }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "bread" },
+    { "type": "spell", "answer": "juice" },
+    { "type": "spell", "answer": "hungry" },
+    { "type": "cloze", "sentence": "I'd ___ a coffee, please.", "answer": "like" },
+    { "type": "cloze", "sentence": "Is there ___ bread?", "answer": "any" },
+    { "type": "cloze", "sentence": "I'm ___. Can I have some water?", "answer": "thirsty" },
+    { "type": "cloze", "sentence": "The ___, please. I want to pay.", "answer": "bill" },
+    { "type": "answer", "question": "What do you have for breakfast?", "accept": ["I have", "I eat", "I drink", "bread", "coffee", "milk", "fruit"] },
+    { "type": "answer", "question": "Order a drink politely.", "accept": ["I'd like", "I would like", "can I have", "could I have"] }
+  ],
+
+  "quiz": [
+    { "q": "A waiter asks \"What would you like?\" Which reply is politest?", "options": ["I'd like the soup, please.", "Give me soup.", "I want soup."], "answer": 0 },
+    { "q": "Which is a drink?", "options": ["tea", "cheese", "salad"], "answer": 0 },
+    { "q": "You have eaten enough. What do you say?", "options": ["No, thank you. I'm full.", "I'm hungry.", "The bill, please."], "answer": 0 },
+    { "q": "Choose the correct sentence.", "options": ["I'm hungry.", "I have hungry.", "I have hunger."], "answer": 0 },
+    { "q": "The meal you eat in the middle of the day is ___.", "options": ["lunch", "breakfast", "dinner"], "answer": 0 },
+    { "q": "You want to pay. What do you say?", "options": ["The bill, please.", "The menu, please.", "I'm thirsty."], "answer": 0 }
+  ],
+
+  "reviewed": true
+}

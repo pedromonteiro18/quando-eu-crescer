@@ -1,0 +1,106 @@
+{
+  "id": "travel",
+  "title": "Travel",
+  "icon": "✈️",
+  "bands": ["11-14", "15+"],
+  "cefr": "A2-B1",
+  "goal": "Plan a trip, buy a ticket, check in, and deal with something going wrong.",
+  "grammar": [
+    { "point": "going to for plans", "example": "We're going to fly on Sunday." },
+    { "point": "Present perfect for experience", "example": "Have you ever been to Lisbon?" },
+    { "point": "Polite requests with could", "example": "Could you tell me where the gate is?" }
+  ],
+
+  "vocabulary": [
+    { "word": "airport", "icon": "✈️", "example": "We arrived at the airport two hours early." },
+    { "word": "ticket", "icon": "🎫", "example": "Keep your ticket, they check it on the train." },
+    { "word": "passport", "icon": "🛂", "example": "My passport expires next year." },
+    { "word": "luggage", "icon": "🧳", "example": "I only travel with hand luggage." },
+    { "word": "train", "icon": "🚆", "example": "The train to Porto leaves at six." },
+    { "word": "bus", "icon": "🚌", "example": "The bus is cheaper than the taxi." },
+    { "word": "taxi", "icon": "🚕", "example": "Could you call me a taxi?" },
+    { "word": "hotel", "icon": "🏨", "example": "The hotel is five minutes from the beach." },
+    { "word": "map", "icon": "🗺️", "example": "I still prefer a paper map." },
+    { "word": "seat", "icon": "💺", "example": "Excuse me, I think that is my seat." },
+    { "word": "platform", "icon": "🚉", "example": "The train leaves from platform three." },
+    { "word": "delay", "icon": "⏳", "example": "There is a two hour delay." },
+    { "word": "gate", "icon": "🛫", "example": "Boarding at gate twelve." },
+    { "word": "arrival", "icon": "🛬", "example": "Check the arrivals board." },
+    { "word": "booking", "icon": "📅", "example": "I have a booking under the name Silva." },
+    { "word": "journey", "icon": "🛣️", "example": "It is a long journey, about nine hours." },
+    { "word": "currency", "icon": "💱", "example": "What is the currency in Japan?" },
+    { "word": "border", "icon": "🛃", "example": "We crossed the border at night." },
+    { "word": "guide", "icon": "🧭", "example": "Our guide knew every street." },
+    { "word": "beach", "icon": "🏖️", "example": "The beach was empty in the morning." }
+  ],
+
+  "phrases": [
+    { "text": "A single to Porto, please.", "use": "Buying a one way ticket. A return is both ways." },
+    { "text": "What time does it leave?", "use": "Asking about a departure. Not what hour." },
+    { "text": "Could you tell me where the gate is?", "use": "Polite, indirect. Note the word order: where the gate is." },
+    { "text": "I have a booking under Silva.", "use": "Checking in at a hotel." },
+    { "text": "My flight has been delayed.", "use": "Explaining the problem before asking for help." },
+    { "text": "Is this seat taken?", "use": "Before you sit down next to someone." },
+    { "text": "How do I get to the centre?", "use": "Asking for directions to the middle of a city." }
+  ],
+
+  "dialogue": {
+    "title": "At the station",
+    "lines": [
+      { "who": "A", "text": "Good afternoon. A single to Porto, please." },
+      { "who": "B", "text": "That's twenty euros. The next train is at four fifteen." },
+      { "who": "A", "text": "Could you tell me which platform it leaves from?" },
+      { "who": "B", "text": "Platform three. But there is a short delay, about ten minutes." },
+      { "who": "A", "text": "That's fine. Do I need to change trains?" },
+      { "who": "B", "text": "No, it goes direct. It takes about three hours." },
+      { "who": "A", "text": "Perfect. Thank you very much." }
+    ],
+    "questions": [
+      { "q": "What kind of ticket does A buy?", "options": ["A single", "A return", "A monthly pass"], "answer": 0 },
+      { "q": "What is the problem with the train?", "options": ["A short delay", "It is full", "It is cancelled"], "answer": 0 },
+      { "q": "Does A have to change trains?", "options": ["No, it is direct", "Yes, once", "Yes, twice"], "answer": 0 }
+    ]
+  },
+
+  "reading": {
+    "title": "The night bus",
+    "text": "The cheapest way to cross the country is the night bus, and everyone who has taken it once has an opinion about it. You leave at eleven, you arrive at six, and in between you try to sleep sitting up while the air conditioning fights the tropical night. The advantage is obvious: you save the price of a hotel, and you wake up already in the city you wanted to reach. The disadvantage arrives about an hour later, when you realise you cannot check in until two in the afternoon and you are carrying your luggage around a city that is still waking up. Experienced travellers do one of two things. They book a hotel that keeps bags for arriving guests, or they plan the first morning as something that needs no energy at all: a long breakfast, a park, a slow walk. What they never do is plan a museum.",
+    "questions": [
+      { "q": "What is the main advantage of the night bus?", "options": ["You save the price of a hotel", "It is faster than flying", "The seats are comfortable"], "answer": 0 },
+      { "q": "What problem appears after you arrive?", "options": ["You cannot check in until the afternoon", "The buses stop running", "There is nowhere to eat"], "answer": 0 },
+      { "q": "What do experienced travellers plan for the first morning?", "options": ["Something that needs no energy", "A museum", "A long bus tour"], "answer": 0 },
+      { "q": "The tone of the text is best described as ___.", "options": ["practical and slightly amused", "angry", "formal and official"], "answer": 0 }
+    ]
+  },
+
+  "speaking": [
+    { "text": "A single to Porto, please.", "tip": "Single has a hard g sound: SING-gul." },
+    { "text": "Could you tell me where the gate is?", "tip": "Could you often sounds like couldja." },
+    { "text": "My flight has been delayed.", "tip": "Has been is unstressed and quick. Delayed is the strong word." },
+    { "text": "I have a booking under Silva.", "tip": "Booking has a short oo, like book, not like food." },
+    { "text": "How do I get to the centre?", "tip": "Get to blends into one sound: geh-to." }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "passport" },
+    { "type": "spell", "answer": "luggage" },
+    { "type": "cloze", "sentence": "The train leaves ___ platform three.", "answer": "from" },
+    { "type": "cloze", "sentence": "Could you tell me where the gate ___?", "answer": "is" },
+    { "type": "cloze", "sentence": "We're ___ to fly on Sunday.", "answer": "going" },
+    { "type": "cloze", "sentence": "Have you ___ been to Lisbon?", "answer": "ever" },
+    { "type": "answer", "question": "Buy a one way ticket to Lisbon, politely.", "accept": ["a single to lisbon", "one single to lisbon", "could I have a single", "I'd like a single", "a one way ticket to lisbon"] },
+    { "type": "answer", "question": "Your flight is delayed. Tell the hotel you will arrive late.", "accept": ["my flight", "delayed", "I will arrive late", "I'll arrive late", "I will be late", "I'll be late"] },
+    { "type": "answer", "question": "Describe a journey you have taken.", "accept": ["I went", "I travelled", "I traveled", "it took", "we flew", "I have been"] }
+  ],
+
+  "quiz": [
+    { "q": "You want a ticket to go and come back. You ask for a ___.", "options": ["return", "single", "delay"], "answer": 0 },
+    { "q": "Choose the correct indirect question.", "options": ["Could you tell me where the gate is?", "Could you tell me where is the gate?", "Could you tell me where gate is?"], "answer": 0 },
+    { "q": "\"Have you ever been to Japan?\" — the correct short answer is ___.", "options": ["Yes, I have.", "Yes, I was.", "Yes, I did."], "answer": 0 },
+    { "q": "The board says your flight is delayed. This means it ___.", "options": ["will leave later than planned", "will not leave at all", "has already left"], "answer": 0 },
+    { "q": "Complete: \"We're going ___ fly on Sunday.\"", "options": ["to", "for", "at"], "answer": 0 },
+    { "q": "At a hotel you say: \"I have a booking ___ Silva.\"", "options": ["under", "on", "in"], "answer": 0 }
+  ],
+
+  "reviewed": true
+}

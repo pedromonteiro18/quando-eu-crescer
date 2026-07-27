@@ -1,0 +1,111 @@
+{
+  "id": "conversations",
+  "title": "Everyday Conversations",
+  "icon": "💬",
+  "bands": ["11-14", "15+"],
+  "cefr": "B1",
+  "goal": "Keep a real conversation going: agree, disagree, apologize, ask a favor, change the subject.",
+  "grammar": [
+    { "point": "Question tags", "example": "It's cold today, isn't it?" },
+    { "point": "would / could for softening", "example": "Would you mind opening the window?" },
+    { "point": "used to for past habits", "example": "I used to live in Recife." },
+    { "point": "Reported speech", "example": "She said she was busy." }
+  ],
+
+  "vocabulary": [
+    { "word": "actually", "icon": "🤔", "example": "Actually, I think you're right." },
+    { "word": "apologize", "icon": "🙇", "example": "I want to apologize for yesterday." },
+    { "word": "agree", "icon": "👌", "example": "I agree with you completely." },
+    { "word": "disagree", "icon": "🙅", "example": "I disagree, but I understand why you say that." },
+    { "word": "explain", "icon": "💬", "example": "Let me explain what happened." },
+    { "word": "suggest", "icon": "💡", "example": "I suggest we meet on Friday." },
+    { "word": "complain", "icon": "😤", "example": "He complains about everything." },
+    { "word": "invite", "icon": "💌", "example": "They invited us to dinner." },
+    { "word": "accept", "icon": "✔️", "example": "She accepted the invitation." },
+    { "word": "refuse", "icon": "✋", "example": "He refused to help." },
+    { "word": "promise", "icon": "🤞", "example": "I promise I'll call you." },
+    { "word": "remind", "icon": "🔔", "example": "Remind me to buy bread." },
+    { "word": "mention", "icon": "🗯️", "example": "She mentioned it yesterday." },
+    { "word": "mean", "icon": "🎯", "example": "What do you mean exactly?" },
+    { "word": "guess", "icon": "🎲", "example": "I guess you're tired." },
+    { "word": "wonder", "icon": "💭", "example": "I wonder if she's coming." },
+    { "word": "mind", "icon": "🧠", "example": "Would you mind waiting a moment?" },
+    { "word": "favor", "icon": "🎁", "example": "Can I ask you a favor?" },
+    { "word": "plan", "icon": "🗓️", "example": "What are your plans for the weekend?" },
+    { "word": "chat", "icon": "🗨️", "example": "We had a long chat about work." }
+  ],
+
+  "phrases": [
+    { "text": "Can I ask you a favor?", "use": "Warn them first. Never start with the favor itself." },
+    { "text": "Would you mind opening the window?", "use": "Note the -ing. And yes means no here, so people answer not at all." },
+    { "text": "I see what you mean, but...", "use": "Disagreeing without a fight. The but is expected." },
+    { "text": "Sorry, I didn't catch that.", "use": "You heard sound but not words. Better than what?" },
+    { "text": "Anyway, how was your weekend?", "use": "Anyway changes the subject, politely and clearly." },
+    { "text": "That reminds me...", "use": "Connecting your story to theirs instead of interrupting." },
+    { "text": "Let me get back to you on that.", "use": "Saying not now without saying no." }
+  ],
+
+  "dialogue": {
+    "title": "Running into someone",
+    "lines": [
+      { "who": "A", "text": "Pedro! I haven't seen you in ages. How have you been?" },
+      { "who": "B", "text": "Busy, actually. I changed jobs in March." },
+      { "who": "A", "text": "Did you? That's a big move. Do you like it?" },
+      { "who": "B", "text": "I do, most days. The hours are worse, but the work is more interesting." },
+      { "who": "A", "text": "I know exactly what you mean. Listen, can I ask you a favor?" },
+      { "who": "B", "text": "Of course. Go ahead." },
+      { "who": "A", "text": "Would you mind sending me the name of your old company? My sister is looking." },
+      { "who": "B", "text": "Not at all. I'll message it to you tonight, I promise." }
+    ],
+    "questions": [
+      { "q": "What has changed for B?", "options": ["B changed jobs in March", "B moved house", "B started studying"], "answer": 0 },
+      { "q": "What does B think of the new job?", "options": ["Worse hours, more interesting work", "Better hours, boring work", "Everything is worse"], "answer": 0 },
+      { "q": "What does \"Not at all\" mean here?", "options": ["Yes, I'll do it", "No, I won't do it", "I don't understand"], "answer": 0 },
+      { "q": "Why does A want the company name?", "options": ["A's sister is looking for a job", "A wants to complain", "A works there too"], "answer": 0 }
+    ]
+  },
+
+  "reading": {
+    "title": "The rules nobody teaches you",
+    "text": "Most people who learn English get the grammar of conversation long before they get the manners of it, and the gap shows. Take \"Would you mind opening the window?\" A learner who answers \"Yes\" has produced a perfect sentence and refused the request, because the question is literally asking whether you object. The safe answer is \"Not at all\", which sounds like a refusal and is the opposite.\n\nThen there is the English habit of softening. \"That's not quite right\" usually means it is wrong. \"I'm not sure that's the best idea\" is often a firm no. Directness is not rude in every culture, and in Brazil a straight answer is normal and friendly, so this can feel dishonest at first. It helps to think of it as a different kind of politeness rather than a lack of honesty: the meaning is still fully there, it is just carried by the phrase rather than the words.\n\nThe practical advice is small. Learn five softening phrases and use them until they stop feeling strange. Learn one phrase for changing the subject, because every conversation eventually needs one. And when you truly did not hear something, say \"Sorry, I didn't catch that\" rather than \"What?\", which is correct English and sounds impatient in almost every situation.",
+    "questions": [
+      { "q": "Why is answering \"Yes\" to \"Would you mind...?\" a problem?", "options": ["It literally means you object", "It is grammatically wrong", "It is too formal"], "answer": 0 },
+      { "q": "What does \"That's not quite right\" usually mean?", "options": ["It is wrong", "It is almost perfect", "It needs a small change"], "answer": 0 },
+      { "q": "How does the writer suggest thinking about softening?", "options": ["As a different kind of politeness", "As dishonesty", "As bad grammar"], "answer": 0 },
+      { "q": "Why avoid \"What?\"", "options": ["It sounds impatient", "It is incorrect English", "Nobody uses it"], "answer": 0 },
+      { "q": "The writer's advice is best described as ___.", "options": ["small and practical", "theoretical", "about grammar rules"], "answer": 0 }
+    ]
+  },
+
+  "speaking": [
+    { "text": "Can I ask you a favor?", "tip": "Rising at the end. It is a real question, not an announcement." },
+    { "text": "Would you mind opening the window?", "tip": "Would you compresses to wudja. Mind is the strong word." },
+    { "text": "I see what you mean, but...", "tip": "Slow down on but and pause. That pause is the polite part." },
+    { "text": "Sorry, I didn't catch that.", "tip": "Didn't catch runs together: didn-catch." },
+    { "text": "Anyway, how was your weekend?", "tip": "Anyway gets its own little drop in pitch before the new topic." },
+    { "text": "It's cold today, isn't it?", "tip": "The tag falls if you are making conversation, rises if you really don't know." }
+  ],
+
+  "writing": [
+    { "type": "cloze", "sentence": "Would you mind ___ the window?", "answer": "opening" },
+    { "type": "cloze", "sentence": "It's cold today, ___ it?", "answer": "isn't" },
+    { "type": "cloze", "sentence": "I ___ to live in Recife when I was a child.", "answer": "used" },
+    { "type": "cloze", "sentence": "She said she ___ busy.", "answer": "was" },
+    { "type": "cloze", "sentence": "Sorry, I didn't ___ that.", "answer": "catch" },
+    { "type": "answer", "question": "Disagree with someone politely.", "accept": ["I see what you mean but", "I'm not sure", "I understand but", "that's a fair point but", "I don't quite agree"] },
+    { "type": "answer", "question": "Ask a colleague for a favor.", "accept": ["can I ask you a favor", "could I ask you a favour", "would you mind", "could you", "I was wondering if"] },
+    { "type": "answer", "question": "Change the subject politely.", "accept": ["anyway", "by the way", "that reminds me", "speaking of"] }
+  ],
+
+  "quiz": [
+    { "q": "\"Would you mind waiting?\" — you are happy to wait. You say:", "options": ["Not at all.", "Yes, of course.", "Yes, I would."], "answer": 0 },
+    { "q": "Which one is the politest disagreement?", "options": ["I see what you mean, but...", "That's wrong.", "No."], "answer": 0 },
+    { "q": "Complete the tag: \"You're from Brazil, ___?\"", "options": ["aren't you", "don't you", "isn't it"], "answer": 0 },
+    { "q": "\"I'm not sure that's the best idea\" usually means ___.", "options": ["no", "maybe", "yes"], "answer": 0 },
+    { "q": "You did not hear what someone said. The best reply is ___.", "options": ["Sorry, I didn't catch that.", "What?", "Repeat."], "answer": 0 },
+    { "q": "Report this: \"I'm tired,\" she said. → She said she ___ tired.", "options": ["was", "is", "were"], "answer": 0 },
+    { "q": "Which phrase changes the subject?", "options": ["Anyway,", "Actually,", "However,"], "answer": 0 }
+  ],
+
+  "reviewed": true
+}

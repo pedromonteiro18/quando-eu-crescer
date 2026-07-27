@@ -1,0 +1,112 @@
+{
+  "id": "phrasal-verbs",
+  "title": "Phrasal Verbs",
+  "icon": "🔗",
+  "bands": ["15+"],
+  "cefr": "B1-B2",
+  "goal": "Use the phrasal verbs that native speakers actually reach for, and know when not to.",
+  "grammar": [
+    { "point": "Separable phrasal verbs", "example": "Turn the music down. / Turn it down. (not turn down it)" },
+    { "point": "Inseparable phrasal verbs", "example": "I ran into her. (not ran her into)" },
+    { "point": "Three-part phrasal verbs", "example": "I can't put up with it." },
+    { "point": "Register", "example": "Call it off is spoken. Cancel it is written." }
+  ],
+
+  "vocabulary": [
+    { "word": "give up", "icon": "🏳️", "example": "She gave up smoking two years ago." },
+    { "word": "look after", "icon": "🧑‍🍼", "example": "Could you look after the dog this weekend?" },
+    { "word": "put off", "icon": "📆", "example": "They put the meeting off until Thursday." },
+    { "word": "run out of", "icon": "🫗", "example": "We've run out of coffee again." },
+    { "word": "come across", "icon": "🔎", "example": "I came across an old photo of my grandfather." },
+    { "word": "get along", "icon": "🫂", "example": "I get along well with my colleagues." },
+    { "word": "turn down", "icon": "🔉", "example": "He turned down the offer." },
+    { "word": "bring up", "icon": "🗣️", "example": "Don't bring that up at dinner." },
+    { "word": "take over", "icon": "🎛️", "example": "She took over the department in June." },
+    { "word": "work out", "icon": "🏋️", "example": "It didn't work out, so we tried something else." },
+    { "word": "figure out", "icon": "🧩", "example": "I still haven't figured out how it works." },
+    { "word": "look forward to", "icon": "😃", "example": "I'm looking forward to seeing you." },
+    { "word": "put up with", "icon": "😣", "example": "I can't put up with the noise any longer." },
+    { "word": "call off", "icon": "🚫", "example": "They called the match off because of the rain." },
+    { "word": "get over", "icon": "🌤️", "example": "It took her a month to get over the flu." },
+    { "word": "set up", "icon": "🛠️", "example": "He set up the company on his own." },
+    { "word": "break down", "icon": "🚗", "example": "The car broke down on the motorway." },
+    { "word": "hand in", "icon": "📤", "example": "Hand in your report by Friday." },
+    { "word": "point out", "icon": "👉", "example": "She pointed out the mistake, politely." },
+    { "word": "carry on", "icon": "➡️", "example": "Carry on, I'm listening." }
+  ],
+
+  "phrases": [
+    { "text": "I'm looking forward to it.", "use": "Note the -ing after to. Looking forward to see is the classic error." },
+    { "text": "Let's put it off until next week.", "use": "Postpone, in speech. In an email you would write postpone." },
+    { "text": "I can't put up with it any longer.", "use": "Three parts, never separated." },
+    { "text": "Turn it down, please.", "use": "The pronoun must go in the middle. Turn down it is wrong." },
+    { "text": "It didn't work out.", "use": "Softer and vaguer than it failed, which is why people use it." },
+    { "text": "I ran out of time.", "use": "The standard, blameless excuse." },
+    { "text": "Can you look after it for me?", "use": "Look after is inseparable. Look it after is wrong." }
+  ],
+
+  "dialogue": {
+    "title": "Monday morning",
+    "lines": [
+      { "who": "A", "text": "Did you get my message? I had to call off the client meeting." },
+      { "who": "B", "text": "I saw it. What happened?" },
+      { "who": "A", "text": "My car broke down on the way in, and by the time I'd sorted it out it was eleven." },
+      { "who": "B", "text": "That's bad luck. Have they put it off or cancelled it completely?" },
+      { "who": "A", "text": "Put off. Thursday, if you can make it." },
+      { "who": "B", "text": "I can. Do you want me to take over the presentation part?" },
+      { "who": "A", "text": "Would you? I still haven't figured out the pricing slide." },
+      { "who": "B", "text": "Leave it with me. And hand in the numbers by Wednesday so I can check them." }
+    ],
+    "questions": [
+      { "q": "Why did A call off the meeting?", "options": ["The car broke down", "The client cancelled", "A was ill"], "answer": 0 },
+      { "q": "Is the meeting cancelled completely?", "options": ["No, it is put off until Thursday", "Yes, completely", "It is not decided"], "answer": 0 },
+      { "q": "What does B offer to do?", "options": ["Take over the presentation", "Fix the car", "Call the client"], "answer": 0 },
+      { "q": "What does B want by Wednesday?", "options": ["The numbers", "The pricing slide", "The car"], "answer": 0 }
+    ]
+  },
+
+  "reading": {
+    "title": "Why phrasal verbs are hard, and why you still need them",
+    "text": "Almost every phrasal verb has a single-word equivalent, usually with Latin roots, and Portuguese speakers already know most of those words: postpone, tolerate, discover, cancel, investigate. This produces a tempting shortcut. Why learn \"put off\" when \"postpone\" exists and is, if anything, clearer?\n\nThe answer is register. A speaker who only uses the Latinate word sounds like a document. \"I cannot tolerate this noise\" is correct, and no colleague has ever said it out loud. \"I can't put up with this noise\" is what the sentence sounds like in a kitchen at work. The reverse mistake exists too: an email that says \"we had to call the whole thing off\" reads as careless where \"cancelled\" would have read as professional. Neither register is better. They are two different rooms, and fluency is largely knowing which room you are standing in.\n\nThe grammar is the smaller problem, but it does have to be learned rather than guessed. Separable verbs push a pronoun into the middle: turn it down, never turn down it. Inseparable ones refuse to be split at all: I ran into her, never I ran her into. Three-part verbs behave as a single frozen block. There is no rule that predicts which is which, and pretending otherwise wastes time. Learn each phrasal verb with a full example sentence attached, and the pattern comes along free, in the only form you will ever need it.",
+    "questions": [
+      { "q": "What is the writer's main point about phrasal verbs?", "options": ["They belong to a different register than their Latinate equivalents", "They are always better than single words", "They should be avoided in speech"], "answer": 0 },
+      { "q": "Why does \"I cannot tolerate this noise\" sound wrong to a colleague?", "options": ["It is too formal for spoken English", "It is grammatically incorrect", "Tolerate is a rare word"], "answer": 0 },
+      { "q": "What does the writer say about the reverse mistake?", "options": ["Phrasal verbs in a written email can read as careless", "It never happens", "It is worse than the first mistake"], "answer": 0 },
+      { "q": "What advice does the writer give for learning them?", "options": ["Learn each one with a full example sentence", "Memorize the rules for separability", "Translate them into Portuguese first"], "answer": 0 },
+      { "q": "\"Fluency is largely knowing which room you are standing in\" is a metaphor for ___.", "options": ["choosing the right register", "learning grammar rules", "travelling abroad"], "answer": 0 }
+    ]
+  },
+
+  "speaking": [
+    { "text": "I'm looking forward to it.", "tip": "Four words, one wave. Forward to blends into forward-tuh." },
+    { "text": "I can't put up with it any longer.", "tip": "Put up with is three unstressed beats. Longer carries the weight." },
+    { "text": "The car broke down on the motorway.", "tip": "Broke DOWN. In a phrasal verb the particle usually takes the stress." },
+    { "text": "Turn it down, please.", "tip": "Turn it links into turn-it. Down is the loud part." },
+    { "text": "It didn't work out.", "tip": "Work OUT, and the final t is barely there." },
+    { "text": "I came across an old photo.", "tip": "Came across links: cay-ma-cross." }
+  ],
+
+  "writing": [
+    { "type": "cloze", "sentence": "I'm looking forward ___ seeing you.", "answer": "to" },
+    { "type": "cloze", "sentence": "The music is too loud. Turn it ___.", "answer": "down" },
+    { "type": "cloze", "sentence": "We've run ___ of coffee.", "answer": "out" },
+    { "type": "cloze", "sentence": "I can't put up ___ the noise any longer.", "answer": "with" },
+    { "type": "cloze", "sentence": "Could you look ___ the dog this weekend?", "answer": "after" },
+    { "type": "answer", "question": "Rewrite formally: \"They called the meeting off.\"", "accept": ["they cancelled the meeting", "they canceled the meeting", "the meeting was cancelled", "the meeting was canceled"] },
+    { "type": "answer", "question": "Rewrite in spoken English: \"I cannot tolerate this noise.\"", "accept": ["I can't put up with", "I cannot put up with", "put up with this noise"] },
+    { "type": "answer", "question": "Use \"figure out\" in a sentence about work.", "accept": ["figure out", "figured out", "figuring out"] },
+    { "type": "answer", "question": "Your car has broken down and you will be late. Write the message you send.", "accept": ["broke down", "broken down", "I'll be late", "I will be late", "running late"] }
+  ],
+
+  "quiz": [
+    { "q": "Which is correct?", "options": ["Turn it down.", "Turn down it.", "Turn down them."], "answer": 0 },
+    { "q": "Which is correct?", "options": ["I ran into her.", "I ran her into.", "I ran into to her."], "answer": 0 },
+    { "q": "\"I'm looking forward to ___ you.\"", "options": ["seeing", "see", "saw"], "answer": 0 },
+    { "q": "Which phrasal verb means postpone?", "options": ["put off", "put up with", "put out"], "answer": 0 },
+    { "q": "Which sentence fits a formal email best?", "options": ["The meeting has been cancelled.", "We called the whole thing off.", "We had to knock it on the head."], "answer": 0 },
+    { "q": "\"I can't put up with it\" means ___.", "options": ["I can't tolerate it", "I can't lift it", "I can't understand it"], "answer": 0 },
+    { "q": "She ___ the job offer because the salary was too low.", "options": ["turned down", "turned up", "turned over"], "answer": 0 }
+  ],
+
+  "reviewed": true
+}

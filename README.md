@@ -1,54 +1,92 @@
-# Quando Eu Crescer
+# English with Clara
 
-Inglês para crianças de 6 a 9 anos **através de profissões**. A criança escolhe um trabalho que
-gostaria de fazer, aprende as palavras que aquele trabalho usa de verdade, e joga situações do
-trabalho. O trabalho é a motivação; o vocabulário é a carga.
+An English-only app that exercises **all four language skills in every lesson** — listening,
+speaking, reading, writing — for ages four through adult. No translation anywhere, not even in the
+buttons. Everything runs on the device: no account, no server, no analytics, no network call
+beyond the page's own files.
 
-**▶️ <https://pedromonteiro18.github.io/quando-eu-crescer/>** — abra no celular, em pé.
+**Live:** <https://pedromonteiro18.github.io/quando-eu-crescer/>
 
-Sem conta, sem instalação, sem internet depois de carregar. Uma missão leva ~3,5 minutos:
-
-1. **Conhecer** — 5 palavras, figura grande, o inglês é falado sozinho
-2. **Ouça e toque** — ouve uma palavra em inglês, toca na figura certa entre 3
-3. **No trabalho** — cena de 3 partes: a situação vem em português, a *tarefa* vem em inglês
-
-No fim, uma medalha: *"Você é um Pequeno Veterinário!"*
-
-Três profissões prontas: 🩺 Veterinário · 🚒 Bombeiro · 👩‍🍳 Chef de Cozinha
+Read **[DESIGN.md](DESIGN.md)** for the decisions, the colour system, and what was verified.
 
 ---
 
-## Para quem for revisar o inglês
+## Running it
 
-Segure o ⚙ da tela inicial por **3 segundos**. A área de pais e professores mostra
-**todas as frases em inglês que o app fala**, pacote por pacote — é só ler e apontar o que
-não soa natural. Cada frase é uma linha de texto em `prototype/index.html`.
+The app is static files with no build step, but it does need a real HTTP server — ES modules and
+`fetch` both refuse to work from `file://`.
 
-Lá também dá para **trocar a voz** do aparelho: a qualidade das vozes varia muito de um
-celular para outro, e a escolha fica guardada.
+```sh
+python3 -m http.server --directory app
+# then open http://localhost:8000
+```
+
+`git push` updates the live site.
 
 ---
 
-## Rodando localmente
+## The two build scripts
 
-`prototype/index.html` é o app inteiro — um arquivo, sem build, sem dependências.
-Abra direto no navegador, ou:
-
-```sh
-python3 -m http.server 8000 --directory prototype
-```
-
-Depois de editar `index.html`, gere a cópia usada para publicar no Claude:
+Neither is needed to run the app. Both write files that are committed.
 
 ```sh
-node prototype/build-artifact.mjs
+node build/build-audio.mjs               # only what is missing
+node build/build-audio.mjs --force       # re-render everything
+node build/build-audio.mjs greetings     # one category (plus the shared ui set)
+
+node build/build-fonts.mjs               # fetch, subset and inline the two OFL faces
 ```
 
-## Privacidade
+`build-audio.mjs` needs macOS (`say` and `afconvert`). Set `AUDIO_VOICE` to use a different
+installed voice. **A clip is named after its own text**, so replacing the synthetic voice with a
+human recording is a file swap — re-record the phrase, keep the filename, change nothing else.
 
-Nenhuma conta, nenhum servidor, nenhuma chamada de rede, nenhuma análise de uso.
-Medalhas e progresso ficam no `localStorage` do próprio navegador. Não há dado de criança
-saindo do aparelho — por isso não há nada a consentir sob a LGPD.
+`build-fonts.mjs` needs network access once. If `pyftsubset` (fonttools) is on `PATH` the faces are
+cut down to the characters the app can display: 79 kB instead of 212 kB.
 
-As decisões de produto, o formato dos pacotes de conteúdo e o que vem depois estão em
-[DESIGN.md](DESIGN.md).
+---
+
+## Layout
+
+| Path | What it is |
+|---|---|
+| `app/` | The whole app. Open `app/index.html` through a server. |
+| `app/content/levels.json` | The four bands, the placement ladder, badges, confusable pairs, and the list of category files. |
+| `app/content/categories/*.json` | One category per file — exactly what a generator produces and a human approves. |
+| `app/audio/<category>/` | Clips plus a `clips.json` manifest, fetched only when that category is opened. |
+| `app/js/` | ES modules. `audio.js` and the progress buckets are ported from the prototype. |
+| `build/` | The two generators above. |
+| `prototype/` | The previous Portuguese-instructed job app, kept as the record of where this came from. |
+
+---
+
+## Adding a category
+
+1. Write `app/content/categories/<id>.json` in the shape documented in
+   [DESIGN.md](DESIGN.md#content-format), with `"reviewed": false`.
+2. Add `"<id>"` to `categoryFiles` in `app/content/levels.json`, and to the `categories` list of
+   whichever bands should offer it.
+3. `node build/build-audio.mjs <id>`
+4. Review it. **While `reviewed` is `false` the category does not exist for a learner** — not as a
+   lesson and not even as a wrong answer. It shows up flagged in the teacher view, which is where
+   you review it from. Set `"reviewed": true` when it is approved.
+
+`weather` is deliberately left unreviewed so the gate is demonstrated rather than described.
+
+---
+
+## The teacher area
+
+Press and hold the ⚙ for three seconds. It holds the review queue, per-skill accuracy, the mistake
+log, the band switcher, and the audio self-test — which plays a clip and reports whether the
+`AudioContext` clock actually advanced, because a page that reports no errors can still be
+completely silent.
+
+---
+
+## Before launch
+
+The audio is macOS system voices rendered to files and committed to a public repo. Apple licenses
+those voices for personal use, and 607 clips in a branded product is not defensible. Resolve this
+first: make the repo private, license a commercial voice, or record a human. The pipeline is
+already swap-ready.

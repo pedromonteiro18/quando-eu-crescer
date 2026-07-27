@@ -1,0 +1,91 @@
+{
+  "id": "greetings",
+  "title": "Greetings",
+  "icon": "👋",
+  "bands": ["4-6", "7-10"],
+  "cefr": "A1",
+  "goal": "Greet someone and reply, at any time of day.",
+  "grammar": [
+    { "point": "Contractions with be", "example": "I'm fine." },
+    { "point": "Good + time of day", "example": "Good morning." }
+  ],
+
+  "vocabulary": [
+    { "word": "hello", "icon": "👋", "example": "Hello! Nice to meet you." },
+    { "word": "hi", "icon": "🙋", "example": "Hi! I'm Ana." },
+    { "word": "goodbye", "icon": "🚪", "example": "Goodbye! See you tomorrow." },
+    { "word": "morning", "icon": "🌅", "example": "Good morning, class." },
+    { "word": "afternoon", "icon": "☀️", "example": "Good afternoon, Mr. Silva." },
+    { "word": "evening", "icon": "🌆", "example": "Good evening. Come in." },
+    { "word": "night", "icon": "🌙", "example": "Good night. Sleep well." },
+    { "word": "please", "icon": "🙏", "example": "One coffee, please." },
+    { "word": "thank you", "icon": "💛", "example": "Thank you for the book." },
+    { "word": "sorry", "icon": "😔", "example": "Sorry, I'm late." },
+    { "word": "welcome", "icon": "🎉", "example": "Welcome to my house." },
+    { "word": "name", "icon": "🏷️", "example": "My name is Clara." },
+    { "word": "friend", "icon": "🧑‍🤝‍🧑", "example": "This is my friend Pedro." },
+    { "word": "teacher", "icon": "👩‍🏫", "example": "Good morning, teacher." },
+    { "word": "fine", "icon": "👍", "example": "I'm fine, thank you." },
+    { "word": "happy", "icon": "😄", "example": "I'm happy to see you." },
+    { "word": "tired", "icon": "😴", "example": "I'm tired today." },
+    { "word": "wave", "icon": "🤚", "example": "Wave to your friend." },
+    { "word": "smile", "icon": "🙂", "example": "She has a nice smile." },
+    { "word": "meet", "icon": "🤝", "example": "Nice to meet you." }
+  ],
+
+  "phrases": [
+    { "text": "Good morning.", "use": "Before midday." },
+    { "text": "Good afternoon.", "use": "From midday until about six." },
+    { "text": "Good evening.", "use": "After about six, when you arrive." },
+    { "text": "Good night.", "use": "Only when you leave, or before sleep." },
+    { "text": "How are you?", "use": "The normal reply to a greeting." },
+    { "text": "Nice to meet you.", "use": "The first time you meet someone." },
+    { "text": "See you tomorrow.", "use": "When you know you will meet again." }
+  ],
+
+  "dialogue": {
+    "title": "At the door",
+    "lines": [
+      { "who": "A", "text": "Good morning!" },
+      { "who": "B", "text": "Good morning. How are you?" },
+      { "who": "A", "text": "I'm fine, thank you. And you?" },
+      { "who": "B", "text": "I'm tired, but I'm happy to see you." },
+      { "who": "A", "text": "This is my friend Pedro." },
+      { "who": "B", "text": "Nice to meet you, Pedro. Welcome!" }
+    ],
+    "questions": [
+      { "q": "How does B feel?", "options": ["Tired but happy", "Angry", "Sick"], "answer": 0 },
+      { "q": "Who is Pedro?", "options": ["A's friend", "A's teacher", "B's brother"], "answer": 0 }
+    ]
+  },
+
+  "speaking": [
+    { "text": "Good morning!", "tip": "Stress the first word: GOOD morning." },
+    { "text": "How are you?", "tip": "Your voice goes up at the end." },
+    { "text": "I'm fine, thank you.", "tip": "I'm is one sound, not I am." },
+    { "text": "Nice to meet you.", "tip": "Meet you often sounds like meechoo." },
+    { "text": "See you tomorrow.", "tip": "Tomorrow has three beats: to-MOR-row." }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "hello" },
+    { "type": "spell", "answer": "night" },
+    { "type": "spell", "answer": "friend" },
+    { "type": "cloze", "sentence": "Good ___, Mrs. Silva.", "answer": "morning" },
+    { "type": "cloze", "sentence": "___ you for the book.", "answer": "Thank" },
+    { "type": "cloze", "sentence": "Nice to ___ you.", "answer": "meet" },
+    { "type": "answer", "question": "How are you?", "accept": ["I'm fine", "I am fine", "Fine, thanks", "I'm fine, thank you", "I'm good", "Not bad"] },
+    { "type": "answer", "question": "What is your name?", "accept": ["My name is", "I'm", "I am"] }
+  ],
+
+  "quiz": [
+    { "q": "You arrive at school at 8 in the morning. What do you say?", "options": ["Good morning.", "Good night.", "Good evening."], "answer": 0 },
+    { "q": "Someone says \"Thank you.\" What do you say?", "options": ["You're welcome.", "Good night.", "Sorry."], "answer": 0 },
+    { "q": "Which one do you say only when you leave?", "options": ["Good night.", "Good morning.", "Hello."], "answer": 0 },
+    { "q": "\"How are you?\" — \"___\"", "options": ["I'm fine, thank you.", "My name is Ana.", "It's a book."], "answer": 0 },
+    { "q": "You meet someone for the first time. What do you say?", "options": ["Nice to meet you.", "See you tomorrow.", "I'm sorry."], "answer": 0 },
+    { "q": "You are late. What do you say?", "options": ["Sorry, I'm late.", "Welcome!", "Good night."], "answer": 0 }
+  ],
+
+  "reviewed": true
+}
