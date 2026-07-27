@@ -8,6 +8,9 @@ This answers the question most kids' language apps never do — *why am I learni
 The point of this build is to find out whether the loop is fun *before* committing to a real
 React Native app. Nothing here is throwaway — the content format and the copy carry over.
 
+**Live:** <https://pedromonteiro18.github.io/quando-eu-crescer/> — open it on a phone, in portrait.
+Public, no login, nothing to install. `git push` to update it.
+
 | Decision | Choice |
 |---|---|
 | Age | **6–9** — audio-first, no reading required, no typing, 3–4 min sessions |
