@@ -1,0 +1,2142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2DFC4">
+<meta name="description" content="Protótipo: inglês para crianças de 6 a 9 anos através de profissões.">
+<title>Quando Eu Crescer — inglês pelo trabalho</title>
+<style>
+/* ══════════════════════════════════════════════════════════════════════════
+   QUANDO EU CRESCER — protótipo
+   Direção visual: "Patch Board". Trabalho = uniforme, uniforme = distintivo
+   bordado. Tudo é recortado à mão: contorno grosso, preenchimento chapado,
+   sombra dura (nunca desfocada), raios assimétricos, costura tracejada.
+   Tema claro único e assumido — um app de criança deve ser igual em toda mão.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  color-scheme: light;
+
+  /* — tinta e papel — */
+  --ink:        #2C2136;   /* preto de ameixa, quente. Todo contorno e texto. */
+  --ink-2:      #6B5E7B;   /* texto secundário */
+  --ink-3:      #A79BB5;   /* traço apagado */
+  --paper:      #FFF3E2;   /* papel de aveia com viés de damasco */
+  --paper-2:    #FFE9CE;
+  --board:      #F2DFC4;   /* o quadro atrás do palco */
+  --white:      #FFFDF8;
+  --sun:        #FFC53D;   /* medalha, faísca, acerto */
+  --sun-deep:   #F2A81C;
+
+  /* — cor do trabalho ativo (trocada pelo JS) — */
+  --accent:     #17A08B;
+  --accent-ink: #0E6B5D;
+  --wash:       var(--paper-2);
+
+  /* — tipografia — */
+  --display: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  /* — matéria — */
+  --line: 3px;
+  --drop: 5px;
+  --pad: clamp(14px, 4.2vw, 22px);
+  --cut:  26px 32px 24px 30px / 30px 24px 32px 26px;  /* recorte à mão */
+  --cut2: 18px 22px 20px 16px / 20px 16px 22px 18px;
+  --cut3: 14px 17px 13px 16px / 16px 13px 17px 14px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--board);
+  font-family: var(--body);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* costura do quadro de cortiça atrás do palco */
+  background-image:
+    radial-gradient(circle at 20% 12%, rgba(255,197,61,.16), transparent 42%),
+    radial-gradient(circle at 82% 78%, rgba(23,160,139,.10), transparent 46%);
+}
+
+button { font: inherit; color: inherit; }
+
+/* ─────────────────────────── PALCO ─────────────────────────── */
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 940px;
+  background: var(--paper);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background-color .45s ease;
+}
+@media (min-width: 500px) and (min-height: 700px) {
+  .stage {
+    height: min(900px, calc(100dvh - 48px));
+    border: var(--line) solid var(--ink);
+    border-radius: 34px;
+    box-shadow: 0 10px 0 var(--ink), 0 10px 44px rgba(44,33,54,.24);
+  }
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  padding: max(var(--pad), env(safe-area-inset-top)) var(--pad)
+           max(var(--pad), env(safe-area-inset-bottom));
+  gap: 14px;
+}
+.screen.is-on { display: flex; animation: screen-in .34s cubic-bezier(.22,1.4,.5,1) both; }
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(14px) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ───────────────────── TIPOGRAFIA COMPARTILHADA ───────────────────── */
+
+.eyebrow {
+  font-family: var(--body);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0;
+}
+.display {
+  font-family: var(--display);
+  font-weight: 900;
+  letter-spacing: -.025em;
+  line-height: .96;
+  text-wrap: balance;
+  margin: 0;
+}
+.lede {
+  font-size: clamp(15px, 4vw, 17px);
+  line-height: 1.42;
+  color: var(--ink-2);
+  font-weight: 500;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ──────────────────────────── BOTÕES ──────────────────────────── */
+
+.btn {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 68px;
+  padding: 16px 26px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut2);
+  background: var(--sun);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(19px, 5vw, 23px);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  cursor: pointer;
+  box-shadow: 0 var(--drop) 0 var(--ink);
+  transition: transform .1s ease, box-shadow .1s ease, background-color .2s ease;
+  touch-action: manipulation;
+  user-select: none;
+}
+.btn:active { transform: translateY(var(--drop)); box-shadow: 0 0 0 var(--ink); }
+.btn--go   { background: var(--accent); color: var(--white); }
+.btn--calm { background: var(--white); }
+.btn--slim { min-height: 58px; font-size: 17px; padding: 12px 20px; }
+
+/* alvo de toque mínimo 64px em tudo que a criança usa */
+.tap { min-width: 64px; min-height: 64px; }
+
+.speaker {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 66px; height: 66px;
+  flex: none;
+  border: var(--line) solid var(--ink);
+  border-radius: 50%;
+  background: var(--white);
+  font-size: 27px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform .1s ease, box-shadow .1s ease;
+  touch-action: manipulation;
+}
+.speaker:active { transform: translateY(4px); box-shadow: 0 0 0 var(--ink); }
+.speaker.is-talking { animation: talk .7s ease-in-out infinite; }
+@keyframes talk {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.09); }
+}
+.speaker--sm { width: 54px; height: 54px; font-size: 22px; }
+
+:where(button, a, [tabindex]):focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ──────────────────────── BARRA SUPERIOR ──────────────────────── */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+.back {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 48px; height: 48px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut3);
+  background: var(--white);
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--ink);
+  touch-action: manipulation;
+}
+.back:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+
+.phase { flex: 1; min-width: 0; }
+.phase__name {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -.015em;
+  line-height: 1.05;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.phase__job {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+/* três pontos de etapa — costurados */
+.dots { display: flex; gap: 7px; flex: none; }
+.dots i {
+  width: 13px; height: 13px;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color .3s ease, transform .3s cubic-bezier(.22,1.4,.5,1);
+}
+.dots i.is-now  { background: var(--accent); transform: scale(1.32); }
+.dots i.is-done { background: var(--ink); }
+
+/* passos menores dentro de uma etapa */
+.pips { display: flex; gap: 6px; justify-content: center; flex: none; }
+.pips i {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  transition: background-color .25s ease, transform .25s ease;
+}
+.pips i.is-now  { background: var(--accent); transform: scale(1.35); }
+.pips i.is-done { background: var(--ink); }
+
+/* ───────────────────────────── SPLASH ───────────────────────────── */
+
+.screen--splash { justify-content: center; gap: 0; text-align: left; }
+.splash__mark {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.splash__mark span {
+  width: 60px; height: 60px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut3);
+  background: var(--white);
+  box-shadow: 0 4px 0 var(--ink);
+}
+.splash__mark span:nth-child(1) { transform: rotate(-7deg);  background: #D8F0EB; }
+.splash__mark span:nth-child(2) { transform: rotate(3deg) translateY(-4px); background: #FFDCD5; }
+.splash__mark span:nth-child(3) { transform: rotate(9deg);  background: #F7DCEF; }
+
+.screen--splash .display {
+  font-size: clamp(42px, 13vw, 60px);
+  text-shadow: 0 4px 0 var(--sun);
+  margin: 10px 0 14px;
+}
+.screen--splash .lede { max-width: 22ch; }
+.splash__foot {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.note {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  font-weight: 500;
+  margin: 0;
+}
+.note b { color: var(--ink); font-weight: 800; }
+
+/* ──────────────────────── ESCOLHA DO TRABALHO ──────────────────────── */
+
+.ask {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+.ask .display { font-size: clamp(25px, 7vw, 32px); flex: 1; }
+
+.joblist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  align-content: start;
+  align-content: safe center;   /* centraliza, mas nunca corta o topo ao transbordar */
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px 2px 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.job {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 104px;
+  padding: 14px 16px;
+  text-align: left;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut);
+  background: var(--job-wash, var(--white));
+  cursor: pointer;
+  box-shadow: 0 var(--drop) 0 var(--ink);
+  transition: transform .12s ease, box-shadow .12s ease;
+  touch-action: manipulation;
+  overflow: hidden;
+}
+.job::after {                      /* costura interna */
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 2px dashed rgba(44,33,54,.16);
+  border-radius: var(--cut2);
+  pointer-events: none;
+}
+.job:active { transform: translateY(var(--drop)); box-shadow: 0 0 0 var(--ink); }
+.job__pic {
+  width: 68px; height: 68px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  border: var(--line) solid var(--ink);
+  border-radius: 50%;
+  background: var(--job-color);
+  box-shadow: inset 0 -3px 0 rgba(44,33,54,.18);
+}
+.job__txt { flex: 1; min-width: 0; }
+.job__pt {
+  font-family: var(--display);
+  font-size: clamp(21px, 5.6vw, 25px);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  line-height: 1.02;
+}
+.job__en {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-top: 3px;
+}
+.job__bar {
+  margin-top: 8px;
+  height: 8px;
+  border: 2px solid var(--ink);
+  border-radius: 99px;
+  background: rgba(255,253,248,.75);
+  overflow: hidden;
+}
+.job__bar b {
+  display: block;
+  height: 100%;
+  background: var(--job-color);
+  border-radius: 99px;
+  transition: width .5s ease;
+}
+.job__medal {
+  position: absolute;
+  top: 8px; right: 10px;
+  width: 38px; height: 38px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 3px 0 var(--ink);
+  transform: rotate(9deg);
+}
+
+.jobs__foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  padding-top: 2px;
+}
+.jobs__foot .note { flex: 1; font-size: 12px; }
+
+/* fecho dos pais — segure 3 s */
+.gate {
+  position: relative;
+  width: 48px; height: 48px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 2.5px solid var(--ink-3);
+  border-radius: 50%;
+  background: transparent;
+  font-size: 17px;
+  cursor: pointer;
+  touch-action: none;
+  color: var(--ink-2);
+}
+.gate svg { position: absolute; inset: -3px; width: calc(100% + 6px); height: calc(100% + 6px); transform: rotate(-90deg); }
+.gate circle { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+.gate .ring { stroke-dasharray: 151; stroke-dashoffset: 151; }
+.gate.is-holding .ring { transition: stroke-dashoffset 3s linear; stroke-dashoffset: 0; }
+
+/* ─────────────────────── 1 · CONHECER ─────────────────────── */
+
+.middle {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.wordcard {
+  position: relative;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut);
+  background: var(--wash);
+  box-shadow: 0 var(--drop) 0 var(--ink);
+  padding: clamp(16px, 5vw, 26px);
+  text-align: center;
+  animation: pop .38s cubic-bezier(.22,1.5,.5,1) both;
+}
+.wordcard::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 2px dashed rgba(44,33,54,.14);
+  border-radius: var(--cut2);
+  pointer-events: none;
+}
+@keyframes pop {
+  from { opacity: 0; transform: scale(.9) rotate(-1.5deg); }
+  to   { opacity: 1; transform: none; }
+}
+.wordcard__pic {
+  font-size: clamp(76px, 25vw, 118px);
+  line-height: 1.1;
+  display: block;
+  filter: drop-shadow(0 5px 0 rgba(44,33,54,.14));
+}
+.wordcard__en {
+  font-family: var(--display);
+  font-size: clamp(38px, 11vw, 52px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin-top: 8px;
+  color: var(--ink);
+}
+.wordcard__pt {
+  font-size: clamp(15px, 4vw, 17px);
+  font-weight: 700;
+  color: var(--accent-ink);
+  margin-top: 8px;
+}
+.wordcard__pt::before { content: "🇧🇷"; margin-right: 6px; }
+
+.rowmid { display: flex; align-items: center; justify-content: center; gap: 12px; }
+
+.bottom { flex: none; display: flex; flex-direction: column; gap: 12px; }
+.bottom .btn { width: 100%; }
+
+/* ─────────────────── 2 · OUÇA E TOQUE  /  3 · NO TRABALHO ─────────────────── */
+
+.prompt {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut);
+  background: var(--white);
+  box-shadow: 0 var(--drop) 0 var(--ink);
+}
+.prompt__txt { flex: 1; min-width: 0; }
+.prompt__hi {
+  font-family: var(--display);
+  font-size: clamp(22px, 6vw, 27px);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  line-height: 1.08;
+}
+.prompt__lo { font-size: 14px; font-weight: 600; color: var(--ink-2); margin-top: 4px; }
+
+.opts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 2.6vw, 13px);
+}
+.opt {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  min-height: 92px;
+  display: grid;
+  place-items: center;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut2);
+  background: var(--white);
+  cursor: pointer;
+  box-shadow: 0 var(--drop) 0 var(--ink);
+  transition: transform .12s ease, box-shadow .12s ease, background-color .2s ease;
+  touch-action: manipulation;
+  overflow: hidden;
+}
+.opt::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 2px dashed rgba(44,33,54,.13);
+  border-radius: var(--cut3);
+  pointer-events: none;
+}
+.opt:active { transform: translateY(var(--drop)); box-shadow: 0 0 0 var(--ink); }
+.opt span { font-size: clamp(36px, 11vw, 50px); line-height: 1; }
+
+.opt.is-right {
+  background: var(--sun);
+  animation: cheer .55s cubic-bezier(.22,1.5,.5,1) both;
+  box-shadow: 0 var(--drop) 0 var(--ink), 0 0 0 8px rgba(255,197,61,.42);
+}
+@keyframes cheer {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.14) rotate(-3deg); }
+  100% { transform: scale(1.05); }
+}
+/* erro: sem vermelho, sem X, sem placar — só um balanço gentil */
+.opt.is-off { animation: wobble .5s ease; opacity: .5; }
+@keyframes wobble {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-7px) rotate(-2deg); }
+  45%     { transform: translateX(6px) rotate(2deg); }
+  70%     { transform: translateX(-3px); }
+}
+.opt.is-hint { animation: hint 1s ease-in-out 2; }
+@keyframes hint {
+  0%,100% { transform: scale(1); box-shadow: 0 var(--drop) 0 var(--ink); }
+  50%     { transform: scale(1.07); box-shadow: 0 var(--drop) 0 var(--ink), 0 0 0 9px rgba(255,197,61,.5); }
+}
+.opt[disabled] { cursor: default; }
+
+.nudge {
+  align-self: center;
+  padding: 9px 18px;
+  border: 2.5px solid var(--ink);
+  border-radius: 99px;
+  background: var(--paper-2);
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 900;
+  box-shadow: 0 3px 0 var(--ink);
+  animation: pop .3s cubic-bezier(.22,1.5,.5,1) both;
+}
+
+/* fala do trabalho — balão */
+.bubble {
+  position: relative;
+  align-self: flex-start;
+  max-width: 100%;
+  padding: 13px 17px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut2);
+  background: var(--sun);
+  font-family: var(--display);
+  font-size: clamp(17px, 4.6vw, 20px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  box-shadow: 0 4px 0 var(--ink);
+  animation: pop .34s cubic-bezier(.22,1.5,.5,1) both;
+}
+.bubble::before {
+  content: "";
+  position: absolute;
+  left: 26px; bottom: -13px;
+  width: 16px; height: 16px;
+  background: var(--sun);
+  border-right: var(--line) solid var(--ink);
+  border-bottom: var(--line) solid var(--ink);
+  transform: rotate(45deg);
+}
+
+.setup {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  padding: 15px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut);
+  background: var(--wash);
+  box-shadow: 0 var(--drop) 0 var(--ink);
+}
+.setup__pic { font-size: 40px; line-height: 1; flex: none; }
+.setup__txt {
+  flex: 1;
+  font-size: clamp(15px, 4.2vw, 17px);
+  font-weight: 600;
+  line-height: 1.36;
+  color: var(--ink);
+}
+
+/* ──────────────────── CARTÃO DE ETAPA (interstício) ──────────────────── */
+
+.phasecard {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: var(--pad);
+  background: var(--wash);
+  text-align: center;
+}
+.phasecard.is-on { display: flex; animation: screen-in .3s ease both; }
+.phasecard__no {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.phasecard__pic { font-size: 68px; line-height: 1; animation: pop .45s cubic-bezier(.22,1.5,.5,1) both; }
+.phasecard__t {
+  font-family: var(--display);
+  font-size: clamp(32px, 9vw, 42px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: 1;
+  text-shadow: 0 3px 0 var(--sun);
+}
+.phasecard__s { font-size: 15px; font-weight: 600; color: var(--ink-2); max-width: 24ch; }
+
+/* ─────────────────────────── MEDALHA ─────────────────────────── */
+
+.screen--done { justify-content: center; text-align: center; align-items: center; }
+.patch {
+  position: relative;
+  width: clamp(160px, 46vw, 196px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 4px solid var(--ink);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 7px 0 var(--ink);
+  animation: pin .7s cubic-bezier(.2,1.5,.4,1) both;
+}
+.patch::after {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border: 3px dashed rgba(255,253,248,.75);
+  border-radius: 50%;
+}
+.patch span { font-size: clamp(66px, 21vw, 88px); line-height: 1; filter: drop-shadow(0 4px 0 rgba(44,33,54,.22)); }
+@keyframes pin {
+  0%   { opacity: 0; transform: scale(.3) rotate(-22deg); }
+  60%  { opacity: 1; transform: scale(1.1) rotate(6deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-4deg); }
+}
+.ribbon {
+  margin-top: -14px;
+  position: relative;
+  z-index: 2;
+  padding: 11px 22px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut3);
+  background: var(--sun);
+  font-family: var(--display);
+  font-size: clamp(19px, 5.4vw, 24px);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  box-shadow: 0 4px 0 var(--ink);
+  transform: rotate(-2deg);
+  animation: pop .4s .34s cubic-bezier(.22,1.5,.5,1) both;
+}
+.screen--done .display { font-size: clamp(25px, 7vw, 31px); margin: 20px 0 4px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-top: 14px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border: 2.5px solid var(--ink);
+  border-radius: 99px;
+  background: var(--white);
+  font-size: 14px;
+  font-weight: 800;
+}
+.chip i { font-style: normal; font-size: 17px; }
+
+.screen--done .bottom { width: 100%; margin-top: auto; }
+
+/* ────────────────────────── ÁREA DOS PAIS ────────────────────────── */
+
+.sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  padding: max(var(--pad), env(safe-area-inset-top)) var(--pad)
+           max(var(--pad), env(safe-area-inset-bottom));
+  gap: 14px;
+  background: var(--paper);
+  overflow-y: auto;
+  animation: screen-in .3s ease both;
+}
+.sheet[hidden] { display: none; }
+.sheet__head { display: flex; align-items: flex-start; gap: 12px; }
+.sheet__head .display { font-size: 26px; flex: 1; }
+.panel {
+  border: var(--line) solid var(--ink);
+  border-radius: var(--cut2);
+  background: var(--white);
+  padding: 15px;
+  box-shadow: 0 4px 0 var(--ink);
+}
+.panel h3 {
+  font-family: var(--body);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0 0 10px;
+}
+.stats { display: flex; gap: 9px; }
+.stat { flex: 1; text-align: center; }
+.stat b {
+  display: block;
+  font-family: var(--display);
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat i {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-top: 5px;
+}
+.stat--new b   { color: var(--ink-3); }
+.stat--learn b { color: var(--sun-deep); }
+.stat--known b { color: #17A08B; }
+
+/* seletor de voz */
+.pick { display: grid; grid-template-columns: 1fr auto; gap: 8px 9px; align-items: center; }
+.pick > span {
+  grid-column: 1 / -1;
+  font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
+}
+.pick select {
+  min-width: 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  -webkit-appearance: none; appearance: none;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--cut3);
+  background: var(--paper);
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.pick .speaker { width: 46px; height: 46px; font-size: 15px; box-shadow: 0 3px 0 var(--ink); }
+.pick .speaker:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+
+/* revisão de conteúdo — para a professora conferir o inglês sem abrir o código */
+.pack { border-top: 2px dashed rgba(44,33,54,.16); padding: 12px 0 4px; }
+.pack:first-child { border-top: 0; padding-top: 0; }
+.pack__h {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--display); font-size: 17px; font-weight: 900; letter-spacing: -.015em;
+}
+.pack__h i { font-style: normal; font-size: 20px; }
+.pack__h b {
+  margin-left: auto; font-size: 10.5px; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 99px;
+  border: 2px solid var(--ink); background: var(--sun);
+}
+.pack ul { list-style: none; margin: 9px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pack li {
+  font-size: 12.5px; font-weight: 700; padding: 4px 9px;
+  border: 2px solid rgba(44,33,54,.2); border-radius: 99px; background: var(--paper);
+}
+.pack li s { color: var(--ink-2); font-weight: 500; text-decoration: none; }
+.pack ol { margin: 9px 0 0; padding-left: 20px; }
+.pack ol li {
+  border: 0; background: none; padding: 3px 0; font-size: 13px; font-weight: 600; line-height: 1.4;
+  display: list-item;
+}
+.pack ol li em { display: block; font-style: normal; font-weight: 500; color: var(--ink-2); font-size: 12.5px; }
+
+.kv { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; padding: 6px 0; border-bottom: 1.5px dashed rgba(44,33,54,.15); }
+.kv:last-child { border-bottom: 0; }
+.kv b { font-weight: 700; }
+.kv span { color: var(--ink-2); text-align: right; font-weight: 500; }
+.ok  { color: #0E6B5D; font-weight: 700; }
+.bad { color: #A0522D; font-weight: 700; }
+
+/* ───────────────────────── SOBREPOSIÇÕES ───────────────────────── */
+
+.fx {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+}
+
+.rotate {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+  background: var(--board);
+}
+.rotate span { font-size: 56px; animation: turn 2.2s ease-in-out infinite; }
+@keyframes turn {
+  0%, 55%, 100% { transform: rotate(0deg); }
+  75%           { transform: rotate(-90deg); }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .rotate { display: flex; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="rotate" aria-hidden="true">
+  <span>📱</span>
+  <p class="display" style="font-size:26px">Vire o telefone em pé</p>
+</div>
+
+<main class="stage" id="stage">
+
+  <!-- ─────────────── SPLASH ─────────────── -->
+  <section class="screen screen--splash is-on" id="s-splash">
+    <div class="splash__mark" aria-hidden="true"><span>🩺</span><span>🚒</span><span>👩‍🍳</span></div>
+    <p class="eyebrow">Inglês para crianças</p>
+    <h1 class="display">Quando Eu&nbsp;Crescer</h1>
+    <p class="lede">Escolha um trabalho. Aprenda as palavras que ele usa de verdade.</p>
+    <div class="splash__foot">
+      <button class="btn" id="start" type="button">Começar! 🔊</button>
+      <p class="note" id="audio-note">
+        <b>Deixe o som ligado</b> — o app fala com você. Se não ouvir nada, tire o telefone do modo silencioso.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────────── ESCOLHA DO TRABALHO ─────────────── -->
+  <section class="screen" id="s-jobs">
+    <div class="ask">
+      <h2 class="display">Qual trabalho você quer fazer hoje?</h2>
+      <button class="speaker" id="ask-again" type="button" aria-label="Ouvir a pergunta de novo">🔊</button>
+    </div>
+    <div class="joblist" id="joblist"></div>
+    <div class="jobs__foot">
+      <p class="note">Sem conta, sem internet, sem propaganda. Nada sai deste telefone.</p>
+      <button class="gate" id="gate" type="button" aria-label="Área dos pais — segure por 3 segundos">
+        ⚙
+        <svg viewBox="0 0 54 54" aria-hidden="true"><circle class="ring" cx="27" cy="27" r="24"></circle></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ─────────────── 1 · CONHECER ─────────────── -->
+  <section class="screen" id="s-learn">
+    <div class="topbar">
+      <button class="back" type="button" data-home aria-label="Voltar para os trabalhos">←</button>
+      <div class="phase">
+        <div class="phase__job" data-jobname></div>
+        <div class="phase__name">Conhecer</div>
+      </div>
+      <div class="dots" data-dots aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
+    <div class="middle">
+      <div id="learn-card"></div>
+    </div>
+    <div class="bottom">
+      <div class="pips" id="learn-pips" aria-hidden="true"></div>
+      <button class="btn btn--go" id="learn-next" type="button">Próxima →</button>
+    </div>
+  </section>
+
+  <!-- ─────────────── 2 · OUÇA E TOQUE ─────────────── -->
+  <section class="screen" id="s-listen">
+    <div class="topbar">
+      <button class="back" type="button" data-home aria-label="Voltar para os trabalhos">←</button>
+      <div class="phase">
+        <div class="phase__job" data-jobname></div>
+        <div class="phase__name">Ouça e toque</div>
+      </div>
+      <div class="dots" data-dots aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
+    <div class="middle">
+      <div class="prompt">
+        <div class="prompt__txt">
+          <div class="prompt__hi" id="listen-hi">Toque em…</div>
+          <div class="prompt__lo" id="listen-lo">Toque no 🔊 para ouvir de novo</div>
+        </div>
+        <button class="speaker" id="listen-again" type="button" aria-label="Ouvir a palavra de novo">🔊</button>
+      </div>
+      <div class="opts" id="listen-opts"></div>
+      <div id="listen-feedback" style="min-height:44px;display:flex;justify-content:center;align-items:center"></div>
+    </div>
+    <div class="bottom">
+      <div class="pips" id="listen-pips" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ─────────────── 3 · NO TRABALHO ─────────────── -->
+  <section class="screen" id="s-scene">
+    <div class="topbar">
+      <button class="back" type="button" data-home aria-label="Voltar para os trabalhos">←</button>
+      <div class="phase">
+        <div class="phase__job" data-jobname></div>
+        <div class="phase__name" id="scene-title">No trabalho</div>
+      </div>
+      <div class="dots" data-dots aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
+    <div class="middle">
+      <div class="setup">
+        <div class="setup__pic" id="scene-pic" aria-hidden="true">🩺</div>
+        <div class="setup__txt" id="scene-setup"></div>
+      </div>
+      <div class="prompt">
+        <div class="prompt__txt">
+          <div class="prompt__hi" id="scene-task"></div>
+          <div class="prompt__lo" id="scene-taskpt"></div>
+        </div>
+        <button class="speaker" id="scene-again" type="button" aria-label="Ouvir a tarefa de novo">🔊</button>
+      </div>
+      <div class="opts" id="scene-opts"></div>
+      <div id="scene-feedback" style="min-height:56px;display:flex;align-items:center"></div>
+    </div>
+    <div class="bottom">
+      <div class="pips" id="scene-pips" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ─────────────── MEDALHA ─────────────── -->
+  <section class="screen screen--done" id="s-done">
+    <div class="patch" id="done-patch"><span>🩺</span></div>
+    <div class="ribbon" id="done-ribbon">Pequeno Veterinário</div>
+    <h2 class="display" id="done-line">Você é um Pequeno Veterinário!</h2>
+    <p class="note">Palavras que você usou hoje:</p>
+    <div class="chips" id="done-chips"></div>
+    <div class="bottom">
+      <button class="btn" id="done-again" type="button">Fazer de novo 🔁</button>
+      <button class="btn btn--calm" id="done-other" type="button">Outro trabalho</button>
+    </div>
+  </section>
+
+  <!-- interstício entre etapas -->
+  <div class="phasecard" id="phasecard">
+    <div class="phasecard__no" id="pc-no"></div>
+    <div class="phasecard__pic" id="pc-pic"></div>
+    <div class="phasecard__t" id="pc-t"></div>
+    <div class="phasecard__s" id="pc-s"></div>
+  </div>
+
+  <!-- ─────────────── ÁREA DOS PAIS E PROFESSORES ─────────────── -->
+  <div class="sheet" id="parent" hidden>
+    <div class="sheet__head">
+      <h2 class="display">Pais e professores</h2>
+      <button class="back" id="parent-close" type="button" aria-label="Fechar">✕</button>
+    </div>
+
+    <div class="panel">
+      <h3>Palavras</h3>
+      <div class="stats">
+        <div class="stat stat--new"><b id="p-new">0</b><i>Novas</i></div>
+        <div class="stat stat--learn"><b id="p-learn">0</b><i>Aprendendo</i></div>
+        <div class="stat stat--known"><b id="p-known">0</b><i>Sabe</i></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Medalhas</h3>
+      <div id="p-badges" class="chips" style="justify-content:flex-start;margin:0"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Voz</h3>
+      <p class="note" style="margin:-4px 0 12px">
+        A voz vem do próprio aparelho e a qualidade muda muito de um para outro.
+        Escolha a que soar melhor neste — a escolha fica guardada.
+      </p>
+
+      <label class="pick">
+        <span>Inglês</span>
+        <select id="v-en"></select>
+        <button class="speaker speaker--sm" id="v-en-test" type="button" aria-label="Ouvir exemplo em inglês">▶</button>
+      </label>
+      <div class="kv"><b>Em uso</b><span id="p-en">—</span></div>
+
+      <label class="pick" style="margin-top:14px">
+        <span>Português</span>
+        <select id="v-pt"></select>
+        <button class="speaker speaker--sm" id="v-pt-test" type="button" aria-label="Ouvir exemplo em português">▶</button>
+      </label>
+      <div class="kv"><b>Em uso</b><span id="p-pt">—</span></div>
+
+      <p class="note" style="margin-top:12px">
+        Por padrão o app só usa vozes que rodam <b>dentro do aparelho</b>.
+        As vozes do grupo “usam internet” soam melhor, mas são geradas num servidor —
+        escolhê-las faz o texto sair do telefone. Vozes de brincadeira do sistema
+        (Albert, Zarvox…) vêm marcadas com 🤡. Se faltar uma voz, o app mostra a
+        palavra escrita em vez de falar.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3>Todo o inglês do app</h3>
+      <p class="note" style="margin:-4px 0 12px">
+        Tudo que a criança ouve em inglês está listado aqui, pacote por pacote.
+        Achou uma frase que não soa natural? Ela mora no arquivo do pacote e é uma linha de texto.
+      </p>
+      <div id="p-content"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Privacidade</h3>
+      <p class="note">
+        Este protótipo <b>não tem conta, não tem servidor e não faz nenhuma chamada de rede</b>.
+        Medalhas e progresso ficam guardados só neste navegador. Nada é coletado, nada é enviado —
+        por isso não há dados de criança para consentir sob a LGPD.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3>Progresso</h3>
+      <button class="btn btn--calm btn--slim" id="p-reset" type="button" style="width:100%">Apagar todo o progresso</button>
+      <p class="note" id="p-reset-note" style="margin-top:9px">Isso apaga medalhas e palavras deste aparelho.</p>
+    </div>
+
+    <p class="note" style="text-align:center">Protótipo v1 · conteúdo revisado por humano</p>
+  </div>
+
+</main>
+
+<canvas class="fx" id="fx" aria-hidden="true"></canvas>
+
+<script>
+"use strict";
+/* ══════════════════════════════════════════════════════════════════════════
+   PACOTES DE CONTEÚDO
+   Este array é exatamente a forma do JSON que o gerador vai produzir e que um
+   humano aprova. Portar para arquivos .json depois é copiar e colar.
+   `reviewed: false` nunca chega na criança — o filtro em PACKS é o portão.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const JOBS = [
+  {
+    id: "vet", pt: "Veterinário", en: "Vet", emoji: "🩺", color: "#17A08B",
+    words: [
+      { en: "dog",      pt: "cachorro", icon: "🐕" },
+      { en: "cat",      pt: "gato",     icon: "🐈" },
+      { en: "sick",     pt: "doente",   icon: "🤒" },
+      { en: "bandage",  pt: "curativo", icon: "🩹" },
+      { en: "medicine", pt: "remédio",  icon: "💊" }
+    ],
+    scene: {
+      titlePt: "Um dia no consultório",
+      beats: [
+        {
+          setupPt: "Um cachorro chegou. Ele está machucado.",
+          taskEn: "Get the bandage.", taskPt: "Pegue o curativo.",
+          answer: "bandage", options: ["bandage", "cake", "helmet"],
+          successEn: "Here is the bandage. Thank you!"
+        },
+        {
+          setupPt: "O curativo está no lugar. Agora ele precisa de remédio.",
+          taskEn: "Give the medicine.", taskPt: "Dê o remédio.",
+          answer: "medicine", options: ["medicine", "ladder", "egg"],
+          successEn: "Good job! The medicine helps him."
+        },
+        {
+          setupPt: "Um gato está esperando na porta.",
+          taskEn: "Bring the cat inside.", taskPt: "Traga o gato para dentro.",
+          answer: "cat", options: ["cat", "truck", "pan"],
+          successEn: "The cat is safe. You are a great vet!"
+        }
+      ]
+    },
+    badgePt: "Pequeno Veterinário",
+    reviewed: true
+  },
+
+  {
+    id: "fire", pt: "Bombeiro", en: "Firefighter", emoji: "🚒", color: "#E8452C",
+    words: [
+      { en: "fire",   pt: "fogo",     icon: "🔥" },
+      { en: "water",  pt: "água",     icon: "💧" },
+      { en: "ladder", pt: "escada",   icon: "🪜" },
+      { en: "helmet", pt: "capacete", icon: "⛑️" },
+      { en: "truck",  pt: "caminhão", icon: "🚒" }
+    ],
+    scene: {
+      titlePt: "O alarme tocou!",
+      beats: [
+        {
+          setupPt: "O alarme tocou! Antes de sair, você precisa se proteger.",
+          taskEn: "Put on the helmet.", taskPt: "Coloque o capacete.",
+          answer: "helmet", options: ["helmet", "milk", "bandage"],
+          successEn: "The helmet is on. Let's go!"
+        },
+        {
+          setupPt: "A janela é lá em cima. Como você chega até ela?",
+          taskEn: "Climb the ladder.", taskPt: "Suba a escada.",
+          answer: "ladder", options: ["ladder", "cat", "cake"],
+          successEn: "Up the ladder! Almost there."
+        },
+        {
+          setupPt: "O fogo ainda está queimando na janela.",
+          taskEn: "Put water on the fire.", taskPt: "Jogue água no fogo.",
+          answer: "water", options: ["water", "egg", "medicine"],
+          successEn: "The fire is out. Everyone is safe!"
+        }
+      ]
+    },
+    badgePt: "Pequeno Bombeiro",
+    reviewed: true
+  },
+
+  {
+    id: "chef", pt: "Chef de Cozinha", en: "Chef", emoji: "👩‍🍳", color: "#B8579C",
+    words: [
+      { en: "egg",  pt: "ovo",     icon: "🥚" },
+      { en: "milk", pt: "leite",   icon: "🥛" },
+      { en: "pan",  pt: "panela",  icon: "🍳" },
+      { en: "cake", pt: "bolo",    icon: "🎂" },
+      { en: "hot",  pt: "quente",  icon: "🥵" }
+    ],
+    scene: {
+      titlePt: "Chegou um pedido",
+      beats: [
+        {
+          setupPt: "Chegou um pedido na cozinha: um bolo de aniversário!",
+          taskEn: "Crack the egg.", taskPt: "Quebre o ovo.",
+          answer: "egg", options: ["egg", "helmet", "dog"],
+          successEn: "One egg, cracked. Nice work!"
+        },
+        {
+          setupPt: "O ovo está pronto. Para onde ele vai agora?",
+          taskEn: "Put it in the pan.", taskPt: "Coloque na panela.",
+          answer: "pan", options: ["pan", "ladder", "bandage"],
+          successEn: "Into the pan it goes. Careful, it is hot!"
+        },
+        {
+          setupPt: "Ding! Ficou pronto e o cliente está esperando.",
+          taskEn: "Serve the cake.", taskPt: "Sirva o bolo.",
+          answer: "cake", options: ["cake", "truck", "cat"],
+          successEn: "The cake is perfect. Thank you, chef!"
+        }
+      ]
+    },
+    badgePt: "Pequeno Chef",
+    reviewed: true
+  }
+];
+
+/* Portão de revisão: pacote não revisado simplesmente não existe para a criança. */
+const PACKS = JOBS.filter(j => j.reviewed === true);
+
+/* Índice global de palavras — distratores vêm das listas de OUTROS trabalhos,
+   o que sai de graça e ainda ensina a distinguir entre contextos. */
+const WORDS = {};
+JOBS.forEach(j => j.words.forEach(w => { WORDS[w.en] = w; }));
+
+/* Pares que confundem de verdade (dois rostos vermelhos) — nunca no mesmo teste. */
+const CONFUSABLE = { sick: ["hot"], hot: ["sick"] };
+
+const PRAISE = ["Isso!", "Muito bem!", "Perfeito!", "Boa!", "É isso aí!"];
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FALA — Web Speech API
+   Nunca bloqueia a interface: toda promessa resolve, mesmo se a voz falhar.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Vozes de piada que a Apple instala por padrão (Albert, Zarvox, Bubbles…) e as
+   vozes-personagem novas (Eddy, Grandma…). Pegar a primeira da lista pegava
+   justamente essas — daí o som horrível. Elas ficam de fora da escolha
+   automática, mas continuam disponíveis no seletor manual. */
+const JOKE_VOICES = /\b(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|ralph|kathy|junior|grandma|grandpa|deranged|hysterical|princess|eddy|flo|reed|rocko|sandy|shelley|rishi)\b/i;
+
+/* Vozes boas conhecidas, da melhor para a pior. */
+const GOOD_VOICES = {
+  en: ["google us english", "samantha", "ava", "allison", "joelle", "nicky", "zoe", "susan", "evan", "alex", "daniel", "karen", "moira", "tessa"],
+  pt: ["google português do brasil", "luciana", "fernanda", "felipe", "catarina", "joana"]
+};
+
+const Speech = (() => {
+  const synth = window.speechSynthesis || null;
+  const VKEY = "quandoeucrescer.voices";
+  let voices = [], vEn = null, vPt = null, epoch = 0, talkingEl = null, clip = null;
+  let manual = {};
+  try { manual = JSON.parse(localStorage.getItem(VKEY) || "{}"); } catch (e) { manual = {}; }
+
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const norm = s => String(s || "").toLowerCase().replace("_", "-");
+
+  function forLang(lang) {
+    const want = lang === "en" ? "en" : "pt";
+    return voices.filter(v => norm(v.lang).startsWith(want));
+  }
+
+  /* Nota alta = voz mais agradável para uma criança ouvir. */
+  function score(v, lang) {
+    const n = v.name.toLowerCase(), l = norm(v.lang);
+    let s = 0;
+    const rank = GOOD_VOICES[lang].findIndex(g => n.indexOf(g) === 0 || n === g);
+    if (rank >= 0) s += 100 - rank * 4;
+    if (JOKE_VOICES.test(n)) s -= 200;
+    if (/enhanced|premium|natural|neural|siri/.test(n)) s += 30;
+    if (/compact|eloquence/.test(n)) s -= 25;
+    if (l.startsWith(lang === "en" ? "en-us" : "pt-br")) s += 20;   // sotaque alvo
+    if (v.default) s += 4;
+    return s;
+  }
+
+  /* Automático escolhe só entre vozes DO APARELHO. As vozes "Google" soam
+     melhor, mas são sintetizadas no servidor — o texto sairia do telefone, o
+     que contraria a premissa do app. Ficam disponíveis, mas por escolha
+     explícita de um adulto, nunca por padrão. */
+  function best(lang) {
+    const pool = forLang(lang);
+    if (!pool.length) return null;
+    if (manual[lang]) {
+      const chosen = pool.find(v => v.name === manual[lang]);
+      if (chosen) return chosen;
+    }
+    const rank = (a, b) => score(b, lang) - score(a, lang);
+    const local = pool.filter(v => v.localService);
+    return (local.length ? local : pool).slice().sort(rank)[0];
+  }
+
+  function load() {
+    if (!synth) return;
+    try { voices = synth.getVoices() || []; } catch (e) { voices = []; }
+    if (!voices.length) return;
+    vEn = best("en");
+    vPt = best("pt");
+  }
+
+  if (synth) {
+    load();
+    try { synth.addEventListener("voiceschanged", load); } catch (e) { synth.onvoiceschanged = load; }
+    // alguns navegadores nunca disparam voiceschanged — insiste algumas vezes
+    [120, 400, 1000, 2200].forEach(t => setTimeout(load, t));
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { try { synth.cancel(); } catch (e) {} }
+    });
+  }
+
+  /* Toca uma gravação de verdade, se existir uma para esta frase.
+     É a costura para o V2: gravar substitui a voz sintética sem mudar mais nada. */
+  function playClip(src) {
+    return new Promise(resolve => {
+      let a;
+      try { a = new Audio(src); } catch (e) { return resolve(false); }
+      clip = a;
+      const done = ok => { if (clip === a) clip = null; resolve(ok); };
+      a.onended = () => done(true);
+      a.onerror = () => done(false);
+      const p = a.play();
+      if (p && p.catch) p.catch(() => done(false));
+    });
+  }
+
+  function raw(text, lang, rate) {
+    const recorded = CLIPS[lang + ":" + text];
+    if (recorded) return playClip(recorded);
+
+    return new Promise(resolve => {
+      if (!synth || !text) return resolve(false);
+      let u;
+      try { u = new SpeechSynthesisUtterance(text); } catch (e) { return resolve(false); }
+      const voice = lang === "en" ? vEn : vPt;
+      if (voice) u.voice = voice;
+      u.lang = voice ? voice.lang : (lang === "en" ? "en-US" : "pt-BR");
+      u.rate = rate;
+      u.pitch = 1;
+      let done = false;
+      const finish = ok => { if (done) return; done = true; clearTimeout(guard); resolve(ok); };
+      u.onend = () => finish(true);
+      u.onerror = () => finish(false);
+      // rede de segurança: onend não dispara em alguns Android
+      const guard = setTimeout(() => finish(false), 1400 + text.length * 130);
+      try {
+        if (synth.paused) synth.resume();   // bug conhecido do Chrome
+        synth.speak(u);
+      } catch (e) { finish(false); }
+    });
+  }
+
+  /* items: [{t, l:'en'|'pt', rate}] ou {gap: ms} */
+  async function seq(items, el) {
+    const mine = ++epoch;
+    stopVisual();
+    if (el) { talkingEl = el; el.classList.add("is-talking"); }
+    try { synth && synth.cancel(); } catch (e) {}
+    await wait(70);
+    for (const it of items) {
+      if (mine !== epoch) return false;
+      if (it.gap) { await wait(it.gap); continue; }
+      await raw(it.t, it.l, it.rate || (it.l === "en" ? 0.85 : 1));
+    }
+    if (mine === epoch) stopVisual();
+    return mine === epoch;
+  }
+
+  function stopVisual() {
+    if (talkingEl) { talkingEl.classList.remove("is-talking"); talkingEl = null; }
+  }
+
+  function stop() {
+    epoch++;
+    stopVisual();
+    if (clip) { try { clip.pause(); } catch (e) {} clip = null; }
+    try { synth && synth.cancel(); } catch (e) {}
+  }
+
+  /* Primeira fala precisa nascer dentro de um toque real (iOS). */
+  function unlock() {
+    if (!synth) return;
+    try {
+      const u = new SpeechSynthesisUtterance(" ");
+      u.volume = 0;
+      synth.speak(u);
+    } catch (e) {}
+  }
+
+  return {
+    seq, stop, unlock, load,
+    has: lang => !!(synth && (lang === "en" ? vEn : vPt)),
+    supported: !!synth,
+    voiceName: lang => { const v = lang === "en" ? vEn : vPt; return v ? v.name + " (" + v.lang + ")" : null; },
+
+    /* Seletor de voz — a qualidade varia demais entre aparelhos, então quem
+       usa escolhe a melhor do próprio telefone e a escolha fica guardada. */
+    list: lang => forLang(lang)
+      .slice()
+      .sort((a, b) => score(b, lang) - score(a, lang))
+      .map(v => ({
+        name: v.name, lang: v.lang,
+        joke: JOKE_VOICES.test(v.name.toLowerCase()),
+        net: !v.localService
+      })),
+    chosen: lang => manual[lang] || null,
+    choose(lang, name) {
+      if (name) manual[lang] = name; else delete manual[lang];
+      try { localStorage.setItem(VKEY, JSON.stringify(manual)); } catch (e) {}
+      load();
+    }
+  };
+})();
+
+/* ── Gravações (V2) ─────────────────────────────────────────────────────────
+   Chave "en:texto" ou "pt:texto", valor = caminho do arquivo de áudio.
+   Enquanto estiver vazio, tudo usa a voz sintética do aparelho. Gravar é
+   aditivo: cada linha preenchida aqui deixa de ser voz de robô.
+   Ex.:  "en:dog": "audio/en/dog.m4a",
+         "en:Get the bandage.": "audio/en/vet-1-task.m4a",              */
+const CLIPS = {};
+
+const EN  = (t, rate) => ({ t, l: "en", rate: rate || 0.85 });
+const PT  = (t, rate) => ({ t, l: "pt", rate: rate || 1 });
+const GAP = ms => ({ gap: ms });
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ARMAZENAMENTO — só localStorage. Nenhuma chamada de rede em lugar nenhum.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const KEY = "quandoeucrescer.v1";
+
+const Store = (() => {
+  let data = { badges: {}, words: {} };
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) data = Object.assign(data, JSON.parse(raw));
+  } catch (e) { /* modo privado ou storage bloqueado — segue em memória */ }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+  }
+
+  return {
+    get data() { return data; },
+    /* novo → aprendendo (viu) → sabe (acertou de primeira duas vezes) */
+    seen(en) {
+      const w = data.words[en] || (data.words[en] = { status: "new", right: 0, wrong: 0 });
+      if (w.status === "new") w.status = "learning";
+      save();
+    },
+    right(en) {
+      const w = data.words[en] || (data.words[en] = { status: "learning", right: 0, wrong: 0 });
+      w.right++;
+      if (w.right >= 2 && w.wrong === 0) w.status = "known";
+      else if (w.right >= 3) w.status = "known";
+      save();
+    },
+    wrong(en) {
+      const w = data.words[en] || (data.words[en] = { status: "learning", right: 0, wrong: 0 });
+      w.wrong++;
+      if (w.status === "known") w.status = "learning";
+      save();
+    },
+    badge(id) { data.badges[id] = true; save(); },
+    hasBadge(id) { return !!data.badges[id]; },
+    knownIn(job) { return job.words.filter(w => (data.words[w.en] || {}).status === "known").length; },
+    counts() {
+      const all = PACKS.flatMap(j => j.words.map(w => w.en));
+      const seen = new Set(all);
+      let learning = 0, known = 0;
+      seen.forEach(en => {
+        const s = (data.words[en] || {}).status;
+        if (s === "known") known++;
+        else if (s === "learning") learning++;
+      });
+      return { total: seen.size, neu: seen.size - learning - known, learning, known };
+    },
+    reset() { data = { badges: {}, words: {} }; save(); }
+  };
+})();
+
+/* ══════════════════════════════════════════════════════════════════════════
+   UTILIDADES
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const $  = id => document.getElementById(id);
+const on = (el, ev, fn) => el && el.addEventListener(ev, fn);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const pickOne = a => a[Math.floor(Math.random() * a.length)];
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function shuffle(a) {
+  const c = a.slice();
+  for (let i = c.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [c[i], c[j]] = [c[j], c[i]];
+  }
+  return c;
+}
+
+/* Distratores vindos de outros trabalhos — automático, e ensina a distinguir. */
+function distractors(job, word, n) {
+  const banned = CONFUSABLE[word.en] || [];
+  const pool = JOBS
+    .filter(j => j.id !== job.id)
+    .flatMap(j => j.words)
+    .filter(w => w.en !== word.en && w.icon !== word.icon && banned.indexOf(w.en) === -1);
+  return shuffle(pool).slice(0, n);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CONFETE E FAÍSCAS — canvas, sem dependência
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const FX = (() => {
+  const cv = $("fx");
+  const ctx = cv.getContext("2d");
+  let parts = [], raf = null, dpr = 1;
+
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.floor(window.innerWidth * dpr);
+    cv.height = Math.floor(window.innerHeight * dpr);
+    cv.style.width = window.innerWidth + "px";
+    cv.style.height = window.innerHeight + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  size();
+  window.addEventListener("resize", size);
+
+  function tick() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    parts = parts.filter(p => p.life > 0);
+    for (const p of parts) {
+      p.vy += p.g;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vx *= 0.99;
+      p.rot += p.vr;
+      p.life--;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.min(1, p.life / 22);
+      ctx.fillStyle = p.c;
+      if (p.round) {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      }
+      ctx.restore();
+    }
+    if (parts.length) raf = requestAnimationFrame(tick);
+    else { raf = null; ctx.clearRect(0, 0, cv.width, cv.height); }
+  }
+
+  function add(list) {
+    if (REDUCED) return;
+    parts = parts.concat(list).slice(-320);
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  return {
+    /* faíscas curtinhas em cima de um elemento que a criança acertou */
+    sparkle(el, colors) {
+      const r = el.getBoundingClientRect();
+      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      const out = [];
+      for (let i = 0; i < 18; i++) {
+        const a = (Math.PI * 2 * i) / 18 + Math.random() * 0.4;
+        const s = 3.4 + Math.random() * 4;
+        out.push({
+          x: cx, y: cy, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 1.6,
+          g: 0.16, w: 6 + Math.random() * 6, h: 6 + Math.random() * 6,
+          rot: Math.random() * 6, vr: (Math.random() - 0.5) * 0.3,
+          c: pickOne(colors), life: 34 + Math.random() * 18, round: Math.random() < 0.5
+        });
+      }
+      add(out);
+    },
+    /* chuva de confete na tela da medalha */
+    rain(colors) {
+      const W = window.innerWidth, out = [];
+      for (let i = 0; i < 130; i++) {
+        out.push({
+          x: Math.random() * W, y: -30 - Math.random() * 320,
+          vx: (Math.random() - 0.5) * 2.4, vy: 2 + Math.random() * 3.4,
+          g: 0.05, w: 8 + Math.random() * 8, h: 10 + Math.random() * 10,
+          rot: Math.random() * 6, vr: (Math.random() - 0.5) * 0.24,
+          c: pickOne(colors), life: 150 + Math.random() * 90, round: Math.random() < 0.3
+        });
+      }
+      add(out);
+    },
+    clear() { parts = []; }
+  };
+})();
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ESTADO E NAVEGAÇÃO
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const stage = $("stage");
+const screens = {
+  splash: $("s-splash"), jobs: $("s-jobs"), learn: $("s-learn"),
+  listen: $("s-listen"), scene: $("s-scene"), done: $("s-done")
+};
+
+let job = null;
+let learnIdx = 0;
+let rounds = [], roundIdx = 0;
+let beatIdx = 0;
+let locked = false;
+
+/* Uma criança de 7 anos martela os botões. Duas defesas:
+   `mission` invalida qualquer transição pendente quando ela sai ou troca de
+   trabalho (senão o app a arrastaria de volta para dentro da missão que ela
+   acabou de abandonar); `busy` impede que o mesmo toque dispare duas vezes. */
+let mission = 0;
+let busy = false;
+
+function go(name) {
+  Speech.stop();
+  Object.keys(screens).forEach(k => screens[k].classList.toggle("is-on", k === name));
+}
+
+/* Envolve um manipulador que inicia uma transição demorada. */
+function guard(fn) {
+  return function () {
+    if (busy) return;
+    busy = true;
+    Promise.resolve(fn.apply(null, arguments)).then(free, free);
+  };
+}
+function free() { busy = false; }
+
+function setJobTheme(j) {
+  stage.style.setProperty("--accent", j.color);
+  stage.style.setProperty("--accent-ink", shade(j.color, -0.3));
+  stage.style.setProperty("--wash", mix(j.color, 0.12));
+  document.querySelectorAll("[data-jobname]").forEach(e => { e.textContent = j.pt; });
+}
+
+/* mistura simples em hex — evita depender de color-mix() */
+function hexToRgb(h) {
+  const n = parseInt(h.replace("#", ""), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+function toHex(r, g, b) {
+  const c = v => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, "0");
+  return "#" + c(r) + c(g) + c(b);
+}
+function mix(hex, amount) {            // cor sobre o papel
+  const [r, g, b] = hexToRgb(hex), [pr, pg, pb] = hexToRgb("#FFF3E2");
+  return toHex(r * amount + pr * (1 - amount), g * amount + pg * (1 - amount), b * amount + pb * (1 - amount));
+}
+function shade(hex, amount) {          // negativo escurece
+  const [r, g, b] = hexToRgb(hex), t = amount < 0 ? 0 : 255, p = Math.abs(amount);
+  return toHex(r + (t - r) * p, g + (t - g) * p, b + (t - b) * p);
+}
+
+function setDots(screen, step) {
+  screen.querySelectorAll("[data-dots] i").forEach((d, i) => {
+    d.classList.toggle("is-now", i === step);
+    d.classList.toggle("is-done", i < step);
+  });
+}
+function setPips(el, total, now) {
+  el.innerHTML = "";
+  for (let i = 0; i < total; i++) {
+    const p = document.createElement("i");
+    if (i < now) p.classList.add("is-done");
+    if (i === now) p.classList.add("is-now");
+    el.appendChild(p);
+  }
+}
+
+/* ── cartão de etapa entre as atividades ── */
+function phaseCard(no, pic, title, sub, speech) {
+  const pc = $("phasecard");
+  const my = mission;
+  $("pc-no").textContent = no;
+  $("pc-pic").textContent = pic;
+  $("pc-t").textContent = title;
+  $("pc-s").textContent = sub;
+  pc.classList.add("is-on");
+  if (speech) Speech.seq([PT(speech)]);
+  return sleep(REDUCED ? 700 : 1700).then(() => {
+    pc.classList.remove("is-on");
+    return my === mission;      // false = ela saiu; quem chamou não continua
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TELA: ESCOLHA DO TRABALHO
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const ASK = "Qual trabalho você quer fazer hoje?";
+
+function renderJobs() {
+  const list = $("joblist");
+  list.innerHTML = "";
+  PACKS.forEach(j => {
+    const known = Store.knownIn(j);
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "job tap";
+    b.style.setProperty("--job-color", j.color);
+    b.style.setProperty("--job-wash", mix(j.color, 0.1));
+    b.setAttribute("aria-label", j.pt + (Store.hasBadge(j.id) ? " — medalha conquistada" : ""));
+    b.innerHTML =
+      '<div class="job__pic" aria-hidden="true">' + j.emoji + "</div>" +
+      '<div class="job__txt">' +
+        '<div class="job__pt">' + j.pt + "</div>" +
+        '<div class="job__en">' + j.en + "</div>" +
+        /* a barra só aparece quando há o que mostrar — vazia, ela só polui */
+        (known ? '<div class="job__bar"><b style="width:' + (known / j.words.length * 100) + '%"></b></div>' : "") +
+      "</div>" +
+      (Store.hasBadge(j.id) ? '<div class="job__medal" aria-hidden="true">🏅</div>' : "");
+    on(b, "click", guard(() => startJob(j)));
+    list.appendChild(b);
+  });
+}
+
+function showJobs(speakIt) {
+  mission++;               // qualquer transição a caminho perde a validade
+  busy = false;
+  job = null;
+  stage.style.setProperty("--accent", "#17A08B");
+  stage.style.setProperty("--accent-ink", "#0E6B5D");
+  stage.style.setProperty("--wash", "#FFE9CE");
+  renderJobs();
+  go("jobs");
+  if (speakIt) Speech.seq([PT(ASK)], $("ask-again"));
+}
+
+on($("ask-again"), "click", () => Speech.seq([PT(ASK)], $("ask-again")));
+document.querySelectorAll("[data-home]").forEach(b => on(b, "click", () => showJobs(false)));
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MISSÃO
+   ══════════════════════════════════════════════════════════════════════════ */
+
+function startJob(j) {
+  const my = ++mission;
+  job = j;
+  setJobTheme(j);
+  learnIdx = 0;
+  Speech.seq([PT(j.pt + "."), GAP(250), EN(j.en, 0.8)]);
+  return sleep(REDUCED ? 500 : 1500)
+    .then(() => my === mission &&
+      phaseCard("Parte 1 de 3", j.emoji, "Conhecer", "Ouça as palavras deste trabalho", "Vamos conhecer as palavras."))
+    .then(ok => { if (ok) { go("learn"); renderLearn(); } });
+}
+
+/* ───────────── 1 · CONHECER ───────────── */
+
+function renderLearn() {
+  const w = job.words[learnIdx];
+  Store.seen(w.en);
+  setDots(screens.learn, 0);
+  setPips($("learn-pips"), job.words.length, learnIdx);
+
+  const host = $("learn-card");
+  host.innerHTML =
+    '<div class="wordcard">' +
+      '<span class="wordcard__pic" aria-hidden="true">' + w.icon + "</span>" +
+      '<div class="wordcard__en">' + w.en + "</div>" +
+      '<div class="wordcard__pt">' + w.pt + "</div>" +
+    "</div>" +
+    '<div class="rowmid" style="margin-top:14px">' +
+      '<button class="speaker" type="button" id="learn-say" aria-label="Ouvir de novo">🔊</button>' +
+    "</div>";
+
+  $("learn-next").textContent = learnIdx === job.words.length - 1 ? "Já sei! →" : "Próxima →";
+  on($("learn-say"), "click", () => sayWord(w));
+  sayWord(w);
+}
+
+function sayWord(w) {
+  Speech.seq([EN(w.en, 0.8), GAP(320), PT(w.pt), GAP(260), EN(w.en, 0.8)], $("learn-say"));
+}
+
+on($("learn-next"), "click", guard(() => {
+  learnIdx++;
+  if (learnIdx < job.words.length) { renderLearn(); return; }
+  return phaseCard("Parte 2 de 3", "👂", "Ouça e toque", "Toque na figura da palavra que você ouvir", "Agora, ouça e toque.")
+    .then(ok => { if (ok) startListen(); });
+}));
+
+/* ───────────── 2 · OUÇA E TOQUE ───────────── */
+
+function startListen() {
+  rounds = shuffle(job.words);
+  roundIdx = 0;
+  go("listen");
+  renderRound();
+}
+
+function renderRound() {
+  const w = rounds[roundIdx];
+  locked = false;
+  setDots(screens.listen, 1);
+  setPips($("listen-pips"), rounds.length, roundIdx);
+  $("listen-feedback").innerHTML = "";
+
+  // Sem voz em inglês, ouvir não é possível — então a palavra aparece escrita.
+  const canHear = Speech.has("en");
+  $("listen-hi").textContent = canHear ? "Toque em…" : "Toque em: " + w.en;
+  $("listen-lo").textContent = canHear ? "Toque no 🔊 para ouvir de novo" : "Sem voz em inglês neste aparelho";
+
+  const opts = shuffle([w].concat(distractors(job, w, 2)));
+  const host = $("listen-opts");
+  host.innerHTML = "";
+  opts.forEach(o => host.appendChild(optionCard(o, () => answerListen(o, w, host))));
+
+  sayTarget(w);
+}
+
+function sayTarget(w) {
+  Speech.seq([PT("Toque em"), GAP(150), EN(w.en, 0.78), GAP(650), EN(w.en, 0.78)], $("listen-again"));
+}
+on($("listen-again"), "click", () => { if (rounds.length) sayTarget(rounds[roundIdx]); });
+
+function optionCard(word, onPick) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "opt";
+  b.dataset.word = word.en;
+  b.setAttribute("aria-label", word.pt);
+  b.innerHTML = '<span aria-hidden="true">' + word.icon + "</span>";
+  on(b, "click", () => onPick(b));
+  return b;
+}
+
+function answerListen(picked, target, host) {
+  if (locked) return;
+  const btn = host.querySelector('[data-word="' + picked.en + '"]');
+
+  if (picked.en === target.en) {
+    locked = true;
+    Store.right(target.en);
+    btn.classList.add("is-right");
+    host.querySelectorAll(".opt").forEach(o => { o.disabled = true; });
+    FX.sparkle(btn, ["#FFC53D", job.color, "#FFFDF8", "#F2A81C"]);
+    Speech.seq([EN(target.en, 0.85), GAP(220), PT(pickOne(PRAISE))]);
+    const my = mission;
+    sleep(1500).then(() => {
+      if (my !== mission) return;      // ela saiu enquanto a resposta comemorava
+      roundIdx++;
+      if (roundIdx < rounds.length) return renderRound();
+      phaseCard("Parte 3 de 3", job.emoji, "No trabalho", job.scene.titlePt, "Hora de trabalhar!")
+        .then(ok => { if (ok) startScene(); });
+    });
+    return;
+  }
+
+  // errou: sem placar, sem vida perdida, sem X vermelho
+  Store.wrong(target.en);
+  btn.classList.add("is-off");
+  btn.disabled = true;
+  const right = host.querySelector('[data-word="' + target.en + '"]');
+  if (right) right.classList.add("is-hint");
+  $("listen-feedback").innerHTML = '<div class="nudge">Quase! 🙂</div>';
+  Speech.seq([PT("Quase!"), GAP(220), EN(target.en, 0.75)]);
+}
+
+/* ───────────── 3 · NO TRABALHO ───────────── */
+
+function startScene() {
+  beatIdx = 0;
+  $("scene-title").textContent = job.scene.titlePt;
+  $("scene-pic").textContent = job.emoji;
+  go("scene");
+  renderBeat();
+}
+
+function renderBeat() {
+  const b = job.scene.beats[beatIdx];
+  locked = false;
+  setDots(screens.scene, 2);
+  setPips($("scene-pips"), job.scene.beats.length, beatIdx);
+  $("scene-feedback").innerHTML = "";
+  $("scene-setup").textContent = b.setupPt;
+  $("scene-task").textContent = b.taskEn;
+  $("scene-taskpt").textContent = b.taskPt;
+
+  const host = $("scene-opts");
+  host.innerHTML = "";
+  shuffle(b.options).forEach(en => {
+    const w = WORDS[en];
+    if (!w) return;
+    host.appendChild(optionCard(w, () => answerBeat(w, b, host)));
+  });
+
+  sayBeat(b);
+}
+
+function sayBeat(b) {
+  Speech.seq([PT(b.setupPt), GAP(420), EN(b.taskEn), GAP(520), EN(b.taskEn)], $("scene-again"));
+}
+on($("scene-again"), "click", () => sayBeat(job.scene.beats[beatIdx]));
+
+function answerBeat(picked, beat, host) {
+  if (locked) return;
+  const btn = host.querySelector('[data-word="' + picked.en + '"]');
+
+  if (picked.en === beat.answer) {
+    locked = true;
+    Store.right(beat.answer);
+    btn.classList.add("is-right");
+    host.querySelectorAll(".opt").forEach(o => { o.disabled = true; });
+    FX.sparkle(btn, ["#FFC53D", job.color, "#FFFDF8", "#F2A81C"]);
+    $("scene-feedback").innerHTML = '<div class="bubble">' + beat.successEn + "</div>";
+    Speech.seq([EN(beat.successEn, 0.85)]);
+    const my = mission;
+    sleep(2400).then(() => {
+      if (my !== mission) return;
+      beatIdx++;
+      if (beatIdx < job.scene.beats.length) return renderBeat();
+      finish();
+    });
+    return;
+  }
+
+  Store.wrong(beat.answer);
+  btn.classList.add("is-off");
+  btn.disabled = true;
+  const right = host.querySelector('[data-word="' + beat.answer + '"]');
+  if (right) right.classList.add("is-hint");
+  Speech.seq([PT("Quase! Tenta outra vez."), GAP(250), EN(beat.taskEn, 0.78)]);
+}
+
+/* ───────────── MEDALHA ───────────── */
+
+function finish() {
+  Store.badge(job.id);
+  $("done-patch").innerHTML = '<span aria-hidden="true">' + job.emoji + "</span>";
+  $("done-ribbon").textContent = job.badgePt;
+  $("done-line").textContent = "Você é um " + job.badgePt + "!";
+  $("done-chips").innerHTML = job.words
+    .map(w => '<span class="chip"><i>' + w.icon + "</i>" + w.en + "</span>")
+    .join("");
+  go("done");
+  FX.rain(["#FFC53D", job.color, "#FFFDF8", "#F2A81C", "#2C2136"]);
+  Speech.seq([PT("Parabéns! Você é um " + job.badgePt + "!")]);
+}
+
+on($("done-again"), "click", guard(() => { FX.clear(); return startJob(job); }));
+on($("done-other"), "click", guard(() => { FX.clear(); showJobs(true); }));
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ABERTURA — o primeiro toque desbloqueia a fala no iOS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+on($("start"), "click", () => {
+  Speech.unlock();
+  Speech.load();
+  showJobs(true);            // a primeira fala real nasce deste toque
+});
+
+/* Se o aparelho não tiver voz nenhuma, avisa antes de começar. */
+setTimeout(() => {
+  if (!Speech.supported) {
+    $("audio-note").innerHTML =
+      "<b>Este navegador não fala.</b> O app continua funcionando — as palavras aparecem escritas.";
+  } else if (!Speech.has("pt") && !Speech.has("en")) {
+    $("audio-note").innerHTML =
+      "<b>Nenhuma voz encontrada neste aparelho.</b> As palavras aparecem escritas.";
+  }
+}, 1600);
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ÁREA DOS PAIS — segure 3 segundos
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const gate = $("gate");
+let holdTimer = null;
+
+function holdStart(e) {
+  e.preventDefault();
+  gate.classList.add("is-holding");
+  holdTimer = setTimeout(openParent, 3000);
+}
+function holdEnd() {
+  gate.classList.remove("is-holding");
+  if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
+}
+on(gate, "pointerdown", holdStart);
+["pointerup", "pointercancel", "pointerleave"].forEach(ev => on(gate, ev, holdEnd));
+
+function openParent() {
+  holdEnd();
+  Speech.stop();
+  const c = Store.counts();
+  $("p-new").textContent = c.neu;
+  $("p-learn").textContent = c.learning;
+  $("p-known").textContent = c.known;
+
+  const earned = PACKS.filter(j => Store.hasBadge(j.id));
+  $("p-badges").innerHTML = earned.length
+    ? earned.map(j => '<span class="chip"><i>' + j.emoji + "</i>" + j.badgePt + "</span>").join("")
+    : '<span class="note">Nenhuma ainda.</span>';
+
+  renderContentReview();
+
+  fillVoices("en", $("v-en"));
+  fillVoices("pt", $("v-pt"));
+  showVoiceInUse();
+
+  resetArmed = false;
+  $("p-reset").textContent = "Apagar todo o progresso";
+  $("p-reset").classList.remove("btn--go");
+  $("p-reset-note").textContent = "Isso apaga medalhas e palavras deste aparelho.";
+  $("parent").hidden = false;
+}
+
+/* ── seletor de voz ───────────────────────────────────────────────────────── */
+
+function fillVoices(lang, sel) {
+  const list = Speech.list(lang);
+  const chosen = Speech.chosen(lang);
+  if (!list.length) {
+    sel.innerHTML = '<option value="">nenhuma voz encontrada</option>';
+    sel.disabled = true;
+    return;
+  }
+  const opt = v =>
+    '<option value="' + esc(v.name) + '"' + (v.name === chosen ? " selected" : "") + ">" +
+    (v.joke ? "🤡 " : "") + esc(v.name) + " · " + esc(v.lang) + "</option>";
+
+  const group = (label, vs) => vs.length ? "<optgroup label=" + '"' + label + '">' + vs.map(opt).join("") + "</optgroup>" : "";
+
+  sel.innerHTML =
+    '<option value="">Melhor do aparelho (automática)</option>' +
+    group("No aparelho", list.filter(v => !v.net)) +
+    group("Melhores, mas usam internet", list.filter(v => v.net));
+  sel.disabled = false;
+}
+
+function showVoiceInUse() {
+  const en = Speech.voiceName("en"), pt = Speech.voiceName("pt");
+  $("p-en").innerHTML = en ? '<span class="ok">' + esc(en) + "</span>" : '<span class="bad">não encontrada</span>';
+  $("p-pt").innerHTML = pt ? '<span class="ok">' + esc(pt) + "</span>" : '<span class="bad">não encontrada</span>';
+}
+
+const SAMPLE = {
+  en: [EN("Get the bandage. Here is the bandage. Thank you!")],
+  pt: [PT("Um cachorro chegou. Ele está machucado.")]
+};
+
+["en", "pt"].forEach(lang => {
+  on($("v-" + lang), "change", e => {
+    Speech.choose(lang, e.target.value);
+    showVoiceInUse();
+    Speech.seq(SAMPLE[lang], $("v-" + lang + "-test"));
+  });
+  on($("v-" + lang + "-test"), "click", () => Speech.seq(SAMPLE[lang], $("v-" + lang + "-test")));
+});
+
+/* Todo o inglês falado, em texto — para quem sabe inglês conferir e corrigir.
+   Mostra JOBS, não PACKS: um pacote ainda não revisado aparece aqui marcado,
+   mesmo estando invisível para a criança. É esse o portão de revisão. */
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+function renderContentReview() {
+  $("p-content").innerHTML = JOBS.map(j =>
+    '<div class="pack">' +
+      '<div class="pack__h"><i aria-hidden="true">' + j.emoji + "</i>" + esc(j.pt) +
+        (j.reviewed ? "" : "<b>não revisado</b>") +
+      "</div>" +
+      "<ul>" + j.words.map(w =>
+        "<li>" + esc(w.en) + " <s>" + esc(w.pt) + "</s></li>"
+      ).join("") + "</ul>" +
+      "<ol>" + j.scene.beats.map(b =>
+        "<li>" + esc(b.taskEn) + "<em>" + esc(b.successEn) + "</em></li>"
+      ).join("") + "</ol>" +
+    "</div>"
+  ).join("");
+}
+
+on($("parent-close"), "click", () => { $("parent").hidden = true; });
+
+let resetArmed = false;
+on($("p-reset"), "click", () => {
+  const btn = $("p-reset");
+  if (!resetArmed) {
+    resetArmed = true;
+    btn.textContent = "Tem certeza? Toque de novo";
+    btn.classList.add("btn--go");
+    $("p-reset-note").textContent = "Toque em qualquer outro lugar para cancelar.";
+    return;
+  }
+  Store.reset();
+  resetArmed = false;
+  btn.textContent = "Progresso apagado ✓";
+  btn.classList.remove("btn--go");
+  $("p-reset-note").textContent = "Tudo zerado neste aparelho.";
+  renderJobs();
+  openParent();
+  setTimeout(() => { btn.textContent = "Apagar todo o progresso"; }, 2200);
+});
+
+on($("parent"), "click", e => {
+  if (resetArmed && e.target !== $("p-reset")) {
+    resetArmed = false;
+    $("p-reset").textContent = "Apagar todo o progresso";
+    $("p-reset").classList.remove("btn--go");
+    $("p-reset-note").textContent = "Isso apaga medalhas e palavras deste aparelho.";
+  }
+});
+</script>
+</body>
+</html>
