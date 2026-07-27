@@ -20,6 +20,7 @@
  * use — fine while building, not defensible for a public release. See DESIGN.md.
  */
 import { execFileSync } from "node:child_process";
+import { SPOKEN, linesFor } from "../app/js/spoken.js";
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, statSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -38,7 +39,11 @@ const args = process.argv.slice(2);
 const FORCE = args.includes("--force");
 const only = args.filter(a => !a.startsWith("--"));
 
+/* Two voices, because Clara now instructs in Portuguese and teaches in English.
+   Luciana is the neutral Brazilian voice; the rest of the pt_BR set on macOS is
+   the novelty voices the app's own fallback picker already filters out. */
 const VOICE = process.env.AUDIO_VOICE || "Samantha";
+const VOICE_PT = process.env.AUDIO_VOICE_PT || "Luciana";
 
 /* `say` speaks in words per minute. A learner needs slower than conversational,
    and a single word — the one they are about to repeat — slower still. */
@@ -101,40 +106,38 @@ function nameLines(texts) {
   return out;
 }
 
-/* ── what Clara says that is not in a category file ───────────────────────── */
-const UI_LINES = [
-  "Let's begin.",
-  "Let's meet the words.",
-  "Now, let's listen.",
-  "Now, let's read.",
-  "Now, let's speak.",
-  "Now, let's write.",
-  "Listen and tap the picture.",
-  "Listen and choose.",
-  "Which one did you hear?",
-  "Match the word to the picture.",
-  "Read and choose.",
-  "Say it after me.",
-  "Your turn.",
-  "Press to record.",
-  "Spell the word.",
-  "Write the word.",
-  "Choose the answer.",
-  "Good job!",
-  "Well done!",
-  "That's right!",
-  "Perfect!",
-  "Nice work!",
-  "Almost. Try again.",
-  "Not quite. Here it is.",
-  "One more time.",
-  "Lesson complete!",
-  "Here is your badge.",
-  "Testing, one, two, three."
-];
+/* ── what Clara says that is not in a content file ────────────────────────── */
+
+/* Read from app/js/spoken.js, which is the same list the app plays from. When
+   these were two lists they could drift, and a drifted line does not fail
+   loudly — it silently stops resolving and falls back to a worse voice. */
+const UI_LINES = linesFor("en");
+const UI_LINES_PT = linesFor("pt");
+
+/* ── the schema check ─────────────────────────────────────────────────────── */
+
+/* A file missing a part does not crash anything — it quietly generates a
+   thinner lesson, which is worse, because it looks like it worked. Refuse it
+   here instead, where somebody is watching the output. */
+const REQUIRED = ["vocabulary", "phrases", "dialogue", "speaking", "writing", "quiz"];
+
+function check(cat) {
+  const missing = REQUIRED.filter(k => {
+    const v = cat[k];
+    if (k === "dialogue") return !v || !(v.lines || []).length || !(v.questions || []).length;
+    return !Array.isArray(v) || !v.length;
+  });
+  if (missing.length) {
+    console.error("\n" + cat.id + " is missing: " + missing.join(", "));
+    console.error("Every topic carries all of: " + REQUIRED.join(", ") +
+                  ". A reading passage is optional — the youngest bands match words to " +
+                  "pictures instead — but nothing else is.\n");
+    process.exit(1);
+  }
+}
 
 /* ── collect the lines of one category ────────────────────────────────────── */
-function linesFor(cat) {
+function catLines(cat) {
   const out = [];
   const add = t => {
     const text = String(t || "").trim();
@@ -155,7 +158,7 @@ function linesFor(cat) {
 }
 
 /* ── render ───────────────────────────────────────────────────────────────── */
-function render(dir, lines) {
+function render(dir, lines, voice) {
   mkdirSync(dir, { recursive: true });
 
   /* Manifest maps the exact text the app displays to its file. Nothing in the
@@ -171,7 +174,7 @@ function render(dir, lines) {
 
     const aiff = join(dir, "_tmp.aiff");
     try {
-      execFileSync("say", ["-v", VOICE, "-r", String(wpm(clip.speech)), "-o", aiff, "--", clip.speech]);
+      execFileSync("say", ["-v", voice, "-r", String(wpm(clip.speech)), "-o", aiff, "--", clip.speech]);
       execFileSync("afconvert", ["-f", "m4af", "-d", "aac", "-b", "28000", "-q", "127", aiff, m4a]);
     } finally {
       rmSync(aiff, { force: true });
@@ -197,15 +200,19 @@ mkdirSync(AUDIO, { recursive: true });
 const files = readdirSync(CATEGORIES).filter(f => f.endsWith(".json")).sort();
 let grandTotal = 0, grandBytes = 0, grandMade = 0;
 
-const jobs = [{ id: "ui", lines: UI_LINES }];
+const jobs = [
+  { id: "ui",    lines: UI_LINES,    voice: VOICE },
+  { id: "ui-pt", lines: UI_LINES_PT, voice: VOICE_PT }
+];
 for (const f of files) {
   const cat = JSON.parse(readFileSync(join(CATEGORIES, f), "utf8"));
-  jobs.push({ id: cat.id, lines: linesFor(cat) });
+  check(cat);
+  jobs.push({ id: cat.id, lines: catLines(cat), voice: VOICE });
 }
 
 for (const job of jobs) {
-  if (only.length && job.id !== "ui" && !only.includes(job.id)) continue;
-  const r = render(join(AUDIO, job.id), job.lines);
+  if (only.length && !job.id.startsWith("ui") && !only.includes(job.id)) continue;
+  const r = render(join(AUDIO, job.id), job.lines, job.voice);
   grandTotal += r.total; grandBytes += r.bytes; grandMade += r.made;
   console.log(
     job.id.padEnd(16) +
@@ -216,6 +223,6 @@ for (const job of jobs) {
 }
 
 console.log("");
-console.log(grandTotal + " lines · " + (grandBytes / 1024 / 1024).toFixed(2) + " MB · voice " + VOICE +
+console.log(grandTotal + " lines · " + (grandBytes / 1024 / 1024).toFixed(2) + " MB · voices " + VOICE + " / " + VOICE_PT +
             (grandMade ? " · " + grandMade + " rendered this run" : " · nothing to do"));
 console.log("Audio is fetched per category, so a learner downloads one folder, not all of them.");

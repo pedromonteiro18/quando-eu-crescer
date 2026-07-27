@@ -19,7 +19,7 @@ import { ask, scramble } from "./skills/ask.js";
 import { single as writeItem } from "./skills/write.js";
 import { node, button, rule, esc, stage, sample, setSkill, sleep, FX, SKILL_COLORS, Mission } from "./ui.js";
 import { clara } from "./clara.js";
-import { t } from "./i18n.js";
+import { t, uiClips } from "./i18n.js";
 
 
 /** Is there anything worth revising? */
@@ -81,6 +81,7 @@ function fromShaky(n) {
 export async function run(band) {
   const token = Mission.bump();
   const weak = P.weakest();
+  await A.load(uiClips());        // praise is spoken here too, and in their language
 
   const mistakes = P.mistakes();
   const items = [];

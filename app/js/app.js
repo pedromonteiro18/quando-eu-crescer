@@ -75,7 +75,14 @@ function wireChrome() {
   Teacher.init(() => { setBand(P.band() || "11-14"); home(); });
   onChange(() => { apply(); paintStreak(); if (redraw) redraw(); });
 
-  on($("brand"), "click", guard(() => { Mission.bump(); A.stop(); home(); }));
+  /* Home, unless the language question has not been answered — tapping the
+     brand from that screen used to walk straight past it and leave the app
+     silently choosing for you. */
+  on($("brand"), "click", guard(() => {
+    Mission.bump();
+    A.stop();
+    P.lang() ? home() : askLanguage();
+  }));
 
   wireSound();
   wireSettings();

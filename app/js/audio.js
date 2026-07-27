@@ -162,6 +162,12 @@ export function load(id) {
 
 export const has = text => registry.has(String(text || "").trim());
 
+/* Which file a line will actually play. Exposed so the split between what Clara
+   INSTRUCTS in and what she TEACHES in is checkable from outside rather than
+   asserted in a comment: an instruction must come from ui/ or ui-pt/, and
+   everything being taught must come from its own topic folder, in English. */
+export const urlFor = text => registry.get(String(text || "").trim()) || null;
+
 /* ── decoding and playback ────────────────────────────────────────────────── */
 
 async function buffer(url) {
