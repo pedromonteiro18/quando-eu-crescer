@@ -135,17 +135,29 @@ export function atLevel(list, level) {
  * may carry one (the ten originals do) or an array of them, one per tier; this
  * takes the hardest one the learner has reached.
  */
-function pickByLevel(thing, level) {
+function pickByLevel(thing, level, whenNothingFits) {
   if (!thing) return null;
   if (!Array.isArray(thing)) return thing;
+  const hardest = list => list.reduce((best, x) => ((x.level | 0) >= (best.level | 0) ? x : best), list[0]);
   const upTo = thing.filter(x => typeof x.level !== "number" || x.level <= level);
-  const pool = upTo.length ? upTo : thing;
-  return pool.reduce((best, x) =>
-    (x.level || 0) >= ((best && best.level) || 0) ? x : best, pool[0]) || null;
+  if (upTo.length) return hardest(upTo);
+  /* Nothing at or below the learner's rung. Whatever happens next, it is NOT
+     "give them the hardest one in the file" — which is what the first version
+     of this did, and it handed a beginner the C1 passage. */
+  if (whenNothingFits === "easiest") {
+    return thing.reduce((easy, x) => ((x.level | 0) < (easy.level | 0) ? x : easy), thing[0]);
+  }
+  return null;
 }
 
-export const dialogueFor = (cat, level) => pickByLevel(cat.dialogue, level);
-export const readingFor = (cat, level) => pickByLevel(cat.reading, level);
+/* A dialogue is the floor of a lesson and every file is required to have one,
+   so if a rung somehow has nothing it gets the easiest rather than nothing. */
+export const dialogueFor = (cat, level) => pickByLevel(cat.dialogue, level, "easiest");
+
+/* A passage is the optional part. Below the easiest passage a learner gets no
+   passage at all and reads the dialogue instead, which is the right lesson —
+   not the right lesson made out of text they cannot read. */
+export const readingFor = (cat, level) => pickByLevel(cat.reading, level, null);
 
 /* ── the two authored-in-both-languages fields ────────────────────────────── */
 

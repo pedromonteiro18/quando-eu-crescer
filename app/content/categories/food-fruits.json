@@ -1,0 +1,228 @@
+{
+  "id": "food-fruits",
+  "title": "Fruit",
+  "title_pt": "Frutas",
+  "icon": "🍌",
+  "bands": ["4-6", "7-10", "11-14"],
+  "cefr": "A1",
+  "levelNote": "Six tiers in one file. Fruit is the right first noun — every one of them is a picture a four year old already knows — and it carries all the way up, because ripe, seasonal and imported are adult words about the same apple.",
+  "goal": "Name fruit, say which you like, buy some, and describe how it tastes.",
+  "goal_pt": "Nomear frutas, dizer de qual você gosta, comprar, e descrever o gosto.",
+
+  "grammar": [
+    { "point": "Plurals with -s", "point_pt": "Plural com -s", "example": "one apple, two apples", "level": 0 },
+    { "point": "I like / I don't like", "point_pt": "I like / I don't like", "example": "I like bananas. I don't like lemons.", "level": 1 },
+    { "point": "some / any with uncountables", "point_pt": "some / any com incontáveis", "example": "We have some juice. We haven't got any grapes.", "level": 2 },
+    { "point": "Comparatives", "point_pt": "Comparativos", "example": "A mango is sweeter than a lemon.", "level": 3 },
+    { "point": "Present perfect for experience", "point_pt": "Present perfect para experiência", "example": "Have you ever tried jackfruit?", "level": 4 },
+    { "point": "Concession: although, even though", "point_pt": "Concessão: although, even though", "example": "Although it looks ripe, it is not.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "apple", "icon": "🍎", "example": "I eat an apple every day.", "level": 0 },
+    { "word": "banana", "icon": "🍌", "example": "The banana is yellow.", "level": 0 },
+    { "word": "orange", "icon": "🍊", "example": "This orange is very big.", "level": 0 },
+    { "word": "grape", "icon": "🍇", "example": "I like grapes very much.", "level": 0 },
+    { "word": "lemon", "icon": "🍋", "example": "The lemon is not sweet.", "level": 0 },
+
+    { "word": "mango", "icon": "🥭", "example": "A mango is sweet and soft.", "level": 1 },
+    { "word": "peach", "icon": "🍑", "example": "This peach is ready to eat.", "level": 1 },
+    { "word": "melon", "icon": "🍈", "example": "We share the melon after lunch.", "level": 1 },
+    { "word": "cherry", "icon": "🍒", "example": "Cherries are small and red.", "level": 1 },
+    { "word": "pear", "icon": "🍐", "example": "A pear is quieter than an apple.", "level": 1 },
+
+    { "word": "pineapple", "icon": "🍍", "example": "Cut the pineapple into pieces.", "level": 2 },
+    { "word": "coconut", "icon": "🥥", "example": "The coconut is hard to open.", "level": 2 },
+    { "word": "juice", "icon": "🧃", "example": "Would you like some juice?", "level": 2 },
+    { "word": "peel", "icon": "🍌", "example": "Peel the banana before you eat it.", "level": 2 },
+    { "word": "market", "icon": "🧺", "example": "The market opens at six.", "level": 2 },
+
+    { "word": "ripe", "icon": "🟡", "example": "Wait until the mango is ripe.", "level": 3 },
+    { "word": "sour", "icon": "😝", "example": "Green apples are sour.", "level": 3 },
+    { "word": "sweet", "icon": "🍯", "example": "A mango is sweeter than a lemon.", "level": 3 },
+    { "word": "fresh", "icon": "🌱", "example": "These are fresh from the market.", "level": 3 },
+    { "word": "seed", "icon": "🌰", "example": "Take out the seeds first.", "level": 3 },
+
+    { "word": "seasonal", "icon": "📆", "example": "Cherries are seasonal here.", "level": 4 },
+    { "word": "imported", "icon": "🚢", "example": "Imported fruit costs more.", "level": 4 },
+    { "word": "harvest", "icon": "🌾", "example": "The harvest was early this year.", "level": 4 },
+    { "word": "texture", "icon": "🖐️", "example": "I like the texture of a firm pear.", "level": 4 },
+    { "word": "flavour", "icon": "👅", "example": "The flavour changes when it is cooked.", "level": 4 },
+
+    { "word": "cultivar", "icon": "🧬", "example": "That cultivar was bred for shipping.", "level": 5 },
+    { "word": "perishable", "icon": "⏳", "example": "Berries are the most perishable of all.", "level": 5 },
+    { "word": "bland", "icon": "😐", "example": "Picked early, it ripens bland.", "level": 5 },
+    { "word": "abundance", "icon": "🧺", "example": "In January there is an abundance of mangoes.", "level": 5 },
+    { "word": "preserve", "icon": "🫙", "example": "They preserve the surplus in jars.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "I like apples.", "use": "Plural for fruit in general. Not I like apple.", "level": 0 },
+    { "text": "This is a banana.", "use": "Pointing at one thing.", "level": 0 },
+    { "text": "I don't like lemons.", "use": "Don't like, not no like.", "level": 1 },
+    { "text": "Which one do you want?", "use": "Which when there is a small set to choose from.", "level": 1 },
+    { "text": "Would you like some juice?", "use": "Some in an offer, even though it is a question.", "level": 2 },
+    { "text": "We haven't got any grapes.", "use": "Any in the negative.", "level": 2 },
+    { "text": "A mango is sweeter than a lemon.", "use": "Short adjective plus -er, then than.", "level": 3 },
+    { "text": "Is this one ripe?", "use": "The most useful sentence in any market.", "level": 3 },
+    { "text": "Have you ever tried jackfruit?", "use": "Ever with the present perfect, for any time in your life.", "level": 4 },
+    { "text": "They are cheaper when they are in season.", "use": "In season, not on season.", "level": 4 },
+    { "text": "Although it looks ripe, it is not.", "use": "Although opens the surprising half.", "level": 5 },
+    { "text": "It was picked before it was ready.", "use": "Passive twice, because who picked it is not the point.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "At the fruit stall",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "Good morning! I like apples." },
+        { "who": "B", "text": "Here is a big red apple." },
+        { "who": "A", "text": "Thank you. And a banana, please." },
+        { "who": "B", "text": "One banana. It is very yellow." },
+        { "who": "A", "text": "I like grapes very much." },
+        { "who": "B", "text": "Here you are. Have a good day!" }
+      ],
+      "questions": [
+        { "q": "What does A ask for first?", "options": ["An apple", "A lemon", "Juice"], "answer": 0, "level": 0 },
+        { "q": "What colour is the banana?", "options": ["Yellow", "Red", "Green"], "answer": 0, "level": 0 }
+      ]
+    },
+    {
+      "title": "Choosing at the market",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "Would you like some juice, or shall we buy fruit?" },
+        { "who": "B", "text": "Fruit. We haven't got any grapes at home." },
+        { "who": "A", "text": "These look good. And a pineapple?" },
+        { "who": "B", "text": "It is hard to cut. But yes, let's take one." },
+        { "who": "A", "text": "Do we need lemons?" },
+        { "who": "B", "text": "No, we have some. Just peel the banana for the children now." },
+        { "who": "A", "text": "Done. The market opens at six tomorrow if we need more." }
+      ],
+      "questions": [
+        { "q": "What do they not have at home?", "options": ["Grapes", "Lemons", "Bananas"], "answer": 0, "level": 2 },
+        { "q": "Why does B hesitate about the pineapple?", "options": ["It is hard to cut", "It costs too much", "It is not ripe"], "answer": 0, "level": 2 }
+      ]
+    },
+    {
+      "title": "Is this one ripe?",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "Is this one ripe? It feels firm." },
+        { "who": "B", "text": "Smell the end of it. If there is no smell, it was picked early." },
+        { "who": "A", "text": "Nothing at all. So it will never really be sweet?" },
+        { "who": "B", "text": "It will soften, but the flavour was decided on the tree." },
+        { "who": "A", "text": "Have you ever tried the imported ones in winter?" },
+        { "who": "B", "text": "Once. They travel well and taste of nothing. Wait for the season." },
+        { "who": "A", "text": "Then I will wait. When is the harvest here?" }
+      ],
+      "questions": [
+        { "q": "How does B test the fruit?", "options": ["By smelling the end", "By pressing it hard", "By its colour"], "answer": 0, "level": 4 },
+        { "q": "What does B say about imported fruit?", "options": ["It travels well but tastes of nothing", "It is always sweeter", "It is never available"], "answer": 0, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "Saturday morning",
+      "level": 1,
+      "text": "On Saturday my grandmother goes to the market. She takes a big basket and she takes me.\n\nShe buys oranges, a melon, and a lot of cherries. I carry the cherries because they are light. She talks to every person at every stall.\n\nWe come home late. The basket is heavy and my grandmother is happy. We eat the cherries before lunch, all of them.",
+      "questions": [
+        { "q": "When do they go to the market?", "options": ["On Saturday", "On Monday", "Every evening"], "answer": 0, "level": 1 },
+        { "q": "Why does the child carry the cherries?", "options": ["They are light", "They are his favourite", "The basket is full"], "answer": 0, "level": 1 },
+        { "q": "When do they eat the cherries?", "options": ["Before lunch", "The next day", "At the market"], "answer": 0, "level": 1 }
+      ]
+    },
+    {
+      "title": "Sweeter than a lemon",
+      "level": 3,
+      "text": "Children work out very early that a lemon is sour and a mango is sweet, and they work it out without being told. What takes longer is understanding that sweetness is not a fixed property of a fruit. The same mango, from the same tree, is sour in September and sweet in December.\n\nThis is why asking whether a fruit is good is the wrong question at a market. The better question is whether it is ripe, and the answer changes weekly. A ripe pear is softer than an unripe one, heavier for its size, and smells like a pear from a step away.\n\nAn unripe pear smells of nothing at all. That is the test, and it is free.",
+      "questions": [
+        { "q": "What do children work out early?", "options": ["That lemons are sour", "How to choose a ripe pear", "When fruit is in season"], "answer": 0, "level": 3 },
+        { "q": "What is the better question at a market?", "options": ["Is it ripe?", "Is it good?", "Is it cheap?"], "answer": 0, "level": 3 },
+        { "q": "How does an unripe pear smell?", "options": ["Of nothing", "Very strong", "Sour"], "answer": 0, "level": 3 }
+      ]
+    },
+    {
+      "title": "Bred for the journey",
+      "level": 5,
+      "text": "A supermarket tomato is the most quoted example, but the same story has been told about strawberries, peaches and almost every apple you can buy in February. The variety on the shelf was not chosen because it tastes better than the alternatives. It was chosen because it survives being picked green, boxed, chilled, driven for two days and stacked under a light, and still looks like something you would want to eat.\n\nThat is a real achievement, and it is not what most people think they are buying. Flavour in fruit develops on the plant, in the last few days, and it cannot be recovered afterwards. Ripening and softening are not the same process; a fruit picked early will go soft on a shelf without ever becoming sweet, which is why so much winter fruit has the texture of ripeness and none of the taste.\n\nNone of this makes imported fruit a swindle. It makes it a trade, and a reasonable one: abundance in January, at the cost of flavour. What is worth noticing is only that the trade was made on your behalf, by somebody choosing a cultivar decades ago, and that nothing on the label mentions it.",
+      "questions": [
+        { "q": "Why was the shelf variety chosen?", "options": ["It survives transport and still looks good", "It tastes better", "It is cheaper to grow"], "answer": 0, "level": 5 },
+        { "q": "What does the writer say about ripening and softening?", "options": ["They are not the same process", "They always happen together", "Neither happens after picking"], "answer": 0, "level": 5 },
+        { "q": "What is the writer's conclusion about imported fruit?", "options": ["It is a reasonable trade nobody was told about", "It is a swindle", "It should be banned in winter"], "answer": 0, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "I like apples.", "tip": "Apples has two beats: AP-uls.", "level": 0 },
+    { "text": "This is a banana.", "tip": "ba-NA-na. The middle is the loud one.", "level": 0 },
+    { "text": "I don't like lemons.", "tip": "Don't like: the t almost disappears. Don-like.", "level": 1 },
+    { "text": "Which one do you want?", "tip": "Do you becomes d'you. Say it fast.", "level": 1 },
+    { "text": "Would you like some juice?", "tip": "Would you often becomes wudja.", "level": 2 },
+    { "text": "We haven't got any grapes.", "tip": "Haven't got is one push: hav-nt-got.", "level": 2 },
+    { "text": "A mango is sweeter than a lemon.", "tip": "Than is weak here. It rhymes with fun, not fan.", "level": 3 },
+    { "text": "Is this one ripe?", "tip": "Rise at the end. It is a yes-or-no question.", "level": 3 },
+    { "text": "Have you ever tried jackfruit?", "tip": "Have you ever runs together: hav-yoo-EV-er.", "level": 4 },
+    { "text": "They are cheaper when they are in season.", "tip": "In season links: in-SEE-zun.", "level": 4 },
+    { "text": "Although it looks ripe, it is not.", "tip": "Pause after ripe, not after although.", "level": 5 },
+    { "text": "It was picked before it was ready.", "tip": "Both was are weak. Only picked and ready are strong.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "apple", "icon": "🍎", "level": 0 },
+    { "type": "spell", "answer": "banana", "icon": "🍌", "level": 0 },
+    { "type": "cloze", "sentence": "I eat ___ apple every day.", "answer": "an", "level": 0 },
+
+    { "type": "spell", "answer": "mango", "icon": "🥭", "level": 1 },
+    { "type": "cloze", "sentence": "I ___ like lemons.", "answer": "don't", "level": 1 },
+    { "type": "answer", "question": "Which fruit do you like?", "accept": ["I like", "apples", "bananas", "mangoes", "grapes", "oranges"], "level": 1 },
+
+    { "type": "spell", "answer": "juice", "icon": "🧃", "level": 2 },
+    { "type": "cloze", "sentence": "Would you like ___ juice?", "answer": "some", "level": 2 },
+    { "type": "cloze", "sentence": "We haven't got ___ grapes.", "answer": "any", "level": 2 },
+
+    { "type": "spell", "answer": "ripe", "icon": "🟡", "level": 3 },
+    { "type": "cloze", "sentence": "A mango is ___ than a lemon.", "answer": "sweeter", "level": 3 },
+    { "type": "answer", "question": "How do you know a pear is ripe?", "accept": ["it smells", "soft", "heavy", "smell", "by the smell"], "level": 3 },
+
+    { "type": "cloze", "sentence": "Have you ___ tried jackfruit?", "answer": "ever", "level": 4 },
+    { "type": "cloze", "sentence": "They are cheaper when they are ___ season.", "answer": "in", "level": 4 },
+    { "type": "answer", "question": "Describe how a fruit you like tastes.", "accept": ["sweet", "sour", "fresh", "soft", "it tastes", "flavour", "juicy"], "level": 4 },
+
+    { "type": "cloze", "sentence": "___ it looks ripe, it is not.", "answer": "although", "level": 5 },
+    { "type": "cloze", "sentence": "It ___ picked before it was ready.", "answer": "was", "level": 5 },
+    { "type": "answer", "question": "Why does winter fruit often taste of nothing?", "accept": ["picked early", "picked green", "before it was ripe", "transport", "travel", "not ripe"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Which one is yellow?", "options": ["a banana", "a grape", "an apple"], "answer": 0, "level": 0 },
+    { "q": "I eat ___ apple every day.", "options": ["an", "a", "the"], "answer": 0, "level": 0 },
+    { "q": "Which one is not sweet?", "options": ["a lemon", "a grape", "an orange"], "answer": 0, "level": 0 },
+
+    { "q": "I ___ like lemons.", "options": ["don't", "not", "no"], "answer": 0, "level": 1 },
+    { "q": "Which fruit is small and red?", "options": ["a cherry", "a melon", "a coconut"], "answer": 0, "level": 1 },
+    { "q": "Choose the correct sentence.", "options": ["I like bananas.", "I like banana.", "I likes bananas."], "answer": 0, "level": 1 },
+
+    { "q": "Would you like ___ juice?", "options": ["some", "any", "a"], "answer": 0, "level": 2 },
+    { "q": "We haven't got ___ grapes.", "options": ["any", "some", "no"], "answer": 0, "level": 2 },
+    { "q": "What do you do to a banana before eating it?", "options": ["peel it", "boil it", "freeze it"], "answer": 0, "level": 2 },
+
+    { "q": "A mango is ___ than a lemon.", "options": ["sweeter", "more sweet", "sweetest"], "answer": 0, "level": 3 },
+    { "q": "Fruit that is ready to eat is ___.", "options": ["ripe", "fresh", "sour"], "answer": 0, "level": 3 },
+    { "q": "Green apples usually taste ___.", "options": ["sour", "sweet", "salty"], "answer": 0, "level": 3 },
+
+    { "q": "Have you ___ tried jackfruit?", "options": ["ever", "yet", "already"], "answer": 0, "level": 4 },
+    { "q": "Fruit that only grows at one time of year is ___.", "options": ["seasonal", "imported", "perishable"], "answer": 0, "level": 4 },
+    { "q": "They are cheaper when they are ___ season.", "options": ["in", "on", "at"], "answer": 0, "level": 4 },
+
+    { "q": "___ it looks ripe, it is not.", "options": ["Although", "Because", "So"], "answer": 0, "level": 5 },
+    { "q": "Food that spoils quickly is ___.", "options": ["perishable", "seasonal", "imported"], "answer": 0, "level": 5 },
+    { "q": "Fruit picked too early ripens ___.", "options": ["bland", "sweeter", "faster"], "answer": 0, "level": 5 }
+  ],
+
+  "reviewed": true
+}

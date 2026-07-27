@@ -1,0 +1,228 @@
+{
+  "id": "jobs-technology",
+  "title": "Technology",
+  "title_pt": "Tecnologia",
+  "icon": "💻",
+  "bands": ["11-14", "15+"],
+  "cefr": "A1",
+  "levelNote": "Six tiers in one file. The same topic from computer and screen up to deploy, trade-off and technical debt.",
+  "goal": "Talk about the work, not just the machines: explain what you built, ask for what you need, and disagree usefully in a meeting.",
+  "goal_pt": "Falar do trabalho, não só das máquinas: explicar o que você fez, pedir o que precisa, e discordar de forma útil numa reunião.",
+
+  "grammar": [
+    { "point": "Present simple for what a thing does", "point_pt": "Presente simples para o que uma coisa faz", "example": "The computer saves the file.", "level": 0 },
+    { "point": "can / can't for what is possible", "point_pt": "can / can't para o que é possível", "example": "You can share the screen.", "level": 1 },
+    { "point": "Present continuous for right now", "point_pt": "Presente contínuo para agora", "example": "The system is updating.", "level": 2 },
+    { "point": "First conditional for consequences", "point_pt": "Primeira condicional para consequências", "example": "If you deploy on Friday, nobody will be there to fix it.", "level": 3 },
+    { "point": "The passive, for what was done to the system", "point_pt": "Voz passiva, para o que foi feito no sistema", "example": "The bug was introduced last week.", "level": 4 },
+    { "point": "Hedging: seems, tends to, would suggest", "point_pt": "Suavizar: seems, tends to, would suggest", "example": "That would seem to introduce a race condition.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "computer", "icon": "💻", "example": "The computer is very slow today.", "level": 0 },
+    { "word": "screen", "icon": "🖥️", "example": "Look at the screen, please.", "level": 0 },
+    { "word": "file", "icon": "📄", "example": "Open the file and read it.", "level": 0 },
+    { "word": "phone", "icon": "📱", "example": "My phone is in my bag.", "level": 0 },
+    { "word": "save", "icon": "💾", "example": "Save your work every day.", "level": 0 },
+
+    { "word": "password", "icon": "🔑", "example": "I forgot my password again.", "level": 1 },
+    { "word": "network", "icon": "🌐", "example": "The network is down this morning.", "level": 1 },
+    { "word": "printer", "icon": "🖨️", "example": "The printer needs more paper.", "level": 1 },
+    { "word": "keyboard", "icon": "⌨️", "example": "This keyboard is very quiet.", "level": 1 },
+    { "word": "battery", "icon": "🔋", "example": "The battery lasts about six hours.", "level": 1 },
+
+    { "word": "software", "icon": "🧩", "example": "The software updates every Tuesday.", "level": 2 },
+    { "word": "update", "icon": "🔄", "example": "The system is updating right now.", "level": 2 },
+    { "word": "backup", "icon": "🗄️", "example": "We keep a backup of everything.", "level": 2 },
+    { "word": "developer", "icon": "🧑‍💻", "example": "The developer fixed it in an hour.", "level": 2 },
+    { "word": "bug", "icon": "🐛", "example": "There is a bug in the login page.", "level": 2 },
+
+    { "word": "database", "icon": "🗃️", "example": "The database holds every order.", "level": 3 },
+    { "word": "deploy", "icon": "🚀", "example": "We deploy on Tuesday mornings.", "level": 3 },
+    { "word": "server", "icon": "🖧", "example": "The server restarted overnight.", "level": 3 },
+    { "word": "feature", "icon": "✨", "example": "That feature ships next month.", "level": 3 },
+    { "word": "deadline", "icon": "⏰", "example": "The deadline moved to Friday.", "level": 3 },
+
+    { "word": "requirement", "icon": "📌", "example": "That was never a requirement.", "level": 4 },
+    { "word": "trade-off", "icon": "⚖️", "example": "Speed and safety are a trade-off.", "level": 4 },
+    { "word": "rollback", "icon": "↩️", "example": "The rollback took four minutes.", "level": 4 },
+    { "word": "estimate", "icon": "📊", "example": "My estimate was two weeks out.", "level": 4 },
+    { "word": "outage", "icon": "🔌", "example": "The outage lasted twenty minutes.", "level": 4 },
+
+    { "word": "technical debt", "icon": "🏚️", "example": "We are paying down technical debt.", "level": 5 },
+    { "word": "scope", "icon": "🗺️", "example": "That is out of scope for this release.", "level": 5 },
+    { "word": "mitigation", "icon": "🛡️", "example": "The mitigation buys us a week.", "level": 5 },
+    { "word": "regression", "icon": "📉", "example": "The fix caused a regression elsewhere.", "level": 5 },
+    { "word": "constraint", "icon": "🔒", "example": "Memory is the real constraint here.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "Open the file, please.", "use": "An instruction. Please makes it a request.", "level": 0 },
+    { "text": "My computer is slow.", "use": "Is, not has. The computer is the slow thing.", "level": 0 },
+    { "text": "I forgot my password.", "use": "The first sentence anyone learns at work.", "level": 1 },
+    { "text": "Can you help me with this?", "use": "Help someone WITH something.", "level": 1 },
+    { "text": "The system is updating.", "use": "Right now, and not finished.", "level": 2 },
+    { "text": "There is a bug in the login page.", "use": "A bug IS IN a place, not on it.", "level": 2 },
+    { "text": "We deploy on Tuesday mornings.", "use": "On for days, in for parts of the day.", "level": 3 },
+    { "text": "Can you walk me through it?", "use": "Walk someone through: explain step by step.", "level": 3 },
+    { "text": "What is the trade-off here?", "use": "Asking what you lose to get what you want.", "level": 4 },
+    { "text": "That was never a requirement.", "use": "Never, placed before the verb it denies.", "level": 4 },
+    { "text": "I would push back on that.", "use": "Push back: disagree without being rude.", "level": 5 },
+    { "text": "That is out of scope for this release.", "use": "Out of scope: real, but not now.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "The slow computer",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "My computer is very slow today." },
+        { "who": "B", "text": "Did you save your work?" },
+        { "who": "A", "text": "Yes. I save it every day." },
+        { "who": "B", "text": "Good. Now close the file." },
+        { "who": "A", "text": "It is closed. What now?" },
+        { "who": "B", "text": "Now look at the screen and wait." }
+      ],
+      "questions": [
+        { "q": "What is the problem?", "options": ["The computer is slow", "The screen is broken", "The file is lost"], "answer": 0, "level": 0 },
+        { "q": "What does B ask about first?", "options": ["Saving the work", "The password", "The printer"], "answer": 0, "level": 0 }
+      ]
+    },
+    {
+      "title": "A bug on the login page",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "There is a bug in the login page." },
+        { "who": "B", "text": "Since when? It was fine yesterday." },
+        { "who": "A", "text": "Since the update this morning, I think." },
+        { "who": "B", "text": "Can you show me? I want to see it happen." },
+        { "who": "A", "text": "Watch. I type the password, and nothing happens." },
+        { "who": "B", "text": "Right. We have a backup of the old version." },
+        { "who": "A", "text": "Then let's go back to that while the developer looks at it." }
+      ],
+      "questions": [
+        { "q": "When did the bug start?", "options": ["After this morning's update", "Last week", "Nobody knows"], "answer": 0, "level": 2 },
+        { "q": "What do they decide to do?", "options": ["Go back to the old version", "Turn everything off", "Wait until Monday"], "answer": 0, "level": 2 }
+      ]
+    },
+    {
+      "title": "Friday afternoon",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "The feature is ready. I would like to deploy it this afternoon." },
+        { "who": "B", "text": "It is Friday. If we deploy now, nobody will be here to fix it." },
+        { "who": "A", "text": "The rollback takes four minutes. We have done it before." },
+        { "who": "B", "text": "The rollback is not the part I am worried about. The data is." },
+        { "who": "A", "text": "Fair. What would you suggest?" },
+        { "who": "B", "text": "Monday morning, with everyone in the room. It costs us two days and buys us a weekend." },
+        { "who": "A", "text": "I would push back if this were urgent. It is not. Monday, then." }
+      ],
+      "questions": [
+        { "q": "Why does B not want to deploy?", "options": ["Nobody would be there to fix problems", "The feature is unfinished", "The server is down"], "answer": 0, "level": 4 },
+        { "q": "What is B actually worried about?", "options": ["The data", "The rollback time", "The deadline"], "answer": 0, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "The printer",
+      "level": 1,
+      "text": "The printer in our office is old. It stops every week, and every week somebody says we should buy a new one.\n\nOn Monday the printer stopped again. Marta looked at it for a minute. Then she opened it, took out one small piece of paper, and closed it. The printer worked.\n\nNobody talks about buying a new printer now. They just ask Marta.",
+      "questions": [
+        { "q": "How often does the printer stop?", "options": ["Every week", "Every day", "Once a year"], "answer": 0, "level": 1 },
+        { "q": "What did Marta find inside?", "options": ["A small piece of paper", "A battery", "A key"], "answer": 0, "level": 1 },
+        { "q": "What happened after that?", "options": ["People ask Marta for help", "They bought a new printer", "The printer stopped forever"], "answer": 0, "level": 1 }
+      ]
+    },
+    {
+      "title": "Two weeks, probably",
+      "level": 3,
+      "text": "Every developer has been asked how long something will take, and every developer has given a number that turned out to be wrong. This is not because they are careless. It is because the question is being asked before the work has been looked at properly, and an estimate made then is really a guess with a job title.\n\nThe useful answer is not a smaller number. It is a different sentence: \"Two weeks if the database is what I think it is, and I will know that by Wednesday.\" That gives the person asking something they can plan around, and it gives the person answering permission to be wrong about the part they genuinely cannot see yet.\n\nThe teams that do this well are not better at guessing. They are better at saying which part of the guess is soft.",
+      "questions": [
+        { "q": "Why are estimates often wrong?", "options": ["They are made before the work is understood", "Developers are careless", "Deadlines are always short"], "answer": 0, "level": 3 },
+        { "q": "What does the writer say a useful answer includes?", "options": ["What the estimate depends on", "A smaller number", "A promise"], "answer": 0, "level": 3 },
+        { "q": "What are good teams better at?", "options": ["Saying which part is uncertain", "Guessing accurately", "Working faster"], "answer": 0, "level": 3 }
+      ]
+    },
+    {
+      "title": "Paying it down",
+      "level": 5,
+      "text": "Technical debt is one of the few metaphors in software that has survived contact with reality, and it has survived because the analogy holds all the way down. You take a shortcut today and receive something valuable immediately: the feature ships, the customer is happy, the quarter closes well. What you have actually done is borrow, and the repayments begin quietly the following week.\n\nThe interest is paid in a currency nobody puts on a dashboard. Every subsequent change takes slightly longer. Every new person takes slightly longer to understand the system. Nobody can point at the moment it became expensive, because it never did; it became expensive gradually, in increments too small to argue about individually.\n\nWhat separates teams that manage this from teams that drown in it is not discipline, and it is certainly not a rule against shortcuts — shortcuts are frequently correct. It is whether the debt was taken deliberately and written down. A shortcut somebody chose, recorded, and scheduled to repay is a financing decision. The same shortcut taken silently, because it was Friday and everyone wanted to go home, is just a mess with a deadline attached.",
+      "questions": [
+        { "q": "Why does the writer say the metaphor holds?", "options": ["The repayments are real and ongoing", "Software is expensive", "Debt is always bad"], "answer": 0, "level": 5 },
+        { "q": "How is the interest paid?", "options": ["Every change takes slightly longer", "In money, each quarter", "Through outages"], "answer": 0, "level": 5 },
+        { "q": "What distinguishes teams that manage debt well?", "options": ["They take it deliberately and record it", "They never take shortcuts", "They work longer hours"], "answer": 0, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "My computer is slow.", "tip": "com-PU-ter. The stress is in the middle.", "level": 0 },
+    { "text": "Open the file, please.", "tip": "Open the runs together: OH-pen-thuh.", "level": 0 },
+    { "text": "I forgot my password.", "tip": "PASS-word. Both parts are strong, first one stronger.", "level": 1 },
+    { "text": "Can you help me with this?", "tip": "Can you is weak here: c'n you. Do not stress it.", "level": 1 },
+    { "text": "The system is updating.", "tip": "up-DATE-ing as a verb. UP-date as a noun.", "level": 2 },
+    { "text": "There is a bug in the login page.", "tip": "There is contracts to there's. Both are fine.", "level": 2 },
+    { "text": "We deploy on Tuesday mornings.", "tip": "de-PLOY. Never DEE-ploy.", "level": 3 },
+    { "text": "Can you walk me through it?", "tip": "Walk me through is three words, one movement.", "level": 3 },
+    { "text": "What is the trade-off here?", "tip": "TRADE-off. The hyphen is a link, not a pause.", "level": 4 },
+    { "text": "That was never a requirement.", "tip": "re-QUIRE-ment. Stress the middle.", "level": 4 },
+    { "text": "I would push back on that.", "tip": "I would contracts to I'd. Say it both ways.", "level": 5 },
+    { "text": "That is out of scope for this release.", "tip": "Out of becomes ou-duv in normal speech.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "file", "icon": "📄", "level": 0 },
+    { "type": "spell", "answer": "screen", "icon": "🖥️", "level": 0 },
+    { "type": "cloze", "sentence": "The computer ___ the file.", "answer": "saves", "level": 0 },
+
+    { "type": "spell", "answer": "password", "icon": "🔑", "level": 1 },
+    { "type": "cloze", "sentence": "You ___ share the screen.", "answer": "can", "level": 1 },
+    { "type": "answer", "question": "Your password does not work. What do you say?", "accept": ["I forgot my password", "my password", "does not work", "doesn't work", "can you help"], "level": 1 },
+
+    { "type": "spell", "answer": "backup", "icon": "🗄️", "level": 2 },
+    { "type": "cloze", "sentence": "The system ___ updating.", "answer": "is", "level": 2 },
+    { "type": "cloze", "sentence": "There is a bug ___ the login page.", "answer": "in", "level": 2 },
+
+    { "type": "cloze", "sentence": "If you deploy on Friday, nobody ___ be there to fix it.", "answer": "will", "level": 3 },
+    { "type": "spell", "answer": "deploy", "icon": "🚀", "level": 3 },
+    { "type": "answer", "question": "Someone explains something too fast. What do you ask?", "accept": ["walk me through", "can you walk", "could you explain", "say that again", "slow down"], "level": 3 },
+
+    { "type": "cloze", "sentence": "The bug ___ introduced last week.", "answer": "was", "level": 4 },
+    { "type": "cloze", "sentence": "Speed and safety are a ___.", "answer": "trade-off", "level": 4 },
+    { "type": "answer", "question": "Your estimate was wrong. Explain why, without excuses.", "accept": ["the database", "I did not know", "I didn't know", "it depended", "turned out", "took longer"], "level": 4 },
+
+    { "type": "cloze", "sentence": "That is out of ___ for this release.", "answer": "scope", "level": 5 },
+    { "type": "cloze", "sentence": "That ___ seem to introduce a race condition.", "answer": "would", "level": 5 },
+    { "type": "answer", "question": "Disagree with a decision in a meeting, usefully.", "accept": ["I would push back", "I'd push back", "I am not sure", "I'm not sure", "the risk", "what about", "have we considered"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Where do you read your work?", "options": ["on the screen", "in the battery", "under the file"], "answer": 0, "level": 0 },
+    { "q": "The computer ___ the file.", "options": ["saves", "save", "saving"], "answer": 0, "level": 0 },
+    { "q": "Which one do you put in your pocket?", "options": ["a phone", "a printer", "a screen"], "answer": 0, "level": 0 },
+
+    { "q": "You ___ share the screen.", "options": ["can", "are", "do"], "answer": 0, "level": 1 },
+    { "q": "What do you need to log in?", "options": ["a password", "a battery", "a printer"], "answer": 0, "level": 1 },
+    { "q": "The printer needs more ___.", "options": ["paper", "water", "sound"], "answer": 0, "level": 1 },
+
+    { "q": "The system ___ updating right now.", "options": ["is", "are", "be"], "answer": 0, "level": 2 },
+    { "q": "A problem in the code is a ___.", "options": ["bug", "backup", "battery"], "answer": 0, "level": 2 },
+    { "q": "A copy you keep in case something breaks is a ___.", "options": ["backup", "bug", "screen"], "answer": 0, "level": 2 },
+
+    { "q": "If you deploy on Friday, nobody ___ be there.", "options": ["will", "would", "was"], "answer": 0, "level": 3 },
+    { "q": "Where are the orders kept?", "options": ["in the database", "on the keyboard", "in the outage"], "answer": 0, "level": 3 },
+    { "q": "Putting new code live is called ___.", "options": ["deploying", "saving", "printing"], "answer": 0, "level": 3 },
+
+    { "q": "The bug ___ introduced last week.", "options": ["was", "were", "is"], "answer": 0, "level": 4 },
+    { "q": "Giving up one thing to get another is a ___.", "options": ["trade-off", "requirement", "rollback"], "answer": 0, "level": 4 },
+    { "q": "Going back to the previous version is a ___.", "options": ["rollback", "deploy", "backup"], "answer": 0, "level": 4 },
+
+    { "q": "That ___ seem to introduce a race condition.", "options": ["would", "will", "shall"], "answer": 0, "level": 5 },
+    { "q": "Work you postponed and will pay for later is ___.", "options": ["technical debt", "a regression", "a constraint"], "answer": 0, "level": 5 },
+    { "q": "A fix that breaks something else has caused a ___.", "options": ["regression", "mitigation", "scope"], "answer": 0, "level": 5 }
+  ],
+
+  "reviewed": true
+}

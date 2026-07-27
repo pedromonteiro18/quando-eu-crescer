@@ -1,0 +1,228 @@
+{
+  "id": "jobs-healthcare",
+  "title": "Healthcare",
+  "title_pt": "Saúde",
+  "icon": "🩺",
+  "bands": ["7-10", "11-14", "15+"],
+  "cefr": "A1",
+  "levelNote": "Six tiers in one file. A lesson takes the slice at or below the learner's level, so a beginner meets doctor and nurse and an advanced learner meets triage and consent — same topic, same file, different depth.",
+  "goal": "Say what hurts, understand what you are told to do, and hold your own in a consulting room.",
+  "goal_pt": "Dizer o que está doendo, entender o que mandam você fazer, e se virar sozinho num consultório.",
+
+  "grammar": [
+    { "point": "a / an before a job", "point_pt": "a / an antes de uma profissão", "example": "She is a nurse. He is an eye doctor.", "level": 0 },
+    { "point": "have got for symptoms", "point_pt": "have got para sintomas", "example": "I have got a headache.", "level": 1 },
+    { "point": "should for advice", "point_pt": "should para dar conselho", "example": "You should rest for two days.", "level": 2 },
+    { "point": "Present perfect for how long", "point_pt": "Present perfect para há quanto tempo", "example": "I have had this pain for three days.", "level": 3 },
+    { "point": "The passive, for what was done to you", "point_pt": "Voz passiva, para o que fizeram com você", "example": "The results were sent to your doctor.", "level": 4 },
+    { "point": "Reported speech in a referral", "point_pt": "Discurso indireto num encaminhamento", "example": "The consultant said I would need a scan.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "doctor", "icon": "👩‍⚕️", "example": "The doctor is ready for you.", "level": 0 },
+    { "word": "nurse", "icon": "👨‍⚕️", "example": "The nurse takes my temperature.", "level": 0 },
+    { "word": "sick", "icon": "🤒", "example": "My brother is sick today.", "level": 0 },
+    { "word": "hospital", "icon": "🏥", "example": "The hospital is near the school.", "level": 0 },
+    { "word": "medicine", "icon": "💊", "example": "Take the medicine after food.", "level": 0 },
+
+    { "word": "patient", "icon": "🛏️", "example": "The patient is waiting outside.", "level": 1 },
+    { "word": "pain", "icon": "😖", "example": "I have a pain in my back.", "level": 1 },
+    { "word": "fever", "icon": "🌡️", "example": "She has a fever and a cough.", "level": 1 },
+    { "word": "pharmacy", "icon": "💉", "example": "The pharmacy closes at eight.", "level": 1 },
+    { "word": "dentist", "icon": "🦷", "example": "I see the dentist twice a year.", "level": 1 },
+
+    { "word": "symptom", "icon": "📋", "example": "Tell me about your symptoms.", "level": 2 },
+    { "word": "appointment", "icon": "📅", "example": "I have an appointment at four.", "level": 2 },
+    { "word": "ambulance", "icon": "🚑", "example": "Call an ambulance, quickly!", "level": 2 },
+    { "word": "injection", "icon": "💉", "example": "The injection does not hurt much.", "level": 2 },
+    { "word": "bandage", "icon": "🩹", "example": "Keep the bandage dry.", "level": 2 },
+
+    { "word": "diagnosis", "icon": "🔎", "example": "The diagnosis took two weeks.", "level": 3 },
+    { "word": "treatment", "icon": "🩺", "example": "The treatment starts on Monday.", "level": 3 },
+    { "word": "surgery", "icon": "🏨", "example": "She had surgery last year.", "level": 3 },
+    { "word": "referral", "icon": "📨", "example": "I need a referral to a specialist.", "level": 3 },
+    { "word": "prescription", "icon": "📝", "example": "Here is your prescription.", "level": 3 },
+
+    { "word": "consultant", "icon": "🧑‍⚕️", "example": "The consultant reviewed my file.", "level": 4 },
+    { "word": "side effect", "icon": "⚠️", "example": "Drowsiness is a common side effect.", "level": 4 },
+    { "word": "recovery", "icon": "🌿", "example": "Recovery takes about six weeks.", "level": 4 },
+    { "word": "ward", "icon": "🛎️", "example": "He was moved to a quieter ward.", "level": 4 },
+    { "word": "discharge", "icon": "🚪", "example": "She was discharged on Friday.", "level": 4 },
+
+    { "word": "chronic", "icon": "♾️", "example": "Chronic pain is managed, not cured.", "level": 5 },
+    { "word": "triage", "icon": "🚨", "example": "Triage decides who is seen first.", "level": 5 },
+    { "word": "consent", "icon": "✍️", "example": "You will be asked to sign a consent form.", "level": 5 },
+    { "word": "follow-up", "icon": "🔁", "example": "Book a follow-up in three months.", "level": 5 },
+    { "word": "complication", "icon": "🧩", "example": "Complications are rare but possible.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "I am sick.", "use": "The shortest true thing you can say.", "level": 0 },
+    { "text": "Where is the hospital?", "use": "Asking for the place, not the person.", "level": 0 },
+    { "text": "I have a headache.", "use": "Have, not am. You are not the headache.", "level": 1 },
+    { "text": "I need to see a doctor.", "use": "Need to is stronger than want to.", "level": 1 },
+    { "text": "You should take this twice a day.", "use": "Advice, not an order.", "level": 2 },
+    { "text": "Do you have an appointment?", "use": "The first question at every desk.", "level": 2 },
+    { "text": "How long have you had this pain?", "use": "Present perfect: it started before now and is still here.", "level": 3 },
+    { "text": "The doctor will refer you to a specialist.", "use": "Refer you TO someone. Not refer you for.", "level": 3 },
+    { "text": "Are there any side effects?", "use": "Any, because you expect the answer may be none.", "level": 4 },
+    { "text": "The results were sent to your doctor.", "use": "Passive: who sent them does not matter.", "level": 4 },
+    { "text": "I would like a second opinion.", "use": "Polite and completely normal to ask for.", "level": 5 },
+    { "text": "Could you talk me through the risks?", "use": "Talk someone through: explain step by step.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "At the nurse's desk",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "Good morning. My son is sick." },
+        { "who": "B", "text": "I am sorry. What is wrong?" },
+        { "who": "A", "text": "He is hot and he is tired." },
+        { "who": "B", "text": "The doctor is here. Please sit down." },
+        { "who": "A", "text": "Thank you very much." },
+        { "who": "B", "text": "The doctor is ready for you now." }
+      ],
+      "questions": [
+        { "q": "Who is sick?", "options": ["Her son", "The nurse", "The doctor"], "answer": 0, "level": 0 },
+        { "q": "What does the nurse ask him to do?", "options": ["Sit down", "Go home", "Take medicine"], "answer": 0, "level": 0 }
+      ]
+    },
+    {
+      "title": "Making an appointment",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "Good afternoon. I would like an appointment, please." },
+        { "who": "B", "text": "Of course. Can you tell me your symptoms?" },
+        { "who": "A", "text": "I have a fever and a bad cough." },
+        { "who": "B", "text": "How long have you had them?" },
+        { "who": "A", "text": "Since Tuesday. It is getting worse." },
+        { "who": "B", "text": "We have four o'clock today. You should come in." },
+        { "who": "A", "text": "Four is perfect. Thank you." }
+      ],
+      "questions": [
+        { "q": "What are her symptoms?", "options": ["A fever and a cough", "A headache", "Back pain"], "answer": 0, "level": 2 },
+        { "q": "When is the appointment?", "options": ["Four o'clock today", "Tuesday", "Tomorrow morning"], "answer": 0, "level": 2 }
+      ]
+    },
+    {
+      "title": "Before a procedure",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "Your results were sent over this morning." },
+        { "who": "B", "text": "And what do they show?" },
+        { "who": "A", "text": "Nothing serious, but we would like to operate next month." },
+        { "who": "B", "text": "Are there any side effects I should know about?" },
+        { "who": "A", "text": "Some discomfort for a week. Recovery takes about six weeks." },
+        { "who": "B", "text": "Could you talk me through the risks before I sign anything?" },
+        { "who": "A", "text": "That is exactly what the consent form is for. Let's go through it together." }
+      ],
+      "questions": [
+        { "q": "What does the patient ask for before signing?", "options": ["An explanation of the risks", "A second opinion", "A prescription"], "answer": 0, "level": 4 },
+        { "q": "How long is the recovery?", "options": ["About six weeks", "One week", "Three months"], "answer": 0, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "The waiting room",
+      "level": 1,
+      "text": "The waiting room is quiet. Six people are sitting on blue chairs. A nurse comes to the door and says a name. A man stands up slowly and follows her.\n\nA small girl is next to her mother. She has a cough. Her mother reads her a book. The girl is not afraid now.\n\nAt four o'clock the doctor calls her name. \"Your turn,\" says her mother, and they walk in together.",
+      "questions": [
+        { "q": "Where are the people sitting?", "options": ["On blue chairs", "On the floor", "In a car"], "answer": 0, "level": 1 },
+        { "q": "What is wrong with the girl?", "options": ["She has a cough", "She has a broken arm", "She is tired"], "answer": 0, "level": 1 },
+        { "q": "Why is the girl not afraid?", "options": ["Her mother reads to her", "The doctor is her friend", "She is asleep"], "answer": 0, "level": 1 }
+      ]
+    },
+    {
+      "title": "Two weeks of waiting",
+      "level": 3,
+      "text": "Ana had had the pain for a month before she finally called the surgery. The receptionist offered her an appointment on Thursday, and she took it, although she had told herself for weeks that it was nothing.\n\nThe doctor listened, asked how long it had been going on, and wrote a referral to a specialist. \"It is almost certainly nothing serious,\" he said, \"but I would rather be sure than sorry.\"\n\nThe diagnosis took two more weeks. In that time Ana learned the difference between waiting for bad news and waiting for news, which are not the same thing at all. When the letter came, the treatment it described was shorter than the wait had been.",
+      "questions": [
+        { "q": "How long had Ana had the pain before calling?", "options": ["A month", "Two weeks", "A year"], "answer": 0, "level": 3 },
+        { "q": "What did the doctor do?", "options": ["Wrote a referral", "Sent her home", "Operated the same day"], "answer": 0, "level": 3 },
+        { "q": "What does the last sentence say about the treatment?", "options": ["It was shorter than the wait", "It was very painful", "It never started"], "answer": 0, "level": 3 }
+      ]
+    },
+    {
+      "title": "Who is seen first",
+      "level": 5,
+      "text": "Triage is the least popular idea in any emergency department, and the only one that works. It means that the order in which people are seen has nothing to do with the order in which they arrived, and everything to do with how quickly they will deteriorate if nobody looks at them.\n\nThis is difficult to accept when you have been sitting for four hours with a broken wrist, watching people who came in after you disappear through the doors. It feels like unfairness. It is the opposite: it is the department refusing to let arrival time decide who survives the night.\n\nStaff are trained to explain this, and mostly they do, though rarely at the moment you most want to hear it. The wrist will be seen. It will simply be seen after the chest pain, and after the child who has stopped talking, and that ordering is not an accident or an oversight but the whole design.",
+      "questions": [
+        { "q": "What decides the order in triage?", "options": ["How quickly someone will deteriorate", "Who arrived first", "Who complains most"], "answer": 0, "level": 5 },
+        { "q": "What does the writer say the four-hour wait feels like?", "options": ["Unfairness", "A relief", "A mistake by the computer"], "answer": 0, "level": 5 },
+        { "q": "What is the writer's overall view of triage?", "options": ["It is deliberate and correct", "It is a well-meaning failure", "It should be replaced by queuing"], "answer": 0, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "I am sick.", "tip": "Two beats, both short. Do not stretch sick.", "level": 0 },
+    { "text": "Where is the hospital?", "tip": "HOS-pi-tal. The stress is on the first part.", "level": 0 },
+    { "text": "I have a headache.", "tip": "Headache is HED-ake. The ea is short, like bed.", "level": 1 },
+    { "text": "I need to see a doctor.", "tip": "Need to runs together: nee-tuh.", "level": 1 },
+    { "text": "You should take this twice a day.", "tip": "The l in should is silent. Say shood.", "level": 2 },
+    { "text": "Do you have an appointment?", "tip": "a-POINT-ment. Four syllables, stress in the middle.", "level": 2 },
+    { "text": "How long have you had this pain?", "tip": "Have you sounds like hav-yuh in normal speech.", "level": 3 },
+    { "text": "I need a referral to a specialist.", "tip": "re-FER-ral. Not REF-erral.", "level": 3 },
+    { "text": "Are there any side effects?", "tip": "Side effects is one unit. Do not pause between them.", "level": 4 },
+    { "text": "The results were sent to your doctor.", "tip": "re-SULTS. The stress is on the second half.", "level": 4 },
+    { "text": "Could you talk me through the risks?", "tip": "Could you often becomes cudja in fast speech.", "level": 5 },
+    { "text": "I would like a second opinion.", "tip": "I would like contracts to I'd like. Practise both.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "doctor", "icon": "👩‍⚕️", "level": 0 },
+    { "type": "spell", "answer": "nurse", "icon": "👨‍⚕️", "level": 0 },
+    { "type": "cloze", "sentence": "She is ___ nurse.", "answer": "a", "level": 0 },
+
+    { "type": "spell", "answer": "fever", "icon": "🌡️", "level": 1 },
+    { "type": "cloze", "sentence": "I ___ a headache.", "answer": "have", "level": 1 },
+    { "type": "answer", "question": "What is wrong?", "accept": ["I am sick", "I have a", "my head", "a headache", "a fever", "a pain"], "level": 1 },
+
+    { "type": "spell", "answer": "bandage", "icon": "🩹", "level": 2 },
+    { "type": "cloze", "sentence": "You ___ rest for two days.", "answer": "should", "level": 2 },
+    { "type": "cloze", "sentence": "Do you have ___ appointment?", "answer": "an", "level": 2 },
+
+    { "type": "cloze", "sentence": "How long ___ you had this pain?", "answer": "have", "level": 3 },
+    { "type": "cloze", "sentence": "The doctor will refer you ___ a specialist.", "answer": "to", "level": 3 },
+    { "type": "answer", "question": "How long have you had this pain?", "accept": ["I have had it", "for", "since", "three days", "a week"], "level": 3 },
+
+    { "type": "cloze", "sentence": "The results ___ sent to your doctor.", "answer": "were", "level": 4 },
+    { "type": "cloze", "sentence": "Are there ___ side effects?", "answer": "any", "level": 4 },
+    { "type": "answer", "question": "Ask about the risks of a treatment, politely.", "accept": ["could you", "what are the risks", "would you", "can you explain", "talk me through"], "level": 4 },
+
+    { "type": "cloze", "sentence": "The consultant said I ___ need a scan.", "answer": "would", "level": 5 },
+    { "type": "cloze", "sentence": "Book a ___ in three months.", "answer": "follow-up", "level": 5 },
+    { "type": "answer", "question": "You disagree with a diagnosis. What do you say?", "accept": ["second opinion", "I would like", "I'd like", "could I see", "another doctor"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Who helps you when you are sick?", "options": ["a doctor", "a chef", "a driver"], "answer": 0, "level": 0 },
+    { "q": "Choose the correct sentence.", "options": ["She is a nurse.", "She is nurse.", "She a nurse."], "answer": 0, "level": 0 },
+    { "q": "You take ___ when you are sick.", "options": ["medicine", "a ladder", "a helmet"], "answer": 0, "level": 0 },
+
+    { "q": "I ___ a headache.", "options": ["have", "am", "do"], "answer": 0, "level": 1 },
+    { "q": "Where do you buy medicine?", "options": ["at a pharmacy", "at a school", "at a station"], "answer": 0, "level": 1 },
+    { "q": "Who looks after your teeth?", "options": ["a dentist", "a nurse", "a vet"], "answer": 0, "level": 1 },
+
+    { "q": "You ___ rest for two days.", "options": ["should", "shall", "would"], "answer": 0, "level": 2 },
+    { "q": "Do you have ___ appointment?", "options": ["an", "a", "the"], "answer": 0, "level": 2 },
+    { "q": "What arrives in an emergency?", "options": ["an ambulance", "a prescription", "a bandage"], "answer": 0, "level": 2 },
+
+    { "q": "How long ___ you had this pain?", "options": ["have", "did", "are"], "answer": 0, "level": 3 },
+    { "q": "A referral sends you to ___.", "options": ["a specialist", "the pharmacy", "reception"], "answer": 0, "level": 3 },
+    { "q": "The paper that lets you collect medicine is a ___.", "options": ["prescription", "diagnosis", "discharge"], "answer": 0, "level": 3 },
+
+    { "q": "The results ___ sent yesterday.", "options": ["were", "was", "are"], "answer": 0, "level": 4 },
+    { "q": "Drowsiness after medicine is a ___.", "options": ["side effect", "symptom", "diagnosis"], "answer": 0, "level": 4 },
+    { "q": "Being allowed to leave hospital is called ___.", "options": ["discharge", "referral", "triage"], "answer": 0, "level": 4 },
+
+    { "q": "The consultant said I ___ need a scan.", "options": ["would", "will", "shall"], "answer": 0, "level": 5 },
+    { "q": "Triage decides ___.", "options": ["who is seen first", "who pays first", "who goes home"], "answer": 0, "level": 5 },
+    { "q": "A condition that lasts for years is ___.", "options": ["chronic", "acute", "minor"], "answer": 0, "level": 5 }
+  ],
+
+  "reviewed": true
+}

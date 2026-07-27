@@ -97,9 +97,8 @@ function match(host, band, vocab, n, token) {
 
 /* ── 7-10: a dialogue you can hear line by line ───────────────────────────── */
 
-function showDialogue(host, cat, band, token) {
+function showDialogue(host, d, token) {
   return new Promise(resolve => {
-    const d = cat.dialogue;
     host.innerHTML = "";
     host.appendChild(rule(t("skill.read"), d.title));
 
@@ -202,7 +201,7 @@ export async function run(ctx) {
   if (variant === "dialogue" || !passage) {
     const d = C.dialogueFor(cat, P.level());
     if (!d) return { right: 0, wrong: 0 };
-    const ok = await showDialogue(host, cat, band, token);
+    const ok = await showDialogue(host, d, token);
     if (!ok) return { right: 0, wrong: 0, abandoned: true };
     const src = d.lines.map(l => "<p><b>" + esc(l.who) + ":</b> " + esc(l.text) + "</p>").join("");
     const qs = C.atLevel(d.questions || [], P.level()).slice(0, band.lesson.read);
