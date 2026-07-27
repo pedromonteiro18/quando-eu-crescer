@@ -233,11 +233,42 @@ context is at the browser's discretion and cannot be relied on. **GitHub Pages s
 top-level with no sandbox** — that is the URL to use for any real test, and the one to hand to
 a child. The artifact is fine for a quick look at the layout.
 
-**The real fix is recorded human voice-over**, and the seam for it is already in place: `CLIPS`
-maps `"en:Get the bandage."` to an audio file, and `Speech.raw()` plays the recording instead of
-synthesising whenever an entry exists. It is empty today, so nothing changes; filling it in is
-purely additive, line by line, with no other code touched. Fifteen words and about fifteen
-sentences per pack is a single sitting for someone who teaches English.
+### Speech synthesis was abandoned. The audio is pre-rendered.
+
+After the fixes above the app still would not make a sound reliably, and the honest conclusion
+was that `speechSynthesis` is the wrong foundation for an app whose entire premise is being
+spoken. It needs a user gesture, it is silenced inside iframes, it depends on which voices the
+device happens to have, it is suspended in background tabs, and the failure modes differ per
+browser.
+
+**Every phrase the app speaks is now a pre-rendered audio file.** `build-audio.mjs` reads the
+`JOBS` array straight out of `index.html`, renders all 79 phrases with macOS `say`
+(Samantha for English, Luciana for Portuguese, at word-rates matching the old speech rates),
+encodes them to 28 kbps mono AAC, and writes `clips.js` mapping `"en:Get the bandage."` to a
+file. Total: **734 kB for 79 clips.** `speechSynthesis` remains only as a fallback for a phrase
+with no recording — today there are none.
+
+**Playback is Web Audio, not `<audio>`.** That was measured, not preferred:
+
+- `decodeAudioData` decodes the bytes directly, so it does not care that a host serves `.m4a`
+  as `audio/mp4a-latm` — a MIME Chrome refuses in an `<audio>` element. On GitHub Pages the
+  served type is out of our control, so this removes a whole class of host-dependent failure.
+- An `<audio>` element will not even load in a background tab; a `BufferSource` plays fine.
+- One `AudioContext`, resumed on the first tap, serves the whole app — no per-phrase gesture.
+
+Verified by measuring the `AudioContext` clock across a clip: it advanced 2.37 s with state
+`running`. That is proof of actual output, which neither `<audio>` nor `speechSynthesis` would
+give in the same conditions.
+
+**Licensing caveat, flagged deliberately.** These clips are macOS system voices rendered to
+files and committed to a public repo. Apple's voices are licensed for personal use; shipping
+them publicly is a grey area that is fine for a family prototype and *not* fine for a release.
+This is one more reason the next step is real human recordings — which also happens to be the
+best available quality upgrade.
+
+**Replacing them with a human voice is now a file swap.** Re-record any phrase, keep the
+filename, done — the map does not change. Fifteen words and about fifteen sentences per pack is
+a single sitting for someone who teaches English.
 
 ---
 

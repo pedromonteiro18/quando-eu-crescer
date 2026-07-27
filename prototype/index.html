@@ -1141,8 +1141,13 @@ button { font: inherit; color: inherit; }
 
 <canvas class="fx" id="fx" aria-hidden="true"></canvas>
 
+<script src="clips.js"></script>
 <script>
 "use strict";
+
+/* Carimbo de versão: com duas pessoas testando em continentes diferentes,
+   é preciso saber qual build está na mão de quem. Aparece no diagnóstico. */
+const BUILD = "2026-07-27 · áudio gravado";
 /* ══════════════════════════════════════════════════════════════════════════
    PACOTES DE CONTEÚDO
    Este array é exatamente a forma do JSON que o gerador vai produzir e que um
@@ -1290,6 +1295,12 @@ const GOOD_VOICES = {
   pt: ["google português do brasil", "luciana", "fernanda", "felipe", "catarina", "joana"]
 };
 
+/* ── Falas gravadas ────────────────────────────────────────────────────────
+   Chave "en:texto" / "pt:texto" → arquivo de áudio. Geradas por
+   build-audio.mjs; clips.js as define. Se o arquivo não estiver lá, o app cai
+   na voz sintética do navegador e continua funcionando. */
+const CLIPS = window.CLIPS || {};
+
 const Speech = (() => {
   const synth = window.speechSynthesis || null;
   const VKEY = "quandoeucrescer.voices";
@@ -1353,19 +1364,69 @@ const Speech = (() => {
     });
   }
 
-  /* Toca uma gravação de verdade, se existir uma para esta frase.
-     É a costura para o V2: gravar substitui a voz sintética sem mudar mais nada. */
-  function playClip(src) {
+  /* Web Audio, e não <audio>. Motivo medido, não preferência:
+       · decodeAudioData decodifica os bytes direto — não depende do
+         Content-Type que o servidor inventa para .m4a (o do teste mandava
+         "audio/mp4a-latm", que o Chrome recusa num <audio>);
+       · um <audio> nem carrega enquanto a aba está em segundo plano;
+       · um único AudioContext, destravado no primeiro toque, serve o app
+         inteiro — sem pedir um gesto novo a cada frase.
+     É esta a camada que substitui a voz sintética. */
+  let actx = null;
+  const buffers = new Map();          // url → AudioBuffer (null = falhou)
+
+  function context() {
+    if (!actx) {
+      const C = window.AudioContext || window.webkitAudioContext;
+      if (!C) return null;
+      try { actx = new C(); } catch (e) { return null; }
+    }
+    if (actx.state === "suspended") { try { actx.resume(); } catch (e) {} }
+    return actx;
+  }
+
+  async function buffer(url) {
+    if (buffers.has(url)) return buffers.get(url);
+    const c = context();
+    if (!c) return null;
+    try {
+      const res = await fetch(url);
+      const raw = await res.arrayBuffer();
+      const buf = await c.decodeAudioData(raw);
+      buffers.set(url, buf);
+      return buf;
+    } catch (e) {
+      buffers.set(url, null);         // não tenta de novo a cada repetição
+      return null;
+    }
+  }
+
+  async function playClip(url) {
+    const c = context();
+    if (!c) return false;
+    const buf = await buffer(url);
+    if (!buf) return false;
     return new Promise(resolve => {
-      let a;
-      try { a = new Audio(src); } catch (e) { return resolve(false); }
-      clip = a;
-      const done = ok => { if (clip === a) clip = null; resolve(ok); };
-      a.onended = () => done(true);
-      a.onerror = () => done(false);
-      const p = a.play();
-      if (p && p.catch) p.catch(() => done(false));
+      let src;
+      try { src = c.createBufferSource(); } catch (e) { return resolve(false); }
+      src.buffer = buf;
+      src.connect(c.destination);
+      if (clip) { try { clip.onended = null; clip.stop(); } catch (e) {} }
+      clip = src;
+      src.onended = () => { if (clip === src) clip = null; resolve(true); };
+      try { src.start(); } catch (e) { resolve(false); }
     });
+  }
+
+  /* Decodifica tudo em segundo plano depois do primeiro toque, para que
+     nenhuma fala engasgue no meio da missão. */
+  function warm() {
+    const urls = Object.keys(CLIPS).map(k => CLIPS[k]);
+    let i = 0;
+    (function next() {
+      if (i >= urls.length) return;
+      buffer(urls[i++]).then(() => setTimeout(next, 0));
+    })();
   }
 
   function raw(text, lang, rate) {
@@ -1422,7 +1483,7 @@ const Speech = (() => {
   function stop() {
     epoch++;
     stopVisual();
-    if (clip) { try { clip.pause(); } catch (e) {} clip = null; }
+    if (clip) { try { clip.onended = null; clip.stop(); } catch (e) {} clip = null; }
     try { synth && synth.cancel(); } catch (e) {}
   }
 
@@ -1431,8 +1492,10 @@ const Speech = (() => {
      silencia a sessão inteira — era esse o furo: a fala de abertura passava
      por cancel() + espera de 70 ms e nunca chegava a soar. */
   function first(text, lang) {
-    if (!synth) return false;
     epoch++;
+    /* Havendo gravação, ela destrava o elemento de áudio e já é a fala. */
+    if (CLIPS[lang + ":" + text]) { playClip(CLIPS[lang + ":" + text]); return true; }
+    if (!synth) return false;
     try {
       const u = new SpeechSynthesisUtterance(text);
       const voice = lang === "en" ? vEn : vPt;
@@ -1449,7 +1512,27 @@ const Speech = (() => {
      aconteceu, em vez de supor. */
   function check(text, lang) {
     return new Promise(resolve => {
-      const out = { suportado: !!synth, vozes: voices.length, disparou: false, terminou: false, erro: null };
+      const out = { suportado: !!synth, vozes: voices.length, disparou: false, terminou: false,
+                    erro: null, viaGravacao: false };
+      /* Se há gravação, é ela que o app usa — então é ela que se testa. */
+      const rec = CLIPS[lang + ":" + text];
+      if (rec) {
+        out.viaGravacao = true;
+        const c = context();
+        out.estadoAudio = c ? c.state : "sem Web Audio";
+        if (!c) { out.erro = "este navegador não tem Web Audio"; return resolve(out); }
+        buffer(rec).then(buf => {
+          if (!buf) { out.erro = "não consegui decodificar o áudio"; return resolve(out); }
+          out.decodificou = true;
+          playClip(rec).then(ok => {
+            out.disparou = ok;
+            out.terminou = ok;
+            out.estadoAudio = c.state;   // "running" = o navegador liberou o som
+            resolve(out);
+          });
+        });
+        return;
+      }
       if (!synth) return resolve(out);
       let u;
       try { u = new SpeechSynthesisUtterance(text); } catch (e) { out.erro = "utterance"; return resolve(out); }
@@ -1467,9 +1550,12 @@ const Speech = (() => {
   }
 
   return {
-    seq, stop, load, first, check,
+    seq, stop, load, first, check, warm,
     emIframe: window.top !== window.self,
-    has: lang => !!(synth && (lang === "en" ? vEn : vPt)),
+    gravadas: Object.keys(CLIPS).length,
+    /* Com gravação não importa que o aparelho não tenha voz instalada. */
+    has: lang => Object.keys(CLIPS).some(k => k.indexOf(lang + ":") === 0) ||
+                 !!(synth && (lang === "en" ? vEn : vPt)),
     supported: !!synth,
     voiceName: lang => { const v = lang === "en" ? vEn : vPt; return v ? v.name + " (" + v.lang + ")" : null; },
 
@@ -1492,13 +1578,6 @@ const Speech = (() => {
   };
 })();
 
-/* ── Gravações (V2) ─────────────────────────────────────────────────────────
-   Chave "en:texto" ou "pt:texto", valor = caminho do arquivo de áudio.
-   Enquanto estiver vazio, tudo usa a voz sintética do aparelho. Gravar é
-   aditivo: cada linha preenchida aqui deixa de ser voz de robô.
-   Ex.:  "en:dog": "audio/en/dog.m4a",
-         "en:Get the bandage.": "audio/en/vet-1-task.m4a",              */
-const CLIPS = {};
 
 const EN  = (t, rate) => ({ t, l: "en", rate: rate || 0.85 });
 const PT  = (t, rate) => ({ t, l: "pt", rate: rate || 1 });
@@ -2040,6 +2119,7 @@ on($("start"), "click", () => {
   Speech.load();
   showJobs(false);           // troca de tela primeiro: go() chama Speech.stop(), que cancelaria a fala
   Speech.first(ASK, "pt");   // e só então fala — ainda dentro do gesto, que é o que destrava iOS e Chrome
+  Speech.warm();             // decodifica o resto em segundo plano
 });
 
 /* ── "Não estou ouvindo nada" ──────────────────────────────────────────────
@@ -2058,30 +2138,41 @@ on($("audio-test"), "click", async () => {
 
   const linha = (ok, texto) => "<li><b>" + (ok ? "✅" : "❌") + "</b><span>" + texto + "</span></li>";
   let itens = "";
-  itens += linha(r.suportado, r.suportado ? "Este navegador sabe falar" : "Este navegador não tem voz nenhuma");
-  itens += linha(r.vozes > 0, r.vozes > 0 ? r.vozes + " vozes encontradas" : "Nenhuma voz instalada no aparelho");
-  itens += linha(r.disparou, r.disparou ? "A fala começou" : "A fala nunca começou");
-  if (r.erro) itens += linha(false, "Erro do navegador: " + esc(r.erro));
-  if (Speech.emIframe) itens += linha(false, "A página está dentro de um quadro (iframe) — alguns navegadores bloqueiam a voz aí");
+  if (r.viaGravacao) {
+    itens += linha(true, Speech.gravadas + " falas gravadas (não depende da voz do aparelho)");
+    itens += linha(!!r.decodificou, r.decodificou ? "O áudio foi lido e decodificado" : "Não consegui ler o arquivo de áudio");
+    itens += linha(r.estadoAudio === "running",
+      r.estadoAudio === "running" ? "O navegador liberou o som" : "Som bloqueado pelo navegador (" + esc(r.estadoAudio || "?") + ")");
+    itens += linha(r.disparou, r.disparou ? "O som tocou até o fim" : "O som não chegou a tocar");
+  } else {
+    itens += linha(false, "Sem gravações — usando a voz sintética do navegador");
+    itens += linha(r.suportado, r.suportado ? "Este navegador sabe falar" : "Este navegador não tem voz nenhuma");
+    itens += linha(r.vozes > 0, r.vozes > 0 ? r.vozes + " vozes encontradas" : "Nenhuma voz instalada");
+    itens += linha(r.disparou, r.disparou ? "A fala começou" : "A fala nunca começou");
+  }
+  if (r.erro) itens += linha(false, "Erro: " + esc(r.erro));
+  if (Speech.emIframe) itens += linha(false, "A página está dentro de um quadro (iframe)");
 
   let conselho;
-  if (!r.suportado || r.vozes === 0) {
-    conselho = "<p>Sem voz no aparelho, o app continua jogável: as palavras aparecem escritas. " +
-               "Num iPhone, dá para instalar vozes em <b>Ajustes › Acessibilidade › Conteúdo Falado › Vozes</b>.</p>";
+  if (r.disparou) {
+    conselho = "<p>O som <b>tocou de verdade</b> — então o que falta é volume. " +
+               "Num iPhone, a <b>chavinha lateral de silencioso também emudece este app</b>: " +
+               "desligue o silencioso e suba o volume <i>enquanto</i> o som toca. " +
+               "Se estiver com fone ou caixinha Bluetooth, confira para onde o som está indo.</p>";
   } else if (Speech.emIframe) {
-    conselho = "<p>Abra o app em uma aba própria, fora do quadro: " +
+    conselho = "<p>Páginas dentro de um quadro costumam ter o som bloqueado. Abra em aba própria: " +
                '<a href="https://pedromonteiro18.github.io/quando-eu-crescer/" target="_blank" rel="noopener">' +
                "pedromonteiro18.github.io/quando-eu-crescer</a></p>";
-  } else if (r.disparou) {
-    conselho = "<p>A voz <b>tocou</b> — então o problema é o volume do aparelho. " +
-               "Num iPhone, a chavinha lateral de silencioso <b>também emudece este app</b>. " +
-               "Desligue o silencioso e suba o volume enquanto o app fala.</p>";
+  } else if (r.erro) {
+    conselho = "<p>O navegador recusou o som. Toque em <b>Começar!</b> primeiro — " +
+               "o primeiro som precisa nascer de um toque. Se persistir, tente outro navegador.</p>";
   } else {
-    conselho = "<p>A fala foi pedida mas não começou. Quase sempre é o navegador esperando um toque: " +
-               "toque em <b>Começar!</b> e ouça. Se continuar mudo, tente outro navegador.</p>";
+    conselho = "<p>O som foi pedido e não começou. Toque em <b>Começar!</b> e ouça; " +
+               "se continuar mudo, tente outro navegador ou outro aparelho.</p>";
   }
 
-  box.innerHTML = "<ul>" + itens + "</ul>" + conselho;
+  box.innerHTML = "<ul>" + itens + "</ul>" + conselho +
+    '<p style="color:var(--ink-2);font-weight:600;font-size:12px">build ' + BUILD + "</p>";
   btn.disabled = false;
   btn.textContent = "Testar de novo 🔁";
 });
