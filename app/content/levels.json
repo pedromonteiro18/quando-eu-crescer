@@ -1,6 +1,39 @@
 {
   "version": 1,
   "note": "Bands are presentation levels, chosen by age. CEFR is the content level, chosen by the placement ladder. A category is offered when its CEFR is at or just above the learner's level; the band decides how it is presented.",
+  "levels": [
+    {
+      "cefr": "A1",
+      "en": "Beginner",
+      "pt": "Iniciante"
+    },
+    {
+      "cefr": "A2",
+      "en": "Elementary",
+      "pt": "Básico"
+    },
+    {
+      "cefr": "A2+",
+      "en": "Pre-Intermediate",
+      "pt": "Pré-Intermediário"
+    },
+    {
+      "cefr": "B1",
+      "en": "Intermediate",
+      "pt": "Intermediário"
+    },
+    {
+      "cefr": "B2",
+      "en": "Upper-Intermediate",
+      "pt": "Intermediário Superior"
+    },
+    {
+      "cefr": "C1",
+      "en": "Advanced",
+      "pt": "Avançado"
+    }
+  ],
+  "levelsNote": "Six named rungs. CEFR is kept as a secondary tag rather than as the name: the placement ladder is CEFR-shaped and correct, and 'Iniciante' means something to a Brazilian beginner in a way that 'A1' does not. Pre-A1 is gone as a rung — it was never a level a learner climbed to, it was a note about the youngest band, and that is what the band is for.",
   "cefrOrder": [
     "Pre-A1",
     "A1",
@@ -8,6 +41,7 @@
     "B1",
     "B2"
   ],
+  "cefrOrderNote": "Legacy. Only read when a cefr string is not on the ladder above.",
   "categoryFiles": [
     "greetings",
     "numbers",
@@ -422,7 +456,22 @@
         ]
       }
     ],
-    "passPerRung": 2
+    "passPerRung": 2,
+    "levelAfterRungs": [
+      0,
+      1,
+      3,
+      4,
+      5
+    ],
+    "levelAfterRungsNote": "Rungs passed → starting level. The ladder has four rungs and six levels, so 2 is skipped: Pre-Intermediate is a rung you reach by working, not one a four-question test resolves. Passing the A1 rung means A2, passing A2 means B1, and so on.",
+    "ceiling": {
+      "4-6": 0,
+      "7-10": 1,
+      "11-14": 3,
+      "15+": 5
+    },
+    "ceilingNote": "How far up an age band can be placed. A lucky run of three guesses should not put a nine year old into adult content."
   },
   "badges": [
     {

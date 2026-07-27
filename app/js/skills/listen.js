@@ -27,10 +27,10 @@ function pictureItems(cat, vocab, n) {
   });
 }
 
-function textItems(cat, n) {
+function textItems(cat, n, level) {
   const pool = [
-    ...(cat.phrases || []).map(p => p.text),
-    ...(cat.vocabulary || []).map(v => v.example).filter(Boolean)
+    ...C.atLevel(cat.phrases || [], level).map(p => p.text),
+    ...C.atLevel(cat.vocabulary || [], level).map(v => v.example).filter(Boolean)
   ];
   return sample(pool, n).map(text => {
     const { options, answer } = scramble(text, C.distractorTexts(cat, text, 2));
@@ -50,7 +50,7 @@ export async function run(ctx) {
 
   const items = band.activities.listen === "picture"
     ? pictureItems(cat, vocab, band.lesson.listen)
-    : textItems(cat, band.lesson.listen);
+    : textItems(cat, band.lesson.listen, P.level());
 
   let right = 0, wrong = 0;
 

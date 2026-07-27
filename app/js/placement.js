@@ -25,9 +25,10 @@ import { clara } from "./clara.js";
 import * as A from "./audio.js";
 import { t, lang, uiClips } from "./i18n.js";
 
-/* An age band can only reach so far up the ladder. A lucky run of three
-   guesses should not put a child into adult content. */
-const CEILING = { "4-6": 1, "7-10": 2, "11-14": 3, "15+": 4 };
+/* An age band can only reach so far up the ladder, and how many rungs you hold
+   maps to which of the six levels you start on. Both live in levels.json now:
+   the ladder has four rungs and six levels, and the arithmetic between them is
+   a decision about the curriculum, not a constant in a router. */
 
 export function run() {
   return new Promise(resolve => {
@@ -117,7 +118,11 @@ export function run() {
 
     /* ── result ── */
     function done(rungsPassed) {
-      const level = Math.min(rungsPassed, CEILING[bandId] == null ? 4 : CEILING[bandId]);
+      const map = cfg.levelAfterRungs || [];
+      const reached = map[Math.min(rungsPassed, map.length - 1)];
+      const ceiling = (cfg.ceiling || {})[bandId];
+      const level = Math.min(reached == null ? rungsPassed : reached,
+                             ceiling == null ? C.levelCount() - 1 : ceiling);
       const b = C.band(bandId);
       const wrap = stage();
       setBand(bandId);

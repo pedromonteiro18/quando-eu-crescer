@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "note": "The manifest of what exists and what is promised. A sub-topic listed here with no content file renders as a disabled 'Em breve' card — visible on purpose, so a learner can see the road ahead. That is a DIFFERENT state from reviewed:false, which is authored-but-unapproved and invisible to a learner even as a wrong answer. Three states, each meaning one thing.",
+
+  "titleNote": "The English title is itself vocabulary — it is the first word of the topic a learner meets — so it stays the title, and title_pt sits underneath as a gloss rather than replacing it.",
+
+  "topics": [
+    {
+      "id": "greetings",
+      "title": "Greetings",
+      "title_pt": "Cumprimentos",
+      "icon": "👋"
+    },
+    {
+      "id": "numbers",
+      "title": "Numbers",
+      "title_pt": "Números",
+      "icon": "🔢"
+    },
+    {
+      "id": "family",
+      "title": "Family",
+      "title_pt": "Família",
+      "icon": "👨‍👩‍👧‍👦"
+    },
+    {
+      "id": "jobs",
+      "title": "Jobs",
+      "title_pt": "Profissões",
+      "icon": "💼",
+      "subtopics": [
+        { "id": "jobs",            "title": "Everyday Jobs",  "title_pt": "Profissões do Dia a Dia", "icon": "🚒" },
+        { "id": "jobs-healthcare", "title": "Healthcare",     "title_pt": "Saúde",             "icon": "🩺" },
+        { "id": "jobs-technology", "title": "Technology",     "title_pt": "Tecnologia",        "icon": "💻" },
+        { "id": "jobs-education",  "title": "Education",      "title_pt": "Educação",          "icon": "🎓" },
+        { "id": "jobs-food",       "title": "Food Service",   "title_pt": "Alimentação",       "icon": "👩‍🍳" },
+        { "id": "jobs-building",   "title": "Building",       "title_pt": "Construção",        "icon": "🏗️" },
+        { "id": "jobs-business",   "title": "Business",       "title_pt": "Negócios",          "icon": "📈" },
+        { "id": "jobs-arts",       "title": "Arts & Media",   "title_pt": "Artes e Mídia",     "icon": "🎬" },
+        { "id": "jobs-transport",  "title": "Transport",      "title_pt": "Transporte",        "icon": "✈️" },
+        { "id": "jobs-science",    "title": "Science",        "title_pt": "Ciência",           "icon": "🔬" },
+        { "id": "jobs-safety",     "title": "Safety & Law",   "title_pt": "Segurança e Justiça", "icon": "⚖️" },
+        { "id": "jobs-land",       "title": "Land & Sea",     "title_pt": "Campo e Mar",       "icon": "🚜" }
+      ]
+    },
+    {
+      "id": "food",
+      "title": "Food & Drinks",
+      "title_pt": "Comidas e Bebidas",
+      "icon": "🍎",
+      "subtopics": [
+        { "id": "food",            "title": "Everyday Food",  "title_pt": "Comida do Dia a Dia", "icon": "🍎" },
+        { "id": "food-fruits",     "title": "Fruit",          "title_pt": "Frutas",            "icon": "🍌" },
+        { "id": "food-vegetables", "title": "Vegetables",     "title_pt": "Legumes e Verduras", "icon": "🥕" },
+        { "id": "food-breakfast",  "title": "Breakfast",      "title_pt": "Café da Manhã",     "icon": "🥐" },
+        { "id": "food-restaurant", "title": "At a Restaurant","title_pt": "No Restaurante",    "icon": "🍽️" },
+        { "id": "food-drinks",     "title": "Drinks",         "title_pt": "Bebidas",           "icon": "🥤" },
+        { "id": "food-desserts",   "title": "Desserts",       "title_pt": "Sobremesas",        "icon": "🍰" },
+        { "id": "food-cooking",    "title": "Cooking",        "title_pt": "Cozinhando",        "icon": "🍳" },
+        { "id": "food-meat-fish",  "title": "Meat & Fish",    "title_pt": "Carnes e Peixes",   "icon": "🐟" },
+        { "id": "food-bread",      "title": "Bread & Grains", "title_pt": "Pães e Grãos",      "icon": "🍞" },
+        { "id": "food-dairy",      "title": "Dairy",          "title_pt": "Laticínios",        "icon": "🧀" },
+        { "id": "food-flavour",    "title": "Herbs & Spices", "title_pt": "Ervas e Temperos",  "icon": "🌿" }
+      ]
+    },
+    {
+      "id": "school",
+      "title": "School",
+      "title_pt": "Escola",
+      "icon": "🎒"
+    },
+    {
+      "id": "travel",
+      "title": "Travel",
+      "title_pt": "Viagem",
+      "icon": "✈️"
+    },
+    {
+      "id": "weather",
+      "title": "Weather",
+      "title_pt": "Tempo",
+      "icon": "🌦️"
+    },
+    {
+      "id": "conversations",
+      "title": "Everyday Conversations",
+      "title_pt": "Conversas do Dia a Dia",
+      "icon": "💬"
+    },
+    {
+      "id": "phrasal-verbs",
+      "title": "Phrasal Verbs",
+      "title_pt": "Phrasal Verbs",
+      "icon": "🔗"
+    }
+  ]
+}

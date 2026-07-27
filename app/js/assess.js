@@ -56,7 +56,7 @@ function items(band, ids, n) {
   for (const cat of cats) {
     /* One listening item per category: the sound-to-meaning step is the one
        most likely to have quietly decayed. */
-    const vocab = (cat.vocabulary || []).filter(v => v.icon);
+    const vocab = C.atLevel(cat.vocabulary || [], P.level()).filter(v => v.icon);
     if (band.activities.listen === "picture" && vocab.length) {
       const v = sample(vocab, 1)[0];
       const s = scramble(v, C.distractorWords(cat, v, 2));
@@ -66,7 +66,7 @@ function items(band, ids, n) {
         options: s.options.map(o => ({ icon: o.icon, label: o.word })), answer: s.answer
       });
     } else {
-      const pool = (cat.phrases || []).map(p => p.text);
+      const pool = C.atLevel(cat.phrases || [], P.level()).map(p => p.text);
       if (pool.length) {
         const text = sample(pool, 1)[0];
         const s = scramble(text, C.distractorTexts(cat, text, 2));
@@ -79,7 +79,7 @@ function items(band, ids, n) {
     }
 
     /* And the written questions, which carry the grammar. */
-    for (const q of cat.quiz || []) {
+    for (const q of C.atLevel(cat.quiz || [], P.level())) {
       const correct = q.options[q.answer];
       const s = scramble(correct, q.options.filter((_, k) => k !== q.answer));
       out.push({

@@ -21,8 +21,8 @@ export function pictureItems(cat, vocab, n) {
   });
 }
 
-export function textItems(cat, n) {
-  return sample(cat.quiz || [], n).map(q => {
+export function textItems(cat, n, level) {
+  return sample(C.atLevel(cat.quiz || [], level), n).map(q => {
     const correct = q.options[q.answer];
     const { options, answer } = scramble(correct, q.options.filter((_, k) => k !== q.answer));
     return {
@@ -38,7 +38,7 @@ export async function run(ctx) {
 
   const items = band.activities.quiz === "picture"
     ? pictureItems(cat, vocab, band.lesson.quiz)
-    : textItems(cat, band.lesson.quiz);
+    : textItems(cat, band.lesson.quiz, P.level());
 
   let right = 0, wrong = 0;
 

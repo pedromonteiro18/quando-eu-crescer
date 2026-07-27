@@ -129,6 +129,24 @@ export function atLevel(list, level) {
   return all.filter(x => typeof x.level !== "number" || x.level === lowest);
 }
 
+/**
+ * A dialogue and a reading passage are single units — you cannot serve half a
+ * conversation — so they are PICKED by level rather than filtered by it. A file
+ * may carry one (the ten originals do) or an array of them, one per tier; this
+ * takes the hardest one the learner has reached.
+ */
+function pickByLevel(thing, level) {
+  if (!thing) return null;
+  if (!Array.isArray(thing)) return thing;
+  const upTo = thing.filter(x => typeof x.level !== "number" || x.level <= level);
+  const pool = upTo.length ? upTo : thing;
+  return pool.reduce((best, x) =>
+    (x.level || 0) >= ((best && best.level) || 0) ? x : best, pool[0]) || null;
+}
+
+export const dialogueFor = (cat, level) => pickByLevel(cat.dialogue, level);
+export const readingFor = (cat, level) => pickByLevel(cat.reading, level);
+
 /* ── the two authored-in-both-languages fields ────────────────────────────── */
 
 /* A topic's `goal` and a grammar `point` are notes TO the learner ABOUT

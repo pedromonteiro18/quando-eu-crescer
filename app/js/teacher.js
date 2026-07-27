@@ -159,8 +159,9 @@ function content() {
       bands: (cat.bands || []).join(", "),
       words: (cat.vocabulary || []).length,
       phrases: (cat.phrases || []).length,
-      dialogue: ((cat.dialogue && cat.dialogue.lines) || []).length,
-      reading: cat.reading ? t("t.onePassage") : "",
+      dialogue: [].concat(cat.dialogue || []).reduce((n, d) => n + (d.lines || []).length, 0),
+      reading: [].concat(cat.reading || []).length
+        ? t("t.passages", { n: [].concat(cat.reading).length }) : "",
       speaking: (cat.speaking || []).length,
       writing: (cat.writing || []).length,
       quiz: (cat.quiz || []).length

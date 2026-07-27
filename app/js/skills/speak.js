@@ -21,6 +21,7 @@
 
 import * as A from "../audio.js";
 import * as P from "../progress.js";
+import * as C from "../content.js";
 import { node, button, rule, esc, sample, setSkill, Mission } from "../ui.js";
 import { clara } from "../clara.js";
 import { t } from "../i18n.js";
@@ -168,12 +169,13 @@ export async function run(ctx) {
   setSkill(skill);
 
   const n = band.lesson.speak;
+  const speaking = C.atLevel(cat.speaking || [], P.level());
   let targets;
-  if (band.activities.read === "match" || !(cat.speaking || []).length) {
+  if (band.activities.read === "match" || !speaking.length) {
     /* The youngest band repeats single words, with the picture beside them. */
     targets = sample(vocab.filter(v => v.icon), n).map(v => ({ text: v.word, icon: v.icon, tip: null }));
   } else {
-    targets = sample(cat.speaking, n).map(s => ({ text: s.text, tip: s.tip, icon: null }));
+    targets = sample(speaking, n).map(s => ({ text: s.text, tip: s.tip, icon: null }));
   }
 
   let done = 0;

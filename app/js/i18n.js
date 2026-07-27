@@ -455,7 +455,7 @@ const S = {
                         pt: "{cefr} · faixas {bands} · {words} palavras · {phrases} frases · " +
                             "{dialogue} falas de diálogo · {reading}{speaking} de fala · {writing} " +
                             "de escrita · {quiz} de quiz" },
-  "t.onePassage":     { en: "1 passage · ",              pt: "1 texto · " },
+  "t.passages":       { en: "{n} passage(s) · ",         pt: "{n} texto(s) · " },
   "t.selfTest":       { en: "Audio self-test",           pt: "Autoteste de áudio" },
   "t.selfTestNote":   { en: "Plays a line and reports what really happened, including whether the " +
                             "audio clock advanced. A page that reports no errors can still be " +

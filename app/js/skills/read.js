@@ -6,6 +6,7 @@
 
 import { ask, scramble } from "./ask.js";
 import * as P from "../progress.js";
+import * as C from "../content.js";
 import * as A from "../audio.js";
 import { node, button, rule, esc, sleep, shuffle, sample, setSkill, FX, SKILL_COLORS, REDUCED, Mission } from "../ui.js";
 import { clara } from "../clara.js";
@@ -197,22 +198,23 @@ export async function run(ctx) {
     return r;
   }
 
-  if (variant === "dialogue" || !cat.reading) {
-    const d = cat.dialogue;
+  const passage = C.readingFor(cat, P.level());
+  if (variant === "dialogue" || !passage) {
+    const d = C.dialogueFor(cat, P.level());
     if (!d) return { right: 0, wrong: 0 };
     const ok = await showDialogue(host, cat, band, token);
     if (!ok) return { right: 0, wrong: 0, abandoned: true };
     const src = d.lines.map(l => "<p><b>" + esc(l.who) + ":</b> " + esc(l.text) + "</p>").join("");
-    const qs = (d.questions || []).slice(0, band.lesson.read);
+    const qs = C.atLevel(d.questions || [], P.level()).slice(0, band.lesson.read);
     const r = await comprehension(ctx, qs, src);
     if (!r.abandoned) P.score(skill, cat.id, r.right, r.wrong);
     return r;
   }
 
-  const ok = await showPassage(host, cat.reading, token);
+  const ok = await showPassage(host, passage, token);
   if (!ok) return { right: 0, wrong: 0, abandoned: true };
-  const src = String(cat.reading.text).split(/\n\n+/).map(p => "<p>" + esc(p) + "</p>").join("");
-  const qs = (cat.reading.questions || []).slice(0, band.lesson.read);
+  const src = String(passage.text).split(/\n\n+/).map(p => "<p>" + esc(p) + "</p>").join("");
+  const qs = C.atLevel(passage.questions || [], P.level()).slice(0, band.lesson.read);
   const r = await comprehension(ctx, qs, src);
   if (!r.abandoned) P.score(skill, cat.id, r.right, r.wrong);
   return r;

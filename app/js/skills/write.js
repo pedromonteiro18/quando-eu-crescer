@@ -15,6 +15,7 @@
 
 import * as A from "../audio.js";
 import * as P from "../progress.js";
+import * as C from "../content.js";
 import { node, button, rule, esc, shuffle, sample, sleep, setSkill, FX, SKILL_COLORS, REDUCED, Mission } from "../ui.js";
 import { clara } from "../clara.js";
 import { t } from "../i18n.js";
@@ -42,7 +43,7 @@ function plan(cat, band, vocab, n) {
   const want = TYPES[band.activities.write] || TYPES.type;
   const tilesBand = band.activities.write === "tiles";
 
-  const have = (cat.writing || [])
+  const have = C.atLevel(cat.writing || [], P.level())
     .filter(w => want.includes(w.type))
     .map(w => w.type === "spell" ? { ...w, icon: w.icon || iconFor(cat, vocab, w.answer) } : w)
     /* On letter tiles the picture *is* the question. An item with no picture

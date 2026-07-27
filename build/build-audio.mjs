@@ -124,7 +124,10 @@ const REQUIRED = ["vocabulary", "phrases", "dialogue", "speaking", "writing", "q
 function check(cat) {
   const missing = REQUIRED.filter(k => {
     const v = cat[k];
-    if (k === "dialogue") return !v || !(v.lines || []).length || !(v.questions || []).length;
+    if (k === "dialogue") {
+      const list = Array.isArray(v) ? v : v ? [v] : [];
+      return !list.length || list.some(d => !(d.lines || []).length || !(d.questions || []).length);
+    }
     return !Array.isArray(v) || !v.length;
   });
   if (missing.length) {
@@ -144,9 +147,12 @@ function catLines(cat) {
     if (text && !out.includes(text)) out.push(text);
   };
 
+  const many = x => (Array.isArray(x) ? x : x ? [x] : []);
+
   for (const v of cat.vocabulary || []) { add(v.word); add(v.example); }
   for (const p of cat.phrases || []) add(p.text);
-  for (const l of (cat.dialogue && cat.dialogue.lines) || []) add(l.text);
+  /* Every tier's dialogue, not just the one this build happens to look at. */
+  for (const d of many(cat.dialogue)) for (const l of d.lines || []) add(l.text);
   for (const s of cat.speaking || []) add(s.text);
 
   /* The two youngest bands are read to. 4-6 never sees a written quiz question
