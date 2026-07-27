@@ -204,6 +204,35 @@ the device, which contradicts the whole privacy premise. Automatic selection the
 behind the parent gate, with the trade-off spelled out. An adult can choose it; the app will not
 choose it for a child.
 
+### The silence bug
+
+The first build was simply mute, and the cause was mine, in two layers:
+
+1. **Browsers require genuine user activation for `speechSynthesis`.** Not just iOS — Chrome
+   returns `error: "not-allowed"` too. The opening line went through `Speech.seq()`, which
+   began with `synth.cancel()` followed by `await wait(70)`. That `setTimeout` leaves the
+   gesture context, so the very first utterance — the one that unlocks audio for the whole
+   session — was rejected. `Speech.first()` now speaks straight from inside the tap handler,
+   with no cancel and no timer, and `seq()` only cancels when something is actually queued.
+2. **Then the app cancelled its own first sentence.** `showJobs()` calls `go()`, and `go()`
+   calls `Speech.stop()`. Speaking before switching screens meant the utterance was killed
+   milliseconds later — `error: "canceled"`. The screen switch now happens first.
+
+**The app cannot verify its own audibility, and neither could I** — a hidden or unfocused tab
+has speech suspended by the browser, so "no error" is not the same as "you heard it". That is
+why the splash has a **"Não estou ouvindo nada"** button: it speaks a test phrase and reports
+what actually happened — voices found, whether `onstart` fired, the exact browser error, and
+whether the page is inside an iframe — then gives plain-language next steps. Two people
+testing on different phones on different continents need to diagnose without a third person.
+
+### Where you open it matters
+
+The published Claude artifact renders inside a **cross-origin sandboxed iframe**
+(`sandbox="allow-scripts allow-same-origin allow-forms"`, no `allow` attribute). Speech in that
+context is at the browser's discretion and cannot be relied on. **GitHub Pages serves the page
+top-level with no sandbox** — that is the URL to use for any real test, and the one to hand to
+a child. The artifact is fine for a quick look at the layout.
+
 **The real fix is recorded human voice-over**, and the seam for it is already in place: `CLIPS`
 maps `"en:Get the bandage."` to an audio file, and `Speech.raw()` plays the recording instead of
 synthesising whenever an entry exists. It is empty today, so nothing changes; filling it in is

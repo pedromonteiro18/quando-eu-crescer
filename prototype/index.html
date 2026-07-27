@@ -807,6 +807,24 @@ button { font: inherit; color: inherit; }
 .stat--learn b { color: var(--sun-deep); }
 .stat--known b { color: #17A08B; }
 
+/* diagnóstico de som na abertura */
+.diag {
+  border: 2.5px solid var(--ink);
+  border-radius: var(--cut3);
+  background: var(--white);
+  padding: 13px 15px;
+  font-size: 13px;
+  line-height: 1.5;
+  box-shadow: 0 3px 0 var(--ink);
+}
+.diag[hidden] { display: none; }
+.diag ul { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.diag li { display: flex; gap: 8px; align-items: flex-start; }
+.diag li b { flex: none; }
+.diag p { margin: 0; font-weight: 600; }
+.diag p + p { margin-top: 8px; }
+.diag a { color: var(--ink); font-weight: 800; }
+
 /* seletor de voz */
 .pick { display: grid; grid-template-columns: 1fr auto; gap: 8px 9px; align-items: center; }
 .pick > span {
@@ -924,6 +942,8 @@ button { font: inherit; color: inherit; }
       <p class="note" id="audio-note">
         <b>Deixe o som ligado</b> — o app fala com você. Se não ouvir nada, tire o telefone do modo silencioso.
       </p>
+      <button class="btn btn--calm btn--slim" id="audio-test" type="button">Não estou ouvindo nada 🔇</button>
+      <div class="diag" id="audio-diag" hidden></div>
     </div>
   </section>
 
@@ -1379,8 +1399,13 @@ const Speech = (() => {
     const mine = ++epoch;
     stopVisual();
     if (el) { talkingEl = el; el.classList.add("is-talking"); }
-    try { synth && synth.cancel(); } catch (e) {}
-    await wait(70);
+    /* Só cancela se houver mesmo algo na fila. cancel() seguido de speak() é
+       instável no Chrome, e o setTimeout que compensa isso tira a chamada de
+       dentro do gesto do usuário — o que emudece o iOS. Sem fila, nada disso. */
+    if (synth && (synth.speaking || synth.pending)) {
+      try { synth.cancel(); } catch (e) {}
+      await wait(70);
+    }
     for (const it of items) {
       if (mine !== epoch) return false;
       if (it.gap) { await wait(it.gap); continue; }
@@ -1401,18 +1426,49 @@ const Speech = (() => {
     try { synth && synth.cancel(); } catch (e) {}
   }
 
-  /* Primeira fala precisa nascer dentro de um toque real (iOS). */
-  function unlock() {
-    if (!synth) return;
+  /* A PRIMEIRA fala tem de sair de dentro do toque, sem cancel e sem timer.
+     O iOS considera qualquer desvio por setTimeout como "fora do gesto" e
+     silencia a sessão inteira — era esse o furo: a fala de abertura passava
+     por cancel() + espera de 70 ms e nunca chegava a soar. */
+  function first(text, lang) {
+    if (!synth) return false;
+    epoch++;
     try {
-      const u = new SpeechSynthesisUtterance(" ");
-      u.volume = 0;
+      const u = new SpeechSynthesisUtterance(text);
+      const voice = lang === "en" ? vEn : vPt;
+      if (voice) u.voice = voice;
+      u.lang = voice ? voice.lang : (lang === "en" ? "en-US" : "pt-BR");
+      u.rate = 1;
+      u.pitch = 1;
       synth.speak(u);
-    } catch (e) {}
+      return true;
+    } catch (e) { return false; }
+  }
+
+  /* Diagnóstico honesto: fala uma frase de teste e conta o que realmente
+     aconteceu, em vez de supor. */
+  function check(text, lang) {
+    return new Promise(resolve => {
+      const out = { suportado: !!synth, vozes: voices.length, disparou: false, terminou: false, erro: null };
+      if (!synth) return resolve(out);
+      let u;
+      try { u = new SpeechSynthesisUtterance(text); } catch (e) { out.erro = "utterance"; return resolve(out); }
+      const voice = lang === "en" ? vEn : vPt;
+      if (voice) u.voice = voice;
+      u.lang = voice ? voice.lang : "pt-BR";
+      let done = false;
+      const finish = () => { if (done) return; done = true; clearTimeout(g); resolve(out); };
+      u.onstart = () => { out.disparou = true; };
+      u.onend = () => { out.terminou = true; finish(); };
+      u.onerror = e => { out.erro = (e && e.error) || "desconhecido"; finish(); };
+      const g = setTimeout(finish, 5000);
+      try { if (synth.paused) synth.resume(); synth.speak(u); } catch (e) { out.erro = "speak"; finish(); }
+    });
   }
 
   return {
-    seq, stop, unlock, load,
+    seq, stop, load, first, check,
+    emIframe: window.top !== window.self,
     has: lang => !!(synth && (lang === "en" ? vEn : vPt)),
     supported: !!synth,
     voiceName: lang => { const v = lang === "en" ? vEn : vPt; return v ? v.name + " (" + v.lang + ")" : null; },
@@ -1981,9 +2037,53 @@ on($("done-other"), "click", guard(() => { FX.clear(); showJobs(true); }));
    ══════════════════════════════════════════════════════════════════════════ */
 
 on($("start"), "click", () => {
-  Speech.unlock();
   Speech.load();
-  showJobs(true);            // a primeira fala real nasce deste toque
+  showJobs(false);           // troca de tela primeiro: go() chama Speech.stop(), que cancelaria a fala
+  Speech.first(ASK, "pt");   // e só então fala — ainda dentro do gesto, que é o que destrava iOS e Chrome
+});
+
+/* ── "Não estou ouvindo nada" ──────────────────────────────────────────────
+   Duas pessoas testando em celulares diferentes, em continentes diferentes,
+   precisam conseguir descobrir sozinhas o que está mudo. O teste fala uma
+   frase e relata o que de fato aconteceu — não o que deveria acontecer. */
+on($("audio-test"), "click", async () => {
+  const box = $("audio-diag");
+  const btn = $("audio-test");
+  box.hidden = false;
+  box.innerHTML = "<p>Testando… fale um instante de silêncio 🤫</p>";
+  btn.disabled = true;
+
+  Speech.load();
+  const r = await Speech.check("Testando um, dois, três.", "pt");
+
+  const linha = (ok, texto) => "<li><b>" + (ok ? "✅" : "❌") + "</b><span>" + texto + "</span></li>";
+  let itens = "";
+  itens += linha(r.suportado, r.suportado ? "Este navegador sabe falar" : "Este navegador não tem voz nenhuma");
+  itens += linha(r.vozes > 0, r.vozes > 0 ? r.vozes + " vozes encontradas" : "Nenhuma voz instalada no aparelho");
+  itens += linha(r.disparou, r.disparou ? "A fala começou" : "A fala nunca começou");
+  if (r.erro) itens += linha(false, "Erro do navegador: " + esc(r.erro));
+  if (Speech.emIframe) itens += linha(false, "A página está dentro de um quadro (iframe) — alguns navegadores bloqueiam a voz aí");
+
+  let conselho;
+  if (!r.suportado || r.vozes === 0) {
+    conselho = "<p>Sem voz no aparelho, o app continua jogável: as palavras aparecem escritas. " +
+               "Num iPhone, dá para instalar vozes em <b>Ajustes › Acessibilidade › Conteúdo Falado › Vozes</b>.</p>";
+  } else if (Speech.emIframe) {
+    conselho = "<p>Abra o app em uma aba própria, fora do quadro: " +
+               '<a href="https://pedromonteiro18.github.io/quando-eu-crescer/" target="_blank" rel="noopener">' +
+               "pedromonteiro18.github.io/quando-eu-crescer</a></p>";
+  } else if (r.disparou) {
+    conselho = "<p>A voz <b>tocou</b> — então o problema é o volume do aparelho. " +
+               "Num iPhone, a chavinha lateral de silencioso <b>também emudece este app</b>. " +
+               "Desligue o silencioso e suba o volume enquanto o app fala.</p>";
+  } else {
+    conselho = "<p>A fala foi pedida mas não começou. Quase sempre é o navegador esperando um toque: " +
+               "toque em <b>Começar!</b> e ouça. Se continuar mudo, tente outro navegador.</p>";
+  }
+
+  box.innerHTML = "<ul>" + itens + "</ul>" + conselho;
+  btn.disabled = false;
+  btn.textContent = "Testar de novo 🔁";
 });
 
 /* Se o aparelho não tiver voz nenhuma, avisa antes de começar. */
