@@ -100,12 +100,15 @@ export const FX = (() => {
   const ctx = cv.getContext("2d");
   let parts = [], raf = null, dpr = 1;
 
+  /* The canvas fills the phone screen, not the window, so confetti is clipped
+     by the bezel like everything else. Coordinates are canvas-local. */
+  const box = () => cv.getBoundingClientRect();
+
   function size() {
+    const r = box();
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    cv.width = Math.floor(window.innerWidth * dpr);
-    cv.height = Math.floor(window.innerHeight * dpr);
-    cv.style.width = window.innerWidth + "px";
-    cv.style.height = window.innerHeight + "px";
+    cv.width = Math.floor(r.width * dpr);
+    cv.height = Math.floor(r.height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   size();
@@ -139,8 +142,8 @@ export const FX = (() => {
   return {
     sparkle(target, colors) {
       if (!target) return;
-      const r = target.getBoundingClientRect();
-      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      const r = target.getBoundingClientRect(), c = box();
+      const cx = r.left - c.left + r.width / 2, cy = r.top - c.top + r.height / 2;
       const out = [];
       for (let i = 0; i < 18; i++) {
         const a = (Math.PI * 2 * i) / 18 + Math.random() * 0.4;
@@ -155,7 +158,7 @@ export const FX = (() => {
       add(out);
     },
     rain(colors) {
-      const W = window.innerWidth, out = [];
+      const W = box().width, out = [];
       for (let i = 0; i < 130; i++) {
         out.push({
           x: Math.random() * W, y: -30 - Math.random() * 320,

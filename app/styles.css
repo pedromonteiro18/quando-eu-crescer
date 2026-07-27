@@ -92,6 +92,64 @@ body {
   overscroll-behavior-y: none;
 }
 
+/* ═══ the phone ═══════════════════════════════════════════════════════════
+
+   This is a phone app. It is reachable from a desktop browser because that is
+   where it is hosted, but a lesson is a thing you hold — one column, one thumb,
+   nothing off to the side. So the whole app lives inside a phone-sized screen
+   at every width: on a phone it fills the viewport, and on a desk it sits in
+   the middle of it with a bezel, rather than stretching into a web page.
+
+   The bar is pinned, the stage scrolls under it, and the confetti and the
+   teacher sheet are clipped to the screen instead of the window.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.device {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--ground);
+}
+
+.device__speaker { display: none; }
+
+@media (min-width: 700px) {
+  body {
+    /* the desk the phone is lying on */
+    background:
+      radial-gradient(120% 90% at 50% 0%, #EFEAE1 0%, #E2DACC 55%, #D6CDBC 100%);
+    display: grid;
+    place-items: center;
+    padding: 28px 20px;
+  }
+
+  .device {
+    height: min(880px, calc(100dvh - 56px));
+    border: 11px solid #101118;
+    border-radius: 46px;
+    box-shadow:
+      0 0 0 2px #2C2E38,
+      0 30px 60px -18px rgba(21, 22, 29, 0.45),
+      0 8px 20px -8px rgba(21, 22, 29, 0.25);
+  }
+
+  /* Just enough of an earpiece to read as a handset, not a costume. */
+  .device__speaker {
+    display: block;
+    position: absolute; z-index: 25;
+    top: 9px; left: 50%; transform: translateX(-50%);
+    width: 58px; height: 5px;
+    border-radius: 999px;
+    background: #C9C2B5;
+  }
+  .bar { padding-top: 12px; height: calc(var(--bar-h) + 12px); }
+}
+
 h1, h2, h3 {
   font-family: var(--display);
   font-weight: 700;
@@ -117,17 +175,18 @@ p:last-child { margin-bottom: 0; }
 /* ═══ top bar ═════════════════════════════════════════════════════════════ */
 
 .bar {
-  position: sticky; top: 0; z-index: 20;
+  position: relative; z-index: 20;
+  flex: none;                       /* pinned; the stage scrolls beneath it */
   height: var(--bar-h);
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px;
-  padding: 0 clamp(14px, 4vw, 28px);
+  padding: 0 16px;
   background: var(--ground);
   border-bottom: 2px solid var(--ink);
 }
 
 .bar__brand {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 10px; min-width: 0;
   background: none; border: 0; padding: 4px; margin-left: -4px;
   color: inherit; font: inherit; cursor: pointer;
 }
@@ -136,7 +195,9 @@ p:last-child { margin-bottom: 0; }
 .bar__name {
   font-family: var(--display); font-weight: 700; font-size: 1.02rem;
   letter-spacing: -0.02em; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;      /* the bar never wraps */
 }
+.bar__right { flex: none; }
 .bar__name em { font-style: italic; font-weight: 400; color: var(--ink-soft); }
 
 .bar__right { display: flex; align-items: center; gap: 10px; }
@@ -169,13 +230,17 @@ p:last-child { margin-bottom: 0; }
 /* ═══ stage ═══════════════════════════════════════════════════════════════ */
 
 .stage {
-  max-width: min(880px, 100%);
-  margin: 0 auto;
-  padding: clamp(18px, 4vw, 34px) clamp(14px, 4vw, 28px) 64px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: 20px 18px 48px;
 }
 .stage:focus { outline: none; }
 
-.fx { position: fixed; inset: 0; pointer-events: none; z-index: 30; }
+.fx { position: absolute; inset: 0; pointer-events: none; z-index: 30; }
 
 /* ═══ the workbook rule — the one motif everything hangs from ═════════════ */
 
@@ -253,7 +318,9 @@ p:last-child { margin-bottom: 0; }
 .hero h1 { margin-bottom: 8px; }
 .hero p { color: var(--ink-soft); max-width: var(--measure); }
 
-.hero__clara { float: right; width: clamp(78px, 20vw, 120px); margin: 0 0 10px 18px; }
+/* One column, so Clara sits above what she is introducing rather than floating
+   beside it — there is no beside on a phone. */
+.hero__clara { width: 96px; margin: 0 0 14px; }
 .hero__clara svg { display: block; width: 100%; height: auto; }
 
 .cats { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); }
@@ -501,9 +568,14 @@ p:last-child { margin-bottom: 0; }
 textarea.field { min-height: calc(110px * var(--scale)); resize: vertical; line-height: 1.5; }
 
 /* Letter tiles, for the band with no keyboard. */
+/* Tiles and slots shrink to share one row rather than wrapping. A spelling
+   puzzle that breaks 4 + 1 stops looking like a word. */
 .tiles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .tile {
-  min-width: calc(var(--target) * 0.82); min-height: calc(var(--target) * 0.82);
+  /* Flex wraps on the basis and only shrinks afterwards, so the cap — not the
+     shrink factor — is what decides how many tiles share a row. 52px fits six. */
+  flex: 0 1 min(calc(var(--target) * 0.82), 52px);
+  min-width: 40px; min-height: calc(var(--target) * 0.82);
   display: grid; place-items: center;
   background: var(--paper); border: 2px solid var(--rule-mid); border-radius: 5px;
   font-family: var(--display); font-weight: 700;
@@ -514,14 +586,18 @@ textarea.field { min-height: calc(110px * var(--scale)); resize: vertical; line-
 .tile.is-used { opacity: 0.25; }
 
 .slots {
-  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
-  margin-bottom: 22px; min-height: calc(var(--target) * 0.9);
+  display: flex; gap: 8px; justify-content: center;
+  margin-bottom: 22px;
 }
 .slot {
-  min-width: calc(var(--target) * 0.72); height: calc(var(--target) * 0.82);
-  display: grid; place-items: center;
+  flex: 0 1 calc(var(--target) * 0.72);
+  min-width: 26px; height: calc(var(--target) * 0.62);
+  /* The letter sits on its line, not floating above it. */
+  display: grid; place-items: end center;
+  padding-bottom: 2px;
   border-bottom: 4px solid var(--rule-mid);
   font-family: var(--display); font-weight: 700; font-size: calc(1.5rem * var(--scale));
+  line-height: 1;
 }
 .slot.is-filled { border-bottom-color: var(--write); }
 .slots.is-right .slot { border-bottom-color: var(--write); color: var(--write); }
@@ -566,10 +642,22 @@ textarea.field { min-height: calc(110px * var(--scale)); resize: vertical; line-
 .skillrow[data-s="write"] .skillrow__name, .skillrow[data-s="write"] .skillrow__num { color: var(--write); }
 .skillrow[data-s="write"] .skillrow__bar b { background: var(--write); }
 
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
-.stat { background: var(--paper); padding: 16px; }
-.stat__n { font-family: var(--display); font-weight: 700; font-size: 1.9rem; line-height: 1; }
-.stat__l { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 5px; }
+/* Three across in a phone column, so nothing may hyphenate or the numbers stop
+   being scannable — "Pre-A1" breaking after the hyphen reads as two facts. */
+/* Cells draw their own rules rather than showing a background through 1px gaps,
+   so an incomplete last row leaves nothing behind — five stats in a three-wide
+   grid used to render an empty grey sixth box. */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.stat {
+  background: var(--paper); padding: 13px 11px; min-width: 0;
+  border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.stat__n {
+  font-family: var(--display); font-weight: 700; line-height: 1;
+  font-size: 1.45rem;
+  hyphens: none; overflow-wrap: normal; white-space: nowrap;
+}
+.stat__l { font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; }
 
 .badges { display: flex; flex-wrap: wrap; gap: 10px; }
 .badge {
@@ -620,13 +708,13 @@ textarea.field { min-height: calc(110px * var(--scale)); resize: vertical; line-
 /* ═══ teacher sheet ═══════════════════════════════════════════════════════ */
 
 .sheet {
-  position: fixed; inset: 0; z-index: 40;
+  position: absolute; inset: 0; z-index: 40;
   background: rgba(21, 22, 29, 0.5);
   display: grid; place-items: end center;
   padding: 20px 0 0;
 }
 .sheet__box {
-  width: min(760px, 100%); max-height: 92dvh;
+  width: 100%; max-height: 100%;
   display: flex; flex-direction: column;
   background: var(--ground);
   border: 2px solid var(--ink); border-bottom: 0; border-radius: 8px 8px 0 0;

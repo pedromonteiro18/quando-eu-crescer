@@ -18,6 +18,12 @@
 
 <a class="skip" href="#stage">Skip to content</a>
 
+<!-- Everything lives inside one phone-shaped screen. On a phone it simply fills
+     the viewport; on a desktop it sits in the middle of the desk, bezel and all,
+     because this is a phone app that happens to be reachable from a browser. -->
+<div class="device" id="device">
+<span class="device__speaker" aria-hidden="true"></span>
+
 <header class="bar" id="bar">
   <button class="bar__brand" id="brand" type="button" aria-label="English with Clara — home">
     <span class="bar__clara" id="bar-clara" aria-hidden="true"></span>
@@ -48,6 +54,8 @@
     <div class="sheet__body" id="teacher-body"></div>
   </div>
 </div>
+
+</div><!-- /.device -->
 
 <script type="module" src="js/app.js"></script>
 <noscript>

@@ -85,6 +85,25 @@ The prototype's "Patch Board" look — thick outlines, hard offset shadows, embr
 was designed for 6–9-year-olds and would read as childish to someone doing Business English. It
 has been replaced entirely. See below.
 
+### 6. It is a phone app that happens to open in a browser
+
+The plan said "no phone-specific work yet", meaning no native app. That is not the same as
+letting the layout sprawl across a desktop window. A lesson is a thing you hold: one column, one
+thumb, nothing off to the side. So the whole app lives inside a phone-sized screen at every
+width — on a phone it fills the viewport, and on a desk it sits in the middle of one with a
+bezel, rather than stretching into a web page.
+
+The bar is pinned, the stage scrolls under it, and the confetti canvas and teacher sheet are
+positioned against the screen rather than the window, so nothing spills past the bezel. Below
+700px the frame disappears completely: no border, no radius, no earpiece, no desk.
+
+This is a real constraint, not decoration, and it changed the components. Letter tiles and slots
+now shrink to share a row — flexbox wraps on the basis and only shrinks afterwards, so the size
+cap, not the shrink factor, is what decides how many fit. The stat cells draw their own rules
+instead of showing a background through 1px gaps, because five stats in a three-wide grid used
+to leave an empty grey box. Clara sits above what she introduces rather than floating beside it,
+since there is no beside.
+
 ---
 
 ## Design direction — skills as the colour system
@@ -295,6 +314,7 @@ What was actually checked, in Chrome at 1432×840:
 | 7 | Progress survives reload; a wrong answer appears in revision | ✅ 4 lessons, 37 words, 50 mistakes, badges and streak all survived reload; revision rebuilt 8 of them and the count dropped as they were cleared |
 | 8 | An unreviewed category is invisible and flagged | ✅ 10 files on disk, 9 offered to the learner, Weather absent from the picker and flagged **NOT REVIEWED** in the teacher view |
 | 9 | No network calls beyond the page's own assets | ✅ 63 requests, all to the page's own origin, plus two inline `data:` font URIs. Nothing to any other host |
+| + | The phone frame holds on every screen | ✅ a full lesson driven in **all four bands — 60 screens** — checking every element against the screen's own bounds: nothing escaped the bezel, nothing scrolled sideways. At 390px the frame drops away and the app fills the viewport |
 
 **Timing is estimated, not measured.** 4–6 comes to roughly four minutes and 11–14 to roughly ten;
 15+ was the one at risk, which is why its writing count is four rather than five — a free written
