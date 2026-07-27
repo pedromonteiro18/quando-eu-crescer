@@ -705,6 +705,43 @@ textarea.field { min-height: calc(110px * var(--scale)); resize: vertical; line-
 .ladder i.is-done { background: var(--ink); }
 .ladder i.is-now { background: var(--gold-fill); }
 
+/* ═══ the silence alarm ═══════════════════════════════════════════════════ */
+
+/* Deliberately loud for this app: it is the one message that has to interrupt,
+   because everything behind it is still working perfectly and saying nothing. */
+.alarm {
+  flex: none;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  background: var(--speak); color: #FFFFFF;
+  border-bottom: 2px solid var(--ink);
+  font-size: 0.86rem; line-height: 1.35;
+}
+.alarm[hidden] { display: none; }
+.alarm__icon { flex: none; font-size: 1.1rem; }
+.alarm__text { flex: 1 1 auto; min-width: 0; }
+.alarm__btn {
+  flex: none; font: inherit; font-weight: 700; cursor: pointer;
+  background: #FFFFFF; color: var(--speak);
+  border: 0; border-radius: 3px; padding: 6px 11px;
+}
+
+.check { list-style: none; margin: 14px 0 0; padding: 0; }
+.check li {
+  border-top: 1px solid var(--rule); padding: 12px 0 12px 34px;
+  position: relative; font-size: 0.9rem; color: var(--ink-soft);
+}
+.check li:first-child { border-top: 0; }
+.check li b { display: block; color: var(--ink); font-size: 0.95rem; margin-bottom: 2px; }
+.check li::before {
+  content: attr(data-n);
+  position: absolute; left: 0; top: 12px;
+  width: 22px; height: 22px; border-radius: 999px;
+  display: grid; place-items: center;
+  background: var(--ink); color: var(--ground);
+  font-size: 0.72rem; font-weight: 700;
+}
+
 /* ═══ teacher sheet ═══════════════════════════════════════════════════════ */
 
 .sheet {

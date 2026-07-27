@@ -19,7 +19,9 @@
 
    NOTHING HERE EVER REJECTS OR HANGS. A silent device must still be able to
    finish a lesson, so every promise resolves — on ended, on failure, or on a
-   length-derived timeout.
+   length-derived timeout. That timeout is not decoration: a suspended context
+   never fires `onended`, and without it every promise in the app stayed pending
+   for the rest of the session. Measured, not assumed.
 
    Clips are loaded per category. A learner downloads the folder for the
    category they opened, not 1,200 files.
@@ -39,32 +41,108 @@ export function context() {
   if (!actx) {
     const C = window.AudioContext || window.webkitAudioContext;
     if (!C) return null;
-    try { actx = new C(); } catch { return null; }
+    /* "interactive" asks for the smallest buffer the device will give us. On
+       iOS it also selects the playback route that respects the volume keys
+       rather than the one reserved for ambient sound. */
+    try { actx = new C({ latencyHint: "interactive" }); }
+    catch { try { actx = new C(); } catch { return null; } }
   }
   if (actx.state === "suspended") { try { actx.resume(); } catch {} }
   return actx;
+}
+
+/* iOS suspends the context when the page goes to the background and does not
+   bring it back on return — measured: still "suspended" after visibilitychange,
+   pageshow and focus have all fired, with nothing listening for any of them. */
+function wake() {
+  if (actx && actx.state === "suspended") { try { actx.resume(); } catch {} }
+}
+try {
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) wake(); });
+  window.addEventListener("pageshow", wake);
+  window.addEventListener("focus", wake);
+} catch {}
+
+/* A real sound, not one silent sample. iOS decides at the first *rendered*
+   audio whether this page gets an output route at all, and a single zero-valued
+   frame is not audio. 120 ms of a quiet 220 Hz tone, faded at both ends so it
+   cannot click: genuinely non-zero, and far below anything a person notices. */
+function primer(c) {
+  const n = Math.floor(c.sampleRate * 0.12);
+  const buf = c.createBuffer(1, n, c.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) {
+    const env = Math.min(1, i / 400, (n - i) / 400);
+    d[i] = Math.sin((2 * Math.PI * 220 * i) / c.sampleRate) * env * 0.02;
+  }
+  return buf;
 }
 
 /**
  * Call this synchronously from inside a real tap handler, before any await.
  * iOS treats anything reached via setTimeout or a resolved promise as outside
  * the gesture and mutes the whole session — that exact bug cost the prototype
- * a day. Creating the context and starting a one-sample silent buffer here,
- * with nothing async in between, is what actually unlocks output.
+ * a day. Creating the context and starting a real buffer here, with nothing
+ * async in between, is what actually unlocks output.
  */
 export function unlock() {
   const c = context();
-  if (!c) return false;
+  if (!c) { strike(); return false; }
   try {
+    const g = c.createGain();
+    g.gain.value = 0.5;
+    g.connect(c.destination);
     const s = c.createBufferSource();
-    s.buffer = c.createBuffer(1, 1, 22050);
-    s.connect(c.destination);
+    s.buffer = primer(c);
+    s.connect(g);
     s.start(0);
+    /* And then check it. A sound started inside a real tap that does not move
+       the clock is the one hard piece of evidence this app can get that it is
+       talking to nobody. The delay is for iOS, where resume() settles after
+       the handler returns. */
+    const before = c.currentTime;
+    setTimeout(() => measure(c, before), 500);
   } catch {}
-  return c.state === "running" || c.state === "suspended";
+  /* "suspended" is NOT success. It is the exact state that means nothing will
+     be heard, and returning true for it is why a silent session looked healthy
+     from the inside. The verdict that matters is measure()'s, above. */
+  return c.state === "running";
 }
 
 export const state = () => (actx ? actx.state : "none");
+
+/* ── is anything actually coming out ──────────────────────────────────────── */
+
+/* An app that cannot hear itself has to measure instead. The one honest signal
+   available in a web page is the AudioContext clock: if it advanced across a
+   sound while the context was running, the browser rendered output.
+
+   What this CANNOT see is the iOS ringer switch, which silences Web Audio while
+   reporting running and advancing the clock exactly as normal. Nothing in a web
+   page can see it. That half is handled by asking rather than measuring — see
+   the sound help sheet in app.js. */
+
+let verdict = null;              // null unknown · true audible · false silent
+let strikes = 0;
+const watchers = [];
+
+export const audible = () => verdict;
+export function onSilence(fn) { if (typeof fn === "function") watchers.push(fn); }
+
+function strike(info) {
+  if (verdict === true) return;      // it worked once; a later blip is not a verdict
+  if (++strikes < 2) return;         // two independent failures before we say so
+  if (verdict === false) return;     // already told them
+  verdict = false;
+  const report = { state: state(), ...(info || {}) };
+  for (const fn of watchers) { try { fn(report); } catch {} }
+}
+
+function measure(c, before, seconds) {
+  const advanced = c.currentTime - before;
+  if (c.state === "running" && advanced > 0) { verdict = true; strikes = 0; return; }
+  strike({ advanced: Math.round(advanced * 1000) / 1000, seconds: seconds || 0 });
+}
 
 /* ── the clip registry ────────────────────────────────────────────────────── */
 
@@ -110,17 +188,29 @@ function playBuffer(c, buf) {
     src.connect(c.destination);
     if (current) { try { current.onended = null; current.stop(); } catch {} }
     current = src;
-    src.onended = () => { if (current === src) current = null; resolve(true); };
-    try { src.start(); } catch { resolve(false); }
+
+    let done = false;
+    const finish = ok => { if (done) return; done = true; clearTimeout(timer); resolve(ok); };
+    /* THE PROMISE THAT NEVER SETTLED. `onended` does not fire while the context
+       is suspended — which is precisely the state a backgrounded iOS page comes
+       back in — so this hung, forever, on every line Clara spoke. Even the self
+       test hung, which meant the one instrument built to diagnose silence sat on
+       "testing" instead of reporting it. The clip's own length plus slack. */
+    const timer = setTimeout(() => finish(false), Math.ceil(buf.duration * 1000) + 900);
+    src.onended = () => { if (current === src) current = null; finish(true); };
+    try { src.start(); } catch { finish(false); }
   });
 }
 
 async function playClip(url) {
   const c = context();
-  if (!c) return false;
+  if (!c) { strike(); return false; }
   const buf = await buffer(url);
   if (!buf) return false;
-  return playBuffer(c, buf);
+  const before = c.currentTime;
+  const ok = await playBuffer(c, buf);
+  measure(c, before, buf.duration);
+  return ok;
 }
 
 /* Decode a category's clips in the background so no line stutters mid-lesson. */
@@ -254,7 +344,13 @@ export async function probe(text = "Testing, one, two, three.") {
   out.played = await playBuffer(c, buf);
   out.clockAdvanced = Math.round((c.currentTime - before) * 100) / 100;
   out.state = c.state;
+  /* A deliberate re-test resets the verdict rather than adding to it: someone
+     who has just flipped the ringer switch back deserves a clean answer. */
+  strikes = 1;
+  verdict = null;
+  measure(c, before, buf.duration);
   if (out.state !== "running") out.error = "the audio context is " + out.state + ", so nothing was audible";
   else if (out.clockAdvanced <= 0) out.error = "the audio clock did not advance";
+  out.audible = verdict;
   return out;
 }

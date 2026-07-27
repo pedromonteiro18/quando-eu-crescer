@@ -61,6 +61,8 @@ function wireChrome() {
 
   on($("brand"), "click", guard(() => { Mission.bump(); A.stop(); home(); }));
 
+  wireSound();
+
   /* Press and hold, with a ring that fills. A child taps; a teacher holds. */
   const gear = $("gear");
   let timer = null;
@@ -75,6 +77,91 @@ function wireChrome() {
   on(gear, "pointerleave", endHold);
   on(gear, "pointercancel", endHold);
   on(gear, "contextmenu", e => e.preventDefault());
+}
+
+/* ═══ the sound alarm ═════════════════════════════════════════════════════ */
+
+/* The app cannot hear itself, and neither can someone debugging it from another
+   continent. Where silence is measurable it now says so on screen instead of
+   leaving a learner tapping a mute button; where it is NOT measurable — the iOS
+   ringer switch, which silences Web Audio while every reading still says
+   running — the only honest instrument is to ask, which is what the sheet is. */
+function wireSound() {
+  on($("sound-close"), "click", closeSound);
+  on($("sound"), "click", e => { if (e.target === $("sound")) closeSound(); });
+  on(document, "keydown", e => { if (e.key === "Escape" && !$("sound").hidden) closeSound(); });
+  on($("alarm-btn"), "click", () => openSound());
+
+  A.onSilence(report => {
+    $("alarm-text").textContent = report.state === "running"
+      ? "Clara is playing, but no sound is coming out."
+      : "Clara has gone quiet on this device.";
+    $("alarm-btn").textContent = "What to check";
+    $("alarm").hidden = false;
+  });
+}
+
+function closeSound() { $("sound").hidden = true; }
+
+function openSound() {
+  const body = $("sound-body");
+  body.innerHTML = "";
+  $("sound").hidden = false;
+
+  body.appendChild(node("div", "note",
+    "Everything below is on the device, not in the app. The app has already checked " +
+    "its own side — you can run that check again at the bottom."));
+
+  const list = node("ol", "check");
+  const item = (n, title, text) => {
+    const li = node("li", null, "<b>" + esc(title) + "</b>" + esc(text));
+    li.setAttribute("data-n", n);
+    list.appendChild(li);
+  };
+  /* Ordered by how often each one is the answer, not by how clever it is. */
+  item(1, "iPhone: the switch above the volume buttons.",
+    "If it shows orange the phone is on silent, and web pages make no sound at all — " +
+    "no warning, no error, nothing. Flip it back towards the screen.");
+  item(2, "Turn the volume up while this page is open.",
+    "The volume keys control whatever is playing at the time. Press them while you are " +
+    "looking at this app, not on the home screen.");
+  item(3, "Bluetooth.",
+    "Sound may be going to headphones, a car or a speaker in another room. Turn Bluetooth " +
+    "off and try again.");
+  item(4, "A muted tab, on a computer.",
+    "Right-click the tab. If it says Unmute site, that is the whole problem.");
+  item(5, "Focus, Do Not Disturb, or a low-power mode.",
+    "Any of these can hold audio back. Turn them off and reload the page.");
+  body.appendChild(list);
+
+  body.appendChild(node("hr", "hair"));
+  body.appendChild(node("h3", null, "Test it again"));
+  body.appendChild(node("div", "note",
+    "Plays a line and reports what really happened, including whether the audio clock " +
+    "advanced. Note that a page reporting no errors can still be completely silent — " +
+    "that is exactly what the switch in step 1 does."));
+
+  const out = node("ul", "diag");
+  const row = node("div", "row");
+  row.appendChild(button("btn", "Play the test line", async () => {
+    out.innerHTML = "<li><b>…</b><span>testing</span></li>";
+    await A.load("ui");
+    const r = await A.probe();
+    const line = (ok, text) => "<li><b>" + (ok ? "✅" : "❌") + "</b><span>" + esc(text) + "</span></li>";
+    out.innerHTML =
+      line(r.webAudio, "Web Audio " + (r.webAudio ? "available" : "missing")) +
+      line(r.decoded, r.decoded ? "recording decoded (" + r.seconds + "s)" : "no recording decoded") +
+      line(r.state === "running", "audio context: " + r.state) +
+      line(r.clockAdvanced > 0, "clock advanced " + r.clockAdvanced + "s — this is the proof of output") +
+      (r.error ? line(false, r.error) : "");
+    if (r.audible === true) {
+      $("alarm").hidden = true;
+      out.innerHTML += "<li><b>ℹ️</b><span>The app's own side is working. If you still hear " +
+        "nothing, it is one of the five above.</span></li>";
+    }
+  }));
+  body.appendChild(row);
+  body.appendChild(out);
 }
 
 function paintStreak() {
@@ -111,8 +198,16 @@ function splash() {
   }));
   wrap.appendChild(row);
 
+  /* Findable, because the thing it fixes is invisible. The iOS ringer switch
+     silences Web Audio while every reading the app can take still says running,
+     so there has to be a way in that does not depend on the app noticing. */
+  const help = node("div", "row");
+  help.style.marginTop = "10px";
+  help.appendChild(button("btn btn--quiet", "🔇 No sound?", () => openSound()));
+  wrap.appendChild(help);
+
   wrap.appendChild(node("div", "note",
-    "Hold the ⚙ for three seconds for the teacher area, progress and the audio self-test."));
+    "Hold the ⚙ for three seconds for the teacher area and progress."));
 }
 
 /* ═══ placement ═══════════════════════════════════════════════════════════ */

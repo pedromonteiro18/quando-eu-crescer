@@ -39,9 +39,30 @@
   </div>
 </header>
 
+<!-- Silence is the one failure this app cannot notice on its own, so when it CAN
+     measure it the learner is told rather than left listening to nothing. -->
+<div class="alarm" id="alarm" hidden>
+  <span class="alarm__icon" aria-hidden="true">🔇</span>
+  <span class="alarm__text" id="alarm-text"></span>
+  <button class="alarm__btn" id="alarm-btn" type="button"></button>
+</div>
+
 <main class="stage" id="stage" tabindex="-1"></main>
 
 <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+
+<!-- What to check when there is no sound. The first item is the iPhone ringer
+     switch, because Web Audio obeys it, nothing in a web page can see it, and
+     every measurement the app can take still reports success. -->
+<div class="sheet" id="sound" hidden role="dialog" aria-modal="true" aria-labelledby="sound-h">
+  <div class="sheet__box">
+    <div class="sheet__head">
+      <h2 id="sound-h">No sound?</h2>
+      <button class="btn btn--quiet" id="sound-close" type="button">Close</button>
+    </div>
+    <div class="sheet__body" id="sound-body"></div>
+  </div>
+</div>
 
 <!-- Teacher area. Holds the review gate: an unreviewed category is invisible to
      a learner and shows up flagged here, which is where a reviewer wants it. -->
