@@ -94,11 +94,17 @@ export const levelCefr = i => (LADDER()[clamp(i)] || {}).cefr || "";
 
 /** "A1-A2" → the index of the rung it starts on. Where a topic begins. */
 export function levelIndex(cefr) {
-  const first = String(cefr || "A1").split(/[-–]/)[0].trim();
+  const raw = String(cefr || "A1").trim();
   const ladder = LADDER();
-  const i = ladder.findIndex(r => r.cefr === first);
+  const find = s => ladder.findIndex(r => r.cefr === s);
+  /* The whole tag before the split, because a hyphen means two different things
+     here: "A1-A2" is a range whose first half is the answer, but "Pre-A1" is a
+     single tag that splitting turns into "Pre" — which matches nothing and used
+     to reach the right rung only by falling through to zero. */
+  let i = find(raw);
+  if (i < 0) i = find(raw.split(/[-–]/)[0].trim());
   if (i >= 0) return i;
-  const legacy = (LEVELS.cefrOrder || []).indexOf(first);
+  const legacy = (LEVELS.cefrOrder || []).indexOf(raw);
   return legacy < 0 ? 0 : Math.min(legacy, ladder.length - 1);
 }
 
