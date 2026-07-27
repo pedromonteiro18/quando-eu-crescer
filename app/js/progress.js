@@ -22,6 +22,7 @@ export const SKILLS = ["listen", "speak", "read", "write"];
 
 const blank = () => ({
   v: 1,
+  lang: null,        // null means the language question has not been answered yet
   band: null,
   level: 1,
   placed: false,
@@ -52,6 +53,14 @@ export const state = () => data;
 export const band = () => data.band;
 export const level = () => data.level;
 export const placed = () => data.placed;
+
+/* The interface language lives here rather than in its own store, so it
+   survives a reload with everything else and is erased with everything else. */
+export const lang = () => data.lang;
+export function setLang(id) { data.lang = id; save(); }
+
+export function setLevel(n) { data.level = n; save(); }
+export function unplace() { data.placed = false; save(); }
 
 export function place(bandId, levelIndex) {
   data.band = bandId;

@@ -1,91 +1,340 @@
 {
   "id": "family",
   "title": "Family",
+  "title_pt": "Família",
   "icon": "👨‍👩‍👧‍👦",
-  "bands": ["4-6", "7-10"],
+  "bands": [
+    "4-6",
+    "7-10"
+  ],
   "cefr": "A1",
   "goal": "Name the people in your family and say who they are.",
+  "goal_pt": "Nomear as pessoas da sua família e dizer quem é quem.",
   "grammar": [
-    { "point": "This is my + person", "example": "This is my sister." },
-    { "point": "Possessive 's", "example": "That is Ana's brother." },
-    { "point": "have got / have", "example": "I have two brothers." }
+    {
+      "point": "This is my + person",
+      "point_pt": "This is my + pessoa",
+      "example": "This is my sister."
+    },
+    {
+      "point": "Possessive 's",
+      "point_pt": "Possessivo com 's",
+      "example": "That is Ana's brother."
+    },
+    {
+      "point": "have got / have",
+      "point_pt": "have got / have (ter)",
+      "example": "I have two brothers."
+    }
   ],
-
   "vocabulary": [
-    { "word": "family", "icon": "👨‍👩‍👧‍👦", "example": "I love my family." },
-    { "word": "mother", "icon": "👩", "example": "My mother is a doctor." },
-    { "word": "father", "icon": "👨", "example": "My father makes breakfast." },
-    { "word": "sister", "icon": "👧", "example": "My sister is nine." },
-    { "word": "brother", "icon": "👦", "example": "I have one brother." },
-    { "word": "baby", "icon": "👶", "example": "The baby is sleeping." },
-    { "word": "grandmother", "icon": "👵", "example": "My grandmother tells good stories." },
-    { "word": "grandfather", "icon": "👴", "example": "My grandfather likes the garden." },
-    { "word": "aunt", "icon": "👩‍🦰", "example": "My aunt lives near the sea." },
-    { "word": "uncle", "icon": "👨‍🦰", "example": "My uncle has a big car." },
-    { "word": "cousin", "icon": "🧒", "example": "My cousin is my best friend." },
-    { "word": "parents", "icon": "👫", "example": "My parents work together." },
-    { "word": "son", "icon": "🧑‍🦱", "example": "He is their son." },
-    { "word": "daughter", "icon": "👩‍🦱", "example": "She is their daughter." },
-    { "word": "home", "icon": "🏠", "example": "We are all at home." },
-    { "word": "love", "icon": "❤️", "example": "I love you." },
-    { "word": "pet", "icon": "🐾", "example": "Our pet sleeps on my bed." },
-    { "word": "together", "icon": "🤗", "example": "We eat dinner together." },
-    { "word": "birthday", "icon": "🎈", "example": "Today is my birthday." },
-    { "word": "photo", "icon": "📷", "example": "This is a photo of my family." }
+    {
+      "word": "family",
+      "icon": "👨‍👩‍👧‍👦",
+      "example": "I love my family."
+    },
+    {
+      "word": "mother",
+      "icon": "👩",
+      "example": "My mother is a doctor."
+    },
+    {
+      "word": "father",
+      "icon": "👨",
+      "example": "My father makes breakfast."
+    },
+    {
+      "word": "sister",
+      "icon": "👧",
+      "example": "My sister is nine."
+    },
+    {
+      "word": "brother",
+      "icon": "👦",
+      "example": "I have one brother."
+    },
+    {
+      "word": "baby",
+      "icon": "👶",
+      "example": "The baby is sleeping."
+    },
+    {
+      "word": "grandmother",
+      "icon": "👵",
+      "example": "My grandmother tells good stories."
+    },
+    {
+      "word": "grandfather",
+      "icon": "👴",
+      "example": "My grandfather likes the garden."
+    },
+    {
+      "word": "aunt",
+      "icon": "👩‍🦰",
+      "example": "My aunt lives near the sea."
+    },
+    {
+      "word": "uncle",
+      "icon": "👨‍🦰",
+      "example": "My uncle has a big car."
+    },
+    {
+      "word": "cousin",
+      "icon": "🧒",
+      "example": "My cousin is my best friend."
+    },
+    {
+      "word": "parents",
+      "icon": "👫",
+      "example": "My parents work together."
+    },
+    {
+      "word": "son",
+      "icon": "🧑‍🦱",
+      "example": "He is their son."
+    },
+    {
+      "word": "daughter",
+      "icon": "👩‍🦱",
+      "example": "She is their daughter."
+    },
+    {
+      "word": "home",
+      "icon": "🏠",
+      "example": "We are all at home."
+    },
+    {
+      "word": "love",
+      "icon": "❤️",
+      "example": "I love you."
+    },
+    {
+      "word": "pet",
+      "icon": "🐾",
+      "example": "Our pet sleeps on my bed."
+    },
+    {
+      "word": "together",
+      "icon": "🤗",
+      "example": "We eat dinner together."
+    },
+    {
+      "word": "birthday",
+      "icon": "🎈",
+      "example": "Today is my birthday."
+    },
+    {
+      "word": "photo",
+      "icon": "📷",
+      "example": "This is a photo of my family."
+    }
   ],
-
   "phrases": [
-    { "text": "This is my sister.", "use": "Introducing someone in your family." },
-    { "text": "Who is that?", "use": "Asking about a person in a photo." },
-    { "text": "I have two brothers.", "use": "Saying how many people are in your family." },
-    { "text": "She is my mother.", "use": "Answering who someone is." },
-    { "text": "We live together.", "use": "Saying who is in your house." },
-    { "text": "Happy birthday!", "use": "On someone's birthday." }
+    {
+      "text": "This is my sister.",
+      "use": "Introducing someone in your family."
+    },
+    {
+      "text": "Who is that?",
+      "use": "Asking about a person in a photo."
+    },
+    {
+      "text": "I have two brothers.",
+      "use": "Saying how many people are in your family."
+    },
+    {
+      "text": "She is my mother.",
+      "use": "Answering who someone is."
+    },
+    {
+      "text": "We live together.",
+      "use": "Saying who is in your house."
+    },
+    {
+      "text": "Happy birthday!",
+      "use": "On someone's birthday."
+    }
   ],
-
   "dialogue": {
     "title": "Looking at a photo",
     "lines": [
-      { "who": "A", "text": "Is this a photo of your family?" },
-      { "who": "B", "text": "Yes! This is my mother and this is my father." },
-      { "who": "A", "text": "Who is that, next to the baby?" },
-      { "who": "B", "text": "That is my sister. The baby is my cousin." },
-      { "who": "A", "text": "You have a big family!" },
-      { "who": "B", "text": "We are all together on my birthday." }
+      {
+        "who": "A",
+        "text": "Is this a photo of your family?"
+      },
+      {
+        "who": "B",
+        "text": "Yes! This is my mother and this is my father."
+      },
+      {
+        "who": "A",
+        "text": "Who is that, next to the baby?"
+      },
+      {
+        "who": "B",
+        "text": "That is my sister. The baby is my cousin."
+      },
+      {
+        "who": "A",
+        "text": "You have a big family!"
+      },
+      {
+        "who": "B",
+        "text": "We are all together on my birthday."
+      }
     ],
     "questions": [
-      { "q": "Who is next to the baby?", "options": ["B's sister", "B's mother", "B's uncle"], "answer": 0 },
-      { "q": "Who is the baby?", "options": ["B's cousin", "B's brother", "B's daughter"], "answer": 0 }
+      {
+        "q": "Who is next to the baby?",
+        "options": [
+          "B's sister",
+          "B's mother",
+          "B's uncle"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Who is the baby?",
+        "options": [
+          "B's cousin",
+          "B's brother",
+          "B's daughter"
+        ],
+        "answer": 0
+      }
     ]
   },
-
   "speaking": [
-    { "text": "This is my family.", "tip": "Family has three beats: FA-mi-ly." },
-    { "text": "brother", "tip": "The th here is soft and buzzy, not a t." },
-    { "text": "I have two sisters.", "tip": "Don't forget the s on sisters." },
-    { "text": "Who is that?", "tip": "Who is often joins into who's." },
-    { "text": "Happy birthday!", "tip": "The strong beat is on BIRTH." }
+    {
+      "text": "This is my family.",
+      "tip": "Family has three beats: FA-mi-ly."
+    },
+    {
+      "text": "brother",
+      "tip": "The th here is soft and buzzy, not a t."
+    },
+    {
+      "text": "I have two sisters.",
+      "tip": "Don't forget the s on sisters."
+    },
+    {
+      "text": "Who is that?",
+      "tip": "Who is often joins into who's."
+    },
+    {
+      "text": "Happy birthday!",
+      "tip": "The strong beat is on BIRTH."
+    }
   ],
-
   "writing": [
-    { "type": "spell", "answer": "mother" },
-    { "type": "spell", "answer": "baby" },
-    { "type": "spell", "answer": "home" },
-    { "type": "cloze", "sentence": "This ___ my sister.", "answer": "is" },
-    { "type": "cloze", "sentence": "I have two ___.", "answer": "brothers" },
-    { "type": "cloze", "sentence": "My ___ tells good stories.", "answer": "grandmother" },
-    { "type": "answer", "question": "Who is in your family?", "accept": ["my mother", "my father", "my sister", "my brother", "I have", "there are"] },
-    { "type": "answer", "question": "How many brothers and sisters do you have?", "accept": ["I have", "one", "two", "three", "none", "no brothers", "no sisters"] }
+    {
+      "type": "spell",
+      "answer": "mother"
+    },
+    {
+      "type": "spell",
+      "answer": "baby"
+    },
+    {
+      "type": "spell",
+      "answer": "home"
+    },
+    {
+      "type": "cloze",
+      "sentence": "This ___ my sister.",
+      "answer": "is"
+    },
+    {
+      "type": "cloze",
+      "sentence": "I have two ___.",
+      "answer": "brothers"
+    },
+    {
+      "type": "cloze",
+      "sentence": "My ___ tells good stories.",
+      "answer": "grandmother"
+    },
+    {
+      "type": "answer",
+      "question": "Who is in your family?",
+      "accept": [
+        "my mother",
+        "my father",
+        "my sister",
+        "my brother",
+        "I have",
+        "there are"
+      ]
+    },
+    {
+      "type": "answer",
+      "question": "How many brothers and sisters do you have?",
+      "accept": [
+        "I have",
+        "one",
+        "two",
+        "three",
+        "none",
+        "no brothers",
+        "no sisters"
+      ]
+    }
   ],
-
   "quiz": [
-    { "q": "Your mother's mother is your ___.", "options": ["grandmother", "aunt", "sister"], "answer": 0 },
-    { "q": "Your father's brother is your ___.", "options": ["uncle", "cousin", "son"], "answer": 0 },
-    { "q": "\"Who is that?\" — \"___\"", "options": ["That is my cousin.", "That is a photo.", "I am nine."], "answer": 0 },
-    { "q": "Which word means mother and father together?", "options": ["parents", "family", "pet"], "answer": 0 },
-    { "q": "Your aunt's child is your ___.", "options": ["cousin", "brother", "grandfather"], "answer": 0 },
-    { "q": "It is your friend's birthday. What do you say?", "options": ["Happy birthday!", "Good night!", "Nice to meet you."], "answer": 0 }
+    {
+      "q": "Your mother's mother is your ___.",
+      "options": [
+        "grandmother",
+        "aunt",
+        "sister"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Your father's brother is your ___.",
+      "options": [
+        "uncle",
+        "cousin",
+        "son"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "\"Who is that?\" — \"___\"",
+      "options": [
+        "That is my cousin.",
+        "That is a photo.",
+        "I am nine."
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Which word means mother and father together?",
+      "options": [
+        "parents",
+        "family",
+        "pet"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Your aunt's child is your ___.",
+      "options": [
+        "cousin",
+        "brother",
+        "grandfather"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "It is your friend's birthday. What do you say?",
+      "options": [
+        "Happy birthday!",
+        "Good night!",
+        "Nice to meet you."
+      ],
+      "answer": 0
+    }
   ],
-
   "reviewed": true
 }

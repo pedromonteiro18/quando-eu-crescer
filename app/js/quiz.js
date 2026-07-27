@@ -9,6 +9,7 @@ import { ask, scramble } from "./skills/ask.js";
 import * as C from "./content.js";
 import * as P from "./progress.js";
 import { node, rule, sample, setSkill, Mission } from "./ui.js";
+import { t } from "./i18n.js";
 
 export function pictureItems(cat, vocab, n) {
   return sample(vocab.filter(v => v.icon), n).map(v => {
@@ -46,14 +47,14 @@ export async function run(ctx) {
     const it = items[i];
 
     host.innerHTML = "";
-    host.appendChild(rule("Quiz", i + 1 + " / " + items.length));
+    host.appendChild(rule(t("skill.quiz"), i + 1 + " / " + items.length));
     const card = node("div");
     host.appendChild(card);
 
     const res = await ask({
       host: card, band, skill: "gold", token,
-      playLabel: it.layout === "pics" ? "Listen" : undefined,
-      question: it.question || (it.layout === "pics" ? "Which one is it?" : undefined),
+      playLabel: it.layout === "pics" ? t("ask.listen") : undefined,
+      question: it.question || (it.layout === "pics" ? t("ask.whichOne") : undefined),
       audio: it.audio,
       options: it.options, answer: it.answer, layout: it.layout
     });

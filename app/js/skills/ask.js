@@ -18,9 +18,13 @@
 
 import { node, button, esc, sleep, shuffle, LETTERS, FX, SKILL_COLORS, REDUCED, Mission } from "../ui.js";
 import * as A from "../audio.js";
+import { t } from "../i18n.js";
 import { clara } from "../clara.js";
 
-const PRAISE = ["Good job!", "Well done!", "That's right!", "Perfect!", "Nice work!"];
+/* Five of them so praise does not become wallpaper. Each is written twice over
+   — once as the line on screen, once as the clip Clara speaks — and the two
+   must stay identical or the recording stops resolving. */
+const PRAISE = [1, 2, 3, 4, 5];
 
 /**
  * @param {object} o
@@ -55,7 +59,7 @@ export function ask(o) {
     if (o.playLabel !== undefined) {
       const play = button("play", '<span class="play__icon" aria-hidden="true">🔊</span>' +
         (silent ? "" : '<span class="play__label">' + esc(o.playLabel || "Listen") + "</span>"),
-        () => speakPrompt(), { "aria-label": "Play the sound again" });
+        () => speakPrompt(), { "aria-label": t("ask.replay") });
       wrap.appendChild(play);
       if (silent && attempts === 0) play.appendChild(node("span", "hand", "👆"));
       var playBtn = play;
@@ -79,7 +83,7 @@ export function ask(o) {
           : '<span class="opt__key" aria-hidden="true">' + LETTERS[i] + "</span>" +
             "<span>" + esc(opt.label) + "</span>",
         () => choose(i),
-        { "aria-label": opt.label || opt.word || "option " + (i + 1) }
+        { "aria-label": opt.label || opt.word || t("ask.option", { n: i + 1 }) }
       );
       grid.appendChild(b);
       return b;
@@ -112,9 +116,9 @@ export function ask(o) {
         b.classList.add("is-right");
         FX.sparkle(b, [SKILL_COLORS[skill] || SKILL_COLORS.gold, SKILL_COLORS.gold, "#FFFFFF"]);
         say(claraBox, "pleased");
-        const praise = PRAISE[Math.floor(Math.random() * PRAISE.length)];
-        if (!silent) show(feedback, "pleased", praise, o.after);
-        A.seq([praise]);
+        const n = PRAISE[Math.floor(Math.random() * PRAISE.length)];
+        if (!silent) show(feedback, "pleased", t("praise." + n), o.after);
+        A.seq([t("audio.praise." + n)]);
         await sleep(REDUCED ? 380 : attempts === 0 ? 900 : 1500);
         if (!Mission.ok(token)) return resolve({ first: false, attempts, abandoned: true });
         resolve({ first: attempts === 0, attempts });
@@ -125,8 +129,8 @@ export function ask(o) {
       b.classList.add("is-wrong");
       b.disabled = true;
       say(claraBox, "encouraging");
-      if (!silent) show(feedback, "encouraging", "Almost. Try again.");
-      A.say(hintAfter && attempts >= hintAfter ? "Not quite. Here it is." : "Almost. Try again.");
+      if (!silent) show(feedback, "encouraging", t("ask.almost"));
+      A.say(t(hintAfter && attempts >= hintAfter ? "audio.notQuite" : "audio.almost"));
       if (hintAfter && attempts >= hintAfter) btns[answer].classList.add("is-show");
       if (o.audio) setTimeout(speakPrompt, 700);
     }

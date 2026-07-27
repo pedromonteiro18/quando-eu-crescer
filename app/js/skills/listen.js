@@ -8,6 +8,7 @@ import { ask, scramble } from "./ask.js";
 import * as C from "../content.js";
 import * as P from "../progress.js";
 import { node, rule, setSkill, sample, Mission } from "../ui.js";
+import { t } from "../i18n.js";
 
 export const skill = "listen";
 
@@ -58,14 +59,14 @@ export async function run(ctx) {
     const it = items[i];
 
     host.innerHTML = "";
-    host.appendChild(rule("Listening", i + 1 + " / " + items.length));
+    host.appendChild(rule(t("skill.listen"), i + 1 + " / " + items.length));
     const card = node("div");
     host.appendChild(card);
 
     const res = await ask({
       host: card, band, skill, token,
-      playLabel: it.layout === "pics" ? "Listen" : "Play the line",
-      question: it.layout === "pics" ? "Which one is it?" : "Which one did you hear?",
+      playLabel: t(it.layout === "pics" ? "ask.listen" : "ask.playLine"),
+      question: t(it.layout === "pics" ? "ask.whichOne" : "ask.whichHeard"),
       audio: it.audio,
       options: it.options,
       answer: it.answer,

@@ -64,8 +64,21 @@
   </div>
 </div>
 
-<!-- Teacher area. Holds the review gate: an unreviewed category is invisible to
-     a learner and shows up flagged here, which is where a reviewer wants it. -->
+<!-- Settings, on a tap of the ⚙. Language lives here rather than behind the
+     three second hold, because a toggle nobody can find is not a toggle. -->
+<div class="sheet" id="settings" hidden role="dialog" aria-modal="true" aria-labelledby="settings-h">
+  <div class="sheet__box">
+    <div class="sheet__head">
+      <h2 id="settings-h">Settings</h2>
+      <button class="btn btn--quiet" id="settings-close" type="button">Close</button>
+    </div>
+    <div class="sheet__body" id="settings-body"></div>
+  </div>
+</div>
+
+<!-- Teacher area, on a three second hold. Holds the review gate: an unreviewed
+     category is invisible to a learner and shows up flagged here, which is
+     where a reviewer wants it. Also reachable directly at ?teacher=1. -->
 <div class="sheet" id="teacher" hidden role="dialog" aria-modal="true" aria-labelledby="teacher-h">
   <div class="sheet__box">
     <div class="sheet__head">

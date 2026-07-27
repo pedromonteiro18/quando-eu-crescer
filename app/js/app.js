@@ -1,13 +1,17 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    ENGLISH WITH CLARA — router, session, and the lesson itself.
 
-   A lesson is one category run through all four skills and a quiz. The order is
+   A lesson is one topic run through all four skills and a quiz. The order is
    input before output: meet the words, listen, read, speak, write, check. That
    is not the order the skills are usually listed in, and it is the order they
    are usually taught in.
 
    Every band runs the same lesson. What changes is how each activity is
    surfaced — one engine, four surfaces, not four apps.
+
+   Every string a learner reads goes through t(). Everything a learner is
+   TAUGHT comes from the content files and never does. That line is the whole
+   design: the chrome is theirs, the lesson is English.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 import * as C from "./content.js";
@@ -23,60 +27,82 @@ import * as Read from "./skills/read.js";
 import * as Speak from "./skills/speak.js";
 import * as Write from "./skills/write.js";
 import { clara, paint } from "./clara.js";
+import { t, lang, setLang, onChange, apply, LANGS, plural, uiClips } from "./i18n.js";
+import { diagLines } from "./teacher.js";
 import {
   $, on, node, button, rule, esc, stage, sleep, guard, Mission, setSkill, setBand,
   FX, SKILL_COLORS, REDUCED
 } from "./ui.js";
 
+/* Labels are read at render time, never cached at module load — the language
+   can change under them. */
 const ORDER = [
-  { key: "listen", label: "Listening", mod: Listen },
-  { key: "read",   label: "Reading",   mod: Read },
-  { key: "speak",  label: "Speaking",  mod: Speak },
-  { key: "write",  label: "Writing",   mod: Write }
+  { key: "listen", mod: Listen },
+  { key: "read",   mod: Read },
+  { key: "speak",  mod: Speak },
+  { key: "write",  mod: Write }
 ];
 
 let booted = null;
+let redraw = null;          // how to repaint the current screen after a change
 
 /* ═══ boot ════════════════════════════════════════════════════════════════ */
 
 (async function start() {
+  apply();
   paint($("bar-clara"), "neutral", { blink: false });
   wireChrome();
   try {
     booted = await C.boot();
   } catch (e) {
     stage().appendChild(node("div", "card",
-      "<h2>Content did not load.</h2><p>Open this over http, not as a file — " +
-      "ES modules and JSON both need it. Try <code>python3 -m http.server --directory app</code>.</p>"));
+      "<h2>" + esc(t("boot.failed")) + "</h2><p>" + esc(t("boot.help")) +
+      " <code>python3 -m http.server --directory app</code></p>"));
     return;
   }
   setBand(P.band() || "11-14");
-  splash();
+
+  /* A link that lands on the review queue, so what you send a reviewer is a
+     URL rather than a URL plus instructions for a hidden gesture. */
+  if (/[?&]teacher=1/.test(location.search)) { home(); return Teacher.open(); }
+
+  P.lang() ? splash() : askLanguage();
 })();
 
 /* ═══ chrome ══════════════════════════════════════════════════════════════ */
 
 function wireChrome() {
   Teacher.init(() => { setBand(P.band() || "11-14"); home(); });
+  onChange(() => { apply(); paintStreak(); if (redraw) redraw(); });
 
   on($("brand"), "click", guard(() => { Mission.bump(); A.stop(); home(); }));
 
   wireSound();
+  wireSettings();
 
-  /* Press and hold, with a ring that fills. A child taps; a teacher holds. */
+  /* Tap opens Settings; a three second hold opens Teacher. A language toggle
+     behind a deliberately hidden gesture would not be findable, which is the
+     whole reason the tap now does something. */
   const gear = $("gear");
-  let timer = null;
+  let timer = null, held = false;
   const startHold = e => {
     if (e.type === "mousedown" && e.button !== 0) return;
+    held = false;
     gear.classList.add("is-holding");
-    timer = setTimeout(() => { gear.classList.remove("is-holding"); Teacher.open(); }, 3000);
+    timer = setTimeout(() => {
+      held = true;                                  // and suppress the tap on release
+      gear.classList.remove("is-holding");
+      Teacher.open();
+    }, 3000);
   };
   const endHold = () => { clearTimeout(timer); gear.classList.remove("is-holding"); };
   on(gear, "pointerdown", startHold);
   on(gear, "pointerup", endHold);
-  on(gear, "pointerleave", endHold);
+  on(gear, "pointerleave", () => { endHold(); held = false; });
   on(gear, "pointercancel", endHold);
+  on(gear, "click", () => { if (held) { held = false; return; } openSettings(); });
   on(gear, "contextmenu", e => e.preventDefault());
+  gear.setAttribute("aria-label", t("app.gearLabel"));
 }
 
 /* ═══ the sound alarm ═════════════════════════════════════════════════════ */
@@ -93,10 +119,8 @@ function wireSound() {
   on($("alarm-btn"), "click", () => openSound());
 
   A.onSilence(report => {
-    $("alarm-text").textContent = report.state === "running"
-      ? "Clara is playing, but no sound is coming out."
-      : "Clara has gone quiet on this device.";
-    $("alarm-btn").textContent = "What to check";
+    $("alarm-text").textContent = t(report.state === "running" ? "alarm.noOutput" : "alarm.silent");
+    $("alarm-btn").textContent = t("alarm.action");
     $("alarm").hidden = false;
   });
 }
@@ -106,63 +130,126 @@ function closeSound() { $("sound").hidden = true; }
 function openSound() {
   const body = $("sound-body");
   body.innerHTML = "";
+  $("sound-h").textContent = t("sound.title");
+  $("sound-close").textContent = t("app.close");
   $("sound").hidden = false;
 
-  body.appendChild(node("div", "note",
-    "Everything below is on the device, not in the app. The app has already checked " +
-    "its own side — you can run that check again at the bottom."));
+  body.appendChild(node("div", "note", esc(t("sound.intro"))));
 
   const list = node("ol", "check");
-  const item = (n, title, text) => {
-    const li = node("li", null, "<b>" + esc(title) + "</b>" + esc(text));
+  /* Ordered by how often each one is the answer, not by how clever it is. */
+  for (const n of [1, 2, 3, 4, 5]) {
+    const li = node("li", null,
+      "<b>" + esc(t("sound." + n + ".t")) + "</b>" + esc(t("sound." + n + ".b")));
     li.setAttribute("data-n", n);
     list.appendChild(li);
-  };
-  /* Ordered by how often each one is the answer, not by how clever it is. */
-  item(1, "iPhone: the switch above the volume buttons.",
-    "If it shows orange the phone is on silent, and web pages make no sound at all — " +
-    "no warning, no error, nothing. Flip it back towards the screen.");
-  item(2, "Turn the volume up while this page is open.",
-    "The volume keys control whatever is playing at the time. Press them while you are " +
-    "looking at this app, not on the home screen.");
-  item(3, "Bluetooth.",
-    "Sound may be going to headphones, a car or a speaker in another room. Turn Bluetooth " +
-    "off and try again.");
-  item(4, "A muted tab, on a computer.",
-    "Right-click the tab. If it says Unmute site, that is the whole problem.");
-  item(5, "Focus, Do Not Disturb, or a low-power mode.",
-    "Any of these can hold audio back. Turn them off and reload the page.");
+  }
   body.appendChild(list);
 
   body.appendChild(node("hr", "hair"));
-  body.appendChild(node("h3", null, "Test it again"));
-  body.appendChild(node("div", "note",
-    "Plays a line and reports what really happened, including whether the audio clock " +
-    "advanced. Note that a page reporting no errors can still be completely silent — " +
-    "that is exactly what the switch in step 1 does."));
+  body.appendChild(node("h3", null, esc(t("sound.retest"))));
+  body.appendChild(node("div", "note", esc(t("sound.retestNote"))));
 
   const out = node("ul", "diag");
   const row = node("div", "row");
-  row.appendChild(button("btn", "Play the test line", async () => {
-    out.innerHTML = "<li><b>…</b><span>testing</span></li>";
-    await A.load("ui");
-    const r = await A.probe();
-    const line = (ok, text) => "<li><b>" + (ok ? "✅" : "❌") + "</b><span>" + esc(text) + "</span></li>";
-    out.innerHTML =
-      line(r.webAudio, "Web Audio " + (r.webAudio ? "available" : "missing")) +
-      line(r.decoded, r.decoded ? "recording decoded (" + r.seconds + "s)" : "no recording decoded") +
-      line(r.state === "running", "audio context: " + r.state) +
-      line(r.clockAdvanced > 0, "clock advanced " + r.clockAdvanced + "s — this is the proof of output") +
-      (r.error ? line(false, r.error) : "");
+  row.appendChild(button("btn", t("sound.play"), async () => {
+    out.innerHTML = "<li><b>…</b><span>" + esc(t("sound.testing")) + "</span></li>";
+    await A.load(uiClips());
+    const r = await A.probe(t("audio.test"));
+    out.innerHTML = diagLines(r);
     if (r.audible === true) {
       $("alarm").hidden = true;
-      out.innerHTML += "<li><b>ℹ️</b><span>The app's own side is working. If you still hear " +
-        "nothing, it is one of the five above.</span></li>";
+      out.innerHTML += "<li><b>ℹ️</b><span>" + esc(t("sound.ok")) + "</span></li>";
     }
   }));
   body.appendChild(row);
   body.appendChild(out);
 }
+
+/* ═══ settings ════════════════════════════════════════════════════════════ */
+
+function wireSettings() {
+  on($("settings-close"), "click", closeSettings);
+  on($("settings"), "click", e => { if (e.target === $("settings")) closeSettings(); });
+  on(document, "keydown", e => { if (e.key === "Escape" && !$("settings").hidden) closeSettings(); });
+}
+
+function closeSettings() { $("settings").hidden = true; }
+
+function openSettings() {
+  const body = $("settings-body");
+  body.innerHTML = "";
+  $("settings-h").textContent = t("set.title");
+  $("settings-close").textContent = t("app.close");
+  $("settings").hidden = false;
+
+  /* Language first. It is the one setting that has to be usable by someone who
+     cannot read the rest of the sheet, which is why it is flags. */
+  body.appendChild(node("h3", null, esc(t("set.language"))));
+  const langRow = node("div", "row");
+  for (const l of LANGS) {
+    const b = button("btn btn--quiet", l.flag + " " + esc(l.label),
+      () => { setLang(l.id); openSettings(); });
+    if (lang() === l.id) { b.style.borderColor = "var(--ink)"; b.style.color = "var(--ink)"; }
+    langRow.appendChild(b);
+  }
+  body.appendChild(langRow);
+  body.appendChild(node("div", "note", esc(t("set.languageNote"))));
+
+  body.appendChild(node("hr", "hair"));
+  body.appendChild(node("h3", null, esc(t("set.band"))));
+  const bandRow = node("div", "row");
+  for (const bb of C.bands()) {
+    const b = button("btn btn--quiet", esc(C.bandAges(bb)) + " · " + esc(C.bandLabel(bb)), () => {
+      P.setBand(bb.id);
+      setBand(bb.id);
+      openSettings();
+      if (redraw) redraw();
+    });
+    if (P.band() === bb.id) { b.style.borderColor = "var(--ink)"; b.style.color = "var(--ink)"; }
+    bandRow.appendChild(b);
+  }
+  body.appendChild(bandRow);
+  body.appendChild(node("div", "note", esc(t("set.bandNote"))));
+
+  body.appendChild(node("hr", "hair"));
+  body.appendChild(node("h3", null, esc(t("set.level"))));
+  const lvlRow = node("div", "row");
+  for (let i = 0; i < C.levelCount(); i++) {
+    const b = button("btn btn--quiet", esc(C.levelName(i)), () => {
+      P.setLevel(i);
+      openSettings();
+      if (redraw) redraw();
+    });
+    if (P.level() === i) { b.style.borderColor = "var(--ink)"; b.style.color = "var(--ink)"; }
+    lvlRow.appendChild(b);
+  }
+  body.appendChild(lvlRow);
+  body.appendChild(node("div", "note", esc(t("set.levelNote"))));
+
+  const again = node("div", "row");
+  again.appendChild(button("btn btn--quiet", t("set.redoPlacement"), () => {
+    closeSettings();
+    P.unplace();
+    placement();
+  }));
+  body.appendChild(again);
+
+  body.appendChild(node("hr", "hair"));
+  body.appendChild(node("h3", null, esc(t("set.sound"))));
+  const snd = node("div", "row");
+  snd.appendChild(button("btn btn--quiet", t("set.soundGo"), () => { closeSettings(); openSound(); }));
+  body.appendChild(snd);
+
+  body.appendChild(node("hr", "hair"));
+  body.appendChild(node("h3", null, esc(t("set.teacherGo"))));
+  body.appendChild(node("div", "note", esc(t("set.teacherNote"))));
+  const tea = node("div", "row");
+  tea.appendChild(button("btn btn--quiet", t("set.teacherGo"), () => { closeSettings(); Teacher.open(); }));
+  body.appendChild(tea);
+}
+
+/* ═══ streak ══════════════════════════════════════════════════════════════ */
 
 function paintStreak() {
   const el = $("streak");
@@ -171,29 +258,50 @@ function paintStreak() {
   el.hidden = false;
   el.className = "streak" + (P.practisedToday() ? " streak--today" : "");
   el.innerHTML = '<span aria-hidden="true">' + (P.practisedToday() ? "✓" : "○") + "</span>" +
-                 s.count + (s.count === 1 ? " day" : " days");
-  el.title = P.practisedToday() ? "Practised today" : "Not practised today";
+                 esc(plural(s.count, "streak.day", "streak.days"));
+  el.title = t(P.practisedToday() ? "streak.today" : "streak.notToday");
+}
+
+/* ═══ the language question ═══════════════════════════════════════════════ */
+
+/* The one screen that must be readable by someone who has chosen nothing yet.
+   So it is flags and two words, and it says nothing else. */
+function askLanguage() {
+  setSkill("gold");
+  redraw = null;
+  const wrap = stage();
+  wrap.appendChild(node("div", "hero__clara", clara("neutral")));
+  wrap.appendChild(node("h1", null, "English with Clara"));
+  wrap.appendChild(node("hr", "hair"));
+
+  const grid = node("div", "ages");
+  for (const l of LANGS) {
+    grid.appendChild(button("age",
+      '<span class="age__icon" aria-hidden="true">' + l.flag + "</span>" +
+      '<span class="age__label">' + esc(l.label) + "</span>",
+      () => { setLang(l.id); splash(); }));
+  }
+  wrap.appendChild(grid);
 }
 
 /* ═══ splash ══════════════════════════════════════════════════════════════ */
 
 function splash() {
   setSkill("gold");
+  redraw = splash;
   const wrap = stage();
   wrap.appendChild(node("div", "hero__clara", clara("pleased")));
-  wrap.appendChild(node("div", "hero__eyebrow", "Listening · Speaking · Reading · Writing"));
+  wrap.appendChild(node("div", "hero__eyebrow", esc(t("splash.eyebrow"))));
   wrap.appendChild(node("h1", null, "English with Clara"));
-  wrap.appendChild(node("p", null,
-    "Every lesson uses all four skills. No translation anywhere — not in the lessons, " +
-    "not in the buttons. Everything stays on this device."));
+  wrap.appendChild(node("p", null, esc(t("splash.blurb"))));
   wrap.appendChild(node("hr", "hair"));
 
   const row = node("div", "row");
   /* The very first sound has to be started from inside this tap, with nothing
      async in between, or iOS mutes the whole session. */
-  row.appendChild(button("btn", "Begin →", () => {
+  row.appendChild(button("btn", t("splash.begin"), () => {
     A.unlock();
-    A.load("ui").then(() => A.say("Let's begin."));
+    A.load(uiClips()).then(() => A.say(t("audio.begin")));
     P.placed() ? home() : placement();
   }));
   wrap.appendChild(row);
@@ -203,16 +311,16 @@ function splash() {
      so there has to be a way in that does not depend on the app noticing. */
   const help = node("div", "row");
   help.style.marginTop = "10px";
-  help.appendChild(button("btn btn--quiet", "🔇 No sound?", () => openSound()));
+  help.appendChild(button("btn btn--quiet", t("splash.noSound"), () => openSound()));
   wrap.appendChild(help);
 
-  wrap.appendChild(node("div", "note",
-    "Hold the ⚙ for three seconds for the teacher area and progress."));
+  wrap.appendChild(node("div", "note", esc(t("splash.teacher"))));
 }
 
 /* ═══ placement ═══════════════════════════════════════════════════════════ */
 
 async function placement() {
+  redraw = null;
   const r = await Placement.run();
   P.place(r.band, r.level);
   setBand(r.band);
@@ -225,37 +333,34 @@ function home() {
   Mission.bump();
   A.stop();
   setSkill("gold");
+  redraw = home;
   setBand(P.band() || "11-14");
   paintStreak();
 
   const band = C.band(P.band());
-  const cats = C.offered(band.id, P.level());
+  const topics = C.offeredTopics(band.id, P.level());
   const wrap = stage();
 
   const hero = node("div", "hero");
   hero.appendChild(node("div", "hero__clara", clara(P.practisedToday() ? "pleased" : "neutral")));
-  hero.appendChild(node("div", "hero__eyebrow", band.label + " · " + band.ages + " · " + C.cefrName(P.level())));
-  hero.appendChild(node("h1", null, P.lessonsDone() ? greeting() : "Pick something to learn."));
-  hero.appendChild(node("p", null, P.practisedToday()
-    ? "You have practised today. Anything more is a bonus."
-    : "One category is one lesson: listening, reading, speaking, writing, then a quiz."));
+  hero.appendChild(node("div", "hero__eyebrow",
+    esc(C.bandLabel(band)) + " · " + esc(C.bandAges(band)) + " · " + esc(C.levelName(P.level()))));
+  hero.appendChild(node("h1", null, P.lessonsDone() ? greeting() : t("home.pick")));
+  hero.appendChild(node("p", null, esc(t(P.practisedToday() ? "home.doneToday" : "home.whatIsALesson"))));
   wrap.appendChild(hero);
 
   /* A test that is due goes above everything else — it is the only thing in the
      app that unlocks something, and burying it under the picker hides that. */
   const test = Assess.due(band);
   if (test) {
+    const final = test.kind === "final";
     const box = node("div", "card");
     box.style.borderLeft = "5px solid " + SKILL_COLORS.gold;
     box.innerHTML =
-      "<h3>" + (test.kind === "final" ? "Ready for the next level?" : "A quick check.") + "</h3>" +
+      "<h3>" + esc(t(final ? "due.final.t" : "due.unit.t")) + "</h3>" +
       "<p style='color:var(--ink-soft);margin:6px 0 14px'>" +
-      (test.kind === "final"
-        ? "You have finished every category in " + esc(band.label) +
-          ". Pass the assessment and the next band opens."
-        : "A short mixed test across the categories you have done. Nothing is marked.") + "</p>";
-    box.appendChild(button("btn", (test.kind === "final" ? "Take the assessment" : "Start the check") + " →",
-      guard(() => runTest(test))));
+      esc(final ? t("due.final.b", { band: C.bandLabel(band) }) : t("due.unit.b")) + "</p>";
+    box.appendChild(button("btn", t(final ? "due.final.go" : "due.unit.go"), guard(() => runTest(test))));
     wrap.appendChild(box);
     wrap.appendChild(node("div", null, "<div style='height:18px'></div>"));
   }
@@ -265,62 +370,127 @@ function home() {
     const box = node("div", "card");
     box.style.borderLeft = "5px solid " + (SKILL_COLORS[weak] || SKILL_COLORS.gold);
     box.innerHTML =
-      "<h3>" + (weak ? "Your " + weak.replace("listen", "listening").replace("read", "reading")
-                            .replace("write", "writing").replace("speak", "speaking") + " is behind."
-                     : "Go back over what you missed.") + "</h3>" +
+      "<h3>" + esc(weak ? t("rev.card.weak", { skill: t("skill." + weak + ".low") }) : t("rev.card.t")) + "</h3>" +
       "<p style='color:var(--ink-soft);margin:6px 0 14px'>" +
-      P.mistakes().length + " logged, plus the words you have met but not settled.</p>";
-    box.appendChild(button("btn btn--quiet", "Revise →", guard(runRevision)));
+      esc(t("rev.card.b", { n: P.mistakes().length })) + "</p>";
+    box.appendChild(button("btn btn--quiet", t("rev.card.go"), guard(runRevision)));
     wrap.appendChild(box);
     wrap.appendChild(node("div", null, "<div style='height:18px'></div>"));
   }
 
-  wrap.appendChild(rule("Categories", cats.length + " open"));
+  wrap.appendChild(rule(t("home.topics"), t("home.open", { n: topics.filter(x => x.ready).length })));
 
-  if (!cats.length) {
+  if (!topics.length) {
     wrap.appendChild(node("div", "card",
-      "<h3>Nothing to show yet.</h3><p>Every category is still waiting for review. " +
-      "Hold the ⚙ to see what is queued.</p>"));
+      "<h3>" + esc(t("home.empty.t")) + "</h3><p>" + esc(t("home.empty.b")) + "</p>"));
   }
 
   const grid = node("div", "cats");
-  for (const cat of cats) {
-    const prog = P.catProgress(cat.id);
-    const b = button("cat",
-      '<span class="cat__icon" aria-hidden="true">' + esc(cat.icon) + "</span>" +
-      '<span class="cat__body">' +
-        '<span class="cat__title">' + esc(cat.title) + "</span>" +
-        '<span class="cat__meta">' + esc(cat.cefr) + " · " + (cat.vocabulary || []).length + " words" +
-          (prog && prog.done ? " · done " + prog.done + "×" : "") + "</span>" +
-        (prog ? '<span class="cat__skills">' +
-          ["listen", "speak", "read", "write"].map(s =>
-            "<i><b style='width:" + Math.round((prog.skills[s] || 0) * 100) + "%'></b></i>").join("") +
-          "</span>" : "") +
-      "</span>" +
-      (prog && prog.done ? '<span class="cat__done" aria-hidden="true">🏅</span>' : ""),
-      guard(() => lesson(cat)),
-      { "aria-label": cat.title + ", " + cat.cefr });
-    grid.appendChild(b);
-  }
+  for (const topic of topics) grid.appendChild(topicCard(topic));
   wrap.appendChild(grid);
 
   wrap.appendChild(node("hr", "hair"));
   const foot = node("div", "row");
-  foot.appendChild(button("btn btn--quiet", "Progress", progress));
+  foot.appendChild(button("btn btn--quiet", t("home.progress"), progress));
+  wrap.appendChild(foot);
+}
+
+/**
+ * One card, for a topic or a sub-topic. Three states, each meaning one thing:
+ *   · ready      — has an approved content file, and opens;
+ *   · coming     — declared in topics.json with no file yet. Visible on purpose:
+ *                  a learner should be able to see the road ahead. Not tappable;
+ *   · invisible  — authored but `reviewed: false`. Never reaches this function
+ *                  at all, because an unapproved file does not exist for a
+ *                  learner, not even as a wrong answer.
+ */
+function topicCard(item) {
+  const gloss = lang() === "pt" && item.title_pt && item.title_pt !== item.title
+    ? '<span class="cat__gloss">' + esc(item.title_pt) + "</span>" : "";
+
+  if (!item.ready) {
+    const b = button("cat is-soon",
+      '<span class="cat__icon" aria-hidden="true">' + esc(item.icon) + "</span>" +
+      '<span class="cat__body">' +
+        '<span class="cat__title">' + esc(item.title) + "</span>" + gloss +
+        '<span class="cat__meta">' + esc(t("home.soon")) + "</span>" +
+      "</span>", null, { disabled: "", "aria-disabled": "true" });
+    b.disabled = true;
+    return b;
+  }
+
+  if (item.kind === "topic") {
+    return button("cat",
+      '<span class="cat__icon" aria-hidden="true">' + esc(item.icon) + "</span>" +
+      '<span class="cat__body">' +
+        '<span class="cat__title">' + esc(item.title) + "</span>" + gloss +
+        '<span class="cat__meta">' + esc(t("home.subOpen", { n: item.readyCount, m: item.total })) + "</span>" +
+      "</span>",
+      guard(() => subtopics(item)), { "aria-label": item.title });
+  }
+
+  const cat = item.cat;
+  const prog = P.catProgress(cat.id);
+  return button("cat",
+    '<span class="cat__icon" aria-hidden="true">' + esc(item.icon) + "</span>" +
+    '<span class="cat__body">' +
+      '<span class="cat__title">' + esc(item.title) + "</span>" + gloss +
+      '<span class="cat__meta">' + esc(C.levelName(C.levelIndex(cat.cefr))) + " · " +
+        esc(t("home.words", { n: (cat.vocabulary || []).length })) +
+        (prog && prog.done ? " · " + esc(t("home.doneTimes", { n: prog.done })) : "") + "</span>" +
+      (prog ? '<span class="cat__skills">' +
+        ["listen", "speak", "read", "write"].map(s =>
+          "<i><b style='width:" + Math.round((prog.skills[s] || 0) * 100) + "%'></b></i>").join("") +
+        "</span>" : "") +
+    "</span>" +
+    (prog && prog.done ? '<span class="cat__done" aria-hidden="true">🏅</span>' : ""),
+    guard(() => lesson(cat)),
+    { "aria-label": item.title });
+}
+
+/* ── the sub-topic picker ─────────────────────────────────────────────────── */
+
+function subtopics(topic) {
+  Mission.bump();
+  setSkill("gold");
+  redraw = () => subtopics(topic);
+  const wrap = stage();
+
+  const hero = node("div", "hero");
+  hero.appendChild(node("div", "hero__eyebrow", esc(t("home.topics"))));
+  hero.appendChild(node("h1", null, esc(topic.icon) + " " + esc(topic.title)));
+  if (lang() === "pt" && topic.title_pt) hero.appendChild(node("p", null, esc(topic.title_pt)));
+  wrap.appendChild(hero);
+
+  wrap.appendChild(rule(t("home.subtopics"),
+    t("home.subOpen", { n: topic.readyCount, m: topic.total })));
+
+  const grid = node("div", "cats");
+  for (const sub of topic.subtopics) grid.appendChild(topicCard(sub));
+  wrap.appendChild(grid);
+
+  wrap.appendChild(node("hr", "hair"));
+  const foot = node("div", "row");
+  foot.appendChild(button("btn btn--quiet", t("home.back"), guard(home)));
   wrap.appendChild(foot);
 }
 
 function greeting() {
   const h = new Date().getHours();
-  return h < 12 ? "Good morning." : h < 18 ? "Good afternoon." : "Good evening.";
+  return t(h < 12 ? "home.morning" : h < 18 ? "home.afternoon" : "home.evening");
 }
 
 /* ═══ the lesson ══════════════════════════════════════════════════════════ */
 
-/** Rotate the slice so replaying a category is not the same six words again. */
+/**
+ * Rotate the slice so replaying a topic is not the same six words again, and
+ * take only the tier the learner is on. Level is depth inside one file: a
+ * sub-topic carries all six tiers, and a lesson draws the matching slice.
+ */
 function vocabFor(cat, band) {
-  const all = cat.vocabulary || [];
+  const all = C.atLevel(cat.vocabulary || [], P.level());
   const n = Math.min(band.lesson.vocab, all.length);
+  if (!n) return [];
   const offset = (P.catDone(cat.id) * n) % Math.max(1, all.length);
   const out = [];
   for (let i = 0; i < n; i++) out.push(all[(offset + i) % all.length]);
@@ -329,10 +499,11 @@ function vocabFor(cat, band) {
 
 async function lesson(cat) {
   const token = Mission.bump();
+  redraw = null;
   const band = C.band(P.band());
   const vocab = vocabFor(cat, band);
 
-  await A.load(cat.id);
+  await Promise.all([A.load(cat.id), A.load(uiClips())]);
   A.warm(cat.id);                       // decode the rest quietly in the background
   if (!Mission.ok(token)) return;
 
@@ -356,7 +527,7 @@ async function lesson(cat) {
     results[step.key] = r;
   }
 
-  if (!(await segue({ key: "quiz", label: "Quiz" }, ORDER.length, cat, band, token))) return;
+  if (!(await segue({ key: "quiz" }, ORDER.length, cat, band, token))) return;
   const host = stage();
   host.appendChild(segments(ORDER.length));
   const slot = node("div");
@@ -389,24 +560,29 @@ function intro(cat, band, token) {
     const silent = band.instructions === "none";
 
     wrap.appendChild(node("div", "hero__clara", clara("pleased")));
-    wrap.appendChild(node("div", "hero__eyebrow", esc(cat.cefr)));
+    wrap.appendChild(node("div", "hero__eyebrow", esc(C.levelName(C.levelIndex(cat.cefr)))));
     wrap.appendChild(node("h1", null, esc(cat.icon) + " " + esc(cat.title)));
     if (!silent) {
-      wrap.appendChild(node("p", null, esc(cat.goal || "")));
-      if ((cat.grammar || []).length) {
+      /* The goal is written to the learner ABOUT English, so it is interface,
+         not content, and it is authored in both languages in the file. */
+      wrap.appendChild(node("p", null, esc(C.goal(cat, lang()))));
+      const grammar = C.atLevel(cat.grammar || [], P.level());
+      if (grammar.length) {
         wrap.appendChild(node("hr", "hair"));
-        wrap.appendChild(rule("In this lesson", ""));
-        for (const g of cat.grammar) {
+        wrap.appendChild(rule(t("lesson.inThis"), ""));
+        for (const g of grammar) {
+          /* The point is a note about English, the example IS English. */
           wrap.appendChild(node("div", "mistake",
-            "<b>" + esc(g.point) + "</b> <em>— " + esc(g.example) + "</em>"));
+            "<b>" + esc(lang() === "pt" && g.point_pt ? g.point_pt : g.point) + "</b> " +
+            "<em>— " + esc(g.example) + "</em>"));
         }
       }
     }
     wrap.appendChild(node("hr", "hair"));
     const row = node("div", "row row--end");
-    row.appendChild(button("btn", silent ? "→" : "Start the lesson →", () => res(Mission.ok(token))));
+    row.appendChild(button("btn", silent ? t("app.go") : t("lesson.start"), () => res(Mission.ok(token))));
     wrap.appendChild(row);
-    A.say("Let's begin.");
+    A.say(t("audio.begin"));
   });
 }
 
@@ -418,13 +594,11 @@ async function segue(step, index, cat, band, token) {
   const p = node("div", "prompt");
   p.appendChild(node("span", "prompt__clara", clara("neutral")));
   p.appendChild(node("div", "prompt__text",
-    "<h2>" + esc(step.label) + "</h2>" +
+    "<h2>" + esc(t("skill." + step.key)) + "</h2>" +
     (band.instructions === "none" ? "" : "<p>" + esc(hint(step.key, band)) + "</p>")));
   wrap.appendChild(p);
 
-  const line = { listen: "Now, let's listen.", read: "Now, let's read.",
-                 speak: "Now, let's speak.", write: "Now, let's write.", quiz: "Choose the answer." }[step.key];
-  if (band.instructions !== "written") A.say(line);
+  if (band.instructions !== "written") A.say(t("audio.now." + step.key));
 
   await sleep(REDUCED ? 500 : 1400);
   return Mission.ok(token);
@@ -433,11 +607,11 @@ async function segue(step, index, cat, band, token) {
 function hint(key, band) {
   const v = band.activities[key];
   return {
-    listen: v === "picture" ? "Hear a word, tap the picture." : "Hear a line, choose the one you heard.",
-    read: v === "match" ? "Match each word to its picture." : v === "dialogue" ? "Read the conversation, then answer." : "Read the text, then answer. It stays on screen.",
-    speak: "Hear Clara, then record yourself and compare. Nothing is scored and nothing is sent anywhere.",
-    write: v === "tiles" ? "Tap the letters in order." : v === "bank" ? "Type it, or tap a word from the bank." : "Type your answer.",
-    quiz: "Last page. It cannot be failed."
+    listen: t(v === "picture" ? "hint.listen.pic" : "hint.listen.text"),
+    read: t(v === "match" ? "hint.read.match" : v === "dialogue" ? "hint.read.dlg" : "hint.read.pass"),
+    speak: t("hint.speak"),
+    write: t(v === "tiles" ? "hint.write.tiles" : v === "bank" ? "hint.write.bank" : "hint.write.type"),
+    quiz: t("hint.quiz")
   }[key] || "";
 }
 
@@ -454,7 +628,7 @@ function meetWords(cat, band, vocab, token) {
       const v = vocab[i];
       P.seen(v.word);
       const wrap = stage();
-      wrap.appendChild(rule("New words", i + 1 + " / " + vocab.length));
+      wrap.appendChild(rule(t("lesson.newWords"), i + 1 + " / " + vocab.length));
 
       const card = node("div", "card word");
       card.appendChild(node("div", "word__icon", '<span aria-hidden="true">' + esc(v.icon || cat.icon) + "</span>"));
@@ -470,12 +644,14 @@ function meetWords(cat, band, vocab, token) {
 
       const row = node("div", "row row--between");
       row.style.marginTop = "18px";
-      row.appendChild(button("btn btn--quiet btn--round", "🔊", () => speak(v), { "aria-label": "Say it again" }));
-      const next = button("btn btn--skill", silent ? "→" : i === vocab.length - 1 ? "Ready →" : "Next →", () => {
-        if (i === vocab.length - 1) return res(Mission.ok(token));
-        i++;
-        draw();
-      });
+      row.appendChild(button("btn btn--quiet btn--round", "🔊", () => speak(v),
+        { "aria-label": t("lesson.again") }));
+      const next = button("btn btn--skill",
+        silent ? t("app.go") : i === vocab.length - 1 ? t("lesson.ready") : t("app.next"), () => {
+          if (i === vocab.length - 1) return res(Mission.ok(token));
+          i++;
+          draw();
+        });
       if (silent) next.appendChild(node("span", "hand", "👆"));
       row.appendChild(next);
       wrap.appendChild(row);
@@ -497,21 +673,24 @@ function finish(cat, band, vocab, results, token) {
   paintStreak();
 
   const won = [];
-  if (P.award("first-lesson")) won.push("First lesson");
-  if (P.award("four-skills")) won.push("All four skills");
-  if (results.quiz && results.quiz.clean && P.award("clean-quiz")) won.push("Perfect quiz");
-  if (s.count >= 3 && P.award("streak-3")) won.push("Three days");
-  if (s.count >= 7 && P.award("streak-7")) won.push("Seven days");
-  if (P.counts().known >= 50 && P.award("fifty-words")) won.push("Fifty words");
+  if (P.award("first-lesson")) won.push("first-lesson");
+  if (P.award("four-skills")) won.push("four-skills");
+  if (results.quiz && results.quiz.clean && P.award("clean-quiz")) won.push("clean-quiz");
+  if (s.count >= 3 && P.award("streak-3")) won.push("streak-3");
+  if (s.count >= 7 && P.award("streak-7")) won.push("streak-7");
+  if (P.counts().known >= 50 && P.award("fifty-words")) won.push("fifty-words");
 
   setSkill("gold");
+  redraw = null;
   const wrap = stage();
   const box = node("div", "result");
   box.appendChild(node("div", "result__clara", clara("pleased")));
-  box.appendChild(node("h1", null, "Lesson complete."));
-  const known = P.counts().known;
-  box.appendChild(node("p", null, esc(cat.title) + " · " + known + (known === 1 ? " word" : " words") + " known · " +
-    s.count + (s.count === 1 ? " day" : " days") + " in a row"));
+  box.appendChild(node("h1", null, esc(t("lesson.complete"))));
+  box.appendChild(node("p", null, esc(t("lesson.summary", {
+    topic: cat.title,
+    known: plural(P.counts().known, "home.word", "home.wordsOnly"),
+    days: plural(s.count, "streak.day", "streak.days")
+  }))));
 
   const grid = node("div", "result__grid");
   for (const k of ["listen", "read", "speak", "write", "quiz"]) {
@@ -520,7 +699,7 @@ function finish(cat, band, vocab, results, token) {
     const cell = node("div", "result__cell");
     cell.setAttribute("data-s", k);
     cell.innerHTML = "<b>" + (k === "speak" ? r.right + "×" : r.right + "/" + (r.right + r.wrong)) + "</b>" +
-      "<span>" + { listen: "Listening", read: "Reading", speak: "Speaking", write: "Writing", quiz: "Quiz" }[k] + "</span>";
+      "<span>" + esc(t("skill." + k)) + "</span>";
     grid.appendChild(cell);
   }
   box.appendChild(grid);
@@ -528,25 +707,26 @@ function finish(cat, band, vocab, results, token) {
   if (won.length) {
     const b = node("div", "badges");
     b.style.justifyContent = "center";
-    for (const w of won) b.appendChild(node("span", "badge is-won", "🏅 " + esc(w)));
+    for (const w of won) b.appendChild(node("span", "badge is-won", "🏅 " + esc(t("badge." + w + ".t"))));
     box.appendChild(b);
     box.appendChild(node("div", null, "<div style='height:20px'></div>"));
   }
 
   const row = node("div", "row");
   row.style.justifyContent = "center";
-  row.appendChild(button("btn", "Choose another →", guard(() => { FX.clear(); home(); })));
-  row.appendChild(button("btn btn--quiet", "Again", guard(() => { FX.clear(); return lesson(cat); })));
+  row.appendChild(button("btn", t("lesson.another"), guard(() => { FX.clear(); home(); })));
+  row.appendChild(button("btn btn--quiet", t("lesson.repeat"), guard(() => { FX.clear(); return lesson(cat); })));
   box.appendChild(row);
   wrap.appendChild(box);
 
   FX.rain([SKILL_COLORS.gold, SKILL_COLORS.listen, SKILL_COLORS.speak, SKILL_COLORS.read, SKILL_COLORS.write]);
-  A.seq(["Lesson complete!", { gap: 200 }, won.length ? "Here is your badge." : "Well done!"]);
+  A.seq([t("audio.complete"), { gap: 200 }, t(won.length ? "audio.badge" : "audio.wellDone")]);
 }
 
 /* ═══ tests ═══════════════════════════════════════════════════════════════ */
 
 async function runTest(what) {
+  redraw = null;
   const r = await Assess.run(what);
   if (!r || r.declined) return home();
   Assess.result(r, guard(() => { FX.clear(); home(); }), guard(id => {
@@ -562,6 +742,7 @@ async function runTest(what) {
 /* ═══ revision ════════════════════════════════════════════════════════════ */
 
 async function runRevision() {
+  redraw = null;
   const band = C.band(P.band());
   const r = await Revise.run(band);
   if (r.abandoned) return;
@@ -569,13 +750,13 @@ async function runRevision() {
   const wrap = stage();
   const box = node("div", "result");
   box.appendChild(node("div", "result__clara", clara(r.cleared === r.total ? "pleased" : "encouraging")));
-  box.appendChild(node("h1", null, r.total ? r.cleared + " of " + r.total + " cleared." : "Nothing to revise."));
-  box.appendChild(node("p", null, r.cleared === r.total && r.total
-    ? "All of it, first time. Those are off the list."
-    : "Whatever is still wrong stays on the list and will come back."));
+  box.appendChild(node("h1", null,
+    esc(r.total ? t("rev.cleared", { n: r.cleared, m: r.total }) : t("rev.nothing"))));
+  box.appendChild(node("p", null,
+    esc(t(r.cleared === r.total && r.total ? "rev.allClean" : "rev.someLeft"))));
   const row = node("div", "row");
   row.style.justifyContent = "center";
-  row.appendChild(button("btn", "Home →", guard(home)));
+  row.appendChild(button("btn", t("test.home"), guard(home)));
   box.appendChild(row);
   wrap.appendChild(box);
   if (r.cleared === r.total && r.total) FX.rain([SKILL_COLORS.gold, SKILL_COLORS.write, SKILL_COLORS.read]);
@@ -586,30 +767,33 @@ async function runRevision() {
 function progress() {
   Mission.bump();
   setSkill("gold");
+  redraw = progress;
   const wrap = stage();
   const acc = P.accuracies();
   const c = P.counts();
 
-  wrap.appendChild(node("div", "hero__eyebrow", "Progress"));
-  wrap.appendChild(node("h1", null, "Where you are."));
+  wrap.appendChild(node("div", "hero__eyebrow", esc(t("home.progress"))));
+  wrap.appendChild(node("h1", null, esc(t("prog.title"))));
   wrap.appendChild(node("hr", "hair"));
 
+  const stat = (n, label) =>
+    node("div", "stat", '<div class="stat__n">' + esc(n) + '</div><div class="stat__l">' + esc(label) + "</div>");
+
   const stats = node("div", "stats");
-  stats.appendChild(node("div", "stat", '<div class="stat__n">' + c.known + '</div><div class="stat__l">Words known</div>'));
-  stats.appendChild(node("div", "stat", '<div class="stat__n">' + c.learning + '</div><div class="stat__l">Still settling</div>'));
-  stats.appendChild(node("div", "stat", '<div class="stat__n">' + P.lessonsDone() + '</div><div class="stat__l">Lessons</div>'));
-  stats.appendChild(node("div", "stat", '<div class="stat__n">' + P.streak().count + '</div><div class="stat__l">Day streak</div>'));
+  stats.appendChild(stat(c.known, t("prog.known")));
+  stats.appendChild(stat(c.learning, t("prog.settling")));
+  stats.appendChild(stat(P.lessonsDone(), t("prog.lessons")));
+  stats.appendChild(stat(P.streak().count, t("prog.streak")));
   wrap.appendChild(stats);
 
   wrap.appendChild(node("hr", "hair"));
-  wrap.appendChild(rule("The four skills", "first-try accuracy"));
+  wrap.appendChild(rule(t("prog.fourSkills"), t("prog.firstTry")));
 
   const list = node("div", "skills");
-  const names = { listen: "Listening", speak: "Speaking", read: "Reading", write: "Writing" };
   for (const s of ["listen", "speak", "read", "write"]) {
     const row = node("div", "skillrow");
     row.setAttribute("data-s", s);
-    row.appendChild(node("div", "skillrow__name", names[s]));
+    row.appendChild(node("div", "skillrow__name", esc(t("skill." + s))));
     const bar = node("div", "skillrow__bar");
     const fill = node("b");
     fill.style.width = (acc[s] === null ? 0 : Math.round(acc[s] * 100)) + "%";
@@ -620,22 +804,22 @@ function progress() {
     list.appendChild(row);
   }
   wrap.appendChild(list);
-  wrap.appendChild(node("div", "note",
-    "Speaking is counted, not scored. There is no pronunciation mark anywhere in this app, on purpose."));
+  wrap.appendChild(node("div", "note", esc(t("prog.speakNote"))));
 
   wrap.appendChild(node("hr", "hair"));
-  wrap.appendChild(rule("Badges", P.badgeCount() + " of " + C.levels().badges.length));
+  wrap.appendChild(rule(t("prog.badges"),
+    t("prog.badgeCount", { n: P.badgeCount(), m: C.levels().badges.length })));
   const badges = node("div", "badges");
   for (const b of C.levels().badges) {
     badges.appendChild(node("span", "badge" + (P.hasBadge(b.id) ? " is-won" : ""),
-      (P.hasBadge(b.id) ? "🏅 " : "○ ") + esc(b.title) +
-      (P.hasBadge(b.id) ? "" : " — " + esc(b.hint))));
+      (P.hasBadge(b.id) ? "🏅 " : "○ ") + esc(t("badge." + b.id + ".t")) +
+      (P.hasBadge(b.id) ? "" : " — " + esc(t("badge." + b.id + ".h")))));
   }
   wrap.appendChild(badges);
 
   wrap.appendChild(node("hr", "hair"));
   const row = node("div", "row");
-  row.appendChild(button("btn btn--quiet", "← Home", guard(home)));
-  if (Revise.available()) row.appendChild(button("btn", "Revise →", guard(runRevision)));
+  row.appendChild(button("btn btn--quiet", t("app.back"), guard(home)));
+  if (Revise.available()) row.appendChild(button("btn", t("rev.card.go"), guard(runRevision)));
   wrap.appendChild(row);
 }

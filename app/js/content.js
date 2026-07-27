@@ -13,7 +13,10 @@
    learner even as a wrong answer.
    ═══════════════════════════════════════════════════════════════════════════ */
 
+import { lang } from "./i18n.js";
+
 let LEVELS = null;
+let TOPICS = null;                 // the manifest of what exists and what is promised
 const CATS = new Map();            // id → category, every file including unreviewed
 const WORDS = new Map();           // word → {word, icon, example, cat}
 const CONFUSABLE = new Map();      // word → Set of words never shown beside it
@@ -23,6 +26,9 @@ const j = url => fetch(url).then(r => (r.ok ? r.json() : Promise.reject(new Erro
 
 export async function boot() {
   LEVELS = await j("content/levels.json");
+  /* Optional. Without it the app shows a flat list of topics, which is exactly
+     what it did before sub-topics existed. */
+  TOPICS = await j("content/topics.json").catch(() => null);
 
   const files = LEVELS.categoryFiles || [];
   const loaded = await Promise.all(
@@ -67,17 +73,145 @@ export const visible = () => [...CATS.values()].filter(c => c.reviewed === true)
 export const words = () => WORDS;
 export const word = w => WORDS.get(w) || null;
 
-/* ── CEFR ─────────────────────────────────────────────────────────────────── */
+/* ── the level ladder ─────────────────────────────────────────────────────── */
 
-const ORDER = () => LEVELS.cefrOrder;
+/* Levels are the named rungs a learner climbs. CEFR is kept alongside as a
+   secondary tag rather than as the name, because the placement rungs are
+   CEFR-shaped and correct, and because "Iniciante" means something to a
+   Brazilian beginner in a way that "A1" does not. */
 
-/** "A1-A2" → the index of A1. Where a category starts. */
-export function cefrIndex(cefr) {
-  const first = String(cefr || "A1").split("-")[0].trim();
-  const i = ORDER().indexOf(first);
-  return i < 0 ? 1 : i;
+const LADDER = () => LEVELS.levels || (LEVELS.cefrOrder || []).map((c, i) => ({ i, cefr: c, en: c, pt: c }));
+
+export const levelCount = () => LADDER().length;
+const clamp = i => Math.max(0, Math.min(LADDER().length - 1, i | 0));
+
+/** The rung's name in the interface language. */
+export function levelName(i, langId) {
+  const rung = LADDER()[clamp(i)] || {};
+  return rung[langId || lang()] || rung.en || rung.cefr || String(i);
 }
-export const cefrName = i => ORDER()[Math.max(0, Math.min(ORDER().length - 1, i))];
+export const levelCefr = i => (LADDER()[clamp(i)] || {}).cefr || "";
+
+/** "A1-A2" → the index of the rung it starts on. Where a topic begins. */
+export function levelIndex(cefr) {
+  const first = String(cefr || "A1").split(/[-–]/)[0].trim();
+  const ladder = LADDER();
+  const i = ladder.findIndex(r => r.cefr === first);
+  if (i >= 0) return i;
+  const legacy = (LEVELS.cefrOrder || []).indexOf(first);
+  return legacy < 0 ? 0 : Math.min(legacy, ladder.length - 1);
+}
+
+/* Kept under the old names so nothing that speaks CEFR has to be rewritten. */
+export const cefrIndex = levelIndex;
+export const cefrName = levelCefr;
+
+/**
+ * The slice of a list that belongs to this learner's rung. Level is DEPTH
+ * INSIDE ONE FILE, not six copies of it: one sub-topic is one file carrying all
+ * six tiers, and a lesson draws the matching slice. Six separate files per
+ * sub-topic would have meant about 150 files and 8,000 clips.
+ *
+ * An item with no `level` belongs to every rung — which is what makes every
+ * file written before levels existed keep working unchanged.
+ */
+export function atLevel(list, level) {
+  const all = list || [];
+  const tagged = all.filter(x => x && typeof x.level === "number");
+  if (!tagged.length) return all;
+  /* Everything up to and including the learner's rung: a B1 learner still needs
+     the A1 words, and a lesson that skipped them would have holes in it. */
+  const upTo = all.filter(x => typeof x.level !== "number" || x.level <= level);
+  /* ...unless that leaves nothing, in which case give them the easiest tier
+     rather than an empty lesson. */
+  if (upTo.length) return upTo;
+  const lowest = Math.min(...tagged.map(x => x.level));
+  return all.filter(x => typeof x.level !== "number" || x.level === lowest);
+}
+
+/* ── the two authored-in-both-languages fields ────────────────────────────── */
+
+/* A topic's `goal` and a grammar `point` are notes TO the learner ABOUT
+   English, so they are interface and carry a Portuguese twin in the file. The
+   grammar EXAMPLE is English and never does. */
+export const goal = (cat, langId) =>
+  ((langId || lang()) === "pt" && cat.goal_pt) ? cat.goal_pt : (cat.goal || "");
+
+export const bandLabel = (b, langId) =>
+  ((langId || lang()) === "pt" && b.label_pt) ? b.label_pt : (b.label || "");
+
+export const bandAges = (b, langId) =>
+  ((langId || lang()) === "pt" && b.ages_pt) ? b.ages_pt : (b.ages || "");
+
+/* ── topics and sub-topics ────────────────────────────────────────────────── */
+
+/**
+ * What the picker shows, in three states that each mean exactly one thing:
+ *
+ *   ready:false          declared in topics.json, no content file yet. Renders
+ *                        as a disabled "Em breve" card — visible on purpose, so
+ *                        a learner can see the road ahead — and does not open.
+ *   reviewed:false       authored but not approved. Never appears here at all,
+ *                        and not as a wrong answer either. That gate is `visible()`.
+ *   ready:true           approved and playable.
+ *
+ * Without topics.json this returns the flat list of topics it always returned.
+ */
+export function offeredTopics(bandId, level) {
+  const flat = offered(bandId, level);
+  if (!TOPICS || !TOPICS.topics) {
+    return flat.map(c => ({
+      kind: "cat", ready: true, id: c.id, cat: c,
+      title: c.title, title_pt: c.title_pt, icon: c.icon
+    }));
+  }
+
+  const open = new Set(flat.map(c => c.id));
+  const out = [];
+
+  for (const topic of TOPICS.topics) {
+    const subs = (topic.subtopics || []).map(s => {
+      const cat = CATS.get(s.id);
+      const ready = !!cat && cat.reviewed === true && open.has(s.id);
+      return {
+        kind: "cat", ready, id: s.id, cat: ready ? cat : null,
+        title: s.title, title_pt: s.title_pt, icon: s.icon || topic.icon
+      };
+    });
+    const readyCount = subs.filter(s => s.ready).length;
+
+    /* A topic that is itself a single file — the ten originals — stays a single
+       card rather than growing a picker with one thing in it. */
+    const self = CATS.get(topic.id);
+    if (!subs.length) {
+      const ready = !!self && self.reviewed === true && open.has(topic.id);
+      out.push({
+        kind: "cat", ready, id: topic.id, cat: ready ? self : null,
+        title: topic.title, title_pt: topic.title_pt, icon: topic.icon
+      });
+      continue;
+    }
+
+    out.push({
+      kind: "topic", ready: readyCount > 0, id: topic.id,
+      title: topic.title, title_pt: topic.title_pt, icon: topic.icon,
+      subtopics: subs, readyCount, total: subs.length
+    });
+  }
+
+  /* Anything with a file but no manifest entry still has to be reachable, or
+     adding a category and forgetting the manifest silently hides it. */
+  const declared = new Set(out.flatMap(x => x.kind === "topic" ? x.subtopics.map(s => s.id) : [x.id]));
+  for (const c of flat) {
+    if (declared.has(c.id)) continue;
+    out.push({ kind: "cat", ready: true, id: c.id, cat: c,
+               title: c.title, title_pt: c.title_pt, icon: c.icon });
+  }
+
+  /* Ready things first; the roadmap is worth showing, but not worth scrolling
+     past every time. */
+  return out.sort((a, b) => (a.ready ? 0 : 1) - (b.ready ? 0 : 1));
+}
 
 /**
  * Which categories to offer. The band decides how a category is PRESENTED;

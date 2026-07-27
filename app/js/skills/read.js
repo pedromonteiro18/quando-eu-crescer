@@ -9,6 +9,7 @@ import * as P from "../progress.js";
 import * as A from "../audio.js";
 import { node, button, rule, esc, sleep, shuffle, sample, setSkill, FX, SKILL_COLORS, REDUCED, Mission } from "../ui.js";
 import { clara } from "../clara.js";
+import { t } from "../i18n.js";
 
 export const skill = "read";
 
@@ -22,7 +23,7 @@ function match(host, band, vocab, n, token) {
     const missesPer = new Map();
 
     host.innerHTML = "";
-    host.appendChild(rule("Reading", n + " pairs"));
+    host.appendChild(rule(t("skill.read"), t("read.pairs", { n })));
 
     const grid = node("div", "match");
     const left = node("div", "match__col");
@@ -35,7 +36,7 @@ function match(host, band, vocab, n, token) {
       const b = button("match__cell match__cell--" + side,
         side === "pic" ? '<span aria-hidden="true">' + esc(v.icon) + "</span>" : esc(v.word),
         () => tap({ v, side, b }),
-        { "aria-label": (side === "pic" ? "picture of " : "the word ") + v.word });
+        { "aria-label": t(side === "pic" ? "read.pictureOf" : "read.theWord", { word: v.word }) });
       (side === "pic" ? left : rightCol).appendChild(b);
       cells.push({ v, side, b });
       return b;
@@ -70,7 +71,7 @@ function match(host, band, vocab, n, token) {
       picked = null;
       done++;
       if (done < pairs.length) return;
-      A.say("Well done!");
+      A.say(t("audio.wellDone"));
       sleep(REDUCED ? 350 : 950).then(() =>
         resolve(Mission.ok(token)
           ? { right: firstTry, wrong: pairs.length - firstTry }
@@ -82,7 +83,7 @@ function match(host, band, vocab, n, token) {
       missesPer.set(key, (missesPer.get(key) || 0) + 1);
       c.b.classList.add("is-miss");
       setTimeout(() => c.b.classList.remove("is-miss"), 420);
-      A.say("Almost. Try again.");
+      A.say(t("audio.almost"));
       /* One miss is enough to show a four year old the answer. Getting stuck is
          the only real failure state at this age. */
       if (missesPer.get(key) >= (band.hintAfter || 1)) {
@@ -99,7 +100,7 @@ function showDialogue(host, cat, band, token) {
   return new Promise(resolve => {
     const d = cat.dialogue;
     host.innerHTML = "";
-    host.appendChild(rule("Reading", d.title));
+    host.appendChild(rule(t("skill.read"), d.title));
 
     const box = node("div", "dlg");
     for (const line of d.lines) {
@@ -107,14 +108,14 @@ function showDialogue(host, cat, band, token) {
       row.setAttribute("data-who", line.who);
       row.appendChild(node("span", "dlg__who", esc(line.who)));
       row.appendChild(node("span", "dlg__text", esc(line.text)));
-      row.appendChild(button("dlg__say", "🔊", () => A.say(line.text), { "aria-label": "Hear this line" }));
+      row.appendChild(button("dlg__say", "🔊", () => A.say(line.text), { "aria-label": t("read.heard") }));
       box.appendChild(row);
     }
     host.appendChild(box);
     host.appendChild(node("hr", "hair"));
 
     const row = node("div", "row row--end");
-    row.appendChild(button("btn btn--skill", "I've read it →", () => {
+    row.appendChild(button("btn btn--skill", t("read.doneReading"), () => {
       if (Mission.ok(token)) resolve(true); else resolve(false);
     }));
     host.appendChild(row);
@@ -126,13 +127,13 @@ function showDialogue(host, cat, band, token) {
 function showPassage(host, reading, token) {
   return new Promise(resolve => {
     host.innerHTML = "";
-    host.appendChild(rule("Reading", reading.title));
+    host.appendChild(rule(t("skill.read"), reading.title));
     const box = node("div", "passage",
       String(reading.text).split(/\n\n+/).map(p => "<p>" + esc(p) + "</p>").join(""));
     host.appendChild(box);
     host.appendChild(node("hr", "hair"));
     const row = node("div", "row row--end");
-    row.appendChild(button("btn btn--skill", "Questions →", () => resolve(Mission.ok(token))));
+    row.appendChild(button("btn btn--skill", t("read.questions"), () => resolve(Mission.ok(token))));
     host.appendChild(row);
   });
 }
@@ -150,14 +151,14 @@ async function comprehension(ctx, questions, source) {
     const { options, answer } = scramble(correct, q.options.filter((_, k) => k !== q.answer));
 
     host.innerHTML = "";
-    host.appendChild(rule("Reading", i + 1 + " / " + questions.length));
+    host.appendChild(rule(t("skill.read"), i + 1 + " / " + questions.length));
     const card = node("div");
     host.appendChild(card);
 
     /* The text stays on screen. Comprehension is not a memory test. */
     if (source) {
       const ref = node("details", "card");
-      ref.innerHTML = "<summary style='cursor:pointer;font-weight:700'>Read it again</summary>" +
+      ref.innerHTML = "<summary style='cursor:pointer;font-weight:700'>" + esc(t("read.readAgain")) + "</summary>" +
         '<div class="passage" style="margin-top:12px">' + source + "</div>";
       card.appendChild(ref);
       card.appendChild(node("div", null, "<div style='height:14px'></div>"));

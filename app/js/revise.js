@@ -19,8 +19,8 @@ import { ask, scramble } from "./skills/ask.js";
 import { single as writeItem } from "./skills/write.js";
 import { node, button, rule, esc, stage, sample, setSkill, sleep, FX, SKILL_COLORS, Mission } from "./ui.js";
 import { clara } from "./clara.js";
+import { t } from "./i18n.js";
 
-const LABEL = { listen: "Listening", speak: "Speaking", read: "Reading", write: "Writing", quiz: "Quiz" };
 
 /** Is there anything worth revising? */
 export function available() {
@@ -54,7 +54,7 @@ function rebuild(m) {
   return {
     kind: "ask", cat, key: m.key, skill: m.skill,
     audio: m.skill === "listen" ? m.prompt : null,
-    question: m.skill === "listen" ? "Which one did you hear?" : m.prompt,
+    question: m.skill === "listen" ? t("ask.whichHeard") : m.prompt,
     layout: "text",
     options: options.map(t => ({ label: t })), answer
   };
@@ -99,15 +99,14 @@ export async function run(band) {
     setSkill(weak || "gold");
     const wrap = stage();
     wrap.appendChild(node("div", "hero__clara", clara("encouraging")));
-    wrap.appendChild(node("div", "hero__eyebrow", "Revision"));
-    wrap.appendChild(node("h1", null, weak ? "Your " + LABEL[weak].toLowerCase() + " is behind." : "Back to what you missed."));
-    wrap.appendChild(node("p", null, weak
-      ? "Nothing dramatic — it is the skill with the most misses, so this session starts there. " +
-        items.length + " things to go over."
-      : items.length + " things you did not get first time. New wrong answers each time, so this is not memorising a position."));
+    wrap.appendChild(node("div", "hero__eyebrow", esc(t("rev.title"))));
+    wrap.appendChild(node("h1", null, esc(weak
+      ? t("rev.card.weak", { skill: t("skill." + weak + ".low") })
+      : t("rev.back"))));
+    wrap.appendChild(node("p", null, esc(t(weak ? "rev.weakBlurb" : "rev.blurb", { n: items.length }))));
     wrap.appendChild(node("hr", "hair"));
     const row = node("div", "row row--end");
-    row.appendChild(button("btn btn--skill", "Start →", () => res()));
+    row.appendChild(button("btn btn--skill", t("rev.start"), () => res()));
     wrap.appendChild(row);
   });
 
@@ -121,7 +120,7 @@ export async function run(band) {
     setSkill(it.kind === "write" ? "write" : it.skill === "quiz" ? "gold" : it.skill);
 
     host.innerHTML = "";
-    host.appendChild(rule("Revision", i + 1 + " / " + items.length));
+    host.appendChild(rule(t("rev.title"), i + 1 + " / " + items.length));
     const card = node("div");
     host.appendChild(card);
 

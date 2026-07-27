@@ -15,8 +15,9 @@ import * as C from "./content.js";
 import * as P from "./progress.js";
 import * as A from "./audio.js";
 import { $, node, button, esc, on, SKILL_COLORS } from "./ui.js";
+import { t, uiClips } from "./i18n.js";
 
-const LABEL = { listen: "Listening", speak: "Speaking", read: "Reading", write: "Writing", quiz: "Quiz" };
+const LABEL = k => t("skill." + k);
 
 let onChange = () => {};
 let resetArmed = false;
@@ -36,6 +37,8 @@ export function close() {
 export function open() {
   const body = $("teacher-body");
   body.innerHTML = "";
+  $("teacher-h").textContent = t("t.title");
+  $("teacher-close").textContent = t("app.close");
   $("teacher").hidden = false;
 
   body.appendChild(learner());
@@ -56,31 +59,26 @@ export function open() {
 function learner() {
   const box = node("section");
   const b = C.band(P.band());
-  box.appendChild(node("h3", null, "Learner"));
+  box.appendChild(node("h3", null, esc(t("t.learner"))));
 
   const stats = node("div", "stats");
   stats.style.marginTop = "12px";
   const c = P.counts();
-  stats.appendChild(node("div", "stat",
-    '<div class="stat__n">' + esc(b.ages) + '</div><div class="stat__l">Band</div>'));
-  stats.appendChild(node("div", "stat",
-    '<div class="stat__n">' + esc(C.cefrName(P.level())) + '</div><div class="stat__l">Level</div>'));
-  stats.appendChild(node("div", "stat",
-    '<div class="stat__n">' + c.known + '</div><div class="stat__l">Words known</div>'));
-  stats.appendChild(node("div", "stat",
-    '<div class="stat__n">' + P.lessonsDone() + '</div><div class="stat__l">Lessons</div>'));
-  stats.appendChild(node("div", "stat",
-    '<div class="stat__n">' + P.streak().count + '</div><div class="stat__l">Day streak</div>'));
+  const stat = (n, label) =>
+    node("div", "stat", '<div class="stat__n">' + esc(n) + '</div><div class="stat__l">' + esc(label) + "</div>");
+  stats.appendChild(stat(C.bandAges(b), t("t.band")));
+  stats.appendChild(stat(C.levelName(P.level()), t("t.level")));
+  stats.appendChild(stat(c.known, t("prog.known")));
+  stats.appendChild(stat(P.lessonsDone(), t("prog.lessons")));
+  stats.appendChild(stat(P.streak().count, t("prog.streak")));
   box.appendChild(stats);
 
-  box.appendChild(node("div", "note",
-    "The band is presentation — type size, tap targets, whether writing means letter tiles or a paragraph. " +
-    "The level is content. Changing the band does not lose any progress."));
+  box.appendChild(node("div", "note", esc(t("t.bandNote"))));
 
   const row = node("div", "row");
   for (const bb of C.bands()) {
-    const b2 = button(P.band() === bb.id ? "btn btn--quiet" : "btn btn--quiet",
-      esc(bb.ages) + " · " + esc(bb.label),
+    const b2 = button("btn btn--quiet",
+      esc(C.bandAges(bb)) + " · " + esc(C.bandLabel(bb)),
       () => { P.setBand(bb.id); onChange(); open(); });
     if (P.band() === bb.id) { b2.style.borderColor = "var(--ink)"; b2.style.color = "var(--ink)"; }
     row.appendChild(b2);
@@ -93,16 +91,15 @@ function learner() {
 
 function skills() {
   const box = node("section");
-  box.appendChild(node("h3", null, "Skills"));
-  box.appendChild(node("div", "note",
-    "Accuracy on first attempt. Speaking is deliberately not scored — it counts attempts, nothing else."));
+  box.appendChild(node("h3", null, esc(t("t.skills"))));
+  box.appendChild(node("div", "note", esc(t("t.skillsNote"))));
 
   const list = node("div", "skills");
   const acc = P.accuracies();
   for (const s of ["listen", "speak", "read", "write"]) {
     const row = node("div", "skillrow");
     row.setAttribute("data-s", s);
-    row.appendChild(node("div", "skillrow__name", LABEL[s]));
+    row.appendChild(node("div", "skillrow__name", esc(LABEL(s))));
     const bar = node("div", "skillrow__bar");
     const fill = node("b");
     const v = acc[s];
@@ -116,7 +113,7 @@ function skills() {
   box.appendChild(list);
 
   const weak = P.weakest();
-  if (weak) box.appendChild(node("div", "note", "Revision will lead with " + LABEL[weak].toLowerCase() + "."));
+  if (weak) box.appendChild(node("div", "note", esc(t("t.leadWith", { skill: t("skill." + weak + ".low") }))));
   return box;
 }
 
@@ -125,17 +122,17 @@ function skills() {
 function mistakes() {
   const box = node("section");
   const list = P.mistakes();
-  box.appendChild(node("h3", null, "Mistakes (" + list.length + ")"));
+  box.appendChild(node("h3", null, esc(t("t.mistakes", { n: list.length }))));
   if (!list.length) {
-    box.appendChild(node("div", "note", "Nothing logged. A wrong first answer lands here and feeds revision until it is answered right."));
+    box.appendChild(node("div", "note", esc(t("t.noMistakes"))));
     return box;
   }
   for (const m of list.slice(0, 20)) {
     box.appendChild(node("div", "mistake",
-      "<em>" + esc(LABEL[m.skill] || m.skill) + " · " + esc(m.cat) + "</em><br>" +
+      "<em>" + esc(LABEL(m.skill) || m.skill) + " · " + esc(m.cat) + "</em><br>" +
       esc(m.prompt) + " → <b>" + esc(m.want) + "</b>"));
   }
-  if (list.length > 20) box.appendChild(node("div", "note", "and " + (list.length - 20) + " more"));
+  if (list.length > 20) box.appendChild(node("div", "note", esc(t("t.andMore", { n: list.length - 20 }))));
   return box;
 }
 
@@ -145,31 +142,30 @@ function content() {
   const box = node("section");
   const all = C.all();
   const pending = all.filter(c => c.reviewed !== true);
-  box.appendChild(node("h3", null, "Content (" + all.length + ")"));
-  box.appendChild(node("div", "note",
-    pending.length
-      ? pending.length + " " + (pending.length === 1 ? "category is" : "categories are") +
-        " waiting for review and cannot be reached by a learner. Approve one by setting " +
-        "\"reviewed\": true in its file."
-      : "Every category has been approved and is visible to a learner."));
+  box.appendChild(node("h3", null, esc(t("t.content", { n: all.length }))));
+  box.appendChild(node("div", "note", esc(pending.length
+    ? t("t.pending", { n: pending.length })
+    : t("t.allApproved"))));
 
   for (const cat of all) {
     const p = node("div", "pack");
     p.appendChild(node("div", "pack__h",
       '<i aria-hidden="true">' + esc(cat.icon) + "</i>" + esc(cat.title) +
       (cat.reviewed === true
-        ? '<b class="ok">reviewed</b>'
-        : "<b>not reviewed</b>")));
-    p.appendChild(node("div", "pack__meta",
-      esc(cat.cefr) + " · bands " + esc((cat.bands || []).join(", ")) + " · " +
-      (cat.vocabulary || []).length + " words · " +
-      (cat.phrases || []).length + " phrases · " +
-      ((cat.dialogue && cat.dialogue.lines) || []).length + " dialogue lines · " +
-      (cat.reading ? "1 passage · " : "") +
-      (cat.speaking || []).length + " speaking · " +
-      (cat.writing || []).length + " writing · " +
-      (cat.quiz || []).length + " quiz"));
-    p.appendChild(node("div", "pack__meta", esc(cat.goal || "")));
+        ? '<b class="ok">' + esc(t("t.reviewed")) + "</b>"
+        : "<b>" + esc(t("t.notReviewed")) + "</b>")));
+    p.appendChild(node("div", "pack__meta", esc(t("t.packMeta", {
+      cefr: cat.cefr,
+      bands: (cat.bands || []).join(", "),
+      words: (cat.vocabulary || []).length,
+      phrases: (cat.phrases || []).length,
+      dialogue: ((cat.dialogue && cat.dialogue.lines) || []).length,
+      reading: cat.reading ? t("t.onePassage") : "",
+      speaking: (cat.speaking || []).length,
+      writing: (cat.writing || []).length,
+      quiz: (cat.quiz || []).length
+    }))));
+    p.appendChild(node("div", "pack__meta", esc(C.goal(cat))));
     const words = node("div", "pack__words");
     for (const v of cat.vocabulary || []) {
       words.appendChild(node("span", null,
@@ -183,28 +179,33 @@ function content() {
 
 /* ── can this device actually make a sound ────────────────────────────────── */
 
+const okLine = (ok, text) => "<li><b>" + (ok ? "✅" : "❌") + "</b><span>" + esc(text) + "</span></li>";
+
+/** The self-test read-out, shared with the sound help sheet in app.js. */
+export function diagLines(r) {
+  return okLine(r.webAudio, t(r.webAudio ? "diag.webAudio.y" : "diag.webAudio.n")) +
+         okLine(r.decoded, r.decoded ? t("diag.decoded.y", { s: r.seconds }) : t("diag.decoded.n")) +
+         okLine(r.state === "running", t("diag.state", { state: r.state })) +
+         okLine(r.clockAdvanced > 0, t("diag.clock", { n: r.clockAdvanced })) +
+         (r.error ? okLine(false, r.error) : "");
+}
+
+
 function selfTest() {
   const box = node("section");
-  box.appendChild(node("h3", null, "Audio self-test"));
-  box.appendChild(node("div", "note",
-    "Plays a line and reports what really happened, including whether the audio clock advanced. " +
-    "A page that reports no errors can still be completely silent."));
+  box.appendChild(node("h3", null, esc(t("t.selfTest"))));
+  box.appendChild(node("div", "note", esc(t("t.selfTestNote"))));
 
   const out = node("ul", "diag");
   const row = node("div", "row");
-  row.appendChild(button("btn btn--quiet", "Run the test", async () => {
-    out.innerHTML = "<li><b>…</b><span>testing</span></li>";
-    const r = await A.probe();
-    const line = (ok, text) => "<li><b>" + (ok ? "✅" : "❌") + "</b><span>" + esc(text) + "</span></li>";
-    out.innerHTML =
-      line(r.webAudio, "Web Audio " + (r.webAudio ? "available" : "missing")) +
-      line(r.recorded, r.recorded ? "recording found" : "no recording; the fallback voice was used") +
-      line(r.decoded, r.decoded ? "decoded (" + r.seconds + "s)" : "not decoded") +
-      line(r.state === "running", "audio context: " + r.state) +
-      line(r.clockAdvanced > 0, "clock advanced " + r.clockAdvanced + "s — this is the proof of output") +
-      line(!r.inIframe, r.inIframe ? "inside an iframe, where audio is at the browser's discretion" : "top-level page") +
-      "<li><b>ℹ️</b><span>" + r.clips + " clips loaded, " + r.voices + " system voices</span></li>" +
-      (r.error ? line(false, r.error) : "");
+  row.appendChild(button("btn btn--quiet", t("t.runTest"), async () => {
+    out.innerHTML = "<li><b>…</b><span>" + esc(t("sound.testing")) + "</span></li>";
+    await A.load(uiClips());
+    const r = await A.probe(t("audio.test"));
+    out.innerHTML = diagLines(r) +
+      okLine(r.recorded, t(r.recorded ? "diag.recorded.y" : "diag.recorded.n")) +
+      okLine(!r.inIframe, t(r.inIframe ? "diag.iframe.y" : "diag.iframe.n")) +
+      "<li><b>ℹ️</b><span>" + esc(t("diag.clips", { clips: r.clips, voices: r.voices })) + "</span></li>";
   }));
   box.appendChild(row);
   box.appendChild(out);
@@ -215,23 +216,21 @@ function selfTest() {
 
 function danger() {
   const box = node("section");
-  box.appendChild(node("h3", null, "This device"));
-  box.appendChild(node("div", "note",
-    "Everything is stored in this browser and nowhere else. No account, no server, no analytics, " +
-    "and no recording ever leaves the device."));
+  box.appendChild(node("h3", null, esc(t("t.device"))));
+  box.appendChild(node("div", "note", esc(t("t.deviceNote"))));
 
   const note = node("div", "note");
-  const b = button("btn btn--quiet", "Erase all progress", () => {
+  const b = button("btn btn--quiet", t("t.erase"), () => {
     if (!resetArmed) {
       resetArmed = true;
-      b.textContent = "Sure? Tap again";
-      note.textContent = "This erases words, badges, mistakes and the streak on this device.";
+      b.textContent = t("t.eraseSure");
+      note.textContent = t("t.eraseWarn");
       return;
     }
     P.reset();
     resetArmed = false;
-    b.textContent = "Erased ✓";
-    note.textContent = "Everything is back to the start.";
+    b.textContent = t("t.erased");
+    note.textContent = t("t.erasedNote");
     onChange();
   });
   box.appendChild(b);

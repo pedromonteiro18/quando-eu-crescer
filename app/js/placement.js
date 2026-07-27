@@ -23,6 +23,7 @@ import * as C from "./content.js";
 import { node, button, rule, esc, stage, setSkill, setBand, sleep } from "./ui.js";
 import { clara } from "./clara.js";
 import * as A from "./audio.js";
+import { t, lang, uiClips } from "./i18n.js";
 
 /* An age band can only reach so far up the ladder. A lucky run of three
    guesses should not put a child into adult content. */
@@ -40,16 +41,16 @@ export function run() {
     /* ── 1. age ── */
     function askAge() {
       const wrap = stage();
-      wrap.appendChild(head("Let's find the right place to start.", "Two quick questions. Nothing here is a test you can fail."));
-      wrap.appendChild(rule("Placement", "1 of 2"));
-      wrap.appendChild(node("h2", null, "How old is the learner?"));
+      wrap.appendChild(head(t("place.title"), t("place.sub")));
+      wrap.appendChild(rule(t("place.label"), t("place.step", { n: 1 })));
+      wrap.appendChild(node("h2", null, esc(t("place.age"))));
       wrap.appendChild(node("div", null, "<div style='height:16px'></div>"));
 
       const grid = node("div", "ages");
       for (const a of cfg.ages) {
         grid.appendChild(button("age",
           '<span class="age__icon" aria-hidden="true">' + esc(a.icon) + "</span>" +
-          '<span class="age__label">' + esc(a.label) + "</span>",
+          '<span class="age__label">' + esc(ageLabel(a)) + "</span>",
           () => {
             bandId = a.band;
             setBand(bandId);
@@ -83,8 +84,8 @@ export function run() {
       }
 
       const wrap = stage();
-      wrap.appendChild(head("Placement", null));
-      wrap.appendChild(rule("Placement", "2 of 2"));
+      wrap.appendChild(head(t("place.label"), null));
+      wrap.appendChild(rule(t("place.label"), t("place.step", { n: 2 })));
 
       const bar = node("div", "ladder");
       for (let k = 0; k < cfg.rungs.length; k++) {
@@ -110,7 +111,7 @@ export function run() {
 
       wrap.appendChild(node("hr", "hair"));
       const skip = node("div", "row row--end");
-      skip.appendChild(button("btn btn--quiet", "I don't know", () => askItem(i + 1)));
+      skip.appendChild(button("btn btn--quiet", t("place.dontKnow"), () => askItem(i + 1)));
       wrap.appendChild(skip);
     }
 
@@ -122,31 +123,34 @@ export function run() {
       setBand(bandId);
 
       wrap.appendChild(node("div", "hero__clara", clara("pleased")));
-      wrap.appendChild(node("div", "hero__eyebrow", "Placement"));
-      wrap.appendChild(node("h1", null, "Start here."));
+      wrap.appendChild(node("div", "hero__eyebrow", esc(t("place.label"))));
+      wrap.appendChild(node("h1", null, esc(t("place.startHere"))));
       wrap.appendChild(node("p", null,
-        bandId === "4-6"
-          ? "Everything is pictures and sound. Nothing needs reading, and nothing is explained — Clara shows the first one and the rest follows."
-          : "You can change this at any time in the teacher area."));
+        esc(t(bandId === "4-6" ? "place.youngest" : "place.changeable"))));
 
       wrap.appendChild(node("hr", "hair"));
 
       const stats = node("div", "stats");
       stats.appendChild(node("div", "stat",
-        '<div class="stat__n">' + esc(b.ages) + '</div><div class="stat__l">Band · ' + esc(b.label) + "</div>"));
+        '<div class="stat__n">' + esc(C.bandAges(b)) + '</div><div class="stat__l">' +
+        esc(t("place.band", { label: C.bandLabel(b) })) + "</div>"));
       stats.appendChild(node("div", "stat",
-        '<div class="stat__n">' + esc(C.cefrName(level)) + '</div><div class="stat__l">Starting level</div>'));
+        '<div class="stat__n">' + esc(C.levelName(level)) + '</div><div class="stat__l">' +
+        esc(t("place.level")) + "</div>"));
       stats.appendChild(node("div", "stat",
-        '<div class="stat__n">' + C.offered(bandId, level).length + '</div><div class="stat__l">Categories open</div>'));
+        '<div class="stat__n">' + C.offered(bandId, level).length + '</div><div class="stat__l">' +
+        esc(t("place.openCats")) + "</div>"));
       wrap.appendChild(stats);
 
       wrap.appendChild(node("div", null, "<div style='height:26px'></div>"));
       const row = node("div", "row row--end");
-      row.appendChild(button("btn", "Begin →", () => resolve({ band: bandId, level })));
+      row.appendChild(button("btn", t("splash.begin"), () => resolve({ band: bandId, level })));
       wrap.appendChild(row);
 
-      A.say("Let's begin.");
+      A.load(uiClips()).then(() => A.say(t("audio.begin")));
     }
+
+    function ageLabel(a) { return lang() === "pt" && a.label_pt ? a.label_pt : a.label; }
 
     function head(title, sub) {
       const p = node("div", "prompt");

@@ -21,6 +21,7 @@ import * as A from "./audio.js";
 import { ask, scramble } from "./skills/ask.js";
 import { node, button, rule, esc, stage, sample, shuffle, setSkill, FX, SKILL_COLORS, Mission } from "./ui.js";
 import { clara } from "./clara.js";
+import { t, uiClips } from "./i18n.js";
 
 /** What, if anything, this learner has earned the right to sit. */
 export function due(band) {
@@ -71,7 +72,7 @@ function items(band, ids, n) {
         const s = scramble(text, C.distractorTexts(cat, text, 2));
         out.push({
           skill: "listen", cat, key: text, layout: "text",
-          audio: text, question: "Which one did you hear?",
+          audio: text, question: t("ask.whichHeard"),
           options: s.options.map(t => ({ label: t })), answer: s.answer
         });
       }
@@ -117,26 +118,24 @@ export async function run(what) {
   const final = kind === "final";
   setSkill("gold");
 
-  await Promise.all(ids.map(id => A.load(id)));
+  await Promise.all(ids.map(id => A.load(id)).concat(A.load(uiClips())));
 
   const go = await new Promise(res => {
     const wrap = stage();
     wrap.appendChild(node("div", "hero__clara", clara("neutral")));
-    wrap.appendChild(node("div", "hero__eyebrow", final ? "Band assessment" : "Unit test"));
-    wrap.appendChild(node("h1", null, final ? "Ready for the next level?" : "A quick check."));
+    wrap.appendChild(node("div", "hero__eyebrow", esc(t(final ? "test.band" : "test.unit"))));
+    wrap.appendChild(node("h1", null, esc(t(final ? "due.final.t" : "due.unit.t"))));
     if (band.instructions !== "none") {
-      wrap.appendChild(node("p", null, final
-        ? paper.length + " questions, mixed across everything in " + band.label +
-          ". Pass and the next band opens. Not passing costs nothing — whatever you miss goes " +
-          "straight into revision."
-        : paper.length + " questions, mixed across the categories you have done. Nothing is marked."));
+      wrap.appendChild(node("p", null, esc(final
+        ? t("test.finalIntro", { n: paper.length, band: C.bandLabel(band) })
+        : t("test.unitIntro", { n: paper.length }))));
     }
     wrap.appendChild(node("hr", "hair"));
     const row = node("div", "row row--end");
-    row.appendChild(button("btn btn--quiet", "Not now", () => res(false)));
-    row.appendChild(button("btn", band.instructions === "none" ? "→" : "Start →", () => res(true)));
+    row.appendChild(button("btn btn--quiet", t("test.notNow"), () => res(false)));
+    row.appendChild(button("btn", t(band.instructions === "none" ? "app.go" : "test.start"), () => res(true)));
     wrap.appendChild(row);
-    A.say("Let's begin.");
+    A.say(t("audio.begin"));
   });
 
   if (!go || !Mission.ok(token)) return { declined: true };
@@ -149,7 +148,7 @@ export async function run(what) {
     const it = paper[i];
 
     host.innerHTML = "";
-    host.appendChild(rule(final ? "Assessment" : "Unit test", i + 1 + " / " + paper.length));
+    host.appendChild(rule(t(final ? "test.assessment" : "test.unit"), i + 1 + " / " + paper.length));
     const card = node("div");
     host.appendChild(card);
 
@@ -201,22 +200,21 @@ export function result(r, onHome, onNextBand) {
     ? C.band(r.band.assessment.unlocks) : null;
 
   box.appendChild(node("h1", null,
-    r.passed ? (r.final ? "Passed." : "All good.") : "Not yet."));
-  box.appendChild(node("p", null,
+    esc(t(r.passed ? (r.final ? "test.passedFinal" : "test.passedUnit") : "test.notYet"))));
+  box.appendChild(node("p", null, esc(
     r.passed
       ? (next
-          ? r.right + " of " + r.total + ". " + next.label + " is open — you can move up whenever you want to."
-          : r.right + " of " + r.total + ". Carry on.")
-      : "Everything you missed is now in revision. Come back to this when it feels easier — " +
-        "there is no limit on trying again."));
+          ? t("test.scoreNext", { right: r.right, total: r.total, band: C.bandLabel(next) })
+          : t("test.scoreOn", { right: r.right, total: r.total }))
+      : t("test.failed"))));
 
   const row = node("div", "row");
   row.style.justifyContent = "center";
-  if (next) row.appendChild(button("btn", "Move up to " + next.label + " →", () => onNextBand(next.id)));
-  row.appendChild(button(next ? "btn btn--quiet" : "btn", "Home →", onHome));
+  if (next) row.appendChild(button("btn", t("test.moveUp", { band: C.bandLabel(next) }), () => onNextBand(next.id)));
+  row.appendChild(button(next ? "btn btn--quiet" : "btn", t("test.home"), onHome));
   box.appendChild(row);
   wrap.appendChild(box);
 
   if (r.passed) FX.rain([SKILL_COLORS.gold, SKILL_COLORS.listen, SKILL_COLORS.read, SKILL_COLORS.write]);
-  A.say(r.passed ? "Well done!" : "One more time.");
+  A.say(t(r.passed ? "audio.wellDone" : "audio.oneMore"));
 }

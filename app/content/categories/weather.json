@@ -1,101 +1,373 @@
 {
   "id": "weather",
   "title": "Weather",
+  "title_pt": "Tempo",
   "icon": "🌦️",
-  "bands": ["7-10", "11-14"],
+  "bands": [
+    "7-10",
+    "11-14"
+  ],
   "cefr": "A1-A2",
   "goal": "Say what the weather is like, and understand a forecast.",
+  "goal_pt": "Dizer como está o tempo e entender uma previsão.",
   "grammar": [
-    { "point": "It's + adjective for weather", "example": "It's cold today." },
-    { "point": "going to for predictions", "example": "It's going to rain." },
-    { "point": "Question tags in small talk", "example": "Lovely day, isn't it?" }
+    {
+      "point": "It's + adjective for weather",
+      "point_pt": "It's + adjetivo para o tempo",
+      "example": "It's cold today."
+    },
+    {
+      "point": "going to for predictions",
+      "point_pt": "going to para previsões",
+      "example": "It's going to rain."
+    },
+    {
+      "point": "Question tags in small talk",
+      "point_pt": "Question tags numa conversa leve",
+      "example": "Lovely day, isn't it?"
+    }
   ],
-
   "vocabulary": [
-    { "word": "sun", "icon": "🌞", "example": "The sun is very strong today." },
-    { "word": "rain", "icon": "🌧️", "example": "Take a coat, it's going to rain." },
-    { "word": "cloud", "icon": "☁️", "example": "There isn't a cloud in the sky." },
-    { "word": "wind", "icon": "🌬️", "example": "The wind is cold this morning." },
-    { "word": "snow", "icon": "❄️", "example": "It never snows in Recife." },
-    { "word": "storm", "icon": "⛈️", "example": "There was a storm last night." },
-    { "word": "fog", "icon": "🌫️", "example": "The fog is thick near the river." },
-    { "word": "rainbow", "icon": "🌈", "example": "Look, a rainbow!" },
-    { "word": "hot", "icon": "🥵", "example": "It's too hot to walk." },
-    { "word": "cold", "icon": "🥶", "example": "It's cold. Close the window." },
-    { "word": "warm", "icon": "🌤️", "example": "A warm evening is perfect for the beach." },
-    { "word": "wet", "icon": "💦", "example": "My shoes are wet." },
-    { "word": "dry", "icon": "🏜️", "example": "It is dry from June to December." },
-    { "word": "umbrella", "icon": "☂️", "example": "Where is my umbrella?" },
-    { "word": "coat", "icon": "🧥", "example": "You'll need a coat tonight." },
-    { "word": "sky", "icon": "🌌", "example": "The sky is grey." },
-    { "word": "degrees", "icon": "🌡️", "example": "It's thirty degrees today." },
-    { "word": "forecast", "icon": "📺", "example": "The forecast says rain on Sunday." },
-    { "word": "season", "icon": "🍂", "example": "My favorite season is winter." },
-    { "word": "weather", "icon": "🌦️", "example": "What's the weather like today?" }
+    {
+      "word": "sun",
+      "icon": "🌞",
+      "example": "The sun is very strong today."
+    },
+    {
+      "word": "rain",
+      "icon": "🌧️",
+      "example": "Take a coat, it's going to rain."
+    },
+    {
+      "word": "cloud",
+      "icon": "☁️",
+      "example": "There isn't a cloud in the sky."
+    },
+    {
+      "word": "wind",
+      "icon": "🌬️",
+      "example": "The wind is cold this morning."
+    },
+    {
+      "word": "snow",
+      "icon": "❄️",
+      "example": "It never snows in Recife."
+    },
+    {
+      "word": "storm",
+      "icon": "⛈️",
+      "example": "There was a storm last night."
+    },
+    {
+      "word": "fog",
+      "icon": "🌫️",
+      "example": "The fog is thick near the river."
+    },
+    {
+      "word": "rainbow",
+      "icon": "🌈",
+      "example": "Look, a rainbow!"
+    },
+    {
+      "word": "hot",
+      "icon": "🥵",
+      "example": "It's too hot to walk."
+    },
+    {
+      "word": "cold",
+      "icon": "🥶",
+      "example": "It's cold. Close the window."
+    },
+    {
+      "word": "warm",
+      "icon": "🌤️",
+      "example": "A warm evening is perfect for the beach."
+    },
+    {
+      "word": "wet",
+      "icon": "💦",
+      "example": "My shoes are wet."
+    },
+    {
+      "word": "dry",
+      "icon": "🏜️",
+      "example": "It is dry from June to December."
+    },
+    {
+      "word": "umbrella",
+      "icon": "☂️",
+      "example": "Where is my umbrella?"
+    },
+    {
+      "word": "coat",
+      "icon": "🧥",
+      "example": "You'll need a coat tonight."
+    },
+    {
+      "word": "sky",
+      "icon": "🌌",
+      "example": "The sky is grey."
+    },
+    {
+      "word": "degrees",
+      "icon": "🌡️",
+      "example": "It's thirty degrees today."
+    },
+    {
+      "word": "forecast",
+      "icon": "📺",
+      "example": "The forecast says rain on Sunday."
+    },
+    {
+      "word": "season",
+      "icon": "🍂",
+      "example": "My favorite season is winter."
+    },
+    {
+      "word": "weather",
+      "icon": "🌦️",
+      "example": "What's the weather like today?"
+    }
   ],
-
   "phrases": [
-    { "text": "What's the weather like?", "use": "The normal question. Not how is the weather." },
-    { "text": "It's raining.", "use": "Happening now. Use the -ing form for weather in progress." },
-    { "text": "It's going to rain.", "use": "You can see it coming — dark clouds, wind." },
-    { "text": "It's thirty degrees today.", "use": "Giving the temperature." },
-    { "text": "Lovely day, isn't it?", "use": "Small talk. The tag falls, it is not a real question." },
-    { "text": "Take an umbrella, just in case.", "use": "Advising someone before they go out." }
+    {
+      "text": "What's the weather like?",
+      "use": "The normal question. Not how is the weather."
+    },
+    {
+      "text": "It's raining.",
+      "use": "Happening now. Use the -ing form for weather in progress."
+    },
+    {
+      "text": "It's going to rain.",
+      "use": "You can see it coming — dark clouds, wind."
+    },
+    {
+      "text": "It's thirty degrees today.",
+      "use": "Giving the temperature."
+    },
+    {
+      "text": "Lovely day, isn't it?",
+      "use": "Small talk. The tag falls, it is not a real question."
+    },
+    {
+      "text": "Take an umbrella, just in case.",
+      "use": "Advising someone before they go out."
+    }
   ],
-
   "dialogue": {
     "title": "Before going out",
     "lines": [
-      { "who": "A", "text": "What's the weather like out there?" },
-      { "who": "B", "text": "Grey. It's going to rain, I think." },
-      { "who": "A", "text": "Really? It was thirty degrees yesterday." },
-      { "who": "B", "text": "I know. The forecast says storms all week." },
-      { "who": "A", "text": "Then I'll take a coat." },
-      { "who": "B", "text": "Take an umbrella too, just in case." }
+      {
+        "who": "A",
+        "text": "What's the weather like out there?"
+      },
+      {
+        "who": "B",
+        "text": "Grey. It's going to rain, I think."
+      },
+      {
+        "who": "A",
+        "text": "Really? It was thirty degrees yesterday."
+      },
+      {
+        "who": "B",
+        "text": "I know. The forecast says storms all week."
+      },
+      {
+        "who": "A",
+        "text": "Then I'll take a coat."
+      },
+      {
+        "who": "B",
+        "text": "Take an umbrella too, just in case."
+      }
     ],
     "questions": [
-      { "q": "What does B think will happen?", "options": ["It will rain", "It will be hot", "It will snow"], "answer": 0 },
-      { "q": "What does B advise?", "options": ["Take an umbrella", "Stay at home", "Wear shorts"], "answer": 0 }
+      {
+        "q": "What does B think will happen?",
+        "options": [
+          "It will rain",
+          "It will be hot",
+          "It will snow"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What does B advise?",
+        "options": [
+          "Take an umbrella",
+          "Stay at home",
+          "Wear shorts"
+        ],
+        "answer": 0
+      }
     ]
   },
-
   "reading": {
     "title": "Two seasons, not four",
     "text": "Textbooks teach four seasons, and for most of Brazil that is simply wrong. In Recife there is a wet season and a dry season, and everybody plans around which one they are in rather than around spring or autumn. This causes a small problem in English lessons, because the language has a whole set of words built for a climate the learner has never lived in: frost, sleet, drizzle, mild. A student can define them perfectly and still have no feeling for what they mean.\n\nThe practical answer is not to skip them but to learn them the way you learn the vocabulary of a film: as something real people use somewhere else. You will need them the first time you read a forecast abroad, or the first time an English person opens a conversation with the weather, which they will, within about a minute of meeting you.",
     "questions": [
-      { "q": "What does the writer say about the four seasons?", "options": ["They do not describe most of Brazil", "They are the same everywhere", "They only matter in winter"], "answer": 0 },
-      { "q": "Why are words like drizzle hard?", "options": ["The learner has not lived in that climate", "They are irregular", "They are very formal"], "answer": 0 },
-      { "q": "What does the writer advise?", "options": ["Learn them as vocabulary used elsewhere", "Skip them", "Translate them"], "answer": 0 }
+      {
+        "q": "What does the writer say about the four seasons?",
+        "options": [
+          "They do not describe most of Brazil",
+          "They are the same everywhere",
+          "They only matter in winter"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Why are words like drizzle hard?",
+        "options": [
+          "The learner has not lived in that climate",
+          "They are irregular",
+          "They are very formal"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What does the writer advise?",
+        "options": [
+          "Learn them as vocabulary used elsewhere",
+          "Skip them",
+          "Translate them"
+        ],
+        "answer": 0
+      }
     ]
   },
-
   "speaking": [
-    { "text": "What's the weather like?", "tip": "What's the runs together: wots-the." },
-    { "text": "It's going to rain.", "tip": "Going to often becomes gonna in speech." },
-    { "text": "It's thirty degrees today.", "tip": "Thirty starts with the tongue between the teeth." },
-    { "text": "Lovely day, isn't it?", "tip": "The tag falls. Rising would mean you really don't know." },
-    { "text": "Take an umbrella, just in case.", "tip": "Umbrella has the strong beat in the middle: um-BREL-la." }
+    {
+      "text": "What's the weather like?",
+      "tip": "What's the runs together: wots-the."
+    },
+    {
+      "text": "It's going to rain.",
+      "tip": "Going to often becomes gonna in speech."
+    },
+    {
+      "text": "It's thirty degrees today.",
+      "tip": "Thirty starts with the tongue between the teeth."
+    },
+    {
+      "text": "Lovely day, isn't it?",
+      "tip": "The tag falls. Rising would mean you really don't know."
+    },
+    {
+      "text": "Take an umbrella, just in case.",
+      "tip": "Umbrella has the strong beat in the middle: um-BREL-la."
+    }
   ],
-
   "writing": [
-    { "type": "spell", "answer": "rain" },
-    { "type": "spell", "answer": "cold" },
-    { "type": "spell", "answer": "umbrella" },
-    { "type": "cloze", "sentence": "It's ___ to rain, take a coat.", "answer": "going" },
-    { "type": "cloze", "sentence": "What's the weather ___?", "answer": "like" },
-    { "type": "cloze", "sentence": "It's thirty ___ today.", "answer": "degrees" },
-    { "type": "answer", "question": "What's the weather like where you are?", "accept": ["it's", "it is", "sunny", "raining", "hot", "cold", "warm", "cloudy"] },
-    { "type": "answer", "question": "Start a conversation using the weather.", "accept": ["lovely day", "nice day", "isn't it", "hot today", "cold today"] }
+    {
+      "type": "spell",
+      "answer": "rain"
+    },
+    {
+      "type": "spell",
+      "answer": "cold"
+    },
+    {
+      "type": "spell",
+      "answer": "umbrella"
+    },
+    {
+      "type": "cloze",
+      "sentence": "It's ___ to rain, take a coat.",
+      "answer": "going"
+    },
+    {
+      "type": "cloze",
+      "sentence": "What's the weather ___?",
+      "answer": "like"
+    },
+    {
+      "type": "cloze",
+      "sentence": "It's thirty ___ today.",
+      "answer": "degrees"
+    },
+    {
+      "type": "answer",
+      "question": "What's the weather like where you are?",
+      "accept": [
+        "it's",
+        "it is",
+        "sunny",
+        "raining",
+        "hot",
+        "cold",
+        "warm",
+        "cloudy"
+      ]
+    },
+    {
+      "type": "answer",
+      "question": "Start a conversation using the weather.",
+      "accept": [
+        "lovely day",
+        "nice day",
+        "isn't it",
+        "hot today",
+        "cold today"
+      ]
+    }
   ],
-
   "quiz": [
-    { "q": "\"What's the weather like?\" — \"___\"", "options": ["It's raining.", "It likes rain.", "The weather is like rain."], "answer": 0 },
-    { "q": "You can see dark clouds. You say:", "options": ["It's going to rain.", "It rained.", "It rains."], "answer": 0 },
-    { "q": "Which one is a temperature?", "options": ["thirty degrees", "a rainbow", "a storm"], "answer": 0 },
-    { "q": "Complete the tag: \"Lovely day, ___?\"", "options": ["isn't it", "doesn't it", "is it"], "answer": 0 },
-    { "q": "It is very hot and there is no rain. The season is ___.", "options": ["dry", "wet", "cold"], "answer": 0 },
-    { "q": "You take this when it rains.", "options": ["an umbrella", "a forecast", "a season"], "answer": 0 }
+    {
+      "q": "\"What's the weather like?\" — \"___\"",
+      "options": [
+        "It's raining.",
+        "It likes rain.",
+        "The weather is like rain."
+      ],
+      "answer": 0
+    },
+    {
+      "q": "You can see dark clouds. You say:",
+      "options": [
+        "It's going to rain.",
+        "It rained.",
+        "It rains."
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Which one is a temperature?",
+      "options": [
+        "thirty degrees",
+        "a rainbow",
+        "a storm"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Complete the tag: \"Lovely day, ___?\"",
+      "options": [
+        "isn't it",
+        "doesn't it",
+        "is it"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "It is very hot and there is no rain. The season is ___.",
+      "options": [
+        "dry",
+        "wet",
+        "cold"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "You take this when it rains.",
+      "options": [
+        "an umbrella",
+        "a forecast",
+        "a season"
+      ],
+      "answer": 0
+    }
   ],
-
   "reviewed": false
 }

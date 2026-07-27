@@ -342,6 +342,28 @@ p:last-child { margin-bottom: 0; }
 .cat__body { min-width: 0; flex: 1; display: flex; flex-direction: column; }
 .cat__title { display: block; font-family: var(--display); font-weight: 700; font-size: calc(1.06rem * var(--scale)); line-height: 1.2; }
 .cat__meta { display: block; font-size: 0.78rem; color: var(--ink-faint); letter-spacing: 0.03em; margin-top: 3px; }
+
+/* The English title IS vocabulary — it is the first word of the topic a learner
+   meets — so it stays the title, and the Portuguese sits under it as a gloss
+   rather than replacing it. */
+.cat__gloss {
+  display: block; font-size: 0.84rem; color: var(--ink-soft);
+  line-height: 1.25; margin-top: 1px;
+}
+
+/* Declared, not built yet. Visible on purpose: a learner should be able to see
+   what is coming. Distinct from an unreviewed file, which is invisible. */
+.cat.is-soon {
+  opacity: 0.55;
+  border-style: dashed;
+  cursor: default;
+}
+.cat.is-soon:hover { border-color: var(--rule-mid); }
+.cat.is-soon:active { transform: none; }
+.cat.is-soon .cat__meta {
+  color: var(--ink-faint); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.68rem;
+}
 .cat__done { color: var(--gold); font-size: 1.1rem; flex: none; }
 
 /* Four hairlines, one per skill — how much of this category each skill has

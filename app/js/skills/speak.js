@@ -23,6 +23,7 @@ import * as A from "../audio.js";
 import * as P from "../progress.js";
 import { node, button, rule, esc, sample, setSkill, Mission } from "../ui.js";
 import { clara } from "../clara.js";
+import { t } from "../i18n.js";
 
 export const skill = "speak";
 
@@ -38,7 +39,7 @@ function item(ctx, target, index, total) {
     let recording = false;
 
     host.innerHTML = "";
-    host.appendChild(rule("Speaking", index + 1 + " / " + total));
+    host.appendChild(rule(t("skill.speak"), index + 1 + " / " + total));
 
     const head = node("div", "prompt");
     const face = node("span", "prompt__clara", clara("listening"));
@@ -50,15 +51,15 @@ function item(ctx, target, index, total) {
     head.appendChild(txt);
     host.appendChild(head);
 
-    const hear = button("btn btn--ghost btn--wide", "🔊 " + (silent ? "" : "Hear Clara"),
-      () => A.say(target.text), { "aria-label": "Hear Clara say it" });
+    const hear = button("btn btn--ghost btn--wide", "🔊 " + (silent ? "" : esc(t("speak.hearClara"))),
+      () => A.say(target.text), { "aria-label": t("speak.hearClaraA") });
     hear.style.marginBottom = "12px";
     host.appendChild(hear);
 
     const mic = button("mic",
       '<span class="mic__icon" aria-hidden="true">🎤</span>' +
-      (silent ? "" : '<span class="mic__label">Your turn</span>'),
-      toggle, { "aria-label": "Record yourself" });
+      (silent ? "" : '<span class="mic__label">' + esc(t("speak.yourTurn")) + "</span>"),
+      toggle, { "aria-label": t("speak.record") });
     host.appendChild(mic);
 
     const compare = node("div", "compare");
@@ -68,21 +69,21 @@ function item(ctx, target, index, total) {
        about listening to yourself would need reading to operate. */
     const playClara = button("btn btn--quiet",
       silent ? '🔊 <span class="compare__face">' + clara("pleased", { blink: false }) + "</span>" : "🔊 Clara",
-      () => A.say(target.text), { "aria-label": "Hear Clara" });
+      () => A.say(target.text), { "aria-label": t("speak.hearClara") });
     const playMine = button("btn btn--quiet",
-      silent ? '🔊 <span aria-hidden="true">🎤</span>' : "🔊 You",
-      playBack, { "aria-label": "Hear yourself" });
+      silent ? '🔊 <span aria-hidden="true">🎤</span>' : "🔊 " + esc(t("speak.you")),
+      playBack, { "aria-label": t("speak.hearYou") });
     compare.appendChild(playClara);
     compare.appendChild(playMine);
     host.appendChild(compare);
 
     const note = node("div", "mic-note");
-    if (!silent) note.textContent = "Your recording stays on this device. Nothing is sent anywhere, and nothing is saved.";
+    if (!silent) note.textContent = t("speak.private");
     host.appendChild(note);
 
     const row = node("div", "row row--end");
     row.style.marginTop = "20px";
-    row.appendChild(button("btn btn--skill", silent ? "→" : "Next →", finish));
+    row.appendChild(button("btn btn--skill", t(silent ? "app.go" : "app.next"), finish));
     host.appendChild(row);
 
     /* Clara says it once, unprompted. The model comes before the attempt. */
@@ -91,13 +92,13 @@ function item(ctx, target, index, total) {
     async function toggle() {
       if (recording) return stopRec();
       if (!supported) {
-        note.textContent = "This browser cannot record. Say it out loud anyway — Clara is listening.";
+        note.textContent = t("speak.noRecorder");
         return;
       }
       try {
         stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       } catch {
-        note.textContent = "The microphone is not available. Say it out loud anyway, then carry on — nothing here is scored.";
+        note.textContent = t("speak.noMic");
         return;
       }
       if (!Mission.ok(token)) return release();
@@ -108,7 +109,7 @@ function item(ctx, target, index, total) {
       recorder.start();
       recording = true;
       mic.classList.add("is-recording");
-      mic.querySelector(".mic__label") && (mic.querySelector(".mic__label").textContent = "Stop");
+      mic.querySelector(".mic__label") && (mic.querySelector(".mic__label").textContent = t("speak.stop"));
       face.innerHTML = clara("listening", { blink: false });
     }
 
@@ -116,7 +117,7 @@ function item(ctx, target, index, total) {
       recording = false;
       mic.classList.remove("is-recording");
       const label = mic.querySelector(".mic__label");
-      if (label) label.textContent = "Again";
+      if (label) label.textContent = t("speak.againBtn");
       try { recorder && recorder.state !== "inactive" && recorder.stop(); } catch { release(); }
     }
 
@@ -129,13 +130,13 @@ function item(ctx, target, index, total) {
       try {
         mine = await ctxA.decodeAudioData(await blob.arrayBuffer());
       } catch {
-        note.textContent = "That did not record cleanly. Try once more, or just carry on.";
+        note.textContent = t("speak.badRec");
         return;
       }
       if (!Mission.ok(token)) return;
       compare.hidden = false;
       face.innerHTML = clara("pleased");
-      if (!silent) note.textContent = "Play them one after the other. Listen for where the beat falls, not for a perfect accent.";
+      if (!silent) note.textContent = t("speak.compare");
       playBack();
     }
 

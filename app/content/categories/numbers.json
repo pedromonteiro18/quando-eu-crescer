@@ -1,90 +1,326 @@
 {
   "id": "numbers",
   "title": "Numbers",
+  "title_pt": "Números",
   "icon": "🔢",
-  "bands": ["4-6", "7-10"],
+  "bands": [
+    "4-6",
+    "7-10"
+  ],
   "cefr": "A1",
   "goal": "Count to twenty, say how many, and say how old you are.",
+  "goal_pt": "Contar até vinte, dizer quantos e dizer quantos anos você tem.",
   "grammar": [
-    { "point": "There is / There are", "example": "There are three cats." },
-    { "point": "How many + plural noun", "example": "How many apples?" }
+    {
+      "point": "There is / There are",
+      "point_pt": "There is / There are (há)",
+      "example": "There are three cats."
+    },
+    {
+      "point": "How many + plural noun",
+      "point_pt": "How many + substantivo no plural",
+      "example": "How many apples?"
+    }
   ],
-
   "vocabulary": [
-    { "word": "zero", "icon": "0️⃣", "example": "Zero means nothing." },
-    { "word": "one", "icon": "1️⃣", "example": "I have one brother." },
-    { "word": "two", "icon": "2️⃣", "example": "Two cats are sleeping." },
-    { "word": "three", "icon": "3️⃣", "example": "Three, please." },
-    { "word": "four", "icon": "4️⃣", "example": "A table has four legs." },
-    { "word": "five", "icon": "5️⃣", "example": "Give me five!" },
-    { "word": "six", "icon": "6️⃣", "example": "I'm six years old." },
-    { "word": "seven", "icon": "7️⃣", "example": "There are seven days in a week." },
-    { "word": "eight", "icon": "8️⃣", "example": "Eight birds are on the roof." },
-    { "word": "nine", "icon": "9️⃣", "example": "My sister is nine." },
-    { "word": "ten", "icon": "🔟", "example": "Count to ten." },
-    { "word": "eleven", "icon": "🕚", "example": "Eleven comes after ten." },
-    { "word": "twelve", "icon": "🕛", "example": "There are twelve months in a year." },
-    { "word": "twenty", "icon": "🧮", "example": "Twenty children are in my class." },
-    { "word": "hundred", "icon": "💯", "example": "One hundred is a big number." },
-    { "word": "count", "icon": "👆", "example": "Count the apples with me." },
-    { "word": "many", "icon": "👐", "example": "How many cats do you see?" },
-    { "word": "first", "icon": "🥇", "example": "She is first in the line." },
-    { "word": "few", "icon": "🤏", "example": "I have a few coins." },
-    { "word": "number", "icon": "📞", "example": "What is your phone number?" }
+    {
+      "word": "zero",
+      "icon": "0️⃣",
+      "example": "Zero means nothing."
+    },
+    {
+      "word": "one",
+      "icon": "1️⃣",
+      "example": "I have one brother."
+    },
+    {
+      "word": "two",
+      "icon": "2️⃣",
+      "example": "Two cats are sleeping."
+    },
+    {
+      "word": "three",
+      "icon": "3️⃣",
+      "example": "Three, please."
+    },
+    {
+      "word": "four",
+      "icon": "4️⃣",
+      "example": "A table has four legs."
+    },
+    {
+      "word": "five",
+      "icon": "5️⃣",
+      "example": "Give me five!"
+    },
+    {
+      "word": "six",
+      "icon": "6️⃣",
+      "example": "I'm six years old."
+    },
+    {
+      "word": "seven",
+      "icon": "7️⃣",
+      "example": "There are seven days in a week."
+    },
+    {
+      "word": "eight",
+      "icon": "8️⃣",
+      "example": "Eight birds are on the roof."
+    },
+    {
+      "word": "nine",
+      "icon": "9️⃣",
+      "example": "My sister is nine."
+    },
+    {
+      "word": "ten",
+      "icon": "🔟",
+      "example": "Count to ten."
+    },
+    {
+      "word": "eleven",
+      "icon": "🕚",
+      "example": "Eleven comes after ten."
+    },
+    {
+      "word": "twelve",
+      "icon": "🕛",
+      "example": "There are twelve months in a year."
+    },
+    {
+      "word": "twenty",
+      "icon": "🧮",
+      "example": "Twenty children are in my class."
+    },
+    {
+      "word": "hundred",
+      "icon": "💯",
+      "example": "One hundred is a big number."
+    },
+    {
+      "word": "count",
+      "icon": "👆",
+      "example": "Count the apples with me."
+    },
+    {
+      "word": "many",
+      "icon": "👐",
+      "example": "How many cats do you see?"
+    },
+    {
+      "word": "first",
+      "icon": "🥇",
+      "example": "She is first in the line."
+    },
+    {
+      "word": "few",
+      "icon": "🤏",
+      "example": "I have a few coins."
+    },
+    {
+      "word": "number",
+      "icon": "📞",
+      "example": "What is your phone number?"
+    }
   ],
-
   "phrases": [
-    { "text": "How many?", "use": "Asking about a quantity you can count." },
-    { "text": "How old are you?", "use": "Asking someone's age." },
-    { "text": "I'm six years old.", "use": "Giving your age. Say I'm, not I have." },
-    { "text": "Two, please.", "use": "Ordering or asking for a number of things." },
-    { "text": "There are three cats.", "use": "Saying how many of something there are." },
-    { "text": "Let's count together.", "use": "Starting to count with someone." }
+    {
+      "text": "How many?",
+      "use": "Asking about a quantity you can count."
+    },
+    {
+      "text": "How old are you?",
+      "use": "Asking someone's age."
+    },
+    {
+      "text": "I'm six years old.",
+      "use": "Giving your age. Say I'm, not I have."
+    },
+    {
+      "text": "Two, please.",
+      "use": "Ordering or asking for a number of things."
+    },
+    {
+      "text": "There are three cats.",
+      "use": "Saying how many of something there are."
+    },
+    {
+      "text": "Let's count together.",
+      "use": "Starting to count with someone."
+    }
   ],
-
   "dialogue": {
     "title": "At the fruit shop",
     "lines": [
-      { "who": "A", "text": "Good morning! How many apples?" },
-      { "who": "B", "text": "Four, please." },
-      { "who": "A", "text": "Four apples. Anything else?" },
-      { "who": "B", "text": "Yes. Two bananas, please." },
-      { "who": "A", "text": "That is six pieces of fruit." },
-      { "who": "B", "text": "Thank you! Goodbye." }
+      {
+        "who": "A",
+        "text": "Good morning! How many apples?"
+      },
+      {
+        "who": "B",
+        "text": "Four, please."
+      },
+      {
+        "who": "A",
+        "text": "Four apples. Anything else?"
+      },
+      {
+        "who": "B",
+        "text": "Yes. Two bananas, please."
+      },
+      {
+        "who": "A",
+        "text": "That is six pieces of fruit."
+      },
+      {
+        "who": "B",
+        "text": "Thank you! Goodbye."
+      }
     ],
     "questions": [
-      { "q": "How many apples does B want?", "options": ["Four", "Two", "Six"], "answer": 0 },
-      { "q": "How many pieces of fruit in total?", "options": ["Six", "Four", "Two"], "answer": 0 }
+      {
+        "q": "How many apples does B want?",
+        "options": [
+          "Four",
+          "Two",
+          "Six"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "How many pieces of fruit in total?",
+        "options": [
+          "Six",
+          "Four",
+          "Two"
+        ],
+        "answer": 0
+      }
     ]
   },
-
   "speaking": [
-    { "text": "One, two, three, four, five.", "tip": "Keep an even beat, one number per beat." },
-    { "text": "three", "tip": "Put your tongue between your teeth for th." },
-    { "text": "five", "tip": "The v buzzes. Bite your lip gently." },
-    { "text": "How old are you?", "tip": "Old and are join together: how OLDaryou." },
-    { "text": "I'm seven years old.", "tip": "Years old is one quick phrase." }
+    {
+      "text": "One, two, three, four, five.",
+      "tip": "Keep an even beat, one number per beat."
+    },
+    {
+      "text": "three",
+      "tip": "Put your tongue between your teeth for th."
+    },
+    {
+      "text": "five",
+      "tip": "The v buzzes. Bite your lip gently."
+    },
+    {
+      "text": "How old are you?",
+      "tip": "Old and are join together: how OLDaryou."
+    },
+    {
+      "text": "I'm seven years old.",
+      "tip": "Years old is one quick phrase."
+    }
   ],
-
   "writing": [
-    { "type": "spell", "answer": "two" },
-    { "type": "spell", "answer": "five" },
-    { "type": "spell", "answer": "ten" },
-    { "type": "cloze", "sentence": "There are ___ days in a week.", "answer": "seven" },
-    { "type": "cloze", "sentence": "How ___ apples?", "answer": "many" },
-    { "type": "cloze", "sentence": "I'm eight years ___.", "answer": "old" },
-    { "type": "answer", "question": "How old are you?", "accept": ["I'm", "I am"] },
-    { "type": "answer", "question": "Count from one to five.", "accept": ["one two three four five", "one, two, three, four, five"] }
+    {
+      "type": "spell",
+      "answer": "two"
+    },
+    {
+      "type": "spell",
+      "answer": "five"
+    },
+    {
+      "type": "spell",
+      "answer": "ten"
+    },
+    {
+      "type": "cloze",
+      "sentence": "There are ___ days in a week.",
+      "answer": "seven"
+    },
+    {
+      "type": "cloze",
+      "sentence": "How ___ apples?",
+      "answer": "many"
+    },
+    {
+      "type": "cloze",
+      "sentence": "I'm eight years ___.",
+      "answer": "old"
+    },
+    {
+      "type": "answer",
+      "question": "How old are you?",
+      "accept": [
+        "I'm",
+        "I am"
+      ]
+    },
+    {
+      "type": "answer",
+      "question": "Count from one to five.",
+      "accept": [
+        "one two three four five",
+        "one, two, three, four, five"
+      ]
+    }
   ],
-
   "quiz": [
-    { "q": "Which number comes after nine?", "options": ["ten", "eight", "twelve"], "answer": 0 },
-    { "q": "How many days are in a week?", "options": ["seven", "five", "twelve"], "answer": 0 },
-    { "q": "\"How old are you?\" — \"___\"", "options": ["I'm nine years old.", "I have nine years.", "It is nine."], "answer": 0 },
-    { "q": "Two plus three is ___.", "options": ["five", "four", "six"], "answer": 0 },
-    { "q": "How many months are in a year?", "options": ["twelve", "ten", "twenty"], "answer": 0 },
-    { "q": "Which one means 0?", "options": ["zero", "four", "first"], "answer": 0 }
+    {
+      "q": "Which number comes after nine?",
+      "options": [
+        "ten",
+        "eight",
+        "twelve"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "How many days are in a week?",
+      "options": [
+        "seven",
+        "five",
+        "twelve"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "\"How old are you?\" — \"___\"",
+      "options": [
+        "I'm nine years old.",
+        "I have nine years.",
+        "It is nine."
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Two plus three is ___.",
+      "options": [
+        "five",
+        "four",
+        "six"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "How many months are in a year?",
+      "options": [
+        "twelve",
+        "ten",
+        "twenty"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Which one means 0?",
+      "options": [
+        "zero",
+        "four",
+        "first"
+      ],
+      "answer": 0
+    }
   ],
-
   "reviewed": true
 }

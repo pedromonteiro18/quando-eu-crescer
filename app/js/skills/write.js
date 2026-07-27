@@ -17,6 +17,7 @@ import * as A from "../audio.js";
 import * as P from "../progress.js";
 import { node, button, rule, esc, shuffle, sample, sleep, setSkill, FX, SKILL_COLORS, REDUCED, Mission } from "../ui.js";
 import { clara } from "../clara.js";
+import { t } from "../i18n.js";
 
 export const skill = "write";
 
@@ -71,7 +72,7 @@ function tiles(ctx, it, index, total) {
     let locked = 0, misses = 0;
 
     host.innerHTML = "";
-    host.appendChild(rule("Writing", index + 1 + " / " + total));
+    host.appendChild(rule(t("skill.write"), index + 1 + " / " + total));
 
     const head = node("div", "word word--tight");
     /* 🔊 only if a picture could not be found: the slot is never blank, because
@@ -87,7 +88,7 @@ function tiles(ctx, it, index, total) {
 
     const replay = node("div", "row row--end");
     replay.style.marginTop = "20px";
-    replay.appendChild(button("btn btn--quiet btn--round", "🔊", () => A.say(word), { "aria-label": "Hear the word" }));
+    replay.appendChild(button("btn btn--quiet btn--round", "🔊", () => A.say(word), { "aria-label": t("write.hearWord") }));
     host.appendChild(replay);
 
     let slots, tileBtns;
@@ -145,13 +146,13 @@ function tiles(ctx, it, index, total) {
       if (got === word) {
         slotBox.classList.add("is-right");
         FX.sparkle(slotBox, [SKILL_COLORS.write, SKILL_COLORS.gold, "#FFFFFF"]);
-        A.seq(["Well done!", { gap: 120 }, word]);
+        A.seq([t("audio.wellDone"), { gap: 120 }, word]);
         await sleep(REDUCED ? 400 : 1200);
         return resolve({ ok: misses === 0, abandoned: !Mission.ok(token) });
       }
       misses++;
       slotBox.classList.add("is-wrong");
-      A.say("Almost. Try again.");
+      A.say(t("audio.almost"));
       await sleep(460);
       slotBox.classList.remove("is-wrong");
       /* Every miss locks one more real letter, so this always finishes. */
@@ -171,7 +172,7 @@ function typed(ctx, it, index, total) {
     let misses = 0;
 
     host.innerHTML = "";
-    host.appendChild(rule("Writing", index + 1 + " / " + total));
+    host.appendChild(rule(t("skill.write"), index + 1 + " / " + total));
 
     const head = node("div", "prompt");
     const face = node("span", "prompt__clara", clara("neutral"));
@@ -182,11 +183,9 @@ function typed(ctx, it, index, total) {
       txt.appendChild(node("div", "write-sentence", esc(it.sentence).replace(/_{2,}/, "<u>&nbsp;</u>")));
     } else if (it.type === "answer") {
       txt.appendChild(node("h2", null, esc(it.question)));
-      txt.appendChild(node("p", null, free
-        ? "Write a full sentence. There is more than one good answer."
-        : "Answer in your own words."));
+      txt.appendChild(node("p", null, t(free ? "write.free" : "write.own")));
     } else {
-      txt.appendChild(node("h2", null, "Write the word."));
+      txt.appendChild(node("h2", null, esc(t("write.writeWord"))));
       txt.appendChild(node("div", "word__icon", '<span aria-hidden="true">' +
         esc(it.icon || iconFor(cat, vocab, it.answer)) + "</span>"));
     }
@@ -209,7 +208,7 @@ function typed(ctx, it, index, total) {
     field.setAttribute("autocomplete", "off");
     field.setAttribute("autocapitalize", it.type === "cloze" ? "off" : "sentences");
     field.setAttribute("spellcheck", "false");
-    field.setAttribute("aria-label", it.type === "answer" ? it.question : "Your answer");
+    field.setAttribute("aria-label", it.type === "answer" ? it.question : t("write.yourAnswer"));
     host.appendChild(field);
 
     const out = node("div");
@@ -217,7 +216,7 @@ function typed(ctx, it, index, total) {
 
     const row = node("div", "row row--end");
     row.style.marginTop = "18px";
-    const go = button("btn btn--skill", "Check", check);
+    const go = button("btn btn--skill", t("write.check"), check);
     row.appendChild(go);
     host.appendChild(row);
 
@@ -240,7 +239,7 @@ function typed(ctx, it, index, total) {
 
       misses++;
       field.style.borderColor = SKILL_COLORS.speak;
-      A.say("Almost. Try again.");
+      A.say(t("audio.almost"));
       face.innerHTML = clara("encouraging");
 
       if (it.type === "answer") {
@@ -250,13 +249,13 @@ function typed(ctx, it, index, total) {
         out.innerHTML =
           '<div class="said">' +
             '<span class="said__clara">' + clara("encouraging", { blink: false }) + "</span>" +
-            '<span class="said__text">One good answer starts: <em>' + esc((it.accept || [""])[0]) + "…</em>" +
-            "<small>If you meant the same thing in different words, say so — this is not a spelling test.</small></span>" +
+            '<span class="said__text">' + esc(t("write.oneGood")) + ' <em>' + esc((it.accept || [""])[0]) + "…</em>" +
+            "<small>" + esc(t("write.notSpelling")) + "</small></span>" +
           "</div>";
         const marks = node("div", "row");
         marks.style.marginTop = "12px";
-        marks.appendChild(button("btn btn--quiet", "I meant that", () => win(true)));
-        marks.appendChild(button("btn btn--quiet", "Let me try again", () => {
+        marks.appendChild(button("btn btn--quiet", t("write.iMeant"), () => win(true)));
+        marks.appendChild(button("btn btn--quiet", t("write.tryAgain"), () => {
           out.innerHTML = ""; marks.remove(); field.focus();
         }));
         out.appendChild(marks);
@@ -266,8 +265,9 @@ function typed(ctx, it, index, total) {
       out.innerHTML =
         '<div class="said">' +
           '<span class="said__clara">' + clara("encouraging", { blink: false }) + "</span>" +
-          '<span class="said__text">Almost. Try again.' +
-          (misses >= 2 ? "<small>It starts with “" + esc(String(it.answer).slice(0, Math.ceil(it.answer.length / 2))) + "”</small>" : "") +
+          '<span class="said__text">' + esc(t("ask.almost")) +
+          (misses >= 2 ? "<small>" + esc(t("write.startsWith",
+              { x: String(it.answer).slice(0, Math.ceil(it.answer.length / 2)) })) + "</small>" : "") +
           "</span></div>";
       if (misses >= 3) { field.value = it.answer; }        // never a dead end
       field.focus();
@@ -281,10 +281,10 @@ function typed(ctx, it, index, total) {
       out.innerHTML =
         '<div class="said">' +
           '<span class="said__clara">' + clara("pleased", { blink: false }) + "</span>" +
-          '<span class="said__text">' + (selfMarked ? "Good. Carry on." : "That's right!") + "</span>" +
+          '<span class="said__text">' + esc(t(selfMarked ? "write.carryOn" : "write.correct")) + "</span>" +
         "</div>";
       FX.sparkle(field, [SKILL_COLORS.write, SKILL_COLORS.gold, "#FFFFFF"]);
-      A.say(selfMarked ? "Nice work!" : "That's right!");
+      A.say(t(selfMarked ? "audio.praise.5" : "audio.praise.3"));
       await sleep(REDUCED ? 400 : 1100);
       resolve({ ok: misses === 0, abandoned: !Mission.ok(token) });
     }
