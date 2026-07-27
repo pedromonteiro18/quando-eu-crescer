@@ -34,7 +34,12 @@ export function close() {
   resetArmed = false;
 }
 
-export function open() {
+/**
+ * `to` names a section to open on. A reviewer arriving from a link came to
+ * review content, not to read a stranger's streak, so `open("content")` puts
+ * the queue under her thumb instead of four scrolls down.
+ */
+export function open(to) {
   const body = $("teacher-body");
   body.innerHTML = "";
   $("teacher-h").textContent = t("t.title");
@@ -47,11 +52,23 @@ export function open() {
   body.appendChild(node("hr", "hair"));
   body.appendChild(mistakes());
   body.appendChild(node("hr", "hair"));
-  body.appendChild(content());
+  const queue = content();
+  body.appendChild(queue);
   body.appendChild(node("hr", "hair"));
   body.appendChild(selfTest());
   body.appendChild(node("hr", "hair"));
   body.appendChild(danger());
+
+  body.scrollTop = 0;
+  if (to === "content") {
+    /* Measured, not derived: offsetTop answers to the nearest positioned
+       ancestor, which is the sheet rather than the scrolling body. The frame
+       is needed because the sheet was hidden until a moment ago. */
+    requestAnimationFrame(() => {
+      const delta = queue.getBoundingClientRect().top - body.getBoundingClientRect().top;
+      body.scrollTop = Math.max(0, body.scrollTop + delta - 8);
+    });
+  }
 }
 
 /* ── who is using this device ─────────────────────────────────────────────── */

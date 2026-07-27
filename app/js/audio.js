@@ -24,7 +24,11 @@
    for the rest of the session. Measured, not assumed.
 
    Clips are loaded per category. A learner downloads the folder for the
-   category they opened, not 1,200 files.
+   category they opened, not all 939 files.
+
+   The app also watches its own output: two consecutive playbacks that fail to
+   advance the context clock raise `onSilence`, because "no errors" and "you can
+   hear it" are different claims and only one of them is checkable.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const registry = new Map();      // exact text → url
@@ -129,18 +133,40 @@ const watchers = [];
 export const audible = () => verdict;
 export function onSilence(fn) { if (typeof fn === "function") watchers.push(fn); }
 
+function announce(info) {
+  const report = { audible: verdict, state: state(), ...(info || {}) };
+  for (const fn of watchers) { try { fn(report); } catch {} }
+}
+
+/**
+ * Two CONSECUTIVE failures before we say anything — one blip is not a verdict,
+ * and `measure` resets the count on every success.
+ *
+ * It deliberately does not exempt a device that has already played something.
+ * That exemption was here, and it was wrong: the failure this whole mechanism
+ * exists for is iOS suspending the context after the app is backgrounded, which
+ * by definition happens *after* audio has worked. Exempting a proven device
+ * silenced the alarm in precisely the case it was built for.
+ */
 function strike(info) {
-  if (verdict === true) return;      // it worked once; a later blip is not a verdict
-  if (++strikes < 2) return;         // two independent failures before we say so
+  if (++strikes < 2) return;
   if (verdict === false) return;     // already told them
   verdict = false;
-  const report = { state: state(), ...(info || {}) };
-  for (const fn of watchers) { try { fn(report); } catch {} }
+  announce(info);
 }
 
 function measure(c, before, seconds) {
   const advanced = c.currentTime - before;
-  if (c.state === "running" && advanced > 0) { verdict = true; strikes = 0; return; }
+  if (c.state === "running" && advanced > 0) {
+    strikes = 0;
+    /* Recovery is worth announcing too: whatever we put on screen to say it was
+       silent has to come back off when it stops being true. */
+    if (verdict !== true) {
+      verdict = true;
+      announce({ advanced: Math.round(advanced * 1000) / 1000, seconds: seconds || 0 });
+    }
+    return;
+  }
   strike({ advanced: Math.round(advanced * 1000) / 1000, seconds: seconds || 0 });
 }
 

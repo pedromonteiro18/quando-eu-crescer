@@ -64,7 +64,7 @@ let redraw = null;          // how to repaint the current screen after a change
 
   /* A link that lands on the review queue, so what you send a reviewer is a
      URL rather than a URL plus instructions for a hidden gesture. */
-  if (/[?&]teacher=1/.test(location.search)) { home(); return Teacher.open(); }
+  if (/[?&]teacher=1/.test(location.search)) { home(); return Teacher.open("content"); }
 
   P.lang() ? splash() : askLanguage();
 })();
@@ -126,6 +126,9 @@ function wireSound() {
   on($("alarm-btn"), "click", () => openSound());
 
   A.onSilence(report => {
+    /* It reports recovery as well as failure, so the strip comes back off when
+       the sound returns — an alarm that only ever appears is an accusation. */
+    if (report.audible) { $("alarm").hidden = true; return; }
     $("alarm-text").textContent = t(report.state === "running" ? "alarm.noOutput" : "alarm.silent");
     $("alarm-btn").textContent = t("alarm.action");
     $("alarm").hidden = false;

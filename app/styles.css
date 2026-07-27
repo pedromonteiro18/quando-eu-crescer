@@ -769,7 +769,10 @@ textarea.field { min-height: calc(110px * var(--scale)); resize: vertical; line-
 .sheet {
   position: absolute; inset: 0; z-index: 40;
   background: rgba(21, 22, 29, 0.5);
-  display: grid; place-items: end center;
+  /* An `auto` grid row grows to fit its content, and then `max-height: 100%`
+     on the box below resolves against the *grown* row — so the cap capped
+     nothing. `minmax(0, 1fr)` pins the row to the phone screen instead. */
+  display: grid; grid-template-rows: minmax(0, 1fr); place-items: end center;
   padding: 20px 0 0;
 }
 .sheet__box {
@@ -783,7 +786,12 @@ textarea.field { min-height: calc(110px * var(--scale)); resize: vertical; line-
   padding: 16px 20px; border-bottom: 2px solid var(--ink);
 }
 .sheet__head h2 { font-size: 1.2rem; }
-.sheet__body { overflow: auto; padding: 20px; -webkit-overflow-scrolling: touch; }
+/* `min-height: 0` is load-bearing, not tidying. A flex item defaults to
+   `min-height: auto`, which refuses to shrink below its content — so the body
+   grew to its full 6,600px and `overflow: auto` never had anything to scroll.
+   Everything past the first screenful was unreachable: the review queue, the
+   audio self-test, the erase button. */
+.sheet__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 20px; -webkit-overflow-scrolling: touch; }
 
 .pack { border-top: 1px solid var(--rule); padding: 14px 0; }
 .pack:first-child { border-top: 0; }
