@@ -35,103 +35,143 @@
   "vocabulary": [
     {
       "word": "actually",
+      "word_pt": "na verdade",
       "icon": "🤔",
-      "example": "Actually, I think you're right."
+      "example": "Actually, I think you're right.",
+      "example_pt": "Na verdade, eu acho que você está certo."
     },
     {
       "word": "apologize",
+      "word_pt": "pedir desculpas",
       "icon": "🙇",
-      "example": "I want to apologize for yesterday."
+      "example": "I want to apologize for yesterday.",
+      "example_pt": "Eu quero pedir desculpas por ontem."
     },
     {
       "word": "agree",
+      "word_pt": "concordar",
       "icon": "👌",
-      "example": "I agree with you completely."
+      "example": "I agree with you completely.",
+      "example_pt": "Eu concordo totalmente com você."
     },
     {
       "word": "disagree",
+      "word_pt": "discordar",
       "icon": "🙅",
-      "example": "I disagree, but I understand why you say that."
+      "example": "I disagree, but I understand why you say that.",
+      "example_pt": "Eu discordo, mas entendo por que você diz isso."
     },
     {
       "word": "explain",
+      "word_pt": "explicar",
       "icon": "💬",
-      "example": "Let me explain what happened."
+      "example": "Let me explain what happened.",
+      "example_pt": "Deixa eu explicar o que aconteceu."
     },
     {
       "word": "suggest",
+      "word_pt": "sugerir",
       "icon": "💡",
-      "example": "I suggest we meet on Friday."
+      "example": "I suggest we meet on Friday.",
+      "example_pt": "Eu sugiro que a gente se encontre na sexta-feira."
     },
     {
       "word": "complain",
+      "word_pt": "reclamar",
       "icon": "😤",
-      "example": "He complains about everything."
+      "example": "He complains about everything.",
+      "example_pt": "Ele reclama de tudo."
     },
     {
       "word": "invite",
+      "word_pt": "convidar",
       "icon": "💌",
-      "example": "They invited us to dinner."
+      "example": "They invited us to dinner.",
+      "example_pt": "Eles nos convidaram para jantar."
     },
     {
       "word": "accept",
+      "word_pt": "aceitar",
       "icon": "✔️",
-      "example": "She accepted the invitation."
+      "example": "She accepted the invitation.",
+      "example_pt": "Ela aceitou o convite."
     },
     {
       "word": "refuse",
+      "word_pt": "recusar",
       "icon": "✋",
-      "example": "He refused to help."
+      "example": "He refused to help.",
+      "example_pt": "Ele se recusou a ajudar."
     },
     {
       "word": "promise",
+      "word_pt": "prometer",
       "icon": "🤞",
-      "example": "I promise I'll call you."
+      "example": "I promise I'll call you.",
+      "example_pt": "Eu prometo que vou te ligar."
     },
     {
       "word": "remind",
+      "word_pt": "lembrar",
       "icon": "🔔",
-      "example": "Remind me to buy bread."
+      "example": "Remind me to buy bread.",
+      "example_pt": "Me lembra de comprar pão."
     },
     {
       "word": "mention",
+      "word_pt": "mencionar",
       "icon": "🗯️",
-      "example": "She mentioned it yesterday."
+      "example": "She mentioned it yesterday.",
+      "example_pt": "Ela mencionou isso ontem."
     },
     {
       "word": "mean",
+      "word_pt": "querer dizer",
       "icon": "🎯",
-      "example": "What do you mean exactly?"
+      "example": "What do you mean exactly?",
+      "example_pt": "O que exatamente você quer dizer?"
     },
     {
       "word": "guess",
+      "word_pt": "achar",
       "icon": "🎲",
-      "example": "I guess you're tired."
+      "example": "I guess you're tired.",
+      "example_pt": "Eu acho que você está cansado."
     },
     {
       "word": "wonder",
+      "word_pt": "ficar imaginando",
       "icon": "💭",
-      "example": "I wonder if she's coming."
+      "example": "I wonder if she's coming.",
+      "example_pt": "Fico imaginando se ela vai vir."
     },
     {
       "word": "mind",
+      "word_pt": "se importar",
       "icon": "🧠",
-      "example": "Would you mind waiting a moment?"
+      "example": "Would you mind waiting a moment?",
+      "example_pt": "Você se importaria de esperar um momento?"
     },
     {
       "word": "favor",
+      "word_pt": "favor",
       "icon": "🎁",
-      "example": "Can I ask you a favor?"
+      "example": "Can I ask you a favor?",
+      "example_pt": "Posso te pedir um favor?"
     },
     {
       "word": "plan",
+      "word_pt": "plano",
       "icon": "🗓️",
-      "example": "What are your plans for the weekend?"
+      "example": "What are your plans for the weekend?",
+      "example_pt": "Quais são seus planos para o fim de semana?"
     },
     {
       "word": "chat",
+      "word_pt": "bate-papo",
       "icon": "🗨️",
-      "example": "We had a long chat about work."
+      "example": "We had a long chat about work.",
+      "example_pt": "A gente bateu um longo papo sobre trabalho."
     }
   ],
   "phrases": [

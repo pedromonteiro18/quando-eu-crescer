@@ -1,0 +1,232 @@
+{
+  "id": "food-restaurant",
+  "title": "At a Restaurant",
+  "title_pt": "No Restaurante",
+  "icon": "🍽️",
+  "bands": ["7-10", "11-14", "15+"],
+  "cefr": "A1",
+  "levelNote": "Six tiers in one file. A beginner orders a simple meal and asks for the bill; an advanced learner handles a reservation, a substitution, and a polite complaint — same topic, same file, different depth.",
+  "goal": "Order a meal, ask questions about the menu, and handle a problem at a restaurant with confidence.",
+  "goal_pt": "Pedir uma refeição, fazer perguntas sobre o cardápio e lidar com um problema no restaurante com confiança.",
+
+  "grammar": [
+    { "point": "a / an before a food or drink", "point_pt": "a / an antes de uma comida ou bebida", "example": "I have a sandwich and an orange juice.", "level": 0 },
+    { "point": "I'd like for polite ordering", "point_pt": "I'd like para pedir com educação", "example": "I'd like a pizza, please.", "level": 1 },
+    { "point": "Could / Can I have for requests", "point_pt": "Could / Can I have para pedidos", "example": "Could I have the bill, please?", "level": 2 },
+    { "point": "Have you ever for asking about experience", "point_pt": "Have you ever para perguntar sobre experiência", "example": "Have you ever tried sushi?", "level": 3 },
+    { "point": "Present perfect continuous for how long something has been happening", "point_pt": "Present perfect continuous para há quanto tempo algo está acontecendo", "example": "I have been waiting for twenty minutes.", "level": 4 },
+    { "point": "Reported speech and the passive for what you were told", "point_pt": "Discurso indireto e voz passiva para o que disseram a você", "example": "The waiter said the special had been sold out.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "menu", "word_pt": "cardápio", "icon": "📋", "example": "Can I see the menu, please?", "example_pt": "Posso ver o cardápio, por favor?", "level": 0 },
+    { "word": "waiter", "word_pt": "garçom", "icon": "🧑‍🍳", "example": "The waiter brings our food.", "example_pt": "O garçom traz a nossa comida.", "level": 0 },
+    { "word": "table", "word_pt": "mesa", "icon": "🪑", "example": "Our table is next to the window.", "example_pt": "Nossa mesa fica perto da janela.", "level": 0 },
+    { "word": "order", "word_pt": "pedir", "icon": "📝", "example": "I would like to order now.", "example_pt": "Eu gostaria de pedir agora.", "level": 0 },
+    { "word": "drink", "word_pt": "bebida", "icon": "🥤", "example": "What would you like to drink?", "example_pt": "O que você gostaria de beber?", "level": 0 },
+
+    { "word": "plate", "word_pt": "prato", "icon": "🍽️", "example": "The plate is very hot.", "example_pt": "O prato está muito quente.", "level": 1 },
+    { "word": "glass", "word_pt": "copo", "icon": "🥛", "example": "Can I have a glass of water?", "example_pt": "Pode me trazer um copo de água?", "level": 1 },
+    { "word": "fork", "word_pt": "garfo", "icon": "🍴", "example": "I need a clean fork.", "example_pt": "Eu preciso de um garfo limpo.", "level": 1 },
+    { "word": "spoon", "word_pt": "colher", "icon": "🥄", "example": "Use a spoon for the soup.", "example_pt": "Use uma colher para a sopa.", "level": 1 },
+    { "word": "napkin", "word_pt": "guardanapo", "icon": "🧻", "example": "The napkin is on your lap.", "example_pt": "O guardanapo está no seu colo.", "level": 1 },
+
+    { "word": "reservation", "word_pt": "reserva", "icon": "📅", "example": "We have a reservation for two.", "example_pt": "Temos uma reserva para dois.", "level": 2 },
+    { "word": "bill", "word_pt": "conta", "icon": "🧾", "example": "Can we have the bill, please?", "example_pt": "Pode trazer a conta, por favor?", "level": 2 },
+    { "word": "starter", "word_pt": "entrada", "icon": "🥗", "example": "I will have the soup as a starter.", "example_pt": "Vou querer a sopa como entrada.", "level": 2 },
+    { "word": "main course", "word_pt": "prato principal", "icon": "🍛", "example": "The main course comes with vegetables.", "example_pt": "O prato principal vem com legumes.", "level": 2 },
+    { "word": "dessert", "word_pt": "sobremesa", "icon": "🍰", "example": "Would you like to see the dessert menu?", "example_pt": "Gostaria de ver o cardápio de sobremesas?", "level": 2 },
+
+    { "word": "tip", "word_pt": "gorjeta", "icon": "💰", "example": "We usually leave a small tip.", "example_pt": "Normalmente deixamos uma gorjeta pequena.", "level": 3 },
+    { "word": "recommend", "word_pt": "recomendar", "icon": "👍", "example": "What do you recommend today?", "example_pt": "O que você recomenda hoje?", "level": 3 },
+    { "word": "spicy", "word_pt": "picante", "icon": "🌶️", "example": "This curry is quite spicy.", "example_pt": "Esse curry é bem picante.", "level": 3 },
+    { "word": "fresh", "word_pt": "fresco", "icon": "🥬", "example": "The fish here is always fresh.", "example_pt": "O peixe daqui é sempre fresco.", "level": 3 },
+    { "word": "portion", "word_pt": "porção", "icon": "🍲", "example": "The portions here are very large.", "example_pt": "As porções daqui são bem grandes.", "level": 3 },
+
+    { "word": "complaint", "word_pt": "reclamação", "icon": "😠", "example": "I would like to make a complaint.", "example_pt": "Eu gostaria de fazer uma reclamação.", "level": 4 },
+    { "word": "allergy", "word_pt": "alergia", "icon": "⚠️", "example": "I have an allergy to nuts.", "example_pt": "Eu tenho alergia a nozes.", "level": 4 },
+    { "word": "vegetarian", "word_pt": "vegetariano", "icon": "🥦", "example": "This dish is completely vegetarian.", "example_pt": "Este prato é totalmente vegetariano.", "level": 4 },
+    { "word": "garnish", "word_pt": "guarnição", "icon": "🌿", "example": "The plate has a small garnish on top.", "example_pt": "O prato tem uma pequena guarnição por cima.", "level": 4 },
+    { "word": "service charge", "word_pt": "taxa de serviço", "icon": "💳", "example": "The service charge is already included.", "example_pt": "A taxa de serviço já está incluída.", "level": 4 },
+
+    { "word": "ambience", "word_pt": "ambiente", "icon": "✨", "example": "The restaurant has a lovely ambience.", "example_pt": "O restaurante tem um ambiente encantador.", "level": 5 },
+    { "word": "wine list", "word_pt": "carta de vinhos", "icon": "🍷", "example": "Could I see the wine list?", "example_pt": "Poderia ver a carta de vinhos?", "level": 5 },
+    { "word": "sommelier", "word_pt": "sommelier", "icon": "🍇", "example": "The sommelier suggested a red wine.", "example_pt": "O sommelier sugeriu um vinho tinto.", "level": 5 },
+    { "word": "overcooked", "word_pt": "passado do ponto", "icon": "🔥", "example": "The steak arrived overcooked.", "example_pt": "O bife chegou passado do ponto.", "level": 5 },
+    { "word": "etiquette", "word_pt": "etiqueta", "icon": "🎩", "example": "Tipping etiquette is different in every country.", "example_pt": "A etiqueta da gorjeta é diferente em cada país.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "Can I see the menu, please?", "use": "Asking to see the menu when you sit down.", "level": 0 },
+    { "text": "A table for two, please.", "use": "The first thing you say at the door.", "level": 0 },
+    { "text": "I'd like the chicken, please.", "use": "Ordering food politely.", "level": 1 },
+    { "text": "Can I have a glass of water?", "use": "Asking a waiter for something extra.", "level": 1 },
+    { "text": "Could I have the bill, please?", "use": "Asking to pay, a little more formal than the bill please.", "level": 2 },
+    { "text": "We have a reservation for seven o'clock.", "use": "Confirming your booking when you arrive.", "level": 2 },
+    { "text": "What do you recommend?", "use": "Asking the waiter for their opinion.", "level": 3 },
+    { "text": "Have you ever tried the seafood here?", "use": "Asking about someone's experience with a dish.", "level": 3 },
+    { "text": "I have been waiting for twenty minutes.", "use": "A polite way to point out a delay.", "level": 4 },
+    { "text": "I'm sorry, but this isn't what I ordered.", "use": "Making a complaint calmly.", "level": 4 },
+    { "text": "Could you take this back to the kitchen?", "use": "A polite way to send food back.", "level": 5 },
+    { "text": "The service charge is already included, isn't it?", "use": "Checking the bill before you pay.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "Ordering a simple meal",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "Good evening. A table for two, please." },
+        { "who": "B", "text": "Of course. Right this way." },
+        { "who": "A", "text": "Thank you. Can I see the menu?" },
+        { "who": "B", "text": "Here you are. What would you like to drink?" },
+        { "who": "A", "text": "Water, please." },
+        { "who": "B", "text": "And are you ready to order?" },
+        { "who": "A", "text": "Yes. I would like the chicken and rice." },
+        { "who": "B", "text": "Great choice. I will bring that right out." }
+      ],
+      "questions": [
+        { "q": "How many people are eating?", "options": ["Two", "Three", "One"], "answer": 0, "level": 0 },
+        { "q": "What does A order to eat?", "options": ["Fish and salad", "Soup", "Chicken and rice"], "answer": 2, "level": 0 }
+      ]
+    },
+    {
+      "title": "Choosing from the menu",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "Hi, we have a reservation for two, under Silva." },
+        { "who": "B", "text": "Yes, table for two. This way, please." },
+        { "who": "A", "text": "Thank you. What do you recommend as a starter?" },
+        { "who": "B", "text": "The soup is very popular tonight." },
+        { "who": "A", "text": "That sounds good. And for the main course, what's fresh today?" },
+        { "who": "B", "text": "The fish is fresh. It comes with vegetables." },
+        { "who": "A", "text": "Perfect, I will have that. Could we see the dessert menu later?" },
+        { "who": "B", "text": "Of course. I will bring it after your main course." }
+      ],
+      "questions": [
+        { "q": "What name is the reservation under?", "options": ["Smith", "Silva", "Costa"], "answer": 1, "level": 2 },
+        { "q": "What does the waiter recommend as a starter?", "options": ["The soup", "The salad", "The bread"], "answer": 0, "level": 2 }
+      ]
+    },
+    {
+      "title": "Making a complaint politely",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "Excuse me, I'm sorry to bother you." },
+        { "who": "B", "text": "Not at all, how can I help?" },
+        { "who": "A", "text": "I ordered the steak medium, but this one is overcooked." },
+        { "who": "B", "text": "I do apologize. Would you like me to bring you a new one?" },
+        { "who": "A", "text": "Yes, please, if that's not too much trouble." },
+        { "who": "B", "text": "Not at all. I will also take this off your bill." },
+        { "who": "A", "text": "That's very kind, thank you." },
+        { "who": "B", "text": "I'll have a fresh one out to you in ten minutes." }
+      ],
+      "questions": [
+        { "q": "What was wrong with the steak?", "options": ["It was too spicy", "It was cold", "It was overcooked"], "answer": 2, "level": 4 },
+        { "q": "What does the waiter do about the bill?", "options": ["Gives a free dessert", "Takes the steak off the bill", "Gives a discount on everything"], "answer": 1, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "A family meal out",
+      "level": 1,
+      "text": "On Saturday, the Costa family went to a small restaurant near the beach. The waiter showed them to a table by the window and gave them the menu.\n\nThe children ordered pizza, and their parents chose fish with rice. Everyone was hungry, so the food did not stay on the plates for long.\n\nAt the end, their father asked for the bill and left a small tip for the friendly waiter. They all agreed it was a wonderful evening.",
+      "questions": [
+        { "q": "Where did the family sit?", "options": ["In the kitchen", "By the window", "Outside on the street"], "answer": 1, "level": 1 },
+        { "q": "What did the children order?", "options": ["Fish with rice", "Soup", "Pizza"], "answer": 2, "level": 1 },
+        { "q": "What did the father do at the end?", "options": ["Left a tip", "Asked for more food", "Complained about the food"], "answer": 0, "level": 1 }
+      ]
+    },
+    {
+      "title": "A memorable restaurant experience",
+      "level": 3,
+      "text": "Marco still remembers the first time he ate at a proper restaurant instead of a fast food place. He was nervous about which fork to use and whether he was supposed to order a starter, so he watched what everyone else at the table did before choosing anything himself.\n\nWhen the food arrived, he realized his worry had been unnecessary. The waiter was patient, happy to explain what was in each dish, and did not mind at all when Marco asked for the sauce on the side because he was not used to spicy food.\n\nWhat he remembers most, though, is not the meal itself but how relaxed the evening became once he stopped worrying about doing everything correctly. Good service, he decided, is less about rules and more about making a nervous guest feel comfortable.",
+      "questions": [
+        { "q": "Why was Marco nervous at first?", "options": ["He did not know the restaurant rules", "He did not like the food", "He had forgotten his money"], "answer": 0, "level": 3 },
+        { "q": "How did the waiter help him?", "options": ["By seating him near the kitchen", "By explaining the dishes", "By giving him a discount"], "answer": 1, "level": 3 },
+        { "q": "What does Marco conclude about good service?", "options": ["It is about following strict rules", "It is about serving food quickly", "It is about making guests comfortable"], "answer": 2, "level": 3 }
+      ]
+    },
+    {
+      "title": "The etiquette of tipping",
+      "level": 5,
+      "text": "Tipping is one of the strangest customs in the restaurant world, mostly because nobody agrees on it. In some countries a tip is expected and its absence is read as an insult; in others, offering one can seem to suggest the waiter was not already paid a fair wage. Visitors are left guessing, usually by watching what the table next to them does.\n\nThe confusion is not really about money. A tip left after a good meal is a small, specific thank you: it says the service itself, not just the food, made the evening better. Removing that signal does not remove the feeling behind it, which is probably why the custom survives even in places that keep trying to simplify it with an automatic service charge.\n\nWhat makes a restaurant experience good rarely appears on the receipt. It is the waiter who remembers you do not like ice in your water, the kitchen that quietly adjusts a dish for an allergy, the quiet at a table that lets a conversation actually happen. The food matters, obviously. It is just not the whole evening.",
+      "questions": [
+        { "q": "According to the text, why is tipping confusing for visitors?", "options": ["It is always included automatically everywhere", "Different countries have different expectations", "Waiters never expect one anywhere"], "answer": 1, "level": 5 },
+        { "q": "What does the writer say a tip actually communicates?", "options": ["That the meal was cheap", "That the restaurant needs more customers", "That the service made the evening better"], "answer": 2, "level": 5 },
+        { "q": "What does the writer suggest makes a restaurant experience good?", "options": ["More than just the food itself", "Only the price of the meal", "The size of the portions"], "answer": 0, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "Can I see the menu, please?", "tip": "Menu is MEN-yoo, stress on the first part.", "level": 0 },
+    { "text": "A table for two, please.", "tip": "Two rhymes with blue, not with toe.", "level": 0 },
+    { "text": "I'd like the chicken, please.", "tip": "I'd like contracts to sound like eyed-like.", "level": 1 },
+    { "text": "Can I have a glass of water?", "tip": "Glass takes a short a sound, like in cat.", "level": 1 },
+    { "text": "Could I have the bill, please?", "tip": "Could I often blends into cudd-eye in fast speech.", "level": 2 },
+    { "text": "We have a reservation for seven o'clock.", "tip": "Reservation is rez-er-VAY-shun, stress near the end.", "level": 2 },
+    { "text": "What do you recommend?", "tip": "Recommend is rek-uh-MEND, stress on the last part.", "level": 3 },
+    { "text": "Have you ever tried the seafood here?", "tip": "Have you often sounds like hav-yuh in natural speech.", "level": 3 },
+    { "text": "I have been waiting for twenty minutes.", "tip": "Waiting is WAY-ting, the ai makes a long a sound.", "level": 4 },
+    { "text": "I'm sorry, but this isn't what I ordered.", "tip": "Isn't is one quick syllable: IZ-nt.", "level": 4 },
+    { "text": "Could you take this back to the kitchen?", "tip": "Could you often becomes cudja in fast, natural speech.", "level": 5 },
+    { "text": "The service charge is already included, isn't it?", "tip": "Your voice rises slightly on isn't it, since you expect the answer is yes.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "menu", "icon": "📋", "level": 0 },
+    { "type": "spell", "answer": "waiter", "icon": "🧑‍🍳", "level": 0 },
+    { "type": "cloze", "answer": "the", "sentence": "Can I see ___ menu, please?", "level": 0 },
+
+    { "type": "spell", "answer": "plate", "icon": "🍽️", "level": 1 },
+    { "type": "cloze", "answer": "a", "sentence": "Can I have ___ glass of water?", "level": 1 },
+    { "type": "answer", "question": "What do you say when you sit down and want to order?", "accept": ["I'd like", "I would like", "can I have", "I want"], "level": 1 },
+
+    { "type": "spell", "answer": "reservation", "icon": "📅", "level": 2 },
+    { "type": "cloze", "answer": "have", "sentence": "Could I ___ the bill, please?", "level": 2 },
+    { "type": "cloze", "answer": "a", "sentence": "We have ___ reservation for seven o'clock.", "level": 2 },
+
+    { "type": "cloze", "answer": "Have", "sentence": "___ you ever tried the seafood here?", "level": 3 },
+    { "type": "cloze", "answer": "recommend", "sentence": "What do you ___?", "level": 3 },
+    { "type": "answer", "question": "Ask the waiter for their opinion on the menu.", "accept": ["what do you recommend", "recommend", "what's good here"], "level": 3 },
+
+    { "type": "cloze", "answer": "have", "sentence": "I ___ been waiting for twenty minutes.", "level": 4 },
+    { "type": "cloze", "answer": "ordered", "sentence": "This isn't what I ___.", "level": 4 },
+    { "type": "answer", "question": "Politely tell the waiter something is wrong with your order.", "accept": ["I'm sorry but", "this isn't what I ordered", "excuse me", "I have a complaint"], "level": 4 },
+
+    { "type": "cloze", "answer": "had", "sentence": "The waiter said the special ___ been sold out.", "level": 5 },
+    { "type": "cloze", "answer": "included", "sentence": "The service charge is already ___.", "level": 5 },
+    { "type": "answer", "question": "Ask politely to see the wine list.", "accept": ["could I see the wine list", "can I see the wine list", "the wine list please", "could we see the wine list"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Where do you look to choose your food?", "options": ["the bill", "the menu", "the kitchen"], "answer": 1, "level": 0 },
+    { "q": "Who brings your food to the table?", "options": ["the driver", "the chef", "the waiter"], "answer": 2, "level": 0 },
+    { "q": "Choose the correct sentence.", "options": ["A table for two, please.", "Two please table for.", "Table a for two, please."], "answer": 0, "level": 0 },
+
+    { "q": "What do you drink water from?", "options": ["a fork", "a spoon", "a glass"], "answer": 2, "level": 1 },
+    { "q": "I'd like ___ chicken, please.", "options": ["a", "an", "the"], "answer": 2, "level": 1 },
+    { "q": "What do you use to eat soup?", "options": ["a spoon", "a napkin", "a fork"], "answer": 0, "level": 1 },
+
+    { "q": "What do you ask for when you want to pay?", "options": ["the bill", "the starter", "the menu"], "answer": 0, "level": 2 },
+    { "q": "We have ___ reservation for seven o'clock.", "options": ["an", "the", "a"], "answer": 2, "level": 2 },
+    { "q": "Which course comes before the main course?", "options": ["dessert", "the starter", "the bill"], "answer": 1, "level": 2 },
+
+    { "q": "___ you ever tried the seafood here?", "options": ["Did", "Do", "Have"], "answer": 2, "level": 3 },
+    { "q": "A dish with a lot of chili is ___.", "options": ["fresh", "spicy", "sweet"], "answer": 1, "level": 3 },
+    { "q": "What do many people leave for good service?", "options": ["a tip", "a complaint", "a reservation"], "answer": 0, "level": 3 },
+
+    { "q": "I ___ been waiting for twenty minutes.", "options": ["was", "have", "am"], "answer": 1, "level": 4 },
+    { "q": "A dish made with no meat at all is ___.", "options": ["vegetarian", "spicy", "fresh"], "answer": 0, "level": 4 },
+    { "q": "What might you have if certain foods make you ill?", "options": ["a reservation", "a garnish", "an allergy"], "answer": 2, "level": 4 },
+
+    { "q": "The waiter said the special ___ been sold out.", "options": ["was", "have", "had"], "answer": 2, "level": 5 },
+    { "q": "Who might suggest a good wine with your meal?", "options": ["the sommelier", "the dishwasher", "the receptionist"], "answer": 0, "level": 5 },
+    { "q": "The service charge is already ___.", "options": ["forgotten", "included", "cancelled"], "answer": 1, "level": 5 }
+  ],
+
+  "reviewed": true
+}

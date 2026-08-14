@@ -1,0 +1,228 @@
+{
+  "id": "food-vegetables",
+  "title": "Vegetables",
+  "title_pt": "Legumes e Verduras",
+  "icon": "🥕",
+  "bands": ["4-6", "7-10", "11-14"],
+  "cefr": "A1",
+  "levelNote": "Six tiers in one file. Vegetables sit right next to fruit — the same picturable nouns for a four year old, the same adult concepts about how food gets to a plate by level five.",
+  "goal": "Name vegetables, say which you like, buy some, and talk about how they are grown.",
+  "goal_pt": "Nomear legumes e verduras, dizer de qual você gosta, comprar, e falar sobre como são cultivados.",
+
+  "grammar": [
+    { "point": "Plurals with -s", "point_pt": "Plural com -s", "example": "one carrot, two carrots", "level": 0 },
+    { "point": "I like / I don't like", "point_pt": "I like / I don't like", "example": "I like carrots. I don't like onions.", "level": 1 },
+    { "point": "some / any with uncountables", "point_pt": "some / any com incontáveis", "example": "We have some corn. We haven't got any peas.", "level": 2 },
+    { "point": "Comparatives", "point_pt": "Comparativos", "example": "A carrot is sweeter than an onion.", "level": 3 },
+    { "point": "Present perfect for experience", "point_pt": "Present perfect para experiência", "example": "Have you ever tried raw broccoli?", "level": 4 },
+    { "point": "Concession: although, even though", "point_pt": "Concessão: although, even though", "example": "Although the lettuce looks fresh, it is already wilted.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "carrot", "word_pt": "cenoura", "icon": "🥕", "example": "I eat a carrot every day.", "example_pt": "Eu como uma cenoura todos os dias.", "level": 0 },
+    { "word": "potato", "word_pt": "batata", "icon": "🥔", "example": "The potato is brown.", "example_pt": "A batata é marrom.", "level": 0 },
+    { "word": "tomato", "word_pt": "tomate", "icon": "🍅", "example": "This tomato is very red.", "example_pt": "Este tomate é bem vermelho.", "level": 0 },
+    { "word": "onion", "word_pt": "cebola", "icon": "🧅", "example": "I like onions in soup.", "example_pt": "Eu gosto de cebola na sopa.", "level": 0 },
+    { "word": "corn", "word_pt": "milho", "icon": "🌽", "example": "The corn is yellow.", "example_pt": "O milho é amarelo.", "level": 0 },
+
+    { "word": "pea", "word_pt": "ervilha", "icon": "🫛", "example": "Peas are small and green.", "example_pt": "As ervilhas são pequenas e verdes.", "level": 1 },
+    { "word": "cucumber", "word_pt": "pepino", "icon": "🥒", "example": "This cucumber is very long.", "example_pt": "Este pepino é bem comprido.", "level": 1 },
+    { "word": "pepper", "word_pt": "pimentão", "icon": "🫑", "example": "The pepper is red and sweet.", "example_pt": "O pimentão é vermelho e doce.", "level": 1 },
+    { "word": "cabbage", "word_pt": "repolho", "icon": "🥬", "example": "This cabbage is very big.", "example_pt": "Este repolho é bem grande.", "level": 1 },
+    { "word": "mushroom", "word_pt": "cogumelo", "icon": "🍄", "example": "Mushrooms grow in the forest.", "example_pt": "Os cogumelos crescem na floresta.", "level": 1 },
+
+    { "word": "broccoli", "word_pt": "brócolis", "icon": "🥦", "example": "Cut the broccoli into small pieces.", "example_pt": "Corte o brócolis em pedaços pequenos.", "level": 2 },
+    { "word": "lettuce", "word_pt": "alface", "icon": "🍃", "example": "The lettuce is fresh and green.", "example_pt": "A alface está fresca e verde.", "level": 2 },
+    { "word": "garden", "word_pt": "horta", "icon": "🌱", "example": "We grow vegetables in the garden.", "example_pt": "Nós cultivamos legumes na horta.", "level": 2 },
+    { "word": "salad", "word_pt": "salada", "icon": "🥗", "example": "Would you like some salad?", "example_pt": "Você gostaria de uma salada?", "level": 2 },
+    { "word": "farmer", "word_pt": "agricultor", "icon": "👨‍🌾", "example": "The farmer sells vegetables at the market.", "example_pt": "O agricultor vende legumes na feira.", "level": 2 },
+
+    { "word": "chop", "word_pt": "picar", "icon": "🔪", "example": "Chop the onion before you cook it.", "example_pt": "Pique a cebola antes de cozinhar.", "level": 3 },
+    { "word": "boil", "word_pt": "ferver", "icon": "♨️", "example": "Boil the potatoes for ten minutes.", "example_pt": "Ferva as batatas por dez minutos.", "level": 3 },
+    { "word": "spicy", "word_pt": "picante", "icon": "🌶️", "example": "This pepper is very spicy.", "example_pt": "Esta pimenta é bem picante.", "level": 3 },
+    { "word": "crunchy", "word_pt": "crocante", "icon": "🦷", "example": "A fresh carrot is crunchy.", "example_pt": "Uma cenoura fresca é crocante.", "level": 3 },
+    { "word": "cook", "word_pt": "cozinhar", "icon": "🍳", "example": "I cook vegetables every evening.", "example_pt": "Eu cozinho legumes todas as noites.", "level": 3 },
+
+    { "word": "organic", "word_pt": "orgânico", "icon": "🌿", "example": "We only buy organic vegetables.", "example_pt": "Nós só compramos legumes orgânicos.", "level": 4 },
+    { "word": "root vegetable", "word_pt": "legume de raiz", "icon": "🫚", "example": "A carrot is a root vegetable.", "example_pt": "A cenoura é um legume de raiz.", "level": 4 },
+    { "word": "nutrient", "word_pt": "nutriente", "icon": "💪", "example": "Vegetables are full of nutrients.", "example_pt": "Os legumes são cheios de nutrientes.", "level": 4 },
+    { "word": "vitamin", "word_pt": "vitamina", "icon": "💊", "example": "Peppers have a lot of vitamin C.", "example_pt": "Os pimentões têm bastante vitamina C.", "level": 4 },
+    { "word": "wilted", "word_pt": "murcho", "icon": "🥀", "example": "The lettuce looks wilted today.", "example_pt": "A alface está murcha hoje.", "level": 4 },
+
+    { "word": "harvest", "word_pt": "colheita", "icon": "🌾", "example": "The harvest was good this year.", "example_pt": "A colheita foi boa este ano.", "level": 5 },
+    { "word": "seasonal produce", "word_pt": "produtos da estação", "icon": "📅", "example": "We try to buy seasonal produce.", "example_pt": "Tentamos comprar produtos da estação.", "level": 5 },
+    { "word": "allotment", "word_pt": "horta comunitária", "icon": "🪴", "example": "My grandfather grows vegetables in his allotment.", "example_pt": "Meu avô cultiva legumes na horta comunitária dele.", "level": 5 },
+    { "word": "sustainable", "word_pt": "sustentável", "icon": "♻️", "example": "Sustainable farming protects the soil.", "example_pt": "A agricultura sustentável protege o solo.", "level": 5 },
+    { "word": "nourishing", "word_pt": "nutritivo", "icon": "🍲", "example": "A bowl of vegetable soup is nourishing.", "example_pt": "Uma tigela de sopa de legumes é nutritiva.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "I like carrots.", "use": "Plural for vegetables in general. Not I like carrot.", "level": 0 },
+    { "text": "This is a potato.", "use": "Pointing at one thing.", "level": 0 },
+    { "text": "I don't like onions.", "use": "Don't like, not no like.", "level": 1 },
+    { "text": "Which vegetable do you like?", "use": "Which when there is a small set to choose from.", "level": 1 },
+    { "text": "Would you like some corn?", "use": "Some in an offer, even though it is a question.", "level": 2 },
+    { "text": "We haven't got any peas.", "use": "Any in the negative.", "level": 2 },
+    { "text": "A carrot is sweeter than an onion.", "use": "Short adjective plus -er, then than.", "level": 3 },
+    { "text": "Is this fresh?", "use": "The most useful sentence in any market.", "level": 3 },
+    { "text": "Have you ever tried raw broccoli?", "use": "Ever with the present perfect, for any time in your life.", "level": 4 },
+    { "text": "Vegetables are cheaper when they are in season.", "use": "In season, not on season.", "level": 4 },
+    { "text": "Although the lettuce looks fresh, it is already wilted.", "use": "Although opens the surprising half.", "level": 5 },
+    { "text": "The vegetables were grown without any chemicals.", "use": "Passive voice, because who grew them is not the point.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "At the vegetable stall",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "Good morning! I like carrots." },
+        { "who": "B", "text": "Here is a big orange carrot." },
+        { "who": "A", "text": "Thank you. And a potato, please." },
+        { "who": "B", "text": "One potato. It is very brown." },
+        { "who": "A", "text": "I like tomatoes very much." },
+        { "who": "B", "text": "Here you are. Have a good day!" }
+      ],
+      "questions": [
+        { "q": "What does A ask for first?", "options": ["A potato", "A carrot", "Onions"], "answer": 1, "level": 0 },
+        { "q": "What colour is the potato?", "options": ["Green", "Red", "Brown"], "answer": 2, "level": 0 }
+      ]
+    },
+    {
+      "title": "Choosing vegetables for dinner",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "Would you like some corn, or shall we make a salad?" },
+        { "who": "B", "text": "Salad. We haven't got any lettuce at home." },
+        { "who": "A", "text": "These look good. And some broccoli?" },
+        { "who": "B", "text": "It is hard to cook quickly. But yes, let's take some." },
+        { "who": "A", "text": "Do we need onions?" },
+        { "who": "B", "text": "No, we have some. Just chop the tomatoes for the salad now." },
+        { "who": "A", "text": "Done. The farmer opens his stall at six tomorrow if we need more." }
+      ],
+      "questions": [
+        { "q": "What do they not have at home?", "options": ["Onions", "Lettuce", "Tomatoes"], "answer": 1, "level": 2 },
+        { "q": "Why does B hesitate about the broccoli?", "options": ["It is hard to cook quickly", "It costs too much", "It is not fresh"], "answer": 0, "level": 2 }
+      ]
+    },
+    {
+      "title": "Fresh from the ground",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "Is this lettuce fresh? It looks a bit soft." },
+        { "who": "B", "text": "Smell the stem. If it smells of nothing, it was picked days ago." },
+        { "who": "A", "text": "It smells of nothing at all. So it won't taste of much?" },
+        { "who": "B", "text": "It will still be edible, but the flavour was decided in the field." },
+        { "who": "A", "text": "Have you ever tried vegetables from your own garden?" },
+        { "who": "B", "text": "Once. They cost more work but taste completely different. Wait for the harvest." },
+        { "who": "A", "text": "Then I will wait. When is the harvest here?" }
+      ],
+      "questions": [
+        { "q": "How does B test the lettuce?", "options": ["By smelling the stem", "By pressing it hard", "By its colour"], "answer": 0, "level": 4 },
+        { "q": "What does B say about garden vegetables?", "options": ["They are always cheaper", "They cost more work but taste different", "They never taste good"], "answer": 1, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "In the garden",
+      "level": 1,
+      "text": "On Sunday my grandfather works in the garden. He wears an old hat and he takes me with him.\n\nHe grows carrots, potatoes, and a lot of tomatoes. I pick the tomatoes because they are easy to find. He talks to the plants while he works.\n\nWe come inside late. My hands are dirty and my grandfather is happy. We eat the tomatoes before dinner, all of them.",
+      "questions": [
+        { "q": "When does grandfather work in the garden?", "options": ["Every evening", "On Sunday", "On Monday"], "answer": 1, "level": 1 },
+        { "q": "Why does the child pick the tomatoes?", "options": ["They are easy to find", "They are his favourite", "The basket is full"], "answer": 0, "level": 1 },
+        { "q": "When do they eat the tomatoes?", "options": ["At the market", "The next day", "Before dinner"], "answer": 2, "level": 1 }
+      ]
+    },
+    {
+      "title": "How to tell if a vegetable is fresh",
+      "level": 3,
+      "text": "Children learn quickly that a carrot should be firm and a lettuce leaf should be crisp, long before anyone explains why. What takes longer to understand is that freshness is not something you can see from across a shop. A vegetable can look perfect and still be several days old.\n\nThis is why weight is often a better guide than colour. A fresh carrot feels heavy for its size, and it snaps rather than bends. A wilted lettuce feels light in the hand and its leaves fold instead of breaking.\n\nSmell helps too. Fresh vegetables smell faintly of the earth or of nothing at all. A strong smell, especially a sour one, usually means it is time to throw them away.",
+      "questions": [
+        { "q": "What do children learn quickly?", "options": ["That a carrot should be firm", "How to grow lettuce", "When vegetables are in season"], "answer": 0, "level": 3 },
+        { "q": "What is often a better guide than colour?", "options": ["Smell", "Weight", "Price"], "answer": 1, "level": 3 },
+        { "q": "What does a strong, sour smell usually mean?", "options": ["The vegetable is very fresh", "It is time to throw it away", "It needs more water"], "answer": 1, "level": 3 }
+      ]
+    },
+    {
+      "title": "The organic question",
+      "level": 5,
+      "text": "An organic carrot and a conventional carrot are, to most eyes, indistinguishable, and this is precisely what makes the label so difficult to think about clearly. The difference is not in what the vegetable looks like on the plate, but in what happened to the soil, the water and the workers long before it arrived there. Buying organic is, in large part, a bet on a process you cannot see.\n\nThis does not mean the bet is a foolish one. Vegetables grown without synthetic pesticides tend to support more insect life in the surrounding soil, and farms that avoid heavy fertiliser use tend to leave the land in better condition for the next season. Neither of those facts, however, guarantees that the carrot itself is more nutritious, and studies on that particular question have mostly found the difference to be small.\n\nWhat is worth noticing is that the honest reasons to choose organic are mostly about the field, not the food. That is not a weaker reason than taste or nutrition. It is simply a different one, and it is worth choosing for the right reason rather than the reason on the packaging.",
+      "questions": [
+        { "q": "What does the writer say is hard to see when buying organic?", "options": ["What the vegetable looks like", "What happened before it arrived", "How much it costs"], "answer": 1, "level": 5 },
+        { "q": "What does the writer say about nutrition studies?", "options": ["They mostly found a small difference", "They found organic is always better", "They found no vegetables are nutritious"], "answer": 0, "level": 5 },
+        { "q": "What is the writer's conclusion?", "options": ["Organic vegetables always taste better", "The honest reasons are mostly about the field", "Organic farming should be required by law"], "answer": 1, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "I like carrots.", "tip": "Carrots has two beats: CA-rits.", "level": 0 },
+    { "text": "This is a potato.", "tip": "po-TAY-to. The middle is the loud one.", "level": 0 },
+    { "text": "I don't like onions.", "tip": "Don't like: the t almost disappears. Don-like.", "level": 1 },
+    { "text": "Which vegetable do you like?", "tip": "Do you becomes d'you. Say it fast.", "level": 1 },
+    { "text": "Would you like some corn?", "tip": "Would you often becomes wudja.", "level": 2 },
+    { "text": "We haven't got any peas.", "tip": "Haven't got is one push: hav-nt-got.", "level": 2 },
+    { "text": "A carrot is sweeter than an onion.", "tip": "Than is weak here. It rhymes with fun, not fan.", "level": 3 },
+    { "text": "Is this fresh?", "tip": "Rise at the end. It is a yes-or-no question.", "level": 3 },
+    { "text": "Have you ever tried raw broccoli?", "tip": "Have you ever runs together: hav-yoo-EV-er.", "level": 4 },
+    { "text": "Vegetables are cheaper when they are in season.", "tip": "In season links: in-SEE-zun.", "level": 4 },
+    { "text": "Although the lettuce looks fresh, it is already wilted.", "tip": "Pause after fresh, not after although.", "level": 5 },
+    { "text": "The vegetables were grown without any chemicals.", "tip": "Were is weak. Only grown and chemicals are strong.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "carrot", "icon": "🥕", "level": 0 },
+    { "type": "spell", "answer": "potato", "icon": "🥔", "level": 0 },
+    { "type": "cloze", "sentence": "I eat ___ carrot every day.", "answer": "a", "level": 0 },
+
+    { "type": "spell", "answer": "pea", "icon": "🫛", "level": 1 },
+    { "type": "cloze", "sentence": "I ___ like onions.", "answer": "don't", "level": 1 },
+    { "type": "answer", "question": "Which vegetable do you like?", "accept": ["I like", "carrots", "potatoes", "peas", "corn", "tomatoes"], "level": 1 },
+
+    { "type": "spell", "answer": "salad", "icon": "🥗", "level": 2 },
+    { "type": "cloze", "sentence": "Would you like ___ corn?", "answer": "some", "level": 2 },
+    { "type": "cloze", "sentence": "We haven't got ___ peas.", "answer": "any", "level": 2 },
+
+    { "type": "spell", "answer": "chop", "icon": "🔪", "level": 3 },
+    { "type": "cloze", "sentence": "A carrot is ___ than an onion.", "answer": "sweeter", "level": 3 },
+    { "type": "answer", "question": "How do you know a carrot is fresh?", "accept": ["it is firm", "heavy", "crunchy", "by the weight", "it feels heavy"], "level": 3 },
+
+    { "type": "cloze", "sentence": "Have you ___ tried raw broccoli?", "answer": "ever", "level": 4 },
+    { "type": "cloze", "sentence": "Vegetables are cheaper when they are ___ season.", "answer": "in", "level": 4 },
+    { "type": "answer", "question": "Name a vegetable that grows underground.", "accept": ["carrot", "potato", "onion", "root vegetable"], "level": 4 },
+
+    { "type": "cloze", "sentence": "___ the lettuce looks fresh, it is already wilted.", "answer": "although", "level": 5 },
+    { "type": "cloze", "sentence": "The vegetables ___ grown without any chemicals.", "answer": "were", "level": 5 },
+    { "type": "answer", "question": "Why might someone choose organic vegetables?", "accept": ["the soil", "better for the field", "no pesticides", "the environment", "the land"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Which one is orange?", "options": ["a carrot", "a potato", "a tomato"], "answer": 0, "level": 0 },
+    { "q": "I eat ___ carrot every day.", "options": ["a", "an", "the"], "answer": 0, "level": 0 },
+    { "q": "Which one is round and red?", "options": ["an onion", "a tomato", "a potato"], "answer": 1, "level": 0 },
+
+    { "q": "I ___ like onions.", "options": ["not", "don't", "no"], "answer": 1, "level": 1 },
+    { "q": "Which vegetable is small and green?", "options": ["a pea", "a potato", "a mushroom"], "answer": 0, "level": 1 },
+    { "q": "Choose the correct sentence.", "options": ["I likes carrots.", "I like carrot.", "I like carrots."], "answer": 2, "level": 1 },
+
+    { "q": "Would you like ___ corn?", "options": ["any", "some", "a"], "answer": 1, "level": 2 },
+    { "q": "We haven't got ___ peas.", "options": ["some", "no", "any"], "answer": 2, "level": 2 },
+    { "q": "What do you do to vegetables before you eat a salad?", "options": ["chop them", "boil them", "freeze them"], "answer": 0, "level": 2 },
+
+    { "q": "A carrot is ___ than an onion.", "options": ["sweetest", "sweeter", "more sweet"], "answer": 1, "level": 3 },
+    { "q": "A vegetable that is ready and firm to eat is ___.", "options": ["boiled", "spicy", "fresh"], "answer": 2, "level": 3 },
+    { "q": "A raw carrot is usually ___.", "options": ["crunchy", "soft", "sour"], "answer": 0, "level": 3 },
+
+    { "q": "Have you ___ tried raw broccoli?", "options": ["already", "ever", "yet"], "answer": 1, "level": 4 },
+    { "q": "A vegetable grown without chemicals is ___.", "options": ["imported", "organic", "seasonal"], "answer": 1, "level": 4 },
+    { "q": "Vegetables are cheaper when they are ___ season.", "options": ["at", "on", "in"], "answer": 2, "level": 4 },
+
+    { "q": "___ it looks fresh, it is not.", "options": ["Because", "Although", "So"], "answer": 1, "level": 5 },
+    { "q": "A carrot or potato is an example of a ___.", "options": ["root vegetable", "leafy green", "seasonal fruit"], "answer": 0, "level": 5 },
+    { "q": "Vegetables grown and eaten in the same season are called ___.", "options": ["imported", "organic", "seasonal produce"], "answer": 2, "level": 5 }
+  ],
+
+  "reviewed": true
+}

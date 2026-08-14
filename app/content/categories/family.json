@@ -30,103 +30,143 @@
   "vocabulary": [
     {
       "word": "family",
+      "word_pt": "família",
       "icon": "👨‍👩‍👧‍👦",
-      "example": "I love my family."
+      "example": "I love my family.",
+      "example_pt": "Eu amo minha família."
     },
     {
       "word": "mother",
+      "word_pt": "mãe",
       "icon": "👩",
-      "example": "My mother is a doctor."
+      "example": "My mother is a doctor.",
+      "example_pt": "Minha mãe é médica."
     },
     {
       "word": "father",
+      "word_pt": "pai",
       "icon": "👨",
-      "example": "My father makes breakfast."
+      "example": "My father makes breakfast.",
+      "example_pt": "Meu pai faz o café da manhã."
     },
     {
       "word": "sister",
+      "word_pt": "irmã",
       "icon": "👧",
-      "example": "My sister is nine."
+      "example": "My sister is nine.",
+      "example_pt": "Minha irmã tem nove anos."
     },
     {
       "word": "brother",
+      "word_pt": "irmão",
       "icon": "👦",
-      "example": "I have one brother."
+      "example": "I have one brother.",
+      "example_pt": "Eu tenho um irmão."
     },
     {
       "word": "baby",
+      "word_pt": "bebê",
       "icon": "👶",
-      "example": "The baby is sleeping."
+      "example": "The baby is sleeping.",
+      "example_pt": "O bebê está dormindo."
     },
     {
       "word": "grandmother",
+      "word_pt": "avó",
       "icon": "👵",
-      "example": "My grandmother tells good stories."
+      "example": "My grandmother tells good stories.",
+      "example_pt": "Minha avó conta boas histórias."
     },
     {
       "word": "grandfather",
+      "word_pt": "avô",
       "icon": "👴",
-      "example": "My grandfather likes the garden."
+      "example": "My grandfather likes the garden.",
+      "example_pt": "Meu avô gosta do jardim."
     },
     {
       "word": "aunt",
+      "word_pt": "tia",
       "icon": "👩‍🦰",
-      "example": "My aunt lives near the sea."
+      "example": "My aunt lives near the sea.",
+      "example_pt": "Minha tia mora perto do mar."
     },
     {
       "word": "uncle",
+      "word_pt": "tio",
       "icon": "👨‍🦰",
-      "example": "My uncle has a big car."
+      "example": "My uncle has a big car.",
+      "example_pt": "Meu tio tem um carro grande."
     },
     {
       "word": "cousin",
+      "word_pt": "primo",
       "icon": "🧒",
-      "example": "My cousin is my best friend."
+      "example": "My cousin is my best friend.",
+      "example_pt": "Meu primo é meu melhor amigo."
     },
     {
       "word": "parents",
+      "word_pt": "pais",
       "icon": "👫",
-      "example": "My parents work together."
+      "example": "My parents work together.",
+      "example_pt": "Meus pais trabalham juntos."
     },
     {
       "word": "son",
+      "word_pt": "filho",
       "icon": "🧑‍🦱",
-      "example": "He is their son."
+      "example": "He is their son.",
+      "example_pt": "Ele é filho deles."
     },
     {
       "word": "daughter",
+      "word_pt": "filha",
       "icon": "👩‍🦱",
-      "example": "She is their daughter."
+      "example": "She is their daughter.",
+      "example_pt": "Ela é filha deles."
     },
     {
       "word": "home",
+      "word_pt": "casa",
       "icon": "🏠",
-      "example": "We are all at home."
+      "example": "We are all at home.",
+      "example_pt": "Estamos todos em casa."
     },
     {
       "word": "love",
+      "word_pt": "amor",
       "icon": "❤️",
-      "example": "I love you."
+      "example": "I love you.",
+      "example_pt": "Eu te amo."
     },
     {
       "word": "pet",
+      "word_pt": "animal de estimação",
       "icon": "🐾",
-      "example": "Our pet sleeps on my bed."
+      "example": "Our pet sleeps on my bed.",
+      "example_pt": "Nosso animal de estimação dorme na minha cama."
     },
     {
       "word": "together",
+      "word_pt": "juntos",
       "icon": "🤗",
-      "example": "We eat dinner together."
+      "example": "We eat dinner together.",
+      "example_pt": "Nós jantamos juntos."
     },
     {
       "word": "birthday",
+      "word_pt": "aniversário",
       "icon": "🎈",
-      "example": "Today is my birthday."
+      "example": "Today is my birthday.",
+      "example_pt": "Hoje é meu aniversário."
     },
     {
       "word": "photo",
+      "word_pt": "foto",
       "icon": "📷",
-      "example": "This is a photo of my family."
+      "example": "This is a photo of my family.",
+      "example_pt": "Esta é uma foto da minha família."
     }
   ],
   "phrases": [

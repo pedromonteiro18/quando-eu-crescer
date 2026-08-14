@@ -55,7 +55,13 @@
     "weather",
     "jobs-healthcare",
     "jobs-technology",
-    "food-fruits"
+    "food-fruits",
+    "jobs-education",
+    "jobs-business",
+    "jobs-transport",
+    "food-vegetables",
+    "food-breakfast",
+    "food-restaurant"
   ],
   "confusable": {
     "note": "Pairs that genuinely confuse — two red faces, two similar figures — never offered in the same question. Carried over from the prototype, where sick and hot were the pair that proved it was needed.",
@@ -114,7 +120,10 @@
         "numbers",
         "family",
         "jobs",
-        "food-fruits"
+        "food-fruits",
+        "jobs-transport",
+        "food-vegetables",
+        "food-breakfast"
       ],
       "grammar": [
         "This is my + person",
@@ -166,7 +175,12 @@
         "food",
         "school",
         "jobs-healthcare",
-        "food-fruits"
+        "food-fruits",
+        "jobs-education",
+        "jobs-transport",
+        "food-vegetables",
+        "food-breakfast",
+        "food-restaurant"
       ],
       "grammar": [
         "Present simple, all persons",
@@ -218,7 +232,13 @@
         "conversations",
         "jobs-healthcare",
         "jobs-technology",
-        "food-fruits"
+        "food-fruits",
+        "jobs-education",
+        "jobs-business",
+        "jobs-transport",
+        "food-vegetables",
+        "food-breakfast",
+        "food-restaurant"
       ],
       "grammar": [
         "Past simple, regular and irregular",
@@ -268,7 +288,10 @@
         "conversations",
         "phrasal-verbs",
         "jobs-healthcare",
-        "jobs-technology"
+        "jobs-technology",
+        "jobs-education",
+        "jobs-business",
+        "food-restaurant"
       ],
       "grammar": [
         "Question tags",

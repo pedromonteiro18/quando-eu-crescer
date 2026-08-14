@@ -25,103 +25,143 @@
   "vocabulary": [
     {
       "word": "zero",
+      "word_pt": "zero",
       "icon": "0️⃣",
-      "example": "Zero means nothing."
+      "example": "Zero means nothing.",
+      "example_pt": "Zero não significa nada."
     },
     {
       "word": "one",
+      "word_pt": "um",
       "icon": "1️⃣",
-      "example": "I have one brother."
+      "example": "I have one brother.",
+      "example_pt": "Eu tenho um irmão."
     },
     {
       "word": "two",
+      "word_pt": "dois",
       "icon": "2️⃣",
-      "example": "Two cats are sleeping."
+      "example": "Two cats are sleeping.",
+      "example_pt": "Dois gatos estão dormindo."
     },
     {
       "word": "three",
+      "word_pt": "três",
       "icon": "3️⃣",
-      "example": "Three, please."
+      "example": "Three, please.",
+      "example_pt": "Três, por favor."
     },
     {
       "word": "four",
+      "word_pt": "quatro",
       "icon": "4️⃣",
-      "example": "A table has four legs."
+      "example": "A table has four legs.",
+      "example_pt": "Uma mesa tem quatro pernas."
     },
     {
       "word": "five",
+      "word_pt": "cinco",
       "icon": "5️⃣",
-      "example": "Give me five!"
+      "example": "Give me five!",
+      "example_pt": "Toca aqui!"
     },
     {
       "word": "six",
+      "word_pt": "seis",
       "icon": "6️⃣",
-      "example": "I'm six years old."
+      "example": "I'm six years old.",
+      "example_pt": "Eu tenho seis anos."
     },
     {
       "word": "seven",
+      "word_pt": "sete",
       "icon": "7️⃣",
-      "example": "There are seven days in a week."
+      "example": "There are seven days in a week.",
+      "example_pt": "Uma semana tem sete dias."
     },
     {
       "word": "eight",
+      "word_pt": "oito",
       "icon": "8️⃣",
-      "example": "Eight birds are on the roof."
+      "example": "Eight birds are on the roof.",
+      "example_pt": "Oito pássaros estão no telhado."
     },
     {
       "word": "nine",
+      "word_pt": "nove",
       "icon": "9️⃣",
-      "example": "My sister is nine."
+      "example": "My sister is nine.",
+      "example_pt": "Minha irmã tem nove anos."
     },
     {
       "word": "ten",
+      "word_pt": "dez",
       "icon": "🔟",
-      "example": "Count to ten."
+      "example": "Count to ten.",
+      "example_pt": "Conte até dez."
     },
     {
       "word": "eleven",
+      "word_pt": "onze",
       "icon": "🕚",
-      "example": "Eleven comes after ten."
+      "example": "Eleven comes after ten.",
+      "example_pt": "Onze vem depois do dez."
     },
     {
       "word": "twelve",
+      "word_pt": "doze",
       "icon": "🕛",
-      "example": "There are twelve months in a year."
+      "example": "There are twelve months in a year.",
+      "example_pt": "Um ano tem doze meses."
     },
     {
       "word": "twenty",
+      "word_pt": "vinte",
       "icon": "🧮",
-      "example": "Twenty children are in my class."
+      "example": "Twenty children are in my class.",
+      "example_pt": "Minha turma tem vinte crianças."
     },
     {
       "word": "hundred",
+      "word_pt": "cem",
       "icon": "💯",
-      "example": "One hundred is a big number."
+      "example": "One hundred is a big number.",
+      "example_pt": "Cem é um número grande."
     },
     {
       "word": "count",
+      "word_pt": "contar",
       "icon": "👆",
-      "example": "Count the apples with me."
+      "example": "Count the apples with me.",
+      "example_pt": "Conte as maçãs comigo."
     },
     {
       "word": "many",
+      "word_pt": "muitos",
       "icon": "👐",
-      "example": "How many cats do you see?"
+      "example": "How many cats do you see?",
+      "example_pt": "Quantos gatos você vê?"
     },
     {
       "word": "first",
+      "word_pt": "primeiro",
       "icon": "🥇",
-      "example": "She is first in the line."
+      "example": "She is first in the line.",
+      "example_pt": "Ela é a primeira da fila."
     },
     {
       "word": "few",
+      "word_pt": "poucos",
       "icon": "🤏",
-      "example": "I have a few coins."
+      "example": "I have a few coins.",
+      "example_pt": "Eu tenho poucas moedas."
     },
     {
       "word": "number",
+      "word_pt": "número",
       "icon": "📞",
-      "example": "What is your phone number?"
+      "example": "What is your phone number?",
+      "example_pt": "Qual é o seu número de telefone?"
     }
   ],
   "phrases": [

@@ -30,103 +30,143 @@
   "vocabulary": [
     {
       "word": "school",
+      "word_pt": "escola",
       "icon": "🏫",
-      "example": "My school starts at eight."
+      "example": "My school starts at eight.",
+      "example_pt": "Minha escola começa às oito."
     },
     {
       "word": "student",
+      "word_pt": "aluno",
       "icon": "🧑‍🎓",
-      "example": "There are thirty students in my class."
+      "example": "There are thirty students in my class.",
+      "example_pt": "Há trinta alunos na minha turma."
     },
     {
       "word": "book",
+      "word_pt": "livro",
       "icon": "📕",
-      "example": "Open your book, please."
+      "example": "Open your book, please.",
+      "example_pt": "Abra seu livro, por favor."
     },
     {
       "word": "pencil",
+      "word_pt": "lápis",
       "icon": "✏️",
-      "example": "Can I borrow a pencil?"
+      "example": "Can I borrow a pencil?",
+      "example_pt": "Posso pegar um lápis emprestado?"
     },
     {
       "word": "pen",
+      "word_pt": "caneta",
       "icon": "🖊️",
-      "example": "Write your name with a pen."
+      "example": "Write your name with a pen.",
+      "example_pt": "Escreva seu nome com uma caneta."
     },
     {
       "word": "notebook",
+      "word_pt": "caderno",
       "icon": "📓",
-      "example": "My notebook is full."
+      "example": "My notebook is full.",
+      "example_pt": "Meu caderno está cheio."
     },
     {
       "word": "ruler",
+      "word_pt": "régua",
       "icon": "📏",
-      "example": "Use a ruler to draw the line."
+      "example": "Use a ruler to draw the line.",
+      "example_pt": "Use uma régua para desenhar a linha."
     },
     {
       "word": "bag",
+      "word_pt": "mochila",
       "icon": "🎒",
-      "example": "My bag is very heavy today."
+      "example": "My bag is very heavy today.",
+      "example_pt": "Minha mochila está muito pesada hoje."
     },
     {
       "word": "desk",
+      "word_pt": "carteira",
       "icon": "🪑",
-      "example": "The book is on the desk."
+      "example": "The book is on the desk.",
+      "example_pt": "O livro está na carteira."
     },
     {
       "word": "board",
+      "word_pt": "quadro",
       "icon": "📋",
-      "example": "Look at the board, please."
+      "example": "Look at the board, please.",
+      "example_pt": "Olhe para o quadro, por favor."
     },
     {
       "word": "lesson",
+      "word_pt": "aula",
       "icon": "📚",
-      "example": "The English lesson is after lunch."
+      "example": "The English lesson is after lunch.",
+      "example_pt": "A aula de inglês é depois do almoço."
     },
     {
       "word": "homework",
+      "word_pt": "lição de casa",
       "icon": "📝",
-      "example": "I always do my homework."
+      "example": "I always do my homework.",
+      "example_pt": "Eu sempre faço minha lição de casa."
     },
     {
       "word": "test",
+      "word_pt": "prova",
       "icon": "🧾",
-      "example": "We have a test on Friday."
+      "example": "We have a test on Friday.",
+      "example_pt": "Temos uma prova na sexta-feira."
     },
     {
       "word": "question",
+      "word_pt": "pergunta",
       "icon": "❓",
-      "example": "I have a question."
+      "example": "I have a question.",
+      "example_pt": "Eu tenho uma pergunta."
     },
     {
       "word": "answer",
+      "word_pt": "resposta",
       "icon": "✅",
-      "example": "Do you know the answer?"
+      "example": "Do you know the answer?",
+      "example_pt": "Você sabe a resposta?"
     },
     {
       "word": "break",
+      "word_pt": "intervalo",
       "icon": "⏰",
-      "example": "We play football at break."
+      "example": "We play football at break.",
+      "example_pt": "Jogamos futebol no intervalo."
     },
     {
       "word": "playground",
+      "word_pt": "pátio",
       "icon": "⚽",
-      "example": "The playground is behind the school."
+      "example": "The playground is behind the school.",
+      "example_pt": "O pátio fica atrás da escola."
     },
     {
       "word": "library",
+      "word_pt": "biblioteca",
       "icon": "🏛️",
-      "example": "You must be quiet in the library."
+      "example": "You must be quiet in the library.",
+      "example_pt": "Você deve ficar quieto na biblioteca."
     },
     {
       "word": "math",
+      "word_pt": "matemática",
       "icon": "➗",
-      "example": "Math is my favorite subject."
+      "example": "Math is my favorite subject.",
+      "example_pt": "Matemática é minha matéria favorita."
     },
     {
       "word": "science",
+      "word_pt": "ciências",
       "icon": "🔬",
-      "example": "In science we did an experiment."
+      "example": "In science we did an experiment.",
+      "example_pt": "Em ciências, fizemos um experimento."
     }
   ],
   "phrases": [

@@ -30,103 +30,143 @@
   "vocabulary": [
     {
       "word": "bread",
+      "word_pt": "pão",
       "icon": "🍞",
-      "example": "I eat bread for breakfast."
+      "example": "I eat bread for breakfast.",
+      "example_pt": "Eu como pão no café da manhã."
     },
     {
       "word": "rice",
+      "word_pt": "arroz",
       "icon": "🍚",
-      "example": "There is rice on the table."
+      "example": "There is rice on the table.",
+      "example_pt": "Tem arroz na mesa."
     },
     {
       "word": "apple",
+      "word_pt": "maçã",
       "icon": "🍎",
-      "example": "An apple a day is good for you."
+      "example": "An apple a day is good for you.",
+      "example_pt": "Uma maçã por dia faz bem para você."
     },
     {
       "word": "banana",
+      "word_pt": "banana",
       "icon": "🍌",
-      "example": "Bananas are yellow."
+      "example": "Bananas are yellow.",
+      "example_pt": "Bananas são amarelas."
     },
     {
       "word": "chicken",
+      "word_pt": "frango",
       "icon": "🍗",
-      "example": "We are having chicken tonight."
+      "example": "We are having chicken tonight.",
+      "example_pt": "Vamos comer frango hoje à noite."
     },
     {
       "word": "cheese",
+      "word_pt": "queijo",
       "icon": "🧀",
-      "example": "I love cheese on my bread."
+      "example": "I love cheese on my bread.",
+      "example_pt": "Eu adoro queijo no meu pão."
     },
     {
       "word": "juice",
+      "word_pt": "suco",
       "icon": "🧃",
-      "example": "One orange juice, please."
+      "example": "One orange juice, please.",
+      "example_pt": "Um suco de laranja, por favor."
     },
     {
       "word": "coffee",
+      "word_pt": "café",
       "icon": "☕",
-      "example": "My father drinks coffee in the morning."
+      "example": "My father drinks coffee in the morning.",
+      "example_pt": "Meu pai toma café de manhã."
     },
     {
       "word": "tea",
+      "word_pt": "chá",
       "icon": "🍵",
-      "example": "Would you like a cup of tea?"
+      "example": "Would you like a cup of tea?",
+      "example_pt": "Você gostaria de uma xícara de chá?"
     },
     {
       "word": "soup",
+      "word_pt": "sopa",
       "icon": "🍲",
-      "example": "The soup is very hot."
+      "example": "The soup is very hot.",
+      "example_pt": "A sopa está muito quente."
     },
     {
       "word": "salad",
+      "word_pt": "salada",
       "icon": "🥗",
-      "example": "I'd like a green salad."
+      "example": "I'd like a green salad.",
+      "example_pt": "Eu queria uma salada verde."
     },
     {
       "word": "fish",
+      "word_pt": "peixe",
       "icon": "🐟",
-      "example": "We eat fish on Fridays."
+      "example": "We eat fish on Fridays.",
+      "example_pt": "Nós comemos peixe às sextas-feiras."
     },
     {
       "word": "sugar",
+      "word_pt": "açúcar",
       "icon": "🍬",
-      "example": "No sugar in my coffee, thanks."
+      "example": "No sugar in my coffee, thanks.",
+      "example_pt": "Sem açúcar no meu café, obrigado."
     },
     {
       "word": "salt",
+      "word_pt": "sal",
       "icon": "🧂",
-      "example": "Pass the salt, please."
+      "example": "Pass the salt, please.",
+      "example_pt": "Passa o sal, por favor."
     },
     {
       "word": "breakfast",
+      "word_pt": "café da manhã",
       "icon": "🥣",
-      "example": "Breakfast is at seven."
+      "example": "Breakfast is at seven.",
+      "example_pt": "O café da manhã é às sete."
     },
     {
       "word": "lunch",
+      "word_pt": "almoço",
       "icon": "🍱",
-      "example": "I have lunch at school."
+      "example": "I have lunch at school.",
+      "example_pt": "Eu almoço na escola."
     },
     {
       "word": "dinner",
+      "word_pt": "jantar",
       "icon": "🍽️",
-      "example": "Dinner is ready!"
+      "example": "Dinner is ready!",
+      "example_pt": "O jantar está pronto!"
     },
     {
       "word": "hungry",
+      "word_pt": "com fome",
       "icon": "🤤",
-      "example": "I'm hungry. Can we eat?"
+      "example": "I'm hungry. Can we eat?",
+      "example_pt": "Estou com fome. Podemos comer?"
     },
     {
       "word": "thirsty",
+      "word_pt": "com sede",
       "icon": "🥤",
-      "example": "I'm thirsty. I need water."
+      "example": "I'm thirsty. I need water.",
+      "example_pt": "Estou com sede. Preciso de água."
     },
     {
       "word": "delicious",
+      "word_pt": "delicioso",
       "icon": "😋",
-      "example": "This cake is delicious!"
+      "example": "This cake is delicious!",
+      "example_pt": "Este bolo está delicioso!"
     }
   ],
   "phrases": [

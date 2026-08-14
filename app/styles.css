@@ -491,6 +491,10 @@ p:last-child { margin-bottom: 0; }
   letter-spacing: -0.02em;
 }
 .word__example { color: var(--ink-soft); margin-top: 8px; font-size: calc(1rem * var(--scale)); }
+/* The Portuguese gloss is a translation aid, not the lesson — smaller and
+   quieter than the English it sits under, and italic so it never reads as a
+   second English line. */
+.word__gloss { color: var(--ink-soft); font-style: italic; font-size: calc(0.85rem * var(--scale)); margin-top: 2px; }
 .pips { display: flex; gap: 5px; justify-content: center; margin-top: 18px; }
 .pips i { width: 7px; height: 7px; border-radius: 999px; background: var(--rule-mid); }
 .pips i.is-now { background: var(--skill); transform: scale(1.35); }

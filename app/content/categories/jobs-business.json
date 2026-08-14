@@ -1,0 +1,229 @@
+{
+  "id": "jobs-business",
+  "title": "Business",
+  "title_pt": "Negócios",
+  "icon": "📈",
+  "bands": ["11-14", "15+"],
+  "cefr": "A2",
+  "levelNote": "Six tiers in one file. The same topic from office and email up to shareholder, merger and quarterly forecast.",
+  "goal": "Handle a normal day at work in English: greet colleagues, talk about deadlines and budgets, and hold your own in a meeting or a negotiation.",
+  "goal_pt": "Lidar com um dia normal de trabalho em inglês: cumprimentar colegas, falar sobre prazos e orçamentos, e se virar numa reunião ou negociação.",
+
+  "grammar": [
+    { "point": "a / an before a job or role", "point_pt": "a / an antes de um cargo ou função", "example": "She is a manager. He is an assistant.", "level": 0 },
+    { "point": "must / should for office rules and advice", "point_pt": "must / should para regras e conselhos no escritório", "example": "You must arrive before nine. You should check your email first.", "level": 1 },
+    { "point": "going to / will for plans and decisions", "point_pt": "going to / will para planos e decisões", "example": "We are going to launch the product next month.", "level": 2 },
+    { "point": "Present perfect for experience", "point_pt": "Present perfect para experiência profissional", "example": "I have worked here for five years.", "level": 3 },
+    { "point": "The passive, for business processes", "point_pt": "Voz passiva, para processos de negócio", "example": "The contract was signed yesterday.", "level": 4 },
+    { "point": "Second conditional for hypothetical business decisions", "point_pt": "Segunda condicional para decisões hipotéticas de negócios", "example": "If we lowered the price, we would sell more units.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "manager", "word_pt": "gerente", "icon": "🧑‍💼", "example": "The manager is in a meeting right now.", "example_pt": "O gerente está em uma reunião agora.", "level": 0 },
+    { "word": "meeting", "word_pt": "reunião", "icon": "🧑‍🤝‍🧑", "example": "We have a meeting at ten o'clock.", "example_pt": "Temos uma reunião às dez horas.", "level": 0 },
+    { "word": "office", "word_pt": "escritório", "icon": "🏢", "example": "The office opens at nine.", "example_pt": "O escritório abre às nove.", "level": 0 },
+    { "word": "email", "word_pt": "e-mail", "icon": "📧", "example": "Please send me an email today.", "example_pt": "Por favor, me manda um e-mail hoje.", "level": 0 },
+    { "word": "colleague", "word_pt": "colega de trabalho", "icon": "🤝", "example": "My colleague sits next to me.", "example_pt": "Meu colega senta do meu lado.", "level": 0 },
+
+    { "word": "boss", "word_pt": "chefe", "icon": "👔", "example": "My boss is very friendly.", "example_pt": "Meu chefe é muito simpático.", "level": 1 },
+    { "word": "company", "word_pt": "empresa", "icon": "🏙️", "example": "The company has three hundred workers.", "example_pt": "A empresa tem trezentos funcionários.", "level": 1 },
+    { "word": "salary", "word_pt": "salário", "icon": "💰", "example": "She gets her salary on the first of the month.", "example_pt": "Ela recebe o salário no dia primeiro do mês.", "level": 1 },
+    { "word": "team", "word_pt": "equipe", "icon": "👥", "example": "Our team works well together.", "example_pt": "Nossa equipe trabalha bem junta.", "level": 1 },
+    { "word": "schedule", "word_pt": "agenda", "icon": "📆", "example": "Check the schedule before you plan anything.", "example_pt": "Confira a agenda antes de planejar qualquer coisa.", "level": 1 },
+
+    { "word": "deadline", "word_pt": "prazo", "icon": "⏰", "example": "The deadline is next Friday.", "example_pt": "O prazo é na sexta-feira que vem.", "level": 2 },
+    { "word": "client", "word_pt": "cliente", "icon": "💼", "example": "The client called this morning.", "example_pt": "O cliente ligou hoje de manhã.", "level": 2 },
+    { "word": "budget", "word_pt": "orçamento", "icon": "📊", "example": "We need to stay inside the budget.", "example_pt": "Precisamos ficar dentro do orçamento.", "level": 2 },
+    { "word": "invoice", "word_pt": "fatura", "icon": "🧾", "example": "Please send the invoice by email.", "example_pt": "Por favor, envie a fatura por e-mail.", "level": 2 },
+    { "word": "department", "word_pt": "departamento", "icon": "🏬", "example": "The sales department is on the second floor.", "example_pt": "O departamento de vendas fica no segundo andar.", "level": 2 },
+
+    { "word": "contract", "word_pt": "contrato", "icon": "📜", "example": "Please read the contract carefully before you sign.", "example_pt": "Leia o contrato com atenção antes de assinar.", "level": 3 },
+    { "word": "negotiate", "word_pt": "negociar", "icon": "🗣️", "example": "We need to negotiate a better price.", "example_pt": "Precisamos negociar um preço melhor.", "level": 3 },
+    { "word": "presentation", "word_pt": "apresentação", "icon": "📽️", "example": "Her presentation lasted twenty minutes.", "example_pt": "A apresentação dela durou vinte minutos.", "level": 3 },
+    { "word": "proposal", "word_pt": "proposta", "icon": "📋", "example": "They sent us a new proposal yesterday.", "example_pt": "Eles nos enviaram uma nova proposta ontem.", "level": 3 },
+    { "word": "report", "word_pt": "relatório", "icon": "📄", "example": "I will finish the report by Monday.", "example_pt": "Vou terminar o relatório até segunda-feira.", "level": 3 },
+
+    { "word": "shareholder", "word_pt": "acionista", "icon": "📈", "example": "The shareholders meet twice a year.", "example_pt": "Os acionistas se reúnem duas vezes por ano.", "level": 4 },
+    { "word": "revenue", "word_pt": "receita", "icon": "💵", "example": "Revenue increased by ten percent this quarter.", "example_pt": "A receita aumentou dez por cento neste trimestre.", "level": 4 },
+    { "word": "merger", "word_pt": "fusão", "icon": "🧩", "example": "The merger was announced this morning.", "example_pt": "A fusão foi anunciada hoje de manhã.", "level": 4 },
+    { "word": "stakeholder", "word_pt": "parte interessada", "icon": "🎯", "example": "Every stakeholder has a different opinion.", "example_pt": "Cada parte interessada tem uma opinião diferente.", "level": 4 },
+    { "word": "quarterly", "word_pt": "trimestral", "icon": "🗓️", "example": "We publish a quarterly report.", "example_pt": "Publicamos um relatório trimestral.", "level": 4 },
+
+    { "word": "procurement", "word_pt": "compras", "icon": "📦", "example": "The procurement team ordered new equipment.", "example_pt": "A equipe de compras pediu novos equipamentos.", "level": 5 },
+    { "word": "liability", "word_pt": "responsabilidade", "icon": "⚖️", "example": "The company accepted no liability for the delay.", "example_pt": "A empresa não assumiu nenhuma responsabilidade pelo atraso.", "level": 5 },
+    { "word": "forecast", "word_pt": "previsão", "icon": "🔮", "example": "Our forecast for next year looks positive.", "example_pt": "Nossa previsão para o ano que vem parece positiva.", "level": 5 },
+    { "word": "audit", "word_pt": "auditoria", "icon": "🔍", "example": "The audit found no major problems.", "example_pt": "A auditoria não encontrou problemas graves.", "level": 5 },
+    { "word": "compliance", "word_pt": "conformidade", "icon": "✅", "example": "Compliance rules are stricter this year.", "example_pt": "As regras de conformidade estão mais rígidas este ano.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "Nice to meet you.", "use": "The standard greeting when you meet someone new at work.", "level": 0 },
+    { "text": "I have a meeting at ten.", "use": "At for a clock time.", "level": 0 },
+    { "text": "What is your job here?", "use": "A polite way to ask what someone does.", "level": 1 },
+    { "text": "My salary is paid monthly.", "use": "Paid, not payed. Payed is only for ropes and ships.", "level": 1 },
+    { "text": "Can we move the deadline?", "use": "A polite way to ask for more time.", "level": 2 },
+    { "text": "I will send the invoice today.", "use": "Will for a decision made right now.", "level": 2 },
+    { "text": "Could you walk me through the proposal?", "use": "Walk someone through: explain step by step.", "level": 3 },
+    { "text": "I have worked here for five years.", "use": "For a length of time, not a point in time.", "level": 3 },
+    { "text": "The contract was signed yesterday.", "use": "Passive: who signed it does not matter here.", "level": 4 },
+    { "text": "Every stakeholder has a different opinion.", "use": "Stakeholder: anyone affected by the decision.", "level": 4 },
+    { "text": "If we lowered the price, we would sell more units.", "use": "A hypothetical decision, not a real plan.", "level": 5 },
+    { "text": "I would like to raise a concern.", "use": "Raise a concern: a polite way to disagree in a meeting.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "Meeting a new colleague",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "Hi, I'm Ana. I'm the new manager." },
+        { "who": "B", "text": "Nice to meet you, Ana. I'm Pedro." },
+        { "who": "A", "text": "Nice to meet you too. Where is my office?" },
+        { "who": "B", "text": "It's next to mine, on the second floor." },
+        { "who": "A", "text": "Great. Do we have a meeting today?" },
+        { "who": "B", "text": "Yes, at ten o'clock, in the small room." }
+      ],
+      "questions": [
+        { "q": "Who is the new manager?", "options": ["Pedro", "Ana", "Nobody"], "answer": 1, "level": 0 },
+        { "q": "Where is Ana's office?", "options": ["On the second floor", "On the first floor", "Next to the meeting room"], "answer": 0, "level": 0 }
+      ]
+    },
+    {
+      "title": "Scheduling a meeting",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "Are you free on Thursday afternoon?" },
+        { "who": "B", "text": "I have a meeting until three. After that, I'm free." },
+        { "who": "A", "text": "Good. Let's talk about the budget then." },
+        { "who": "B", "text": "Should we invite the client too?" },
+        { "who": "A", "text": "Not this time. Just our department." },
+        { "who": "B", "text": "Okay. I'll check the schedule and send an invite." },
+        { "who": "A", "text": "Thanks. Can we also look at the deadline for the report?" }
+      ],
+      "questions": [
+        { "q": "When is B free?", "options": ["After three o'clock", "Before three o'clock", "All day Thursday"], "answer": 0, "level": 2 },
+        { "q": "What will they talk about at the meeting?", "options": ["The client's contract", "The deadline for the invoice", "The budget"], "answer": 2, "level": 2 }
+      ]
+    },
+    {
+      "title": "A performance review",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "Thanks for coming in. Let's talk about this quarter." },
+        { "who": "B", "text": "Sure. I think the numbers were strong." },
+        { "who": "A", "text": "They were. Revenue was up, and two new clients signed contracts." },
+        { "who": "B", "text": "I worked hard on that presentation for the second client." },
+        { "who": "A", "text": "It showed. I would like you to lead the negotiation with the next stakeholder." },
+        { "who": "B", "text": "I would be glad to. What about the budget for the project?" },
+        { "who": "A", "text": "That has not been decided yet. I will let you know by Friday." },
+        { "who": "B", "text": "Sounds good. Thank you for the opportunity." }
+      ],
+      "questions": [
+        { "q": "What happened to revenue this quarter?", "options": ["It stayed the same", "It went up", "It went down"], "answer": 1, "level": 4 },
+        { "q": "What does A want B to do next?", "options": ["Write the quarterly report", "Sign a new contract", "Lead the negotiation with a stakeholder"], "answer": 2, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "The new office",
+      "level": 1,
+      "text": "Sofia started her new job on Monday. Her office was small, but it had a big window. She liked it right away.\n\nAt nine o'clock, she met her manager and three colleagues. They had a short meeting and talked about her first week. Everyone was friendly, and Sofia felt welcome.\n\nAt the end of the day, she sent an email to her family. \"I love my new job,\" she wrote.",
+      "questions": [
+        { "q": "What did Sofia's office have?", "options": ["A big window", "A big desk", "A television"], "answer": 0, "level": 1 },
+        { "q": "Who did Sofia meet at nine o'clock?", "options": ["Her family", "Her manager and colleagues", "A client"], "answer": 1, "level": 1 },
+        { "q": "What did Sofia do at the end of the day?", "options": ["She had another meeting", "She went home early", "She sent an email to her family"], "answer": 2, "level": 1 }
+      ]
+    },
+    {
+      "title": "The empty inbox",
+      "level": 3,
+      "text": "Marco used to believe that answering every email quickly made him good at his job. For two years, his inbox was always empty by six o'clock, and he was proud of that.\n\nThen he noticed something. The fastest replies were not always the most useful ones, and the projects that mattered most were the ones he had been too busy answering email to finish. His manager had said the same thing in his last review, but it had not made sense until now.\n\nThese days, Marco checks his email twice a day, not twenty times. His inbox is rarely empty, and his reports are better than they have ever been. He still gets nervous when he sees fifty unread messages, but he no longer believes that number means anything about his work.",
+      "questions": [
+        { "q": "What was Marco proud of at first?", "options": ["Finishing projects early", "An empty inbox by six o'clock", "A good salary"], "answer": 1, "level": 3 },
+        { "q": "What did Marco notice?", "options": ["His fastest replies were not always useful", "His colleagues were slower than him", "His manager never read email"], "answer": 0, "level": 3 },
+        { "q": "How does Marco check email now?", "options": ["Every hour", "Twenty times a day", "Twice a day"], "answer": 2, "level": 3 }
+      ]
+    },
+    {
+      "title": "The real cost of a meeting",
+      "level": 5,
+      "text": "A meeting with eight people for one hour does not cost one hour. It costs eight hours, taken from eight different jobs that were not being done during that time, and paid for at eight different salaries. Almost nobody calculates it this way, which is exactly why so many meetings that should have been an email still happen every day.\n\nThe habit is not really about communication. It is about certainty. A decision made alone can be blamed on one person, but a decision made in a room with everyone present feels shared, even when only two people in the room actually needed to be there. The meeting becomes a way of spreading responsibility rather than a way of making a better decision.\n\nNone of this means meetings are wasteful by nature. A negotiation, a difficult performance review, or a genuine disagreement about strategy needs people in a room, because tone and timing matter and an email cannot supply either. The real skill is not avoiding meetings altogether. It is asking, honestly, whether this particular decision needs eight people or one honest conversation with the two who actually disagree.",
+      "questions": [
+        { "q": "Why does the writer say an eight-person meeting costs more than it seems?", "options": ["It takes people away from eight different jobs", "It always runs late", "It requires a large room"], "answer": 0, "level": 5 },
+        { "q": "What does the writer say meetings are really about, beyond communication?", "options": ["Saving money", "Spreading responsibility", "Training new staff"], "answer": 1, "level": 5 },
+        { "q": "What does the writer think is the real skill?", "options": ["Avoiding meetings completely", "Holding meetings every day", "Asking whether a decision truly needs many people"], "answer": 2, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "Nice to meet you.", "tip": "Meet you runs together: meet-chu.", "level": 0 },
+    { "text": "I have a meeting at ten.", "tip": "Meeting is MEE-ting. Stress the first part.", "level": 0 },
+    { "text": "What is your job here?", "tip": "Job rhymes with rob, a short o sound.", "level": 1 },
+    { "text": "My salary is paid monthly.", "tip": "SAL-a-ry. Three syllables, stress on the first.", "level": 1 },
+    { "text": "Can we move the deadline?", "tip": "DEAD-line. The stress is on dead, not line.", "level": 2 },
+    { "text": "I will send the invoice today.", "tip": "IN-voice. Stress the first part, not the second.", "level": 2 },
+    { "text": "Could you walk me through the proposal?", "tip": "Pro-POH-zal. The stress is in the middle.", "level": 3 },
+    { "text": "I have worked here for five years.", "tip": "Have contracts to I've in fast speech.", "level": 3 },
+    { "text": "The contract was signed yesterday.", "tip": "CON-tract as a noun. con-TRACT as a verb.", "level": 4 },
+    { "text": "Every stakeholder has a different opinion.", "tip": "STAKE-holder. Two clear parts, stress the first.", "level": 4 },
+    { "text": "If we lowered the price, we would sell more units.", "tip": "We would contracts to we'd. Practise both forms.", "level": 5 },
+    { "text": "I would like to raise a concern.", "tip": "Raise rhymes with days, a long a sound.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "manager", "icon": "🧑‍💼", "level": 0 },
+    { "type": "spell", "answer": "office", "icon": "🏢", "level": 0 },
+    { "type": "cloze", "sentence": "She is ___ manager.", "answer": "a", "level": 0 },
+
+    { "type": "spell", "answer": "salary", "icon": "💰", "level": 1 },
+    { "type": "cloze", "sentence": "You ___ arrive before nine.", "answer": "must", "level": 1 },
+    { "type": "answer", "question": "Someone new joins your team. What do you say?", "accept": ["nice to meet you", "nice to meet", "meet you", "hello", "hi"], "level": 1 },
+
+    { "type": "spell", "answer": "invoice", "icon": "🧾", "level": 2 },
+    { "type": "cloze", "sentence": "We are ___ to launch the product next month.", "answer": "going", "level": 2 },
+    { "type": "cloze", "sentence": "Can we move the ___?", "answer": "deadline", "level": 2 },
+
+    { "type": "cloze", "sentence": "I ___ worked here for five years.", "answer": "have", "level": 3 },
+    { "type": "spell", "answer": "proposal", "icon": "📋", "level": 3 },
+    { "type": "answer", "question": "A colleague explains something too quickly. What do you ask?", "accept": ["walk me through", "can you walk", "could you explain", "say that again", "slow down"], "level": 3 },
+
+    { "type": "cloze", "sentence": "The contract ___ signed yesterday.", "answer": "was", "level": 4 },
+    { "type": "cloze", "sentence": "Every ___ has a different opinion.", "answer": "stakeholder", "level": 4 },
+    { "type": "answer", "question": "Explain why revenue went up this quarter.", "accept": ["revenue", "went up", "increased", "new clients", "two new clients"], "level": 4 },
+
+    { "type": "cloze", "sentence": "If we ___ the price, we would sell more units.", "answer": "lowered", "level": 5 },
+    { "type": "cloze", "sentence": "I would like to raise a ___.", "answer": "concern", "level": 5 },
+    { "type": "answer", "question": "You disagree with a decision in a meeting. What do you say, politely?", "accept": ["I would like to raise a concern", "I'd like to raise a concern", "I am not sure", "I'm not sure", "what about", "have we considered", "I would push back", "I'd push back"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Where do you work every day?", "options": ["at the beach", "at the office", "at the hospital"], "answer": 1, "level": 0 },
+    { "q": "She is ___ manager.", "options": ["a", "an", "the"], "answer": 0, "level": 0 },
+    { "q": "Who do you send an email to?", "options": ["a printer", "a battery", "a colleague"], "answer": 2, "level": 0 },
+
+    { "q": "You ___ arrive before nine.", "options": ["are", "must", "do"], "answer": 1, "level": 1 },
+    { "q": "Where does your salary come from?", "options": ["the company", "the client", "the department"], "answer": 0, "level": 1 },
+    { "q": "Who is in charge of the team?", "options": ["the invoice", "the schedule", "the boss"], "answer": 2, "level": 1 },
+
+    { "q": "We are ___ to launch the product.", "options": ["going", "go", "went"], "answer": 0, "level": 2 },
+    { "q": "Who buys your product or service?", "options": ["a manager", "a colleague", "a client"], "answer": 2, "level": 2 },
+    { "q": "The report is due before the ___.", "options": ["invoice", "deadline", "budget"], "answer": 1, "level": 2 },
+
+    { "q": "I ___ worked here for five years.", "options": ["have", "has", "had"], "answer": 0, "level": 3 },
+    { "q": "A document you sign to agree to work together is a ___.", "options": ["proposal", "report", "contract"], "answer": 2, "level": 3 },
+    { "q": "Explaining something step by step means you ___ someone through it.", "options": ["run", "walk", "jump"], "answer": 1, "level": 3 },
+
+    { "q": "The contract ___ signed yesterday.", "options": ["was", "is", "were"], "answer": 0, "level": 4 },
+    { "q": "Someone who owns part of a company is a ___.", "options": ["client", "department", "shareholder"], "answer": 2, "level": 4 },
+    { "q": "Money a company earns is its ___.", "options": ["liability", "revenue", "procurement"], "answer": 1, "level": 4 },
+
+    { "q": "If we ___ the price, we would sell more units.", "options": ["lowered", "lower", "lowering"], "answer": 0, "level": 5 },
+    { "q": "Checking financial records carefully is an ___.", "options": ["invoice", "audit", "merger"], "answer": 1, "level": 5 },
+    { "q": "Making sure a company follows the rules is called ___.", "options": ["forecast", "procurement", "compliance"], "answer": 2, "level": 5 }
+  ],
+
+  "reviewed": true
+}

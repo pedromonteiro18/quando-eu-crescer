@@ -30,103 +30,143 @@
   "vocabulary": [
     {
       "word": "vet",
+      "word_pt": "veterinário",
       "icon": "🩺",
-      "example": "The vet helps sick animals."
+      "example": "The vet helps sick animals.",
+      "example_pt": "O veterinário ajuda animais doentes."
     },
     {
       "word": "dog",
+      "word_pt": "cachorro",
       "icon": "🐕",
-      "example": "A dog came in. He is hurt."
+      "example": "A dog came in. He is hurt.",
+      "example_pt": "Um cachorro chegou. Ele está machucado."
     },
     {
       "word": "cat",
+      "word_pt": "gato",
       "icon": "🐈",
-      "example": "Bring the cat inside."
+      "example": "Bring the cat inside.",
+      "example_pt": "Traga o gato para dentro."
     },
     {
       "word": "sick",
+      "word_pt": "doente",
       "icon": "🤒",
-      "example": "The dog is sick today."
+      "example": "The dog is sick today.",
+      "example_pt": "O cachorro está doente hoje."
     },
     {
       "word": "bandage",
+      "word_pt": "atadura",
       "icon": "🩹",
-      "example": "Here is the bandage. Thank you!"
+      "example": "Here is the bandage. Thank you!",
+      "example_pt": "Aqui está a atadura. Obrigado!"
     },
     {
       "word": "medicine",
+      "word_pt": "remédio",
       "icon": "💊",
-      "example": "Give the medicine to the dog."
+      "example": "Give the medicine to the dog.",
+      "example_pt": "Dê o remédio ao cachorro."
     },
     {
       "word": "firefighter",
+      "word_pt": "bombeiro",
       "icon": "🚒",
-      "example": "The firefighter is very brave."
+      "example": "The firefighter is very brave.",
+      "example_pt": "O bombeiro é muito corajoso."
     },
     {
       "word": "fire",
+      "word_pt": "fogo",
       "icon": "🔥",
-      "example": "Put water on the fire."
+      "example": "Put water on the fire.",
+      "example_pt": "Jogue água no fogo."
     },
     {
       "word": "water",
+      "word_pt": "água",
       "icon": "💧",
-      "example": "The water puts the fire out."
+      "example": "The water puts the fire out.",
+      "example_pt": "A água apaga o fogo."
     },
     {
       "word": "ladder",
+      "word_pt": "escada",
       "icon": "🪜",
-      "example": "Climb the ladder to the window."
+      "example": "Climb the ladder to the window.",
+      "example_pt": "Suba a escada até a janela."
     },
     {
       "word": "helmet",
+      "word_pt": "capacete",
       "icon": "⛑️",
-      "example": "Put on the helmet first."
+      "example": "Put on the helmet first.",
+      "example_pt": "Coloque o capacete primeiro."
     },
     {
       "word": "truck",
+      "word_pt": "caminhão",
       "icon": "🚛",
-      "example": "The truck is red and very loud."
+      "example": "The truck is red and very loud.",
+      "example_pt": "O caminhão é vermelho e bem barulhento."
     },
     {
       "word": "chef",
+      "word_pt": "chef",
       "icon": "👩‍🍳",
-      "example": "The chef makes a birthday cake."
+      "example": "The chef makes a birthday cake.",
+      "example_pt": "A chef faz um bolo de aniversário."
     },
     {
       "word": "egg",
+      "word_pt": "ovo",
       "icon": "🥚",
-      "example": "Crack the egg into the bowl."
+      "example": "Crack the egg into the bowl.",
+      "example_pt": "Quebre o ovo na tigela."
     },
     {
       "word": "milk",
+      "word_pt": "leite",
       "icon": "🥛",
-      "example": "Add the milk and mix it."
+      "example": "Add the milk and mix it.",
+      "example_pt": "Adicione o leite e misture."
     },
     {
       "word": "pan",
+      "word_pt": "frigideira",
       "icon": "🍳",
-      "example": "Put it in the pan."
+      "example": "Put it in the pan.",
+      "example_pt": "Coloque na frigideira."
     },
     {
       "word": "cake",
+      "word_pt": "bolo",
       "icon": "🎂",
-      "example": "Serve the cake, please."
+      "example": "Serve the cake, please.",
+      "example_pt": "Sirva o bolo, por favor."
     },
     {
       "word": "hot",
+      "word_pt": "quente",
       "icon": "🥵",
-      "example": "Careful, the pan is hot!"
+      "example": "Careful, the pan is hot!",
+      "example_pt": "Cuidado, a frigideira está quente!"
     },
     {
       "word": "help",
+      "word_pt": "ajuda",
       "icon": "🆘",
-      "example": "Can you help me, please?"
+      "example": "Can you help me, please?",
+      "example_pt": "Você pode me ajudar, por favor?"
     },
     {
       "word": "work",
+      "word_pt": "trabalho",
       "icon": "💼",
-      "example": "My mother goes to work at eight."
+      "example": "My mother goes to work at eight.",
+      "example_pt": "Minha mãe vai trabalhar às oito."
     }
   ],
   "phrases": [

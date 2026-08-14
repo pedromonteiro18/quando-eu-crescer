@@ -1,0 +1,230 @@
+{
+  "id": "food-breakfast",
+  "title": "Breakfast",
+  "title_pt": "Café da Manhã",
+  "icon": "🥐",
+  "bands": ["4-6", "7-10", "11-14"],
+  "cefr": "A1",
+  "levelNote": "Six tiers in one file. Breakfast starts with an egg and a cup of tea, and ends with a paragraph about whether it is really the most important meal of the day.",
+  "goal": "Talk about what you eat and drink for breakfast, order it at a cafe, and describe your morning habits.",
+  "goal_pt": "Falar sobre o que você come e bebe no café da manhã, pedir em um café, e descrever seus hábitos matinais.",
+
+  "grammar": [
+    { "point": "Plurals with -s", "point_pt": "Plural com -s", "example": "one egg, two eggs", "level": 0 },
+    { "point": "I like / I don't like", "point_pt": "I like / I don't like", "example": "I like toast. I don't like coffee.", "level": 1 },
+    { "point": "some / any with uncountables", "point_pt": "some / any com incontáveis", "example": "Would you like some tea? I don't want any coffee.", "level": 2 },
+    { "point": "Comparatives", "point_pt": "Comparativos", "example": "This bread is fresher than that one.", "level": 3 },
+    { "point": "Present perfect for experience", "point_pt": "Present perfect para experiência", "example": "Have you ever tried a full English breakfast?", "level": 4 },
+    { "point": "Concession: although, even though", "point_pt": "Concessão: although, even though", "example": "Although he is not hungry, he always has breakfast.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "egg", "word_pt": "ovo", "icon": "🥚", "example": "I eat an egg for breakfast.", "example_pt": "Eu como um ovo no café da manhã.", "level": 0 },
+    { "word": "bread", "word_pt": "pão", "icon": "🥖", "example": "We have bread and butter.", "example_pt": "Nós comemos pão com manteiga.", "level": 0 },
+    { "word": "milk", "word_pt": "leite", "icon": "🥛", "example": "I drink milk in the morning.", "example_pt": "Eu bebo leite de manhã.", "level": 0 },
+    { "word": "coffee", "word_pt": "café", "icon": "☕", "example": "My dad drinks coffee every day.", "example_pt": "Meu pai toma café todos os dias.", "level": 0 },
+    { "word": "tea", "word_pt": "chá", "icon": "🍵", "example": "Would you like a cup of tea?", "example_pt": "Você gostaria de uma xícara de chá?", "level": 0 },
+
+    { "word": "toast", "word_pt": "torrada", "icon": "🍞", "example": "I have toast and jam for breakfast.", "example_pt": "Eu como torrada com geleia no café da manhã.", "level": 1 },
+    { "word": "butter", "word_pt": "manteiga", "icon": "🧈", "example": "Spread butter on your toast.", "example_pt": "Passe manteiga na sua torrada.", "level": 1 },
+    { "word": "jam", "word_pt": "geleia", "icon": "🍓", "example": "I like strawberry jam on my toast.", "example_pt": "Eu gosto de geleia de morango na minha torrada.", "level": 1 },
+    { "word": "honey", "word_pt": "mel", "icon": "🍯", "example": "She puts honey in her tea.", "example_pt": "Ela põe mel no chá dela.", "level": 1 },
+    { "word": "cheese", "word_pt": "queijo", "icon": "🧀", "example": "He has cheese on his bread.", "example_pt": "Ele come queijo com o pão dele.", "level": 1 },
+
+    { "word": "cereal", "word_pt": "cereal", "icon": "🌾", "example": "I eat cereal with milk in the morning.", "example_pt": "Eu como cereal com leite de manhã.", "level": 2 },
+    { "word": "pancake", "word_pt": "panqueca", "icon": "🥞", "example": "We make pancakes on Sunday.", "example_pt": "Nós fazemos panquecas no domingo.", "level": 2 },
+    { "word": "yogurt", "word_pt": "iogurte", "icon": "🫙", "example": "This yogurt is cold and sweet.", "example_pt": "Esse iogurte é gelado e doce.", "level": 2 },
+    { "word": "bowl", "word_pt": "tigela", "icon": "🥣", "example": "Put the cereal in a bowl.", "example_pt": "Coloque o cereal em uma tigela.", "level": 2 },
+    { "word": "plate", "word_pt": "prato", "icon": "🍽️", "example": "There is an egg on my plate.", "example_pt": "Tem um ovo no meu prato.", "level": 2 },
+
+    { "word": "boiled", "word_pt": "cozido", "icon": "♨️", "example": "I like a boiled egg in the morning.", "example_pt": "Eu gosto de um ovo cozido de manhã.", "level": 3 },
+    { "word": "fried", "word_pt": "frito", "icon": "🍳", "example": "He likes a fried egg with toast.", "example_pt": "Ele gosta de um ovo frito com torrada.", "level": 3 },
+    { "word": "spread", "word_pt": "passar", "icon": "🔪", "example": "Spread the butter evenly on the bread.", "example_pt": "Passe a manteiga uniformemente no pão.", "level": 3 },
+    { "word": "pour", "word_pt": "despejar", "icon": "🫗", "example": "Pour the milk into your cereal.", "example_pt": "Despeje o leite no seu cereal.", "level": 3 },
+    { "word": "stir", "word_pt": "mexer", "icon": "🥄", "example": "Stir the yogurt before you eat it.", "example_pt": "Mexa o iogurte antes de comer.", "level": 3 },
+
+    { "word": "appetite", "word_pt": "apetite", "icon": "😋", "example": "I always have a big appetite in the morning.", "example_pt": "Eu sempre tenho muito apetite de manhã.", "level": 4 },
+    { "word": "nutritious", "word_pt": "nutritivo", "icon": "🥗", "example": "A nutritious breakfast gives you energy for the day.", "example_pt": "Um café da manhã nutritivo te dá energia para o dia.", "level": 4 },
+    { "word": "balanced", "word_pt": "equilibrado", "icon": "⚖️", "example": "A balanced breakfast has fruit, protein, and grains.", "example_pt": "Um café da manhã equilibrado tem fruta, proteína e grãos.", "level": 4 },
+    { "word": "brunch", "word_pt": "brunch", "icon": "🥐", "example": "On Sundays we have a late brunch instead of breakfast.", "example_pt": "Aos domingos, fazemos um brunch tardio em vez do café da manhã.", "level": 4 },
+    { "word": "leftovers", "word_pt": "sobras", "icon": "🍱", "example": "Sometimes I eat leftovers from dinner for breakfast.", "example_pt": "Às vezes eu como as sobras do jantar no café da manhã.", "level": 4 },
+
+    { "word": "skip", "word_pt": "pular", "icon": "⏭️", "example": "Some people skip breakfast on busy mornings.", "example_pt": "Algumas pessoas pulam o café da manhã em manhãs corridas.", "level": 5 },
+    { "word": "staple", "word_pt": "alimento básico", "icon": "🌽", "example": "Bread is a staple food in many countries.", "example_pt": "O pão é um alimento básico em muitos países.", "level": 5 },
+    { "word": "savoury", "word_pt": "salgado", "icon": "🧂", "example": "He prefers savoury breakfasts over sweet ones.", "example_pt": "Ele prefere cafés da manhã salgados a doces.", "level": 5 },
+    { "word": "craving", "word_pt": "vontade", "icon": "🤤", "example": "I have a craving for pancakes this morning.", "example_pt": "Estou com vontade de comer panquecas hoje de manhã.", "level": 5 },
+    { "word": "routine", "word_pt": "rotina", "icon": "🔁", "example": "Breakfast is part of my daily routine.", "example_pt": "O café da manhã faz parte da minha rotina diária.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "I like eggs.", "use": "Plural for food in general, like I like apples.", "level": 0 },
+    { "text": "This is bread.", "use": "Pointing at one thing on the table.", "level": 0 },
+    { "text": "I don't like coffee.", "use": "Don't like, not no like.", "level": 1 },
+    { "text": "What do you want for breakfast?", "use": "Asking someone what they would like to eat.", "level": 1 },
+    { "text": "Would you like some tea?", "use": "Some in an offer, even though it is a question.", "level": 2 },
+    { "text": "I don't want any sugar.", "use": "Any in the negative.", "level": 2 },
+    { "text": "This bread is fresher than that one.", "use": "Short adjective plus -er, then than.", "level": 3 },
+    { "text": "Can I have a boiled egg, please?", "use": "Ordering politely with a specific type of egg.", "level": 3 },
+    { "text": "Have you ever tried a full English breakfast?", "use": "Ever with the present perfect, for any time in your life.", "level": 4 },
+    { "text": "I usually skip breakfast on weekdays.", "use": "Usually with a habit, not just today.", "level": 4 },
+    { "text": "Although he is not hungry, he always has breakfast.", "use": "Although opens the surprising half.", "level": 5 },
+    { "text": "Breakfast is often called the most important meal of the day.", "use": "Passive voice, because who calls it that is not the point.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "At the breakfast table",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "Good morning! Do you want an egg?" },
+        { "who": "B", "text": "Yes, please. And some bread." },
+        { "who": "A", "text": "Here you are. Do you want milk or tea?" },
+        { "who": "B", "text": "Milk, please. I like milk." },
+        { "who": "A", "text": "Here is your milk. Enjoy your breakfast!" },
+        { "who": "B", "text": "Thank you! This bread is very good." }
+      ],
+      "questions": [
+        { "q": "What does B want to eat first?", "options": ["An egg", "A banana", "Toast"], "answer": 0, "level": 0 },
+        { "q": "What does B want to drink?", "options": ["Tea", "Coffee", "Milk"], "answer": 2, "level": 0 }
+      ]
+    },
+    {
+      "title": "Ordering breakfast at a cafe",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "Good morning. What would you like?" },
+        { "who": "B", "text": "Could I have some pancakes, please?" },
+        { "who": "A", "text": "Of course. Would you like a coffee or a tea?" },
+        { "who": "B", "text": "Tea, please. Do you have any honey?" },
+        { "who": "A", "text": "Yes, we do. Would you like cereal as well?" },
+        { "who": "B", "text": "No, thank you. Just the pancakes and tea." },
+        { "who": "A", "text": "Would you like a bowl of yogurt too?" },
+        { "who": "B", "text": "No, thank you. This is enough for now." }
+      ],
+      "questions": [
+        { "q": "What does B order to eat?", "options": ["Pancakes", "Cereal", "Yogurt"], "answer": 0, "level": 2 },
+        { "q": "What does B ask for with the tea?", "options": ["Sugar", "Milk", "Honey"], "answer": 2, "level": 2 }
+      ]
+    },
+    {
+      "title": "A conversation about breakfast habits",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "Have you ever skipped breakfast on a busy morning?" },
+        { "who": "B", "text": "Almost every week. I just don't have an appetite that early." },
+        { "who": "A", "text": "Really? I could never skip it. I need something balanced before I leave the house." },
+        { "who": "B", "text": "I understand, but I usually just grab coffee and eat leftovers from dinner instead." },
+        { "who": "A", "text": "That sounds like brunch more than breakfast." },
+        { "who": "B", "text": "Maybe. On weekends, though, I do cook a proper meal." },
+        { "who": "A", "text": "What do you make?" },
+        { "who": "B", "text": "Pancakes, mostly. It is the one thing I never skip." }
+      ],
+      "questions": [
+        { "q": "How often does B skip breakfast?", "options": ["Never", "Almost every week", "Only on weekends"], "answer": 1, "level": 4 },
+        { "q": "What does B usually eat instead of a proper breakfast?", "options": ["Coffee and leftovers", "Pancakes", "Cereal"], "answer": 0, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "Breakfast with my family",
+      "level": 1,
+      "text": "Every morning my mother makes breakfast for us. She makes eggs and toast. My little brother drinks milk, but I like tea.\n\nOn Sundays, we eat pancakes. My father makes them, and they are always sweet. We put honey on top.\n\nBreakfast is my favourite meal. We sit together and talk before school.",
+      "questions": [
+        { "q": "Who makes breakfast every morning?", "options": ["My mother", "My father", "My brother"], "answer": 0, "level": 1 },
+        { "q": "What does the family eat on Sundays?", "options": ["Toast", "Pancakes", "Cereal"], "answer": 1, "level": 1 },
+        { "q": "Why does the writer like breakfast?", "options": ["They eat alone", "They go to school first", "They sit together and talk"], "answer": 2, "level": 1 }
+      ]
+    },
+    {
+      "title": "The same breakfast every day",
+      "level": 3,
+      "text": "Some people eat something different every morning. Others eat exactly the same thing, year after year, and they will tell you it is not boring at all.\n\nA fixed breakfast means one less decision before the day even starts. There is no thinking about what to buy, what to cook, or what to choose. The same bowl of cereal, the same cup of coffee, the same two minutes at the table.\n\nIt is not really about the food. It is about starting the day on ground that does not move.",
+      "questions": [
+        { "q": "Why do some people eat the same breakfast every day?", "options": ["It is cheaper", "It means one less decision", "It tastes better"], "answer": 1, "level": 3 },
+        { "q": "What example of a fixed breakfast is given in the text?", "options": ["The same bowl of cereal", "Eggs and toast", "A boiled egg"], "answer": 0, "level": 3 },
+        { "q": "What does the writer say this routine is really about?", "options": ["Saving money", "Impressing others", "Starting the day on ground that does not move"], "answer": 2, "level": 3 }
+      ]
+    },
+    {
+      "title": "The most important meal?",
+      "level": 5,
+      "text": "Breakfast has an odd reputation. For decades it was marketed as the most important meal of the day, largely by companies that happened to sell breakfast cereal. The science behind the claim was always thinner than the slogan suggested.\n\nWhat the research does show is less dramatic and more interesting: it depends entirely on the person. Someone who trains early in the morning genuinely needs fuel before they start. Someone who wakes up without any appetite at all is not doing anything wrong by waiting until midday to eat.\n\nHabits differ around the world for the same reason. A family in one country starts the day with something savoury, rice or fish or soup, while another reaches for something sweet, bread and jam or a bowl of cereal. Neither is more correct than the other. What actually matters is less which meal you call the most important, and more whether you are eating enough, at some point, to get through the day.",
+      "questions": [
+        { "q": "According to the text, why was breakfast marketed as the most important meal?", "options": ["Because of strong scientific evidence", "Largely by companies that sold cereal", "Because it helps you sleep better"], "answer": 1, "level": 5 },
+        { "q": "What does the text say about someone who trains early in the morning?", "options": ["They genuinely need fuel before they start", "They should skip breakfast", "They should eat only fruit"], "answer": 0, "level": 5 },
+        { "q": "What does the writer say actually matters?", "options": ["Which country you live in", "The exact time you eat", "Whether you eat enough to get through the day"], "answer": 2, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "I like eggs.", "tip": "Eggs has a short e sound, like leg.", "level": 0 },
+    { "text": "This is bread.", "tip": "Bread rhymes with red, not read.", "level": 0 },
+    { "text": "I don't like coffee.", "tip": "Don't like: the t almost disappears. Don-like.", "level": 1 },
+    { "text": "What do you want for breakfast?", "tip": "Want for links together: wan-ta.", "level": 1 },
+    { "text": "Would you like some tea?", "tip": "Would you often becomes wudja.", "level": 2 },
+    { "text": "I don't want any sugar.", "tip": "Sugar starts with a sh sound, not an s.", "level": 2 },
+    { "text": "This bread is fresher than that one.", "tip": "Than is weak here. It rhymes with fun, not fan.", "level": 3 },
+    { "text": "Can I have a boiled egg, please?", "tip": "Boiled has one beat: boyld, not two.", "level": 3 },
+    { "text": "Have you ever tried a full English breakfast?", "tip": "Have you ever runs together: hav-yoo-EV-er.", "level": 4 },
+    { "text": "I usually skip breakfast on weekdays.", "tip": "Usually has four beats: YOO-zhoo-uh-lee.", "level": 4 },
+    { "text": "Although he is not hungry, he always has breakfast.", "tip": "Pause after hungry, not after although.", "level": 5 },
+    { "text": "Breakfast is often called the most important meal of the day.", "tip": "The stress falls on important, not meal.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "egg", "icon": "🥚", "level": 0 },
+    { "type": "spell", "answer": "bread", "icon": "🥖", "level": 0 },
+    { "type": "cloze", "answer": "an", "sentence": "I eat ___ egg every day.", "level": 0 },
+
+    { "type": "spell", "answer": "toast", "icon": "🍞", "level": 1 },
+    { "type": "cloze", "answer": "don't", "sentence": "I ___ like coffee.", "level": 1 },
+    { "type": "answer", "question": "What do you eat for breakfast?", "accept": ["I eat", "egg", "toast", "bread", "cereal", "pancakes"], "level": 1 },
+
+    { "type": "spell", "answer": "cereal", "icon": "🌾", "level": 2 },
+    { "type": "cloze", "answer": "some", "sentence": "Would you like ___ tea?", "level": 2 },
+    { "type": "cloze", "answer": "any", "sentence": "I don't want ___ sugar.", "level": 2 },
+
+    { "type": "spell", "answer": "boiled", "icon": "♨️", "level": 3 },
+    { "type": "cloze", "answer": "fresher", "sentence": "This bread is ___ than that one.", "level": 3 },
+    { "type": "answer", "question": "How do you like your eggs?", "accept": ["boiled", "fried", "scrambled", "I like them boiled", "I like them fried"], "level": 3 },
+
+    { "type": "cloze", "answer": "ever", "sentence": "Have you ___ tried a full English breakfast?", "level": 4 },
+    { "type": "cloze", "answer": "skip", "sentence": "I usually ___ breakfast on weekdays.", "level": 4 },
+    { "type": "answer", "question": "Describe a balanced breakfast.", "accept": ["fruit", "protein", "grains", "eggs", "cereal", "yogurt", "healthy"], "level": 4 },
+
+    { "type": "cloze", "answer": "although", "sentence": "___ he is not hungry, he always has breakfast.", "level": 5 },
+    { "type": "cloze", "answer": "called", "sentence": "Breakfast is often ___ the most important meal of the day.", "level": 5 },
+    { "type": "answer", "question": "Why do breakfast habits differ around the world?", "accept": ["different cultures", "culture", "countries eat different food", "habits", "tradition", "what people are used to"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Which one is a drink?", "options": ["milk", "egg", "bread"], "answer": 0, "level": 0 },
+    { "q": "I eat ___ egg every day.", "options": ["a", "an", "the"], "answer": 1, "level": 0 },
+    { "q": "Which one is hot?", "options": ["milk", "bread", "tea"], "answer": 2, "level": 0 },
+
+    { "q": "I ___ like coffee.", "options": ["not", "don't", "no"], "answer": 1, "level": 1 },
+    { "q": "Which food do you spread on toast?", "options": ["butter", "milk", "tea"], "answer": 0, "level": 1 },
+    { "q": "Choose the correct sentence.", "options": ["I likes toast.", "I liking toast.", "I like toast."], "answer": 2, "level": 1 },
+
+    { "q": "Would you like ___ tea?", "options": ["some", "any", "a"], "answer": 0, "level": 2 },
+    { "q": "I don't want ___ sugar.", "options": ["some", "a", "any"], "answer": 2, "level": 2 },
+    { "q": "What do you eat cereal with?", "options": ["coffee", "milk", "butter"], "answer": 1, "level": 2 },
+
+    { "q": "This bread is ___ than that one.", "options": ["fresh", "fresher", "freshest"], "answer": 1, "level": 3 },
+    { "q": "An egg cooked in water is ___.", "options": ["fried", "spread", "boiled"], "answer": 2, "level": 3 },
+    { "q": "What do you do to butter before eating toast?", "options": ["spread it", "pour it", "boil it"], "answer": 0, "level": 3 },
+
+    { "q": "Have you ___ tried a full English breakfast?", "options": ["ever", "yet", "already"], "answer": 0, "level": 4 },
+    { "q": "I usually ___ breakfast on weekdays.", "options": ["cook", "skip", "spread"], "answer": 1, "level": 4 },
+    { "q": "Which breakfast is the most balanced?", "options": ["Just coffee", "Fruit, eggs, and bread", "Only sugar"], "answer": 1, "level": 4 },
+
+    { "q": "___ he is not hungry, he always has breakfast.", "options": ["Although", "Because", "So"], "answer": 0, "level": 5 },
+    { "q": "Breakfast is often ___ the most important meal of the day.", "options": ["eaten", "cooked", "called"], "answer": 2, "level": 5 },
+    { "q": "Food that people eat regularly and rely on is called a ___.", "options": ["leftover", "craving", "staple"], "answer": 2, "level": 5 }
+  ],
+
+  "reviewed": true
+}

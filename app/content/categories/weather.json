@@ -30,103 +30,143 @@
   "vocabulary": [
     {
       "word": "sun",
+      "word_pt": "sol",
       "icon": "🌞",
-      "example": "The sun is very strong today."
+      "example": "The sun is very strong today.",
+      "example_pt": "O sol está muito forte hoje."
     },
     {
       "word": "rain",
+      "word_pt": "chuva",
       "icon": "🌧️",
-      "example": "Take a coat, it's going to rain."
+      "example": "Take a coat, it's going to rain.",
+      "example_pt": "Leve um casaco, vai chover."
     },
     {
       "word": "cloud",
+      "word_pt": "nuvem",
       "icon": "☁️",
-      "example": "There isn't a cloud in the sky."
+      "example": "There isn't a cloud in the sky.",
+      "example_pt": "Não tem uma nuvem sequer no céu."
     },
     {
       "word": "wind",
+      "word_pt": "vento",
       "icon": "🌬️",
-      "example": "The wind is cold this morning."
+      "example": "The wind is cold this morning.",
+      "example_pt": "O vento está frio hoje de manhã."
     },
     {
       "word": "snow",
+      "word_pt": "neve",
       "icon": "❄️",
-      "example": "It never snows in Recife."
+      "example": "It never snows in Recife.",
+      "example_pt": "Nunca neva em Recife."
     },
     {
       "word": "storm",
+      "word_pt": "tempestade",
       "icon": "⛈️",
-      "example": "There was a storm last night."
+      "example": "There was a storm last night.",
+      "example_pt": "Teve uma tempestade ontem à noite."
     },
     {
       "word": "fog",
+      "word_pt": "neblina",
       "icon": "🌫️",
-      "example": "The fog is thick near the river."
+      "example": "The fog is thick near the river.",
+      "example_pt": "A neblina está densa perto do rio."
     },
     {
       "word": "rainbow",
+      "word_pt": "arco-íris",
       "icon": "🌈",
-      "example": "Look, a rainbow!"
+      "example": "Look, a rainbow!",
+      "example_pt": "Olha, um arco-íris!"
     },
     {
       "word": "hot",
+      "word_pt": "quente",
       "icon": "🥵",
-      "example": "It's too hot to walk."
+      "example": "It's too hot to walk.",
+      "example_pt": "Está quente demais para caminhar."
     },
     {
       "word": "cold",
+      "word_pt": "frio",
       "icon": "🥶",
-      "example": "It's cold. Close the window."
+      "example": "It's cold. Close the window.",
+      "example_pt": "Está frio. Feche a janela."
     },
     {
       "word": "warm",
+      "word_pt": "ameno",
       "icon": "🌤️",
-      "example": "A warm evening is perfect for the beach."
+      "example": "A warm evening is perfect for the beach.",
+      "example_pt": "Uma noite amena é perfeita para a praia."
     },
     {
       "word": "wet",
+      "word_pt": "molhado",
       "icon": "💦",
-      "example": "My shoes are wet."
+      "example": "My shoes are wet.",
+      "example_pt": "Meus sapatos estão molhados."
     },
     {
       "word": "dry",
+      "word_pt": "seco",
       "icon": "🏜️",
-      "example": "It is dry from June to December."
+      "example": "It is dry from June to December.",
+      "example_pt": "Fica seco de junho a dezembro."
     },
     {
       "word": "umbrella",
+      "word_pt": "guarda-chuva",
       "icon": "☂️",
-      "example": "Where is my umbrella?"
+      "example": "Where is my umbrella?",
+      "example_pt": "Cadê o meu guarda-chuva?"
     },
     {
       "word": "coat",
+      "word_pt": "casaco",
       "icon": "🧥",
-      "example": "You'll need a coat tonight."
+      "example": "You'll need a coat tonight.",
+      "example_pt": "Você vai precisar de um casaco hoje à noite."
     },
     {
       "word": "sky",
+      "word_pt": "céu",
       "icon": "🌌",
-      "example": "The sky is grey."
+      "example": "The sky is grey.",
+      "example_pt": "O céu está cinza."
     },
     {
       "word": "degrees",
+      "word_pt": "graus",
       "icon": "🌡️",
-      "example": "It's thirty degrees today."
+      "example": "It's thirty degrees today.",
+      "example_pt": "Está trinta graus hoje."
     },
     {
       "word": "forecast",
+      "word_pt": "previsão do tempo",
       "icon": "📺",
-      "example": "The forecast says rain on Sunday."
+      "example": "The forecast says rain on Sunday.",
+      "example_pt": "A previsão do tempo diz que vai chover no domingo."
     },
     {
       "word": "season",
+      "word_pt": "estação",
       "icon": "🍂",
-      "example": "My favorite season is winter."
+      "example": "My favorite season is winter.",
+      "example_pt": "Minha estação favorita é o inverno."
     },
     {
       "word": "weather",
+      "word_pt": "tempo",
       "icon": "🌦️",
-      "example": "What's the weather like today?"
+      "example": "What's the weather like today?",
+      "example_pt": "Como está o tempo hoje?"
     }
   ],
   "phrases": [

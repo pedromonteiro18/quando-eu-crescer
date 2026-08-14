@@ -25,103 +25,143 @@
   "vocabulary": [
     {
       "word": "hello",
+      "word_pt": "olá",
       "icon": "👋",
-      "example": "Hello! Nice to meet you."
+      "example": "Hello! Nice to meet you.",
+      "example_pt": "Olá! Prazer em conhecer você."
     },
     {
       "word": "hi",
+      "word_pt": "oi",
       "icon": "🙋",
-      "example": "Hi! I'm Ana."
+      "example": "Hi! I'm Ana.",
+      "example_pt": "Oi! Eu sou a Ana."
     },
     {
       "word": "goodbye",
+      "word_pt": "tchau",
       "icon": "🚪",
-      "example": "Goodbye! See you tomorrow."
+      "example": "Goodbye! See you tomorrow.",
+      "example_pt": "Tchau! Até amanhã."
     },
     {
       "word": "morning",
+      "word_pt": "manhã",
       "icon": "🌅",
-      "example": "Good morning, class."
+      "example": "Good morning, class.",
+      "example_pt": "Bom dia, turma."
     },
     {
       "word": "afternoon",
+      "word_pt": "tarde",
       "icon": "☀️",
-      "example": "Good afternoon, Mr. Silva."
+      "example": "Good afternoon, Mr. Silva.",
+      "example_pt": "Boa tarde, Sr. Silva."
     },
     {
       "word": "evening",
+      "word_pt": "entardecer",
       "icon": "🌆",
-      "example": "Good evening. Come in."
+      "example": "Good evening. Come in.",
+      "example_pt": "Boa noite. Entre."
     },
     {
       "word": "night",
+      "word_pt": "noite",
       "icon": "🌙",
-      "example": "Good night. Sleep well."
+      "example": "Good night. Sleep well.",
+      "example_pt": "Boa noite. Durma bem."
     },
     {
       "word": "please",
+      "word_pt": "por favor",
       "icon": "🙏",
-      "example": "One coffee, please."
+      "example": "One coffee, please.",
+      "example_pt": "Um café, por favor."
     },
     {
       "word": "thank you",
+      "word_pt": "obrigado",
       "icon": "💛",
-      "example": "Thank you for the book."
+      "example": "Thank you for the book.",
+      "example_pt": "Obrigado pelo livro."
     },
     {
       "word": "sorry",
+      "word_pt": "desculpe",
       "icon": "😔",
-      "example": "Sorry, I'm late."
+      "example": "Sorry, I'm late.",
+      "example_pt": "Desculpe, estou atrasado."
     },
     {
       "word": "welcome",
+      "word_pt": "bem-vindo",
       "icon": "🎉",
-      "example": "Welcome to my house."
+      "example": "Welcome to my house.",
+      "example_pt": "Bem-vindo à minha casa."
     },
     {
       "word": "name",
+      "word_pt": "nome",
       "icon": "🏷️",
-      "example": "My name is Clara."
+      "example": "My name is Clara.",
+      "example_pt": "Meu nome é Clara."
     },
     {
       "word": "friend",
+      "word_pt": "amigo",
       "icon": "🧑‍🤝‍🧑",
-      "example": "This is my friend Pedro."
+      "example": "This is my friend Pedro.",
+      "example_pt": "Este é meu amigo Pedro."
     },
     {
       "word": "teacher",
+      "word_pt": "professora",
       "icon": "👩‍🏫",
-      "example": "Good morning, teacher."
+      "example": "Good morning, teacher.",
+      "example_pt": "Bom dia, professora."
     },
     {
       "word": "fine",
+      "word_pt": "bem",
       "icon": "👍",
-      "example": "I'm fine, thank you."
+      "example": "I'm fine, thank you.",
+      "example_pt": "Estou bem, obrigado."
     },
     {
       "word": "happy",
+      "word_pt": "feliz",
       "icon": "😄",
-      "example": "I'm happy to see you."
+      "example": "I'm happy to see you.",
+      "example_pt": "Estou feliz em ver você."
     },
     {
       "word": "tired",
+      "word_pt": "cansado",
       "icon": "😴",
-      "example": "I'm tired today."
+      "example": "I'm tired today.",
+      "example_pt": "Estou cansado hoje."
     },
     {
       "word": "wave",
+      "word_pt": "acenar",
       "icon": "🤚",
-      "example": "Wave to your friend."
+      "example": "Wave to your friend.",
+      "example_pt": "Acene para o seu amigo."
     },
     {
       "word": "smile",
+      "word_pt": "sorriso",
       "icon": "🙂",
-      "example": "She has a nice smile."
+      "example": "She has a nice smile.",
+      "example_pt": "Ela tem um sorriso bonito."
     },
     {
       "word": "meet",
+      "word_pt": "conhecer",
       "icon": "🤝",
-      "example": "Nice to meet you."
+      "example": "Nice to meet you.",
+      "example_pt": "Prazer em conhecer você."
     }
   ],
   "phrases": [

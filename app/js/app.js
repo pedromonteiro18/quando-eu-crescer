@@ -640,10 +640,19 @@ function meetWords(cat, band, vocab, token) {
       const wrap = stage();
       wrap.appendChild(rule(t("lesson.newWords"), i + 1 + " / " + vocab.length));
 
+      /* An additive gloss, never a substitute: the English word and example
+         are always shown and always spoken. word_pt/example_pt just add a
+         translation caption underneath when the interface is in Portuguese,
+         the same way g.point_pt does for grammar notes above — the taught
+         content itself never passes through t() or gets swapped out. */
+      const showGloss = lang() === "pt";
+
       const card = node("div", "card word");
       card.appendChild(node("div", "word__icon", '<span aria-hidden="true">' + esc(v.icon || cat.icon) + "</span>"));
       card.appendChild(node("div", "word__text", esc(v.word)));
+      if (!silent && showGloss && v.word_pt) card.appendChild(node("div", "word__gloss", esc(v.word_pt)));
       if (!silent && v.example) card.appendChild(node("div", "word__example", esc(v.example)));
+      if (!silent && showGloss && v.example_pt) card.appendChild(node("div", "word__gloss", esc(v.example_pt)));
 
       const pips = node("div", "pips");
       for (let k = 0; k < vocab.length; k++) {

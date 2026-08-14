@@ -1,0 +1,229 @@
+{
+  "id": "jobs-education",
+  "title": "Education",
+  "title_pt": "Educação",
+  "icon": "🎓",
+  "bands": ["7-10", "11-14", "15+"],
+  "cefr": "A1",
+  "levelNote": "Six tiers in one file. A lesson takes the slice at or below the learner's level, so a beginner meets teacher and classroom and an advanced learner meets curriculum and plagiarism — same topic, same file, different depth.",
+  "goal": "Talk about school and university life, follow classroom instructions, and hold a conversation about study.",
+  "goal_pt": "Falar sobre a vida na escola e na universidade, seguir instruções de sala de aula, e manter uma conversa sobre estudos.",
+
+  "grammar": [
+    { "point": "a / an before a job or place", "point_pt": "a / an antes de uma profissão ou lugar", "example": "She is a teacher. He is a student.", "level": 0 },
+    { "point": "have got for classroom objects", "point_pt": "have got para objetos de sala de aula", "example": "I have got a new pencil.", "level": 1 },
+    { "point": "must / mustn't for school rules", "point_pt": "must / mustn't para regras da escola", "example": "You must arrive on time. You mustn't run in the hallway.", "level": 2 },
+    { "point": "used to for past habits", "point_pt": "used to para hábitos do passado", "example": "I used to hate maths, but now I like it.", "level": 3 },
+    { "point": "The passive, for what was done to your work", "point_pt": "Voz passiva, para o que fizeram com o seu trabalho", "example": "The homework was collected this morning.", "level": 4 },
+    { "point": "Reported speech for what a teacher said", "point_pt": "Discurso indireto para o que um professor disse", "example": "The teacher said the exam would be on Friday.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "teacher", "word_pt": "professor", "icon": "🧑‍🏫", "example": "The teacher writes on the board.", "example_pt": "O professor escreve no quadro.", "level": 0 },
+    { "word": "student", "word_pt": "aluno", "icon": "🧑‍🎓", "example": "I am a student at this school.", "example_pt": "Eu sou aluno nesta escola.", "level": 0 },
+    { "word": "school", "word_pt": "escola", "icon": "🏫", "example": "My school starts at eight.", "example_pt": "Minha escola começa às oito.", "level": 0 },
+    { "word": "classroom", "word_pt": "sala de aula", "icon": "🚪", "example": "Our classroom is on the first floor.", "example_pt": "Nossa sala de aula fica no primeiro andar.", "level": 0 },
+    { "word": "pencil", "word_pt": "lápis", "icon": "✏️", "example": "Please sharpen your pencil.", "example_pt": "Por favor, aponte o seu lápis.", "level": 0 },
+
+    { "word": "book", "word_pt": "livro", "icon": "📖", "example": "Open your book to page ten.", "example_pt": "Abra seu livro na página dez.", "level": 1 },
+    { "word": "desk", "word_pt": "carteira", "icon": "🪑", "example": "Put your bag under the desk.", "example_pt": "Coloque a mochila embaixo da carteira.", "level": 1 },
+    { "word": "board", "word_pt": "quadro", "icon": "🖊️", "example": "Look at the board, please.", "example_pt": "Olhe para o quadro, por favor.", "level": 1 },
+    { "word": "lesson", "word_pt": "aula", "icon": "⏱️", "example": "The lesson lasts one hour.", "example_pt": "A aula dura uma hora.", "level": 1 },
+    { "word": "friend", "word_pt": "amigo", "icon": "🧑‍🤝‍🧑", "example": "I sit next to my friend.", "example_pt": "Eu sento ao lado do meu amigo.", "level": 1 },
+
+    { "word": "principal", "word_pt": "diretor", "icon": "🗝️", "example": "The principal spoke to the whole school.", "example_pt": "O diretor falou para toda a escola.", "level": 2 },
+    { "word": "homework", "word_pt": "lição de casa", "icon": "🎒", "example": "Finish your homework before dinner.", "example_pt": "Termine a lição de casa antes do jantar.", "level": 2 },
+    { "word": "exam", "word_pt": "prova", "icon": "📝", "example": "The exam is next Monday.", "example_pt": "A prova é na próxima segunda-feira.", "level": 2 },
+    { "word": "subject", "word_pt": "matéria", "icon": "📚", "example": "History is my favourite subject.", "example_pt": "História é minha matéria favorita.", "level": 2 },
+    { "word": "timetable", "word_pt": "horário", "icon": "🗓️", "example": "Check the timetable for your next class.", "example_pt": "Confira o horário da sua próxima aula.", "level": 2 },
+
+    { "word": "university", "word_pt": "universidade", "icon": "🏛️", "example": "She starts university in September.", "example_pt": "Ela começa a universidade em setembro.", "level": 3 },
+    { "word": "degree", "word_pt": "graduação", "icon": "🎓", "example": "He is studying for a degree in law.", "example_pt": "Ele está cursando graduação em direito.", "level": 3 },
+    { "word": "lecture", "word_pt": "palestra", "icon": "🎤", "example": "The lecture begins at nine sharp.", "example_pt": "A palestra começa às nove em ponto.", "level": 3 },
+    { "word": "classmate", "word_pt": "colega de turma", "icon": "👭", "example": "My classmate lent me her notes.", "example_pt": "Minha colega de turma me emprestou as anotações dela.", "level": 3 },
+    { "word": "grade", "word_pt": "nota", "icon": "🅰️", "example": "She got a good grade on the essay.", "example_pt": "Ela tirou uma boa nota na redação.", "level": 3 },
+
+    { "word": "curriculum", "word_pt": "currículo", "icon": "🗂️", "example": "Coding was added to the curriculum this year.", "example_pt": "Programação foi incluída no currículo este ano.", "level": 4 },
+    { "word": "tuition", "word_pt": "mensalidade", "icon": "💳", "example": "Tuition is due at the start of each term.", "example_pt": "A mensalidade vence no início de cada período.", "level": 4 },
+    { "word": "scholarship", "word_pt": "bolsa de estudos", "icon": "🏅", "example": "She won a scholarship to study abroad.", "example_pt": "Ela ganhou uma bolsa de estudos para estudar no exterior.", "level": 4 },
+    { "word": "faculty", "word_pt": "faculdade", "icon": "🏢", "example": "The faculty of engineering is the newest building.", "example_pt": "A faculdade de engenharia é o prédio mais novo.", "level": 4 },
+    { "word": "semester", "word_pt": "semestre", "icon": "📆", "example": "Grades come out at the end of the semester.", "example_pt": "As notas saem no final do semestre.", "level": 4 },
+
+    { "word": "dissertation", "word_pt": "dissertação", "icon": "📜", "example": "Her dissertation took a full year to write.", "example_pt": "Ela levou um ano inteiro escrevendo a dissertação.", "level": 5 },
+    { "word": "invigilator", "word_pt": "fiscal de prova", "icon": "🕴️", "example": "The invigilator walked quietly between the desks.", "example_pt": "O fiscal de prova andava silenciosamente entre as carteiras.", "level": 5 },
+    { "word": "plagiarism", "word_pt": "plágio", "icon": "🚫", "example": "Plagiarism is taken very seriously here.", "example_pt": "Aqui, o plágio é levado muito a sério.", "level": 5 },
+    { "word": "syllabus", "word_pt": "ementa", "icon": "📋", "example": "Everything on the syllabus can appear in the exam.", "example_pt": "Tudo o que está na ementa pode cair na prova.", "level": 5 },
+    { "word": "supervisor", "word_pt": "orientador", "icon": "🧑‍🔬", "example": "My supervisor reads every draft before I submit it.", "example_pt": "Meu orientador lê cada rascunho antes de eu entregá-lo.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "I am a student.", "use": "The shortest way to say what you do.", "level": 0 },
+    { "text": "Where is the classroom?", "use": "Asking for the place, not the person.", "level": 0 },
+    { "text": "I have got a new pencil.", "use": "Have got, for something you own right now.", "level": 1 },
+    { "text": "Can I open my book?", "use": "Asking permission before you act.", "level": 1 },
+    { "text": "You must arrive on time.", "use": "Must for a rule, not a suggestion.", "level": 2 },
+    { "text": "When is the exam?", "use": "The question every student asks first.", "level": 2 },
+    { "text": "I used to hate maths.", "use": "Used to: true before, not true now.", "level": 3 },
+    { "text": "What is your favourite subject?", "use": "Favourite comes before the noun.", "level": 3 },
+    { "text": "The homework was collected this morning.", "use": "Passive: who collected it does not matter.", "level": 4 },
+    { "text": "Could you extend the deadline?", "use": "A polite request, not a demand.", "level": 4 },
+    { "text": "The teacher said the exam would be on Friday.", "use": "Reported speech: will becomes would.", "level": 5 },
+    { "text": "I would like some feedback on this draft.", "use": "Feedback is uncountable: some, not a feedback.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "First day at school",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "Good morning. I am a new student." },
+        { "who": "B", "text": "Welcome! I am your teacher." },
+        { "who": "A", "text": "Where is the classroom, please?" },
+        { "who": "B", "text": "It is next to the library. Follow me." },
+        { "who": "A", "text": "Thank you. Do I need a pencil?" },
+        { "who": "B", "text": "Yes, and a book. You can sit here." }
+      ],
+      "questions": [
+        { "q": "What does A ask about first?", "options": ["The library", "The classroom", "The exam"], "answer": 1, "level": 0 },
+        { "q": "What does the teacher tell A to bring?", "options": ["A computer", "A pencil and a book", "Lunch"], "answer": 1, "level": 0 }
+      ]
+    },
+    {
+      "title": "Talking to a teacher about homework",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "Excuse me, I have a question about the homework." },
+        { "who": "B", "text": "Of course. What is the problem?" },
+        { "who": "A", "text": "I do not understand the second exercise." },
+        { "who": "B", "text": "You must read the instructions again first." },
+        { "who": "A", "text": "I did, but the timetable says the exam is on the same subject next week." },
+        { "who": "B", "text": "Then let's go through it together now." },
+        { "who": "A", "text": "Thank you, that would help a lot." }
+      ],
+      "questions": [
+        { "q": "What does A not understand?", "options": ["The second exercise", "The timetable", "Where the classroom is"], "answer": 0, "level": 2 },
+        { "q": "What does the teacher ask A to do first?", "options": ["Ask a classmate", "Skip the exercise", "Read the instructions again"], "answer": 2, "level": 2 }
+      ]
+    },
+    {
+      "title": "Enrolling at university",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "I would like to ask about the scholarship for this degree." },
+        { "who": "B", "text": "Certainly. Which faculty are you applying to?" },
+        { "who": "A", "text": "Engineering. The tuition is quite high for my family." },
+        { "who": "B", "text": "The scholarship covers half the tuition for the first semester." },
+        { "who": "A", "text": "And after the first semester?" },
+        { "who": "B", "text": "It depends on your grades. It was renewed for most students last year." },
+        { "who": "A", "text": "That is reassuring. When does the semester start?" },
+        { "who": "B", "text": "Lectures begin in the first week of September." }
+      ],
+      "questions": [
+        { "q": "How much of the tuition does the scholarship cover at first?", "options": ["All of it", "Half", "None"], "answer": 1, "level": 4 },
+        { "q": "What decides whether the scholarship continues?", "options": ["A lottery", "The faculty budget", "The student's grades"], "answer": 2, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "A day at school",
+      "level": 1,
+      "text": "Marco walks to school with his sister every morning. School starts at eight, so they leave the house early.\n\nIn the classroom, the teacher writes the date on the board. Marco opens his book and takes out his pencil. His friend sits next to him and shares a rubber.\n\nAt lunchtime they eat outside. Then the lesson starts again, and Marco tries to remember everything before the bell rings.",
+      "questions": [
+        { "q": "When does school start?", "options": ["At eight", "At noon", "At nine"], "answer": 0, "level": 1 },
+        { "q": "Who does Marco sit next to?", "options": ["His sister", "His friend", "The teacher"], "answer": 1, "level": 1 },
+        { "q": "Where do they eat lunch?", "options": ["In the classroom", "At home", "Outside"], "answer": 2, "level": 1 }
+      ]
+    },
+    {
+      "title": "The subject I used to hate",
+      "level": 3,
+      "text": "I used to hate maths. Every lesson felt like the teacher was speaking a language I had not been taught, and every exam confirmed it. I told myself I was simply not a maths person, the way some people are not tall.\n\nWhat changed was not the subject. It was a teacher who slowed down and let me ask the same question three times without making me feel small for it. Slowly the numbers stopped being strangers.\n\nBy the final semester I was helping classmates with the exercises I had once dreaded. I do not think I became naturally good at maths. I think I stopped believing the story I had told myself since I was eight.",
+      "questions": [
+        { "q": "What did the writer believe about themselves?", "options": ["That they hated school", "That they were not a maths person", "That exams were unfair"], "answer": 1, "level": 3 },
+        { "q": "What actually changed things?", "options": ["A new textbook", "A different school", "A patient teacher"], "answer": 2, "level": 3 },
+        { "q": "By the final semester, what was the writer doing?", "options": ["Avoiding maths lessons", "Helping classmates with the exercises", "Failing every exam"], "answer": 1, "level": 3 }
+      ]
+    },
+    {
+      "title": "What a grade cannot measure",
+      "level": 5,
+      "text": "A grade is a single number standing in for months of work, and like any summary it discards almost everything it summarises. Two students can arrive at the same mark on a dissertation by entirely different routes: one wrote a confident first draft and polished it, the other rewrote the argument four times after every meeting with a supervisor. The certificate does not record the difference.\n\nThis is not an argument against grading, which remains a genuinely useful shorthand when a university has thousands of students and needs some way to compare them. It is an argument against treating the shorthand as the whole truth. A curriculum can be followed perfectly and still leave a student unable to explain why any of it mattered, and it can be followed imperfectly by a student who understood the one idea that counted.\n\nWhat a transcript is good at is comparison. What it is bad at is the thing most people actually want to know, which is not how a student performed against a syllabus but whether they can now think somewhat differently than they could before they started. That question has no grade, and probably should not.",
+      "questions": [
+        { "q": "What does the writer say a grade discards?", "options": ["The exam questions", "Almost everything behind the mark", "The syllabus"], "answer": 1, "level": 5 },
+        { "q": "What is grading useful for, according to the writer?", "options": ["Measuring genuine understanding", "Comparing many students", "Nothing at all"], "answer": 1, "level": 5 },
+        { "q": "What question does the writer say has no grade?", "options": ["Whether a dissertation was long enough", "Whether a student attended every lecture", "Whether a student can now think differently"], "answer": 2, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "I am a student.", "tip": "STU-dent. The stress is on the first part.", "level": 0 },
+    { "text": "Where is the classroom?", "tip": "CLASS-room. Two even beats, no gap between them.", "level": 0 },
+    { "text": "I have got a new pencil.", "tip": "Have got runs together: hav-got.", "level": 1 },
+    { "text": "Can I open my book?", "tip": "Can I softens to c'n-eye in fast speech.", "level": 1 },
+    { "text": "You must arrive on time.", "tip": "Must is strong and short. Do not stretch it.", "level": 2 },
+    { "text": "When is the exam?", "tip": "eg-ZAM. The g sounds like a soft g, not a hard one.", "level": 2 },
+    { "text": "I used to hate maths.", "tip": "Used to sounds like yoos-tuh, not yoozd-too.", "level": 3 },
+    { "text": "What is your favourite subject?", "tip": "FAY-vrit. Favourite is often said in three beats, not four.", "level": 3 },
+    { "text": "The homework was collected this morning.", "tip": "col-LEC-ted. Stress the middle syllable.", "level": 4 },
+    { "text": "Could you extend the deadline?", "tip": "Could you often becomes cudja in fast speech.", "level": 4 },
+    { "text": "The teacher said the exam would be on Friday.", "tip": "Would be links smoothly: wood-be, no pause.", "level": 5 },
+    { "text": "I would like some feedback on this draft.", "tip": "I would contracts to I'd. Practise both forms.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "teacher", "icon": "🧑‍🏫", "level": 0 },
+    { "type": "spell", "answer": "school", "icon": "🏫", "level": 0 },
+    { "type": "cloze", "answer": "a", "sentence": "He is ___ student.", "level": 0 },
+
+    { "type": "spell", "answer": "pencil", "icon": "✏️", "level": 1 },
+    { "type": "cloze", "answer": "have", "sentence": "I ___ got a new pencil.", "level": 1 },
+    { "type": "answer", "question": "What do you need for the lesson?", "accept": ["a book", "a pencil", "I have got", "a pen", "my book"], "level": 1 },
+
+    { "type": "spell", "answer": "homework", "icon": "🎒", "level": 2 },
+    { "type": "cloze", "answer": "must", "sentence": "You ___ arrive on time.", "level": 2 },
+    { "type": "cloze", "answer": "the", "sentence": "When is ___ exam?", "level": 2 },
+
+    { "type": "cloze", "answer": "used", "sentence": "I ___ to hate maths.", "level": 3 },
+    { "type": "cloze", "answer": "subject", "sentence": "What is your favourite ___?", "level": 3 },
+    { "type": "answer", "question": "Name a subject you like.", "accept": ["maths", "history", "science", "english", "art", "I like"], "level": 3 },
+
+    { "type": "cloze", "answer": "was", "sentence": "The homework ___ collected this morning.", "level": 4 },
+    { "type": "cloze", "answer": "deadline", "sentence": "Could you extend the ___?", "level": 4 },
+    { "type": "answer", "question": "Ask your teacher for more time, politely.", "accept": ["could you extend", "could i have more time", "would it be possible", "can i have an extension"], "level": 4 },
+
+    { "type": "cloze", "answer": "would", "sentence": "The teacher said the exam ___ be on Friday.", "level": 5 },
+    { "type": "cloze", "answer": "feedback", "sentence": "I would like some ___ on this draft.", "level": 5 },
+    { "type": "answer", "question": "You think your grade was unfair. What do you say?", "accept": ["could you explain", "i would like to discuss", "may i ask about", "can we talk about my grade"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Who teaches the class?", "options": ["a driver", "a teacher", "a chef"], "answer": 1, "level": 0 },
+    { "q": "Choose the correct sentence.", "options": ["He a student.", "He is student.", "He is a student."], "answer": 2, "level": 0 },
+    { "q": "You write with a ___.", "options": ["pencil", "ladder", "helmet"], "answer": 0, "level": 0 },
+
+    { "q": "I ___ got a new pencil.", "options": ["am", "have", "do"], "answer": 1, "level": 1 },
+    { "q": "Where do students sit?", "options": ["at a desk", "in a truck", "on a ladder"], "answer": 0, "level": 1 },
+    { "q": "What do you read in class?", "options": ["a battery", "a book", "a bandage"], "answer": 1, "level": 1 },
+
+    { "q": "You ___ arrive on time.", "options": ["would", "must", "did"], "answer": 1, "level": 2 },
+    { "q": "Work you do at home for school is called ___.", "options": ["a lecture", "homework", "a grade"], "answer": 1, "level": 2 },
+    { "q": "The person in charge of the whole school is the ___.", "options": ["principal", "classmate", "student"], "answer": 0, "level": 2 },
+
+    { "q": "I ___ to hate maths.", "options": ["used", "use", "was using"], "answer": 0, "level": 3 },
+    { "q": "Where do you study for a degree?", "options": ["at university", "at a pharmacy", "at a station"], "answer": 0, "level": 3 },
+    { "q": "A mark for your work is called a ___.", "options": ["grade", "timetable", "subject"], "answer": 0, "level": 3 },
+
+    { "q": "The homework ___ collected this morning.", "options": ["is", "were", "was"], "answer": 2, "level": 4 },
+    { "q": "Money paid to study at a university is called ___.", "options": ["tuition", "a scholarship", "a syllabus"], "answer": 0, "level": 4 },
+    { "q": "Money awarded to a good student to help pay for study is a ___.", "options": ["scholarship", "tuition", "faculty"], "answer": 0, "level": 4 },
+
+    { "q": "The teacher said the exam ___ be on Friday.", "options": ["will", "would", "was"], "answer": 1, "level": 5 },
+    { "q": "A long piece of research writing for a degree is called a ___.", "options": ["syllabus", "dissertation", "curriculum"], "answer": 1, "level": 5 },
+    { "q": "Copying someone else's work and calling it your own is ___.", "options": ["plagiarism", "feedback", "a scholarship"], "answer": 0, "level": 5 }
+  ],
+
+  "reviewed": true
+}

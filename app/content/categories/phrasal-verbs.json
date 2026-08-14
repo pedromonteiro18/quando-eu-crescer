@@ -34,103 +34,143 @@
   "vocabulary": [
     {
       "word": "give up",
+      "word_pt": "desistir",
       "icon": "🏳️",
-      "example": "She gave up smoking two years ago."
+      "example": "She gave up smoking two years ago.",
+      "example_pt": "Ela largou o cigarro há dois anos."
     },
     {
       "word": "look after",
+      "word_pt": "cuidar de",
       "icon": "🧑‍🍼",
-      "example": "Could you look after the dog this weekend?"
+      "example": "Could you look after the dog this weekend?",
+      "example_pt": "Você poderia cuidar do cachorro neste fim de semana?"
     },
     {
       "word": "put off",
+      "word_pt": "adiar",
       "icon": "📆",
-      "example": "They put the meeting off until Thursday."
+      "example": "They put the meeting off until Thursday.",
+      "example_pt": "Eles adiaram a reunião para quinta-feira."
     },
     {
       "word": "run out of",
+      "word_pt": "ficar sem",
       "icon": "🫗",
-      "example": "We've run out of coffee again."
+      "example": "We've run out of coffee again.",
+      "example_pt": "Ficamos sem café de novo."
     },
     {
       "word": "come across",
+      "word_pt": "encontrar por acaso",
       "icon": "🔎",
-      "example": "I came across an old photo of my grandfather."
+      "example": "I came across an old photo of my grandfather.",
+      "example_pt": "Encontrei por acaso uma foto antiga do meu avô."
     },
     {
       "word": "get along",
+      "word_pt": "se dar bem",
       "icon": "🫂",
-      "example": "I get along well with my colleagues."
+      "example": "I get along well with my colleagues.",
+      "example_pt": "Eu me dou bem com meus colegas."
     },
     {
       "word": "turn down",
+      "word_pt": "recusar",
       "icon": "🔉",
-      "example": "He turned down the offer."
+      "example": "He turned down the offer.",
+      "example_pt": "Ele recusou a oferta."
     },
     {
       "word": "bring up",
+      "word_pt": "mencionar",
       "icon": "🗣️",
-      "example": "Don't bring that up at dinner."
+      "example": "Don't bring that up at dinner.",
+      "example_pt": "Não mencione isso no jantar."
     },
     {
       "word": "take over",
+      "word_pt": "assumir",
       "icon": "🎛️",
-      "example": "She took over the department in June."
+      "example": "She took over the department in June.",
+      "example_pt": "Ela assumiu o departamento em junho."
     },
     {
       "word": "work out",
+      "word_pt": "dar certo",
       "icon": "🏋️",
-      "example": "It didn't work out, so we tried something else."
+      "example": "It didn't work out, so we tried something else.",
+      "example_pt": "Não deu certo, então tentamos outra coisa."
     },
     {
       "word": "figure out",
+      "word_pt": "entender",
       "icon": "🧩",
-      "example": "I still haven't figured out how it works."
+      "example": "I still haven't figured out how it works.",
+      "example_pt": "Eu ainda não entendi como funciona."
     },
     {
       "word": "look forward to",
+      "word_pt": "estar ansioso para",
       "icon": "😃",
-      "example": "I'm looking forward to seeing you."
+      "example": "I'm looking forward to seeing you.",
+      "example_pt": "Estou ansioso para te ver."
     },
     {
       "word": "put up with",
+      "word_pt": "aguentar",
       "icon": "😣",
-      "example": "I can't put up with the noise any longer."
+      "example": "I can't put up with the noise any longer.",
+      "example_pt": "Eu não aguento mais esse barulho."
     },
     {
       "word": "call off",
+      "word_pt": "cancelar",
       "icon": "🚫",
-      "example": "They called the match off because of the rain."
+      "example": "They called the match off because of the rain.",
+      "example_pt": "Eles cancelaram a partida por causa da chuva."
     },
     {
       "word": "get over",
+      "word_pt": "se recuperar de",
       "icon": "🌤️",
-      "example": "It took her a month to get over the flu."
+      "example": "It took her a month to get over the flu.",
+      "example_pt": "Ela levou um mês para se recuperar da gripe."
     },
     {
       "word": "set up",
+      "word_pt": "fundar",
       "icon": "🛠️",
-      "example": "He set up the company on his own."
+      "example": "He set up the company on his own.",
+      "example_pt": "Ele fundou a empresa sozinho."
     },
     {
       "word": "break down",
+      "word_pt": "quebrar",
       "icon": "🚗",
-      "example": "The car broke down on the motorway."
+      "example": "The car broke down on the motorway.",
+      "example_pt": "O carro quebrou na rodovia."
     },
     {
       "word": "hand in",
+      "word_pt": "entregar",
       "icon": "📤",
-      "example": "Hand in your report by Friday."
+      "example": "Hand in your report by Friday.",
+      "example_pt": "Entregue seu relatório até sexta-feira."
     },
     {
       "word": "point out",
+      "word_pt": "apontar",
       "icon": "👉",
-      "example": "She pointed out the mistake, politely."
+      "example": "She pointed out the mistake, politely.",
+      "example_pt": "Ela apontou o erro, educadamente."
     },
     {
       "word": "carry on",
+      "word_pt": "continuar",
       "icon": "➡️",
-      "example": "Carry on, I'm listening."
+      "example": "Carry on, I'm listening.",
+      "example_pt": "Continue, estou ouvindo."
     }
   ],
   "phrases": [

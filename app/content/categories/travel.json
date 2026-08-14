@@ -30,103 +30,143 @@
   "vocabulary": [
     {
       "word": "airport",
+      "word_pt": "aeroporto",
       "icon": "✈️",
-      "example": "We arrived at the airport two hours early."
+      "example": "We arrived at the airport two hours early.",
+      "example_pt": "Chegamos ao aeroporto duas horas antes."
     },
     {
       "word": "ticket",
+      "word_pt": "passagem",
       "icon": "🎫",
-      "example": "Keep your ticket, they check it on the train."
+      "example": "Keep your ticket, they check it on the train.",
+      "example_pt": "Guarde sua passagem, eles conferem no trem."
     },
     {
       "word": "passport",
+      "word_pt": "passaporte",
       "icon": "🛂",
-      "example": "My passport expires next year."
+      "example": "My passport expires next year.",
+      "example_pt": "Meu passaporte vence ano que vem."
     },
     {
       "word": "luggage",
+      "word_pt": "bagagem",
       "icon": "🧳",
-      "example": "I only travel with hand luggage."
+      "example": "I only travel with hand luggage.",
+      "example_pt": "Eu só viajo com bagagem de mão."
     },
     {
       "word": "train",
+      "word_pt": "trem",
       "icon": "🚆",
-      "example": "The train to Porto leaves at six."
+      "example": "The train to Porto leaves at six.",
+      "example_pt": "O trem para o Porto sai às seis."
     },
     {
       "word": "bus",
+      "word_pt": "ônibus",
       "icon": "🚌",
-      "example": "The bus is cheaper than the taxi."
+      "example": "The bus is cheaper than the taxi.",
+      "example_pt": "O ônibus é mais barato que o táxi."
     },
     {
       "word": "taxi",
+      "word_pt": "táxi",
       "icon": "🚕",
-      "example": "Could you call me a taxi?"
+      "example": "Could you call me a taxi?",
+      "example_pt": "Você poderia chamar um táxi para mim?"
     },
     {
       "word": "hotel",
+      "word_pt": "hotel",
       "icon": "🏨",
-      "example": "The hotel is five minutes from the beach."
+      "example": "The hotel is five minutes from the beach.",
+      "example_pt": "O hotel fica a cinco minutos da praia."
     },
     {
       "word": "map",
+      "word_pt": "mapa",
       "icon": "🗺️",
-      "example": "I still prefer a paper map."
+      "example": "I still prefer a paper map.",
+      "example_pt": "Eu ainda prefiro um mapa de papel."
     },
     {
       "word": "seat",
+      "word_pt": "assento",
       "icon": "💺",
-      "example": "Excuse me, I think that is my seat."
+      "example": "Excuse me, I think that is my seat.",
+      "example_pt": "Com licença, acho que esse é o meu assento."
     },
     {
       "word": "platform",
+      "word_pt": "plataforma",
       "icon": "🚉",
-      "example": "The train leaves from platform three."
+      "example": "The train leaves from platform three.",
+      "example_pt": "O trem sai da plataforma três."
     },
     {
       "word": "delay",
+      "word_pt": "atraso",
       "icon": "⏳",
-      "example": "There is a two hour delay."
+      "example": "There is a two hour delay.",
+      "example_pt": "Há duas horas de atraso."
     },
     {
       "word": "gate",
+      "word_pt": "portão de embarque",
       "icon": "🛫",
-      "example": "Boarding at gate twelve."
+      "example": "Boarding at gate twelve.",
+      "example_pt": "Embarque no portão doze."
     },
     {
       "word": "arrival",
+      "word_pt": "chegada",
       "icon": "🛬",
-      "example": "Check the arrivals board."
+      "example": "Check the arrivals board.",
+      "example_pt": "Confira o painel de chegadas."
     },
     {
       "word": "booking",
+      "word_pt": "reserva",
       "icon": "📅",
-      "example": "I have a booking under the name Silva."
+      "example": "I have a booking under the name Silva.",
+      "example_pt": "Tenho uma reserva em nome de Silva."
     },
     {
       "word": "journey",
+      "word_pt": "viagem",
       "icon": "🛣️",
-      "example": "It is a long journey, about nine hours."
+      "example": "It is a long journey, about nine hours.",
+      "example_pt": "É uma viagem longa, umas nove horas."
     },
     {
       "word": "currency",
+      "word_pt": "moeda",
       "icon": "💱",
-      "example": "What is the currency in Japan?"
+      "example": "What is the currency in Japan?",
+      "example_pt": "Qual é a moeda no Japão?"
     },
     {
       "word": "border",
+      "word_pt": "fronteira",
       "icon": "🛃",
-      "example": "We crossed the border at night."
+      "example": "We crossed the border at night.",
+      "example_pt": "Cruzamos a fronteira à noite."
     },
     {
       "word": "guide",
+      "word_pt": "guia",
       "icon": "🧭",
-      "example": "Our guide knew every street."
+      "example": "Our guide knew every street.",
+      "example_pt": "Nosso guia conhecia cada rua."
     },
     {
       "word": "beach",
+      "word_pt": "praia",
       "icon": "🏖️",
-      "example": "The beach was empty in the morning."
+      "example": "The beach was empty in the morning.",
+      "example_pt": "A praia estava vazia de manhã."
     }
   ],
   "phrases": [

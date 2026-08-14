@@ -1,0 +1,229 @@
+{
+  "id": "jobs-transport",
+  "title": "Transport",
+  "title_pt": "Transporte",
+  "icon": "✈️",
+  "bands": ["4-6", "7-10", "11-14"],
+  "cefr": "A1",
+  "levelNote": "Six tiers in one file. A car and a bus are pictures a four year old already knows, and the same two nouns carry all the way up to the economics of a road jammed with them.",
+  "goal": "Name types of transport and the people who drive them, buy a ticket, and talk about a journey.",
+  "goal_pt": "Nomear meios de transporte e as pessoas que os conduzem, comprar uma passagem, e falar sobre uma viagem.",
+
+  "grammar": [
+    { "point": "Plurals with -s", "point_pt": "Plural com -s", "example": "one car, two cars", "level": 0 },
+    { "point": "can / can't for ability", "point_pt": "can / can't para habilidade", "example": "A plane can fly. A car can't fly.", "level": 1 },
+    { "point": "Prepositions of place: at, on, in", "point_pt": "Preposições de lugar: at, on, in", "example": "We wait at the station. She is on the train.", "level": 2 },
+    { "point": "Comparatives", "point_pt": "Comparativos", "example": "A plane is faster than a car.", "level": 3 },
+    { "point": "Present perfect for experience", "point_pt": "Present perfect para experiência", "example": "Have you ever flown on a plane?", "level": 4 },
+    { "point": "Passive voice for past events", "point_pt": "Voz passiva para eventos passados", "example": "The train was delayed by an hour.", "level": 5 }
+  ],
+
+  "vocabulary": [
+    { "word": "car", "word_pt": "carro", "icon": "🚗", "example": "The car is red.", "example_pt": "O carro é vermelho.", "level": 0 },
+    { "word": "bus", "word_pt": "ônibus", "icon": "🚌", "example": "The bus is big.", "example_pt": "O ônibus é grande.", "level": 0 },
+    { "word": "train", "word_pt": "trem", "icon": "🚂", "example": "The train is fast.", "example_pt": "O trem é rápido.", "level": 0 },
+    { "word": "plane", "word_pt": "avião", "icon": "✈️", "example": "The plane is in the sky.", "example_pt": "O avião está no céu.", "level": 0 },
+    { "word": "boat", "word_pt": "barco", "icon": "⛵", "example": "The boat is on the water.", "example_pt": "O barco está na água.", "level": 0 },
+
+    { "word": "bike", "word_pt": "bicicleta", "icon": "🚲", "example": "I ride my bike to school.", "example_pt": "Eu vou de bicicleta para a escola.", "level": 1 },
+    { "word": "driver", "word_pt": "motorista", "icon": "🚖", "example": "The driver drives the bus.", "example_pt": "O motorista dirige o ônibus.", "level": 1 },
+    { "word": "pilot", "word_pt": "piloto", "icon": "🧑‍✈️", "example": "The pilot flies the plane.", "example_pt": "O piloto pilota o avião.", "level": 1 },
+    { "word": "road", "word_pt": "estrada", "icon": "🛣️", "example": "The road is very long.", "example_pt": "A estrada é muito longa.", "level": 1 },
+    { "word": "wheel", "word_pt": "roda", "icon": "🛞", "example": "The wheel is round and black.", "example_pt": "A roda é redonda e preta.", "level": 1 },
+
+    { "word": "airport", "word_pt": "aeroporto", "icon": "🛫", "example": "We wait at the airport.", "example_pt": "Nós esperamos no aeroporto.", "level": 2 },
+    { "word": "station", "word_pt": "estação", "icon": "🚉", "example": "The train stops at the station.", "example_pt": "O trem para na estação.", "level": 2 },
+    { "word": "ticket", "word_pt": "passagem", "icon": "🎫", "example": "Buy a ticket for the bus.", "example_pt": "Compre uma passagem para o ônibus.", "level": 2 },
+    { "word": "passenger", "word_pt": "passageiro", "icon": "🧑", "example": "The passenger has a ticket.", "example_pt": "O passageiro tem uma passagem.", "level": 2 },
+    { "word": "luggage", "word_pt": "bagagem", "icon": "🧳", "example": "Carry your luggage carefully.", "example_pt": "Carregue sua bagagem com cuidado.", "level": 2 },
+
+    { "word": "traffic", "word_pt": "trânsito", "icon": "🚦", "example": "There is a lot of traffic today.", "example_pt": "Hoje tem muito trânsito.", "level": 3 },
+    { "word": "journey", "word_pt": "viagem", "icon": "🧭", "example": "Our journey takes two hours.", "example_pt": "Nossa viagem dura duas horas.", "level": 3 },
+    { "word": "platform", "word_pt": "plataforma", "icon": "🛤️", "example": "The train is at platform two.", "example_pt": "O trem está na plataforma dois.", "level": 3 },
+    { "word": "sign", "word_pt": "placa", "icon": "🪧", "example": "Read the sign before you cross.", "example_pt": "Leia a placa antes de atravessar.", "level": 3 },
+    { "word": "arrive", "word_pt": "chegar", "icon": "🛬", "example": "We arrive at nine o'clock.", "example_pt": "Nós chegamos às nove horas.", "level": 3 },
+
+    { "word": "pedestrian", "word_pt": "pedestre", "icon": "🚶", "example": "The pedestrian waits for the light.", "example_pt": "O pedestre espera o sinal abrir.", "level": 4 },
+    { "word": "commute", "word_pt": "deslocar-se (para o trabalho)", "icon": "🚇", "example": "She commutes to work by train.", "example_pt": "Ela vai de trem para o trabalho todos os dias.", "level": 4 },
+    { "word": "timetable", "word_pt": "horário", "icon": "📅", "example": "Check the timetable for the next bus.", "example_pt": "Confira o horário do próximo ônibus.", "level": 4 },
+    { "word": "delay", "word_pt": "atraso", "icon": "⏰", "example": "There is a delay this morning.", "example_pt": "Há um atraso esta manhã.", "level": 4 },
+    { "word": "terminal", "word_pt": "terminal", "icon": "🛄", "example": "Meet me at terminal three.", "example_pt": "Me encontre no terminal três.", "level": 4 },
+
+    { "word": "cargo", "word_pt": "carga", "icon": "📦", "example": "The ship carries cargo across the sea.", "example_pt": "O navio transporta carga pelo mar.", "level": 5 },
+    { "word": "licence", "word_pt": "carteira de motorista", "icon": "🪪", "example": "You need a licence to drive a car.", "example_pt": "Você precisa de carteira de motorista para dirigir um carro.", "level": 5 },
+    { "word": "mechanic", "word_pt": "mecânico", "icon": "🔧", "example": "The mechanic fixes the engine.", "example_pt": "O mecânico conserta o motor.", "level": 5 },
+    { "word": "congestion", "word_pt": "congestionamento", "icon": "🚧", "example": "Congestion built up near the bridge.", "example_pt": "Formou-se um congestionamento perto da ponte.", "level": 5 },
+    { "word": "infrastructure", "word_pt": "infraestrutura", "icon": "🏗️", "example": "New infrastructure will speed up the journey.", "example_pt": "A nova infraestrutura vai agilizar a viagem.", "level": 5 }
+  ],
+
+  "phrases": [
+    { "text": "This is a car.", "use": "Pointing at a vehicle.", "level": 0 },
+    { "text": "I like the bus.", "use": "Simple opinion about a vehicle.", "level": 0 },
+    { "text": "A plane can fly.", "use": "Can for what something is able to do.", "level": 1 },
+    { "text": "I can't ride a bike yet.", "use": "Can't for what you are not able to do.", "level": 1 },
+    { "text": "We are at the station.", "use": "At with a place you visit.", "level": 2 },
+    { "text": "She is on the train.", "use": "On for being inside a bus, train, or plane.", "level": 2 },
+    { "text": "A plane is faster than a car.", "use": "Comparative with than.", "level": 3 },
+    { "text": "Is the next bus late?", "use": "A useful question about timing.", "level": 3 },
+    { "text": "Have you ever flown on a plane?", "use": "Ever with the present perfect, for any time in your life.", "level": 4 },
+    { "text": "The bus is early today.", "use": "Talking about a schedule.", "level": 4 },
+    { "text": "The train was delayed by an hour.", "use": "Passive voice when who caused it does not matter.", "level": 5 },
+    { "text": "Although it was delayed, we arrived on time.", "use": "Although opens the surprising half.", "level": 5 }
+  ],
+
+  "dialogue": [
+    {
+      "title": "At the bus stop",
+      "level": 0,
+      "lines": [
+        { "who": "A", "text": "Good morning! Is this the bus stop?" },
+        { "who": "B", "text": "Yes, it is. The bus is red." },
+        { "who": "A", "text": "I like the bus. Is it fast?" },
+        { "who": "B", "text": "Yes, very fast. Here it comes now!" },
+        { "who": "A", "text": "Thank you! Goodbye!" },
+        { "who": "B", "text": "Goodbye! Have a good trip!" }
+      ],
+      "questions": [
+        { "q": "What colour is the bus?", "options": ["Yellow", "Red", "Blue"], "answer": 1, "level": 0 },
+        { "q": "Is the bus fast?", "options": ["It doesn't come", "No, it is slow", "Yes, it is fast"], "answer": 2, "level": 0 }
+      ]
+    },
+    {
+      "title": "Buying a train ticket",
+      "level": 2,
+      "lines": [
+        { "who": "A", "text": "Hello. One ticket to the city, please." },
+        { "who": "B", "text": "That's five pounds. Are you a passenger on the ten o'clock train?" },
+        { "who": "A", "text": "Yes, that's right. Is it busy today?" },
+        { "who": "B", "text": "A little. Do you have much luggage?" },
+        { "who": "A", "text": "Just one bag, thank you." },
+        { "who": "B", "text": "Perfect. The train leaves from the station in ten minutes." },
+        { "who": "A", "text": "Thank you very much!" }
+      ],
+      "questions": [
+        { "q": "How much is the ticket?", "options": ["Five pounds", "Two pounds", "Ten pounds"], "answer": 0, "level": 2 },
+        { "q": "How much luggage does A have?", "options": ["Two bags", "No luggage", "One bag"], "answer": 2, "level": 2 }
+      ]
+    },
+    {
+      "title": "A delayed flight at the airport",
+      "level": 4,
+      "lines": [
+        { "who": "A", "text": "Excuse me, is this flight delayed?" },
+        { "who": "B", "text": "Yes, I'm afraid so. There is a delay of one hour." },
+        { "who": "A", "text": "Oh no. Have you checked the new time on the timetable?" },
+        { "who": "B", "text": "I have. It now leaves at three o'clock, from terminal two." },
+        { "who": "A", "text": "Terminal two? I thought we were at terminal one." },
+        { "who": "B", "text": "They changed it this morning. Have you ever missed a flight before?" },
+        { "who": "A", "text": "Once, a few years ago. I won't be late again." },
+        { "who": "B", "text": "Don't worry, we have plenty of time now." }
+      ],
+      "questions": [
+        { "q": "How long is the delay?", "options": ["Thirty minutes", "One hour", "Two hours"], "answer": 1, "level": 4 },
+        { "q": "Which terminal does the flight leave from now?", "options": ["Terminal one", "Terminal three", "Terminal two"], "answer": 2, "level": 4 }
+      ]
+    }
+  ],
+
+  "reading": [
+    {
+      "title": "A trip to the airport",
+      "level": 1,
+      "text": "On Sunday my father takes me to the airport. We go by car. My father drives, and I look out of the window.\n\nAt the airport we see many planes. Some are big and some are small. I want to see a red plane, and we find one!\n\nWe do not fly today. We just watch the planes. Then we go home for lunch, happy and hungry.",
+      "questions": [
+        { "q": "How do they go to the airport?", "options": ["By car", "By train", "By boat"], "answer": 0, "level": 1 },
+        { "q": "What colour plane does the child want to see?", "options": ["Blue", "Yellow", "Red"], "answer": 2, "level": 1 },
+        { "q": "Do they fly on this day?", "options": ["Yes, they fly away", "No, they just watch", "Yes, they fly home"], "answer": 1, "level": 1 }
+      ]
+    },
+    {
+      "title": "The morning train",
+      "level": 3,
+      "text": "Every weekday, Maria walks to the station near her house. The platform is often busy, and she has learned to stand near the middle, where the doors always open.\n\nThe journey into the city takes forty minutes, longer if there is trouble on the line. Maria uses the time to read or to look out at the towns going past. She has taken the same train for two years now, and she knows most of the other regular passengers by sight, even if she has never spoken to them.\n\nToday the train is five minutes late, which barely counts as a delay. Maria checks the timetable on her phone, sees nothing to worry about, and goes back to her book.",
+      "questions": [
+        { "q": "Where does Maria stand on the platform?", "options": ["Near the end", "Near the middle", "Near the exit"], "answer": 1, "level": 3 },
+        { "q": "How long does the journey usually take?", "options": ["Forty minutes", "Twenty minutes", "One hour"], "answer": 0, "level": 3 },
+        { "q": "How does Maria know the other passengers?", "options": ["They are her friends from school", "She talks to them every day", "By sight, though she has never spoken to them"], "answer": 2, "level": 3 }
+      ]
+    },
+    {
+      "title": "Why the road feels free and the train feels shared",
+      "level": 5,
+      "text": "A car gives the illusion of a journey nobody else controls: you choose the hour, the route, and the stops, and the only cost of a mistake is a wrong turn. A train offers something almost the opposite. The timetable, the platform, and the price are fixed by other people long before you arrive, and your only real decision is whether to be there on time.\n\nIt is tempting to call the car the free choice and the train the constrained one, but that gets the economics backwards. A road that feels free to one driver is only free because thousands of other drivers are not on it at that moment; add enough cars and the same road becomes the most rigid infrastructure imaginable, measured in minutes lost to congestion rather than freedom gained. A train, by contrast, gets more efficient as more people use it, up to a point, because the cost of running it barely changes whether it carries ten passengers or four hundred.\n\nNone of this means one is better than the other for every journey. It means that comfort with a form of transport, once you look closely, often has less to do with independence than with who else happens to be sharing the infrastructure that day, and how honest you are willing to be about that.",
+      "questions": [
+        { "q": "According to the writer, what is the only real decision on a train?", "options": ["The route to take", "Whether to be there on time", "How fast to go"], "answer": 1, "level": 5 },
+        { "q": "Why does the writer say the economics get backwards?", "options": ["Because a free-feeling road depends on few other cars using it", "Because trains are always cheaper", "Because cars are more efficient than trains"], "answer": 0, "level": 5 },
+        { "q": "What does the writer say happens to a train as more people use it?", "options": ["It becomes slower", "It becomes more expensive to ride", "It becomes more efficient, up to a point"], "answer": 2, "level": 5 }
+      ]
+    }
+  ],
+
+  "speaking": [
+    { "text": "This is a car.", "tip": "Car rhymes with far. One syllable.", "level": 0 },
+    { "text": "I like the bus.", "tip": "Bus is short and sharp. Don't add an extra sound at the end.", "level": 0 },
+    { "text": "A plane can fly.", "tip": "Can is quick and light here, not caaan.", "level": 1 },
+    { "text": "I can't ride a bike yet.", "tip": "Can't is longer and stronger than can.", "level": 1 },
+    { "text": "We are at the station.", "tip": "At the links together: a-the-STAY-shun.", "level": 2 },
+    { "text": "She is on the train.", "tip": "On the train, not in the train, for buses and planes too.", "level": 2 },
+    { "text": "A plane is faster than a car.", "tip": "Than is weak here, like fun not fan.", "level": 3 },
+    { "text": "Is the next bus late?", "tip": "Rise at the end. It is a yes-or-no question.", "level": 3 },
+    { "text": "Have you ever flown on a plane?", "tip": "Have you ever runs together: hav-yoo-EV-er.", "level": 4 },
+    { "text": "The bus is early today.", "tip": "Early has two beats: UR-lee.", "level": 4 },
+    { "text": "The train was delayed by an hour.", "tip": "Was is weak here; delayed carries the stress.", "level": 5 },
+    { "text": "Although it was delayed, we arrived on time.", "tip": "Pause after delayed, not after although.", "level": 5 }
+  ],
+
+  "writing": [
+    { "type": "spell", "answer": "car", "icon": "🚗", "level": 0 },
+    { "type": "spell", "answer": "bus", "icon": "🚌", "level": 0 },
+    { "type": "cloze", "answer": "a", "sentence": "This is ___ car.", "level": 0 },
+
+    { "type": "spell", "answer": "bike", "icon": "🚲", "level": 1 },
+    { "type": "cloze", "answer": "can", "sentence": "A plane ___ fly.", "level": 1 },
+    { "type": "answer", "question": "Which vehicle do you like?", "accept": ["I like", "cars", "buses", "trains", "planes", "boats", "bikes"], "level": 1 },
+
+    { "type": "spell", "answer": "ticket", "icon": "🎫", "level": 2 },
+    { "type": "cloze", "answer": "at", "sentence": "We are ___ the station.", "level": 2 },
+    { "type": "cloze", "answer": "on", "sentence": "She is ___ the train.", "level": 2 },
+
+    { "type": "spell", "answer": "traffic", "icon": "🚦", "level": 3 },
+    { "type": "cloze", "answer": "faster", "sentence": "A plane is ___ than a car.", "level": 3 },
+    { "type": "answer", "question": "How do you get to school?", "accept": ["by car", "by bus", "by bike", "I walk", "on foot", "by train"], "level": 3 },
+
+    { "type": "cloze", "answer": "ever", "sentence": "Have you ___ flown on a plane?", "level": 4 },
+    { "type": "cloze", "answer": "timetable", "sentence": "Check the ___ for the next bus.", "level": 4 },
+    { "type": "answer", "question": "What do you do if a train is delayed?", "accept": ["wait", "check the timetable", "be patient", "find another train"], "level": 4 },
+
+    { "type": "cloze", "answer": "was", "sentence": "The train ___ delayed by an hour.", "level": 5 },
+    { "type": "cloze", "answer": "although", "sentence": "___ it was delayed, we arrived on time.", "level": 5 },
+    { "type": "answer", "question": "Why might a busy road feel less free than it seems?", "accept": ["too many cars", "traffic", "congestion", "other drivers"], "level": 5 }
+  ],
+
+  "quiz": [
+    { "q": "Which one flies in the sky?", "options": ["a plane", "a bus", "a boat"], "answer": 0, "level": 0 },
+    { "q": "This is ___ car.", "options": ["an", "a", "some"], "answer": 1, "level": 0 },
+    { "q": "Which one goes on water?", "options": ["a bike", "a train", "a boat"], "answer": 2, "level": 0 },
+
+    { "q": "A plane ___ fly.", "options": ["can", "cans", "canned"], "answer": 0, "level": 1 },
+    { "q": "Who flies the plane?", "options": ["the driver", "the pilot", "the passenger"], "answer": 1, "level": 1 },
+    { "q": "Choose the correct sentence.", "options": ["I can't rides a bike.", "I not can ride a bike.", "I can't ride a bike."], "answer": 2, "level": 1 },
+
+    { "q": "We are ___ the station.", "options": ["at", "on", "in"], "answer": 0, "level": 2 },
+    { "q": "She is ___ the train.", "options": ["in", "on", "at"], "answer": 1, "level": 2 },
+    { "q": "What do you carry when you travel?", "options": ["a helmet", "medicine", "luggage"], "answer": 2, "level": 2 },
+
+    { "q": "A plane is ___ than a car.", "options": ["faster", "fast", "fastest"], "answer": 0, "level": 3 },
+    { "q": "Too many cars on the road make ___.", "options": ["a platform", "traffic", "a journey"], "answer": 1, "level": 3 },
+    { "q": "Is the next bus ___?", "options": ["lately", "later", "late"], "answer": 2, "level": 3 },
+
+    { "q": "Have you ___ flown on a plane?", "options": ["ever", "yet", "already"], "answer": 0, "level": 4 },
+    { "q": "A person walking, not driving, is a ___.", "options": ["mechanic", "pedestrian", "passenger"], "answer": 1, "level": 4 },
+    { "q": "Where do planes leave from at an airport?", "options": ["a station", "a platform", "a terminal"], "answer": 2, "level": 4 },
+
+    { "q": "The train ___ delayed by an hour.", "options": ["was", "is", "were"], "answer": 0, "level": 5 },
+    { "q": "Who fixes a broken car?", "options": ["a pilot", "a mechanic", "a passenger"], "answer": 1, "level": 5 },
+    { "q": "___ it was delayed, we arrived on time.", "options": ["Because", "So", "Although"], "answer": 2, "level": 5 }
+  ],
+
+  "reviewed": true
+}
