@@ -10,14 +10,19 @@
  *   node build/build-audio.mjs --force      re-render everything
  *   node build/build-audio.mjs greetings    one category (plus ui)
  *
- * Requires macOS (`say` and `afconvert`). Set AUDIO_VOICE to use another
- * installed voice.
+ * Two speech engines, one encoder. AUDIO_ENGINE=say (the default) uses the macOS
+ * voices: free, offline, and fine while building. AUDIO_ENGINE=google uses Google
+ * Cloud Text-to-Speech, whose output may be redistributed inside a product —
+ * which is what a public release needs. `afconvert` encodes either one, so both
+ * engines emit the same format at the same bitrate and macOS is still required.
+ * AUDIO_VOICE / AUDIO_VOICE_PT name the voices for whichever engine is in use.
  *
  * FILENAMES ARE THE CONTRACT. A clip is named after its own text, so replacing
  * the synthetic voice with a human recording is a file swap: re-record the
  * phrase, keep the filename, and no code and no manifest changes. That matters,
- * because these are macOS system voices and Apple licenses them for personal
- * use — fine while building, not defensible for a public release. See DESIGN.md.
+ * because the macOS system voices are licensed by Apple for personal use — fine
+ * while building, not defensible for a public release. That is what AUDIO_ENGINE
+ * is for: the same lines, the same filenames, a voice that may ship. See DESIGN.md.
  */
 import { execFileSync } from "node:child_process";
 import { SPOKEN, linesFor } from "../app/js/spoken.js";
@@ -30,8 +35,9 @@ const APP = join(HERE, "..", "app");
 const CATEGORIES = join(APP, "content", "categories");
 const AUDIO = join(APP, "audio");
 
+/* afconvert does the encoding for both engines, so macOS is required either way. */
 if (process.platform !== "darwin") {
-  console.error("This script needs macOS (say / afconvert). Nothing was generated.");
+  console.error("This script needs macOS (afconvert). Nothing was generated.");
   process.exit(1);
 }
 
@@ -39,11 +45,23 @@ const args = process.argv.slice(2);
 const FORCE = args.includes("--force");
 const only = args.filter(a => !a.startsWith("--"));
 
-/* Two voices, because Clara now instructs in Portuguese and teaches in English.
-   Luciana is the neutral Brazilian voice; the rest of the pt_BR set on macOS is
-   the novelty voices the app's own fallback picker already filters out. */
-const VOICE = process.env.AUDIO_VOICE || "Samantha";
-const VOICE_PT = process.env.AUDIO_VOICE_PT || "Luciana";
+const ENGINE = process.env.AUDIO_ENGINE || "say";
+if (ENGINE !== "say" && ENGINE !== "google") {
+  console.error("AUDIO_ENGINE must be 'say' or 'google'. Nothing was generated.");
+  process.exit(1);
+}
+
+/* Two voices, because Clara instructs in Portuguese and teaches in English.
+   On macOS: Luciana is the neutral Brazilian voice; the rest of the pt_BR set is
+   the novelty voices the app's own fallback picker already filters out. On
+   Google: Aoede in both locales — Chirp3-HD reuses one voice name across
+   languages, so Clara is recognisably the same person teaching English and
+   giving instructions in Portuguese, which is the point of her. Either default
+   can be overridden by environment variable. */
+const DEFAULT_VOICE    = ENGINE === "google" ? "en-US-Chirp3-HD-Aoede" : "Samantha";
+const DEFAULT_VOICE_PT = ENGINE === "google" ? "pt-BR-Chirp3-HD-Aoede" : "Luciana";
+const VOICE = process.env.AUDIO_VOICE || DEFAULT_VOICE;
+const VOICE_PT = process.env.AUDIO_VOICE_PT || DEFAULT_VOICE_PT;
 
 /* `say` speaks in words per minute. A learner needs slower than conversational,
    and a single word — the one they are about to repeat — slower still. */
@@ -54,7 +72,57 @@ function wpm(text) {
   return 165;
 }
 
-/* What `say` actually receives. Two lines that differ only in punctuation are
+/* ── the two engines ──────────────────────────────────────────────────────── */
+
+/* One access token for the whole run. gcloud is the only credential path here on
+   purpose: this repo has no package.json and adding the Google SDK for one HTTP
+   call would be the first dependency it ever took. */
+let token = null, project = null;
+function gcloud(args) { return execFileSync("gcloud", args, { encoding: "utf8" }).trim(); }
+function googleAuth() {
+  if (token) return;
+  try {
+    token = gcloud(["auth", "print-access-token"]);
+    project = process.env.GOOGLE_CLOUD_PROJECT || gcloud(["config", "get-value", "project"]);
+  } catch {
+    console.error("AUDIO_ENGINE=google needs a live gcloud session. Run: gcloud auth login");
+    process.exit(1);
+  }
+}
+
+/* Google takes a rate multiplier where `say` takes words per minute; 175 wpm is
+   its conversational baseline, so the ratio keeps the two engines at one pace. */
+const rateOf = text => Math.max(0.25, Math.min(2, wpm(text) / 175));
+
+async function speakGoogle(text, voice, out) {
+  googleAuth();
+  const res = await fetch("https://texttospeech.googleapis.com/v1/text:synthesize", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + token,
+      "x-goog-user-project": project,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      input: { text },
+      voice: { languageCode: voice.split("-").slice(0, 2).join("-"), name: voice },
+      audioConfig: { audioEncoding: "LINEAR16", sampleRateHertz: 24000, speakingRate: rateOf(text) }
+    })
+  });
+  if (!res.ok) throw new Error("Google TTS " + res.status + ": " + (await res.text()).slice(0, 300));
+  const { audioContent } = await res.json();
+  writeFileSync(out, Buffer.from(audioContent, "base64"));
+}
+
+function speakSay(text, voice, out) {
+  execFileSync("say", ["-v", voice, "-r", String(wpm(text)), "-o", out, "--", text]);
+}
+
+/* Whichever engine, the caller gets a file afconvert can read. */
+const speak = (text, voice, out) =>
+  ENGINE === "google" ? speakGoogle(text, voice, out) : speakSay(text, voice, out);
+
+/* What the voice actually receives. Two lines that differ only in punctuation are
    the same sound, so they deliberately share one clip; a written blank has to
    become a word or the voice spells out three underscores. */
 const speech = text =>
@@ -164,7 +232,7 @@ function catLines(cat) {
 }
 
 /* ── render ───────────────────────────────────────────────────────────────── */
-function render(dir, lines, voice) {
+async function render(dir, lines, voice) {
   mkdirSync(dir, { recursive: true });
 
   /* Manifest maps the exact text the app displays to its file. Nothing in the
@@ -178,12 +246,16 @@ function render(dir, lines, voice) {
 
     if (!FORCE && existsSync(m4a) && statSync(m4a).size > 0) { kept++; bytes += statSync(m4a).size; continue; }
 
-    const aiff = join(dir, "_tmp.aiff");
+    /* Both engines hand afconvert an uncompressed file; only the container
+       differs, and afconvert reads either. The encode settings are the ones the
+       committed clips were made with, so switching engines changes the voice and
+       nothing else about the file. */
+    const raw = join(dir, ENGINE === "google" ? "_tmp.wav" : "_tmp.aiff");
     try {
-      execFileSync("say", ["-v", voice, "-r", String(wpm(clip.speech)), "-o", aiff, "--", clip.speech]);
-      execFileSync("afconvert", ["-f", "m4af", "-d", "aac", "-b", "28000", "-q", "127", aiff, m4a]);
+      await speak(clip.speech, voice, raw);
+      execFileSync("afconvert", ["-f", "m4af", "-d", "aac", "-b", "28000", "-q", "127", raw, m4a]);
     } finally {
-      rmSync(aiff, { force: true });
+      rmSync(raw, { force: true });
     }
     made++;
     bytes += statSync(m4a).size;
@@ -218,7 +290,7 @@ for (const f of files) {
 
 for (const job of jobs) {
   if (only.length && !job.id.startsWith("ui") && !only.includes(job.id)) continue;
-  const r = render(join(AUDIO, job.id), job.lines, job.voice);
+  const r = await render(join(AUDIO, job.id), job.lines, job.voice);
   grandTotal += r.total; grandBytes += r.bytes; grandMade += r.made;
   console.log(
     job.id.padEnd(16) +
@@ -230,5 +302,6 @@ for (const job of jobs) {
 
 console.log("");
 console.log(grandTotal + " lines · " + (grandBytes / 1024 / 1024).toFixed(2) + " MB · voices " + VOICE + " / " + VOICE_PT +
+            " · engine " + ENGINE +
             (grandMade ? " · " + grandMade + " rendered this run" : " · nothing to do"));
 console.log("Audio is fetched per category, so a learner downloads one folder, not all of them.");

@@ -58,8 +58,10 @@ node build/build-audio.mjs greetings     # one topic (plus the shared ui sets)
 node build/build-fonts.mjs               # fetch, subset and inline the two OFL faces
 ```
 
-`build-audio.mjs` needs macOS (`say` and `afconvert`). `AUDIO_VOICE` picks the English voice and
-`AUDIO_VOICE_PT` the Portuguese one. It refuses a content file that is missing any of the six
+`build-audio.mjs` needs macOS (`afconvert` encodes for both engines). `AUDIO_ENGINE=say` (the
+default) uses the macOS voices — free and offline, for development; `AUDIO_ENGINE=google` uses
+Google Cloud Text-to-Speech, which is what ships, and needs a live `gcloud auth login`.
+`AUDIO_VOICE` picks the English voice and `AUDIO_VOICE_PT` the Portuguese one, for either engine. It refuses a content file that is missing any of the six
 required parts, rather than silently generating a thin lesson. **A clip is named after its own
 text**, so replacing a synthetic voice with a human recording is a file swap — re-record the
 phrase, keep the filename, change nothing else.
@@ -146,7 +148,13 @@ why.
 
 ## Before launch
 
-The audio is macOS system voices rendered to files and committed to a public repo — now **two**
-voices, Samantha and Luciana. Apple licenses those voices for personal use, and 939 clips in a
-branded product is not defensible. Resolve this first: make the repo private, license commercial
-voices, or record humans. The pipeline is already swap-ready.
+The voice licensing problem is **cleared**. The committed clips were macOS system voices, which
+Apple licenses for personal use; all 1,587 are now Google Cloud Chirp3-HD (`Aoede` in both
+locales), whose output may ship inside a product. The re-render changed no filenames and no
+manifests, which is what the pipeline was designed for.
+
+What is left before an App Store release: a native shell (the app is still a static site), an
+Apple Developer account, a Portuguese privacy policy, and a pt-BR store listing. The app targets
+ages four and up, so Apple's Kids Category rules apply — it collects nothing, has no accounts, no
+analytics and no network calls, which is the easiest possible position to defend, and worth
+keeping that way.

@@ -5,8 +5,8 @@ Clara is the brand and the teacher. **The lessons are English; the interface is 
 Immersion belongs in the lesson, not in the chrome — the chrome is only the thing that carries you
 to the lesson, and a learner stopped by a button has been stopped before the teaching starts.
 
-**Status:** engine complete, six levels, placement test, ten topics, 939 recorded clips in two
-voices. Runs as static files, no build step, no server, no network calls beyond its own assets.
+**Status:** engine complete, six levels, placement test, ten topics, 1,587 recorded clips in two
+licensed voices. Runs as static files, no build step, no server, no network calls beyond its own assets.
 
 **Live:** <https://pedromonteiro18.github.io/quando-eu-crescer/>
 
@@ -98,20 +98,30 @@ spelling item that still cannot find a picture is not offered to the tiles band 
 one somehow arrives the slot shows 🔊 rather than nothing. Every band still fills its writing
 quota from every category after the filter.
 
-### 3. The voice licensing problem is worse at this scale, and blocks launch
+### 3. The voice licensing problem, and the swap that cleared it
 
-All 939 clips are macOS `say` output committed to a **public** repo, and there are now **two**
-voices rather than one — Samantha for English, Luciana for the Portuguese instructions. Apple
-licenses those voices for personal use. At 79 clips for a family prototype that was a flagged grey
-area; at 939 clips in two voices for a branded product called *English with Clara* it is not
-defensible.
+The clips were macOS `say` output committed to a **public** repo, in two voices — Samantha for
+English, Luciana for the Portuguese instructions. Apple licenses those for personal use. At 79
+clips for a family prototype that was a flagged grey area; at 1,587 clips in two voices for a
+branded product called *English with Clara* it was not defensible, and it blocked launch.
 
-Before any real launch, one of: make the repo private, license commercial TTS voices, or have
-humans record them. **This blocks launch, not building.** The pipeline is swap-ready: a clip is
-named after its own text, so re-recording a phrase and keeping the filename requires no code
-change and no manifest change. `AUDIO_VOICE` and `AUDIO_VOICE_PT` select the two voices, and the
-lines themselves live in one place — `app/js/spoken.js`, read by both the app and the build
-script, so the two lists cannot drift apart.
+All 1,587 are now **Google Cloud Chirp3-HD**, `Aoede` in both locales, whose output may be
+redistributed inside a product. The full re-render cost about a dollar.
+
+Aoede in both languages is not a coincidence. Chirp3-HD reuses one voice name across locales, so
+Clara is recognisably the same person teaching English and giving instructions in Portuguese —
+which is the whole premise of her, and something the previous Samantha/Luciana pairing could never
+give. Chirp3-HD was measured before it was chosen: it honours `speakingRate` (a line at rate 0.771
+runs 1.76s → 3.12s), so the `wpm()` scaffolding that makes a single new word slower than a
+sentence still works, and it honours SSML `<phoneme>`, which a pronunciation-teaching app may yet
+want.
+
+**The swap changed 1,587 files and zero filenames, and not one `clips.json`.** That is the
+filename-is-the-content contract paying for itself exactly as designed. It still holds: replacing
+these with human recordings later is the same file swap, no code and no manifest changes.
+`AUDIO_ENGINE` picks the engine, `AUDIO_VOICE` / `AUDIO_VOICE_PT` the voices, and the lines
+themselves live in one place — `app/js/spoken.js`, read by both the app and the build script, so
+the two lists cannot drift apart.
 
 ### 4. Daily reminders cannot be done properly in a web page
 
@@ -378,7 +388,7 @@ These were arrived at by measurement in the prototype and were not worth re-deri
   length-derived timeout — because a silent device must still be able to finish a lesson.
 
 Audio is fetched per category (~55 clips, ~530 kB) rather than inlined. The single-file Artifact
-build is dropped: 939 clips cannot be data-URIs. GitHub Pages is the only target.
+build is dropped: 1,587 clips cannot be data-URIs. GitHub Pages is the only target.
 
 ---
 
@@ -502,9 +512,11 @@ Then the real test, unchanged: hand it to a learner in each band and watch where
 
 ## Where this departs from the plan, and why
 
-- **American spelling, not British.** The plan's sample said "neighbour". The best voice installed
-  is Samantha (en-US), American English is what Brazilian ELT overwhelmingly teaches, and British
-  text read by an American voice is incoherent. Picked one and stayed with it.
+- **American spelling, not British.** The plan's sample said "neighbour". American English is what
+  Brazilian ELT overwhelmingly teaches, the voice is en-US, and British text read by an American
+  voice is incoherent. Picked one and stayed with it. (The original reason was narrower — Samantha
+  was simply the best voice installed on the machine — but the choice outlived its cause and the
+  licensed voice was chosen en-US to match.)
 - **Placement returns two numbers, not one.** Age decides the **band** (presentation); a grammar
   ladder decides the **level** (content). Collapsing them would put an adult beginner in front of
   letter tiles, or hand phrasal verbs to a nine-year-old who guessed well three times.
