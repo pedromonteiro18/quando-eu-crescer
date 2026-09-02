@@ -226,6 +226,15 @@ function typed(ctx, it, index, total) {
     field.addEventListener("keydown", e => {
       if (e.key === "Enter" && !free) { e.preventDefault(); check(); }
     });
+    /* iOS leaves its Select/Paste/AutoFill callout's touch-forwarding stuck
+       over the field after a free-typing blur, which swallows the next tap
+       anywhere on the screen — including "Verificar" below. Dropping the
+       selection on blur tears that callout down instead of leaving it to eat
+       one tap. */
+    field.addEventListener("blur", () => {
+      const sel = window.getSelection && window.getSelection();
+      if (sel) sel.removeAllRanges();
+    });
 
     function accepted(value) {
       const v = norm(value);

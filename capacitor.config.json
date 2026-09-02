@@ -1,0 +1,18 @@
+{
+  "appId": "uk.dreamly.englishwithclara",
+  "appName": "English with Clara",
+  "webDir": "app",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#FAF7F2"
+  },
+  "server": {
+    "iosScheme": "capacitor"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon",
+      "iconColor": "#15161D"
+    }
+  }
+}

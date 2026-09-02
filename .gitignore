@@ -1,2 +1,10 @@
-.DS_Store
+# Capacitor / native shell. The web app in app/ needs none of this to run.
 node_modules/
+ios/App/Pods/
+ios/App/App/public/
+ios/App/App/capacitor.config.json
+ios/App/App/config.xml
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.DS_Store

@@ -177,10 +177,19 @@ p:last-child { margin-bottom: 0; }
 .bar {
   position: relative; z-index: 20;
   flex: none;                       /* pinned; the stage scrolls beneath it */
-  height: var(--bar-h);
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px;
-  padding: 0 16px;
+  /* The status bar and the Dynamic Island sit on top of the web view in the
+     native shell, so the bar owns the inset rather than the page: it grows by
+     exactly the notch and pads its content down past it, keeping its bottom
+     rule where it was. In a browser every env() here resolves to 0px and this
+     is the old declaration. */
+  height: calc(var(--bar-h) + env(safe-area-inset-top, 0px));
+  padding:
+    env(safe-area-inset-top, 0px)
+    calc(16px + env(safe-area-inset-right, 0px))
+    0
+    calc(16px + env(safe-area-inset-left, 0px));
   background: var(--ground);
   border-bottom: 2px solid var(--ink);
 }
@@ -236,7 +245,13 @@ p:last-child { margin-bottom: 0; }
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  padding: 20px 18px 48px;
+  /* 48px of breathing room at the end of a screen, plus the home indicator when
+     there is one, so the last button is never under the swipe bar. */
+  padding:
+    20px
+    calc(18px + env(safe-area-inset-right, 0px))
+    calc(48px + env(safe-area-inset-bottom, 0px))
+    calc(18px + env(safe-area-inset-left, 0px));
 }
 .stage:focus { outline: none; }
 
@@ -720,7 +735,9 @@ textarea.field { min-height: calc(110px * var(--scale)); resize: vertical; line-
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   padding: 22px 12px; background: var(--paper);
   border: 2px solid var(--rule-mid); border-radius: 5px;
-  font: inherit; cursor: pointer;
+  /* color, not just font: a bare <button> takes the system link blue on iOS,
+     which is how these read in the native shell but never in a browser. */
+  color: inherit; font: inherit; cursor: pointer;
 }
 .age:hover { border-color: var(--ink); }
 .age__icon { font-size: 2.4rem; line-height: 1; }

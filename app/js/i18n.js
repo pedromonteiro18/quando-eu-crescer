@@ -362,6 +362,11 @@ const S = {
   "prog.settling":    { en: "Still settling",            pt: "Ainda fixando" },
   "prog.lessons":     { en: "Lessons",                   pt: "Aulas" },
   "prog.streak":      { en: "Day streak",                pt: "Dias seguidos" },
+
+  /* ── reminders (native shell only) ─────────────────────────────────────── */
+  "reminder.title":      { en: "English with Clara",                pt: "English with Clara" },
+  "reminder.body":       { en: "A quick lesson today?",              pt: "Uma aulinha rápida hoje?" },
+  "reminder.bodyStreak": { en: "{days}-day streak — keep it going?", pt: "{days} dias seguidos — vamos continuar?" },
   "prog.fourSkills":  { en: "The four skills",           pt: "As quatro habilidades" },
   "prog.firstTry":    { en: "first-try accuracy",        pt: "acerto de primeira" },
   "prog.speakNote":   { en: "Speaking is counted, not scored. There is no pronunciation mark " +

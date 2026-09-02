@@ -1,0 +1,20 @@
+{
+  "name": "english-with-clara",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Native shell for English with Clara. The app itself is app/ — plain ES modules, no bundler, no build step. Capacitor only wraps and copies it.",
+  "scripts": {
+    "sync": "cap sync ios",
+    "open": "cap open ios",
+    "audio": "node build/build-audio.mjs",
+    "serve": "python3 -m http.server --directory app 8000"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0",
+    "@capacitor/local-notifications": "^7.0.0"
+  }
+}

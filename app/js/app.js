@@ -27,6 +27,7 @@ import * as Read from "./skills/read.js";
 import * as Speak from "./skills/speak.js";
 import * as Write from "./skills/write.js";
 import { clara, paint } from "./clara.js";
+import { remindStreak } from "./reminders.js";
 import { t, lang, setLang, onChange, apply, LANGS, plural, uiClips } from "./i18n.js";
 import { diagLines } from "./teacher.js";
 import {
@@ -690,6 +691,7 @@ function finish(cat, band, vocab, results, token) {
   P.finishLesson(cat.id);
   const s = P.touchDay();
   paintStreak();
+  remindStreak(s.count);
 
   const won = [];
   if (P.award("first-lesson")) won.push("first-lesson");
