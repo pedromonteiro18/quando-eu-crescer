@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">English with Clara</string>
+    <string name="title_activity_main">English with Clara</string>
+    <string name="package_name">com.pedromonteiro.englishwithclara</string>
+    <string name="custom_url_scheme">com.pedromonteiro.englishwithclara</string>
+</resources>

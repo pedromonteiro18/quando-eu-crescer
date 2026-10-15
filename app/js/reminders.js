@@ -7,7 +7,7 @@
    half of that sentence.
 
    It touches nothing outside itself: window.Capacitor exists only inside the
-   native shell (injected by the iOS runtime before any app script runs), so
+   native shell (injected by the iOS or Android runtime before any app script runs), so
    every export below is a silent no-op in the browser. The web app is
    unaffected by this file existing at all.
    ═══════════════════════════════════════════════════════════════════════════ */
