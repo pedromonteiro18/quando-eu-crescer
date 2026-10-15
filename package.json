@@ -7,7 +7,10 @@
     "sync": "cap sync ios",
     "open": "cap open ios",
     "audio": "node build/build-audio.mjs",
-    "serve": "python3 -m http.server --directory app 8000"
+    "serve": "python3 -m http.server --directory app 8000",
+    "sync:android": "cap sync android",
+    "eas-build-post-install": "cap sync android",
+    "eas-build-pre-install": "sudo apt-get update -qq && sudo apt-get install -y -qq openjdk-21-jdk-headless"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.0.0"
