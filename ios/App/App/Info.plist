@@ -24,6 +24,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>O microfone é usado no exercício de fala para você se gravar e comparar com a voz da Clara. A gravação fica só no seu aparelho e não é enviada a ninguém.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
